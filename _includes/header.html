@@ -1,25 +1,28 @@
-    <div class="page-header" id="banner">
-      <h3><a href="/">Electric Power Distribution Handbook</a></h3>
-    </div>
-    <div class="navbar navbar-default">
+{% assign current = page.url | downcase | split: '/' %}
+
+      <h1><a href="/">Electric Power Distribution
+      Handbook,</a> <span style="font-size: 80%; font-variant:small-caps;">T. A. Short</span></h1>
+    <nav class="navbar navbar-default" role="navigation">
+    <!-- <div class="navbar navbar-default"> -->
       <div class="container">
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <a class="navbar-brand sr-only" href="#">Brand</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
           <ul class="nav navbar-nav">
-            <li class="active"> <a href="/">Main</a> </li>
-            <li> <a href="/resources/">Resources</a> </li>
-            <li> <a href="/study/">Self study</a> </li>
-            <li> <a href="/calculators/">Online tools</a> </li>
-            <li> <a href="http://www.epri.com">EPRI</a> </li>
-            <li> <a href="/author/">Author</a> </li>
+            <li {% if current[1] == 'index.html' %}  class='active'{% endif %}> <a href="/">Main</a> </li>
+            <li {% if current[1] == 'resources' %}   class='active'{% endif %}> <a href="/resources/">Resources</a> </li>
+            <li {% if current[1] == 'study' %}       class='active'{% endif %}> <a href="/study/">Self study</a> </li>
+            <li {% if current[1] == 'calculators' %} class='active'{% endif %}> <a href="/calculators/">Online tools</a> </li>
+            <li {% if current[1] == 'author' %}      class='active'{% endif %}> <a href="/author/">Author</a> </li>
           </ul>
 
         </div>
       </div>
-    </div><div class="links">
+    </nav><div class="links">

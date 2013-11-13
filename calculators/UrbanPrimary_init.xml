@@ -1,0 +1,3129 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+
+<!-- description of the model interface using an extention of the FMI standard -->
+<fmiModelDescription
+  fmiVersion                          = "1.0"
+
+  modelName                           = "UrbanPrimary"
+  modelIdentifier                     = "UrbanPrimary"
+  
+  OPENMODELICAHOME                    = "/home/tshort/openmodelica/build"
+  
+  guid                                = "{8c4e810f-3df3-4a00-8276-176fa3c9f9e0}"
+  
+  generationTool                      = "OpenModelica Compiler 1.9.1+dev (r17647)"
+  generationDateAndTime               = "2013-11-06T12:23:02Z"
+  
+  variableNamingConvention            = "structured"
+  
+  numberOfEventIndicators             = "5"  cmt_numberOfEventIndicators             = "NG:       number of zero crossings,                           FMI"
+  numberOfTimeEvents                  = "0"  cmt_numberOfTimeEvents                  = "NG_SAM:   number of zero crossings that are samples,          OMC"
+  
+  numberOfInputVariables              = "0"  cmt_numberOfInputVariables              = "NI:       number of inputvar on topmodel,                     OMC"
+  numberOfOutputVariables             = "0"  cmt_numberOfOutputVariables             = "NO:       number of outputvar on topmodel,                    OMC"
+  
+  numberOfResidualsForInitialization  = "3"  cmt_numberOfResidualsForInitialization  = "NR:       number of residuals for initialialization function, OMC"
+  numberOfExternalObjects             = "0"  cmt_numberOfExternalObjects             = "NEXT:     number of external objects,                         OMC"
+  numberOfFunctions                   = "0"  cmt_numberOfFunctions                   = "NFUNC:    number of functions used by the simulation,         OMC"
+  
+  numberOfContinuousStates            = "7"  cmt_numberOfContinuousStates            = "NX:       number of states,                                   FMI"
+  numberOfRealAlgebraicVariables      = "60"  cmt_numberOfRealAlgebraicVariables      = "NY:       number of real variables,                           OMC"
+  numberOfRealAlgebraicAliasVariables = "103"  cmt_numberOfRealAlgebraicAliasVariables = "NA:       number of alias variables,                          OMC"
+  numberOfRealParameters              = "90"  cmt_numberOfRealParameters              = "NP:       number of parameters,                               OMC"
+  
+  numberOfIntegerAlgebraicVariables   = "0"  cmt_numberOfIntegerAlgebraicVariables   = "NYINT:    number of alg. int variables,                       OMC"
+  numberOfIntegerAliasVariables       = "0"  cmt_numberOfIntegerAliasVariables       = "NAINT:    number of alias int variables,                      OMC"
+  numberOfIntegerParameters           = "1"  cmt_numberOfIntegerParameters           = "NPINT:    number of int parameters,                           OMC"
+  
+  numberOfStringAlgebraicVariables    = "0"  cmt_numberOfStringAlgebraicVariables    = "NYSTR:    number of alg. string variables,                    OMC"
+  numberOfStringAliasVariables        = "0"  cmt_numberOfStringAliasVariables        = "NASTR:    number of alias string variables,                   OMC"
+  numberOfStringParameters            = "0"  cmt_numberOfStringParameters            = "NPSTR:    number of string parameters,                        OMC"
+  
+  numberOfBooleanAlgebraicVariables   = "3"  cmt_numberOfBooleanAlgebraicVariables   = "NYBOOL:   number of alg. bool variables,                      OMC"
+  numberOfBooleanAliasVariables       = "3"  cmt_numberOfBooleanAliasVariables       = "NABOOL:   number of alias bool variables,                     OMC"
+  numberOfBooleanParameters           = "6"  cmt_numberOfBooleanParameters           = "NPBOOL:   number of bool parameters,                          OMC" >
+  
+  
+  <!-- startTime, stopTime, tolerance are FMI specific, all others are OMC specific -->
+  <DefaultExperiment
+    startTime      = "0.0"
+    stopTime       = "0.14"
+    stepSize       = "0.00028000000000000003"
+    tolerance      = "0.001"
+    solver         = "dassl"
+    outputFormat   = "csv"
+    variableFilter = ".*" />
+    
+  <!-- variables in the model -->
+  <ModelVariables>
+
+  <ScalarVariable
+  name = "threephasesource1.i_abc[1]"
+  valueReference = "1000"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "0" classType = "rSta"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "28" startColumn = "5" endLine = "28" endColumn = "57" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.i_abc[2]"
+  valueReference = "1001"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "1" classType = "rSta"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "28" startColumn = "5" endLine = "28" endColumn = "57" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.i_abc[3]"
+  valueReference = "1002"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "2" classType = "rSta"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "28" startColumn = "5" endLine = "28" endColumn = "57" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.inductor1.i"
+  valueReference = "1003"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "3" classType = "rSta"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cc.v"
+  valueReference = "1004"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "4" classType = "rSta"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cb.v"
+  valueReference = "1005"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "5" classType = "rSta"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ca.v"
+  valueReference = "1006"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "6" classType = "rSta"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(threephasesource1.i_abc[1])"
+  valueReference = "1007"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "0" classType = "rDer"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "28" startColumn = "5" endLine = "28" endColumn = "57" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(threephasesource1.i_abc[2])"
+  valueReference = "1008"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "1" classType = "rDer"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "28" startColumn = "5" endLine = "28" endColumn = "57" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(threephasesource1.i_abc[3])"
+  valueReference = "1009"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "2" classType = "rDer"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "28" startColumn = "5" endLine = "28" endColumn = "57" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(cablecircuit1.inductor1.i)"
+  valueReference = "1010"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "3" classType = "rDer"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(Cc.v)"
+  valueReference = "1011"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "4" classType = "rDer"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(Cb.v)"
+  valueReference = "1012"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "5" classType = "rDer"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(Ca.v)"
+  valueReference = "1013"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "6" classType = "rDer"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.di_dq0[1]"
+  valueReference = "1014"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "0" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "30" startColumn = "5" endLine = "30" endColumn = "70" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.di_dq0[2]"
+  valueReference = "1015"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "1" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "30" startColumn = "5" endLine = "30" endColumn = "70" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.di_dq0[3]"
+  valueReference = "1016"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "2" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "30" startColumn = "5" endLine = "30" endColumn = "70" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.i_dq0[1]"
+  valueReference = "1017"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "3" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "29" startColumn = "5" endLine = "29" endColumn = "18" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.i_dq0[2]"
+  valueReference = "1018"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "4" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "29" startColumn = "5" endLine = "29" endColumn = "18" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.i_dq0[3]"
+  valueReference = "1019"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "5" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "29" startColumn = "5" endLine = "29" endColumn = "18" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.P[1,1]"
+  valueReference = "1020"
+  description = "Park Transformation matrix"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "6" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "27" startColumn = "5" endLine = "27" endColumn = "235" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.P[1,2]"
+  valueReference = "1021"
+  description = "Park Transformation matrix"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "7" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "27" startColumn = "5" endLine = "27" endColumn = "235" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.P[1,3]"
+  valueReference = "1022"
+  description = "Park Transformation matrix"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "8" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "27" startColumn = "5" endLine = "27" endColumn = "235" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.P[2,1]"
+  valueReference = "1023"
+  description = "Park Transformation matrix"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "9" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "27" startColumn = "5" endLine = "27" endColumn = "235" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.P[2,2]"
+  valueReference = "1024"
+  description = "Park Transformation matrix"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "10" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "27" startColumn = "5" endLine = "27" endColumn = "235" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.P[2,3]"
+  valueReference = "1025"
+  description = "Park Transformation matrix"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "11" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "27" startColumn = "5" endLine = "27" endColumn = "235" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.P[3,1]"
+  valueReference = "1026"
+  description = "Park Transformation matrix"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "12" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "27" startColumn = "5" endLine = "27" endColumn = "235" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.P[3,2]"
+  valueReference = "1027"
+  description = "Park Transformation matrix"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "13" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "27" startColumn = "5" endLine = "27" endColumn = "235" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.P[3,3]"
+  valueReference = "1028"
+  description = "Park Transformation matrix"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "14" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "27" startColumn = "5" endLine = "27" endColumn = "235" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.tSwitch"
+  valueReference = "1029"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "15" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1962" startColumn = "5" endLine = "1962" endColumn = "74" fileWritable = "true">
+  <Real useStart="true" start="-1e+60" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="s" displayUnit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.LossPower"
+  valueReference = "1030"
+  description = "Loss power leaving component via HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "16" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "50" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="W" displayUnit="W" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.v"
+  valueReference = "1031"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "17" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Vs"
+  valueReference = "1032"
+  description = "Zero-sequence voltage"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "18" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "96" startColumn = "3" endLine = "96" endColumn = "69" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.inductor1.p.v"
+  valueReference = "1033"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "19" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.inductor1.v"
+  valueReference = "1034"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "20" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.LossPower"
+  valueReference = "1035"
+  description = "Loss power leaving component via HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "21" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "50" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="W" displayUnit="W" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.v"
+  valueReference = "1036"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "22" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.v"
+  valueReference = "1037"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "23" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "127" startColumn = "5" endLine = "127" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor3.p.v"
+  valueReference = "1038"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "24" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor3.v"
+  valueReference = "1039"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "25" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor2.p.v"
+  valueReference = "1040"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "26" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor2.v"
+  valueReference = "1041"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "27" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor1.p.v"
+  valueReference = "1042"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "28" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor1.v"
+  valueReference = "1043"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "29" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.p.v"
+  valueReference = "1044"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "30" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.v"
+  valueReference = "1045"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "31" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.p.v"
+  valueReference = "1046"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "32" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.v"
+  valueReference = "1047"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "33" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.p.v"
+  valueReference = "1048"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "34" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.v"
+  valueReference = "1049"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "35" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.LossPower"
+  valueReference = "1050"
+  description = "Loss power leaving component via HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "36" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "50" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="W" displayUnit="W" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.v"
+  valueReference = "1051"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "37" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.LossPower"
+  valueReference = "1052"
+  description = "Loss power leaving component via HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "38" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "50" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="W" displayUnit="W" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.v"
+  valueReference = "1053"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "39" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.LossPower"
+  valueReference = "1054"
+  description = "Loss power leaving component via HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "40" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "50" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="W" displayUnit="W" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.v"
+  valueReference = "1055"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "41" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.LossPower"
+  valueReference = "1056"
+  description = "Loss power leaving component via HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "42" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "311" startColumn = "5" endLine = "312" endColumn = "50" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="W" displayUnit="W" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.p.v"
+  valueReference = "1057"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "43" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.v"
+  valueReference = "1058"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "44" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ln.i"
+  valueReference = "1059"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "45" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ln.v"
+  valueReference = "1060"
+  description = "Voltage drop between the two pins (= p.v - n.v)"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "46" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "173" startColumn = "5" endLine = "173" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ca.i"
+  valueReference = "1061"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "47" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "der(Ln.i)"
+  valueReference = "1062"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "48" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.R_actual"
+  valueReference = "1063"
+  description = "Actual resistance = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "49" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "70" startColumn = "3" endLine = "71" endColumn = "63" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.R_actual"
+  valueReference = "1064"
+  description = "Actual resistance = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "50" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "70" startColumn = "3" endLine = "71" endColumn = "63" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.R_actual"
+  valueReference = "1065"
+  description = "Actual resistance = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "51" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "70" startColumn = "3" endLine = "71" endColumn = "63" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.R_actual"
+  valueReference = "1066"
+  description = "Actual resistance = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "52" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "70" startColumn = "3" endLine = "71" endColumn = "63" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.R_actual"
+  valueReference = "1067"
+  description = "Actual resistance = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "53" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "70" startColumn = "3" endLine = "71" endColumn = "63" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.w"
+  valueReference = "1068"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "54" classType = "rAlg"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "26" startColumn = "5" endLine = "26" endColumn = "29" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Gx.p.v"
+  valueReference = "1069"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "55" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "7" startColumn = "5" endLine = "12" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "ground.p.v"
+  valueReference = "1070"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "56" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "7" startColumn = "5" endLine = "12" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Gc.p.v"
+  valueReference = "1071"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "57" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "7" startColumn = "5" endLine = "12" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Gb.p.v"
+  valueReference = "1072"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "58" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "7" startColumn = "5" endLine = "12" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ga.p.v"
+  valueReference = "1073"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "59" classType = "rAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "7" startColumn = "5" endLine = "12" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "freqHz"
+  valueReference = "1074"
+  description = "Frequency"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "0" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "3" startColumn = "3" endLine = "3" endColumn = "65" fileWritable = "true">
+  <Real useStart="true" start="60.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Hz" displayUnit="Hz" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Vll"
+  valueReference = "1075"
+  description = "RMS system voltage, line-line"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "1" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "63" startColumn = "3" endLine = "63" endColumn = "83" fileWritable = "true">
+  <Real useStart="true" start="13800.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "VA"
+  valueReference = "1076"
+  description = "Transformer VA"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "2" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "64" startColumn = "3" endLine = "64" endColumn = "68" fileWritable = "true">
+  <Real useStart="true" start="50000000.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="W" displayUnit="W" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Xpcnt"
+  valueReference = "1077"
+  description = "Transformer impedance, percent"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "3" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "65" startColumn = "3" endLine = "65" endColumn = "63" fileWritable = "true">
+  <Real useStart="true" start="15.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "XRtran"
+  valueReference = "1078"
+  description = "X/R ratio of the substation transformer(s)"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "4" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "67" startColumn = "3" endLine = "67" endColumn = "75" fileWritable = "true">
+  <Real useStart="true" start="5.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Xneutral"
+  valueReference = "1079"
+  description = "Neutral reactance, ohms"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "5" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "68" startColumn = "3" endLine = "68" endColumn = "80" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "XRneutral"
+  valueReference = "1080"
+  description = "X/R ratio of the neutral reactor"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "6" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "69" startColumn = "3" endLine = "69" endColumn = "68" fileWritable = "true">
+  <Real useStart="true" start="5.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rcable"
+  valueReference = "1081"
+  description = "Cable resistance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "7" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "70" startColumn = "3" endLine = "70" endColumn = "73" fileWritable = "true">
+  <Real useStart="true" start="0.07" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Xcable"
+  valueReference = "1082"
+  description = "Cable reactance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "8" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "71" startColumn = "3" endLine = "71" endColumn = "71" fileWritable = "true">
+  <Real useStart="true" start="0.07" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Vp"
+  valueReference = "1083"
+  description = "Peak L-N voltage"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "9" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "72" startColumn = "3" endLine = "72" endColumn = "89" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Zbase"
+  valueReference = "1084"
+  description = "Base source impedance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "10" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "73" startColumn = "3" endLine = "73" endColumn = "94" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Xt"
+  valueReference = "1085"
+  description = "Source reactance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "11" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "74" startColumn = "3" endLine = "74" endColumn = "85" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rt"
+  valueReference = "1086"
+  description = "Source resistance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "12" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "75" startColumn = "3" endLine = "75" endColumn = "77" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Lneutral"
+  valueReference = "1087"
+  description = "Neutral inductance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "13" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "76" startColumn = "3" endLine = "76" endColumn = "109" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="H" displayUnit="H" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rneutral"
+  valueReference = "1088"
+  description = "Neutral resistance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "14" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "77" startColumn = "3" endLine = "77" endColumn = "93" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ccables"
+  valueReference = "1089"
+  description = "Capacitance to ground per phase of all connected cables"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "15" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "78" startColumn = "3" endLine = "78" endColumn = "118" fileWritable = "true">
+  <Real useStart="true" start="0.000001" fixed="true" useNominal="false" nominal="1.0" min="0.0" max="1.7976931348623157E+308" unit="F" displayUnit="F" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "faultTime"
+  valueReference = "1090"
+  description = "Time when the fault occurs, cycles"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "16" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "79" startColumn = "3" endLine = "79" endColumn = "71" fileWritable = "true">
+  <Real useStart="true" start="1.25" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ca.C"
+  valueReference = "1091"
+  description = "Capacitance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "17" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "283" startColumn = "5" endLine = "283" endColumn = "54" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="0.0" max="1.7976931348623157E+308" unit="F" displayUnit="F" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cb.C"
+  valueReference = "1092"
+  description = "Capacitance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "18" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "283" startColumn = "5" endLine = "283" endColumn = "54" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="0.0" max="1.7976931348623157E+308" unit="F" displayUnit="F" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cc.C"
+  valueReference = "1093"
+  description = "Capacitance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "19" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "283" startColumn = "5" endLine = "283" endColumn = "54" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="0.0" max="1.7976931348623157E+308" unit="F" displayUnit="F" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ln.L"
+  valueReference = "1094"
+  description = "Inductance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "20" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "335" startColumn = "5" endLine = "335" endColumn = "52" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="H" displayUnit="H" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.R"
+  valueReference = "1095"
+  description = "Resistance at temperature T_ref"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "21" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "62" startColumn = "3" endLine = "63" endColumn = "40" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.T_ref"
+  valueReference = "1096"
+  description = "Reference temperature"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "22" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "64" startColumn = "3" endLine = "64" endColumn = "78" fileWritable = "true">
+  <Real useStart="true" start="300.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.alpha"
+  valueReference = "1097"
+  description = "Temperature coefficient of resistance (R_actual = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "23" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "65" startColumn = "3" endLine = "66" endColumn = "93" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="1/K" displayUnit="1/K" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.T"
+  valueReference = "1098"
+  description = "Fixed device temperature if useHeatPort = false"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "24" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "306" startColumn = "5" endLine = "307" endColumn = "99" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V"
+  valueReference = "1099"
+  description = "RMS voltage, line to line"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "25" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "7" startColumn = "5" endLine = "7" endColumn = "79" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.R"
+  valueReference = "1100"
+  description = "Source resistance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "26" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "8" startColumn = "5" endLine = "8" endColumn = "70" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.freqHz"
+  valueReference = "1101"
+  description = "Frequency"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "27" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "9" startColumn = "5" endLine = "9" endColumn = "67" fileWritable = "true">
+  <Real useStart="true" start="60.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Hz" displayUnit="Hz" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.X"
+  valueReference = "1102"
+  description = "Source reactance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "28" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "10" startColumn = "5" endLine = "10" endColumn = "68" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.R"
+  valueReference = "1103"
+  description = "Resistance at temperature T_ref"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "29" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "62" startColumn = "3" endLine = "63" endColumn = "40" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.T_ref"
+  valueReference = "1104"
+  description = "Reference temperature"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "30" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "64" startColumn = "3" endLine = "64" endColumn = "78" fileWritable = "true">
+  <Real useStart="true" start="300.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.alpha"
+  valueReference = "1105"
+  description = "Temperature coefficient of resistance (R_actual = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "31" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "65" startColumn = "3" endLine = "66" endColumn = "93" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="1/K" displayUnit="1/K" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.T"
+  valueReference = "1106"
+  description = "Fixed device temperature if useHeatPort = false"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "32" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "306" startColumn = "5" endLine = "307" endColumn = "99" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.R"
+  valueReference = "1107"
+  description = "Resistance at temperature T_ref"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "33" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "62" startColumn = "3" endLine = "63" endColumn = "40" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.T_ref"
+  valueReference = "1108"
+  description = "Reference temperature"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "34" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "64" startColumn = "3" endLine = "64" endColumn = "78" fileWritable = "true">
+  <Real useStart="true" start="300.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.alpha"
+  valueReference = "1109"
+  description = "Temperature coefficient of resistance (R_actual = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "35" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "65" startColumn = "3" endLine = "66" endColumn = "93" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="1/K" displayUnit="1/K" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.T"
+  valueReference = "1110"
+  description = "Fixed device temperature if useHeatPort = false"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "36" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "306" startColumn = "5" endLine = "307" endColumn = "99" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.R"
+  valueReference = "1111"
+  description = "Resistance at temperature T_ref"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "37" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "62" startColumn = "3" endLine = "63" endColumn = "40" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.T_ref"
+  valueReference = "1112"
+  description = "Reference temperature"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "38" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "64" startColumn = "3" endLine = "64" endColumn = "78" fileWritable = "true">
+  <Real useStart="true" start="300.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.alpha"
+  valueReference = "1113"
+  description = "Temperature coefficient of resistance (R_actual = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "39" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "65" startColumn = "3" endLine = "66" endColumn = "93" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="1/K" displayUnit="1/K" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.T"
+  valueReference = "1114"
+  description = "Fixed device temperature if useHeatPort = false"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "40" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "306" startColumn = "5" endLine = "307" endColumn = "99" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.offset"
+  valueReference = "1115"
+  description = "Voltage offset"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "41" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "425" startColumn = "5" endLine = "425" endColumn = "51" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.startTime"
+  valueReference = "1116"
+  description = "Time offset"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "42" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "426" startColumn = "5" endLine = "426" endColumn = "48" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="s" displayUnit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.V"
+  valueReference = "1117"
+  description = "Amplitude of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "43" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Sources.mo" startLine = "359" startColumn = "5" endLine = "359" endColumn = "61" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.phase"
+  valueReference = "1118"
+  description = "Phase of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "44" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Sources.mo" startLine = "360" startColumn = "5" endLine = "360" endColumn = "52" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="rad" displayUnit="deg" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.freqHz"
+  valueReference = "1119"
+  description = "Frequency of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "45" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Sources.mo" startLine = "361" startColumn = "5" endLine = "361" endColumn = "68" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Hz" displayUnit="Hz" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.signalSource.amplitude"
+  valueReference = "1120"
+  description = "Amplitude of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "46" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "560" startColumn = "5" endLine = "560" endColumn = "56" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.signalSource.freqHz"
+  valueReference = "1121"
+  description = "Frequency of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "47" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "561" startColumn = "5" endLine = "561" endColumn = "73" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Hz" displayUnit="Hz" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.signalSource.phase"
+  valueReference = "1122"
+  description = "Phase of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "48" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "562" startColumn = "5" endLine = "562" endColumn = "57" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="rad" displayUnit="deg" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.signalSource.offset"
+  valueReference = "1123"
+  description = "Offset of output signal"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "49" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "563" startColumn = "5" endLine = "563" endColumn = "54" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.signalSource.startTime"
+  valueReference = "1124"
+  description = "Output = offset for time &lt; startTime"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "50" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "564" startColumn = "5" endLine = "564" endColumn = "78" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="s" displayUnit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.offset"
+  valueReference = "1125"
+  description = "Voltage offset"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "51" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "425" startColumn = "5" endLine = "425" endColumn = "51" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.startTime"
+  valueReference = "1126"
+  description = "Time offset"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "52" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "426" startColumn = "5" endLine = "426" endColumn = "48" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="s" displayUnit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.V"
+  valueReference = "1127"
+  description = "Amplitude of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "53" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Sources.mo" startLine = "359" startColumn = "5" endLine = "359" endColumn = "61" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.phase"
+  valueReference = "1128"
+  description = "Phase of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "54" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Sources.mo" startLine = "360" startColumn = "5" endLine = "360" endColumn = "52" fileWritable = "true">
+  <Real useStart="true" start="2.0943951023931953" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="rad" displayUnit="deg" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.freqHz"
+  valueReference = "1129"
+  description = "Frequency of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "55" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Sources.mo" startLine = "361" startColumn = "5" endLine = "361" endColumn = "68" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Hz" displayUnit="Hz" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.signalSource.amplitude"
+  valueReference = "1130"
+  description = "Amplitude of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "56" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "560" startColumn = "5" endLine = "560" endColumn = "56" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.signalSource.freqHz"
+  valueReference = "1131"
+  description = "Frequency of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "57" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "561" startColumn = "5" endLine = "561" endColumn = "73" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Hz" displayUnit="Hz" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.signalSource.phase"
+  valueReference = "1132"
+  description = "Phase of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "58" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "562" startColumn = "5" endLine = "562" endColumn = "57" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="rad" displayUnit="deg" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.signalSource.offset"
+  valueReference = "1133"
+  description = "Offset of output signal"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "59" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "563" startColumn = "5" endLine = "563" endColumn = "54" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.signalSource.startTime"
+  valueReference = "1134"
+  description = "Output = offset for time &lt; startTime"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "60" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "564" startColumn = "5" endLine = "564" endColumn = "78" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="s" displayUnit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.offset"
+  valueReference = "1135"
+  description = "Voltage offset"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "61" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "425" startColumn = "5" endLine = "425" endColumn = "51" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.startTime"
+  valueReference = "1136"
+  description = "Time offset"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "62" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "426" startColumn = "5" endLine = "426" endColumn = "48" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="s" displayUnit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.V"
+  valueReference = "1137"
+  description = "Amplitude of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "63" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Sources.mo" startLine = "359" startColumn = "5" endLine = "359" endColumn = "61" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.phase"
+  valueReference = "1138"
+  description = "Phase of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "64" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Sources.mo" startLine = "360" startColumn = "5" endLine = "360" endColumn = "52" fileWritable = "true">
+  <Real useStart="true" start="-2.0943951023931953" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="rad" displayUnit="deg" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.freqHz"
+  valueReference = "1139"
+  description = "Frequency of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "65" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Sources.mo" startLine = "361" startColumn = "5" endLine = "361" endColumn = "68" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Hz" displayUnit="Hz" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.signalSource.amplitude"
+  valueReference = "1140"
+  description = "Amplitude of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "66" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "560" startColumn = "5" endLine = "560" endColumn = "56" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.signalSource.freqHz"
+  valueReference = "1141"
+  description = "Frequency of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "67" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "561" startColumn = "5" endLine = "561" endColumn = "73" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Hz" displayUnit="Hz" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.signalSource.phase"
+  valueReference = "1142"
+  description = "Phase of sine wave"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "68" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "562" startColumn = "5" endLine = "562" endColumn = "57" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="rad" displayUnit="deg" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.signalSource.offset"
+  valueReference = "1143"
+  description = "Offset of output signal"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "69" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "563" startColumn = "5" endLine = "563" endColumn = "54" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.signalSource.startTime"
+  valueReference = "1144"
+  description = "Output = offset for time &lt; startTime"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "70" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "564" startColumn = "5" endLine = "564" endColumn = "78" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="s" displayUnit="s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.L"
+  valueReference = "1145"
+  description = "Source inductance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "71" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "11" startColumn = "5" endLine = "11" endColumn = "88" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="H" displayUnit="H" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor1.L"
+  valueReference = "1146"
+  description = "Inductance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "72" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "335" startColumn = "5" endLine = "335" endColumn = "52" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="H" displayUnit="H" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor2.L"
+  valueReference = "1147"
+  description = "Inductance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "73" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "335" startColumn = "5" endLine = "335" endColumn = "52" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="H" displayUnit="H" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor3.L"
+  valueReference = "1148"
+  description = "Inductance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "74" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "335" startColumn = "5" endLine = "335" endColumn = "52" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="H" displayUnit="H" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.R"
+  valueReference = "1149"
+  description = "Cable resistance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "75" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "51" startColumn = "5" endLine = "51" endColumn = "69" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.X"
+  valueReference = "1150"
+  description = "Cable reactance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "76" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "52" startColumn = "5" endLine = "52" endColumn = "67" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.freqHz"
+  valueReference = "1151"
+  description = "Frequency"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "77" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "53" startColumn = "5" endLine = "53" endColumn = "67" fileWritable = "true">
+  <Real useStart="true" start="60.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Hz" displayUnit="Hz" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.R"
+  valueReference = "1152"
+  description = "Resistance at temperature T_ref"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "78" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "62" startColumn = "3" endLine = "63" endColumn = "40" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.T_ref"
+  valueReference = "1153"
+  description = "Reference temperature"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "79" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "64" startColumn = "3" endLine = "64" endColumn = "78" fileWritable = "true">
+  <Real useStart="true" start="300.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.alpha"
+  valueReference = "1154"
+  description = "Temperature coefficient of resistance (R_actual = R*(1 + alpha*(T_heatPort - T_ref))"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "80" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "65" startColumn = "3" endLine = "66" endColumn = "93" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="1/K" displayUnit="1/K" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.T"
+  valueReference = "1155"
+  description = "Fixed device temperature if useHeatPort = false"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "81" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "306" startColumn = "5" endLine = "307" endColumn = "99" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.L"
+  valueReference = "1156"
+  description = "Cable inductance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "82" classType = "rPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "54" startColumn = "5" endLine = "54" endColumn = "87" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="H" displayUnit="H" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.inductor1.L"
+  valueReference = "1157"
+  description = "Inductance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "83" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Basic.mo" startLine = "335" startColumn = "5" endLine = "335" endColumn = "52" fileWritable = "true">
+  <Real useStart="true" start="1.0" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="H" displayUnit="H" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.T"
+  valueReference = "1158"
+  description = "Fixed device temperature if useHeatPort = false"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "84" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "306" startColumn = "5" endLine = "307" endColumn = "99" fileWritable = "true">
+  <Real useStart="true" start="293.15" fixed="true" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.Ron"
+  valueReference = "1159"
+  description = "Closed switch resistance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "85" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1944" startColumn = "5" endLine = "1944" endColumn = "79" fileWritable = "true">
+  <Real useStart="true" start="0.00001" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="Ohm" displayUnit="Ohm" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.Goff"
+  valueReference = "1160"
+  description = "Opened switch conductance"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "86" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1945" startColumn = "5" endLine = "1946" endColumn = "34" fileWritable = "true">
+  <Real useStart="true" start="0.00001" fixed="true" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="S" displayUnit="S" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.V0"
+  valueReference = "1161"
+  description = "Initial arc voltage"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "87" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1947" startColumn = "5" endLine = "1947" endColumn = "74" fileWritable = "true">
+  <Real useStart="true" start="500.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.dVdt"
+  valueReference = "1162"
+  description = "Arc voltage slope"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "88" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1948" startColumn = "5" endLine = "1949" endColumn = "26" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V/s" displayUnit="V/s" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.Vmax"
+  valueReference = "1163"
+  description = "Max. arc voltage"
+  variability = "parameter" isDiscrete = "false"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "89" classType = "rPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1950" startColumn = "5" endLine = "1950" endColumn = "73" fileWritable = "true">
+  <Real useStart="true" start="500.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ca.n.v"
+  valueReference = "1164"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ga.p.v"
+  classIndex = "0" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cb.n.v"
+  valueReference = "1165"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Gb.p.v"
+  classIndex = "1" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cc.n.v"
+  valueReference = "1166"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Gc.p.v"
+  classIndex = "2" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ln.n.v"
+  valueReference = "1167"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="ground.p.v"
+  classIndex = "3" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.n.v"
+  valueReference = "1168"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ln.v"
+  classIndex = "4" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.pin2.v"
+  valueReference = "1169"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Cb.v"
+  classIndex = "5" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.p.v"
+  valueReference = "1170"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Cb.v"
+  classIndex = "6" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.pin_n.v"
+  valueReference = "1171"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Rn.p.v"
+  classIndex = "7" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.n.v"
+  valueReference = "1172"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Rn.p.v"
+  classIndex = "8" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.n.v"
+  valueReference = "1173"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Rn.p.v"
+  classIndex = "9" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.n.v"
+  valueReference = "1174"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Rn.p.v"
+  classIndex = "10" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.pin3.v"
+  valueReference = "1175"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Cc.v"
+  classIndex = "11" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.p.v"
+  valueReference = "1176"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Cc.v"
+  classIndex = "12" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.pin1.v"
+  valueReference = "1177"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ca.v"
+  classIndex = "13" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.p.v"
+  valueReference = "1178"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ca.v"
+  classIndex = "14" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.p.v"
+  valueReference = "1179"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ca.v"
+  classIndex = "15" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.p.v"
+  valueReference = "1180"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ca.v"
+  classIndex = "16" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.p.v"
+  valueReference = "1181"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="fault.v"
+  classIndex = "17" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.inductor1.n.v"
+  valueReference = "1182"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="fault.v"
+  classIndex = "18" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.n.v"
+  valueReference = "1183"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Gx.p.v"
+  classIndex = "19" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor1.n.v"
+  valueReference = "1184"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.V1.p.v"
+  classIndex = "20" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor2.n.v"
+  valueReference = "1185"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.V2.p.v"
+  classIndex = "21" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor3.n.v"
+  valueReference = "1186"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.V3.p.v"
+  classIndex = "22" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.n.v"
+  valueReference = "1187"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.inductor1.p.v"
+  classIndex = "23" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.n.v"
+  valueReference = "1188"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.inductor2.p.v"
+  classIndex = "24" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.n.v"
+  valueReference = "1189"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.inductor3.p.v"
+  classIndex = "25" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.i"
+  valueReference = "1190"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "26" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.p.i"
+  valueReference = "1191"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "27" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor3.n.i"
+  valueReference = "1192"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "28" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor3.p.i"
+  valueReference = "1193"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "29" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.n.i"
+  valueReference = "1194"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "30" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.p.i"
+  valueReference = "1195"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "31" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.pin3.i"
+  valueReference = "1196"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "32" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cc.p.i"
+  valueReference = "1197"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "33" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cc.i"
+  valueReference = "1198"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "34" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cc.n.i"
+  valueReference = "1199"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "35" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Gc.p.i"
+  valueReference = "1200"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "36" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "13" startColumn = "5" endLine = "18" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.i"
+  valueReference = "1201"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "37" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor3.i"
+  valueReference = "1202"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "38" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.n.i"
+  valueReference = "1203"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[3]"
+  classIndex = "39" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.i"
+  valueReference = "1204"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "40" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.p.i"
+  valueReference = "1205"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "41" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor2.n.i"
+  valueReference = "1206"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "42" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor2.p.i"
+  valueReference = "1207"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "43" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.n.i"
+  valueReference = "1208"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "44" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.p.i"
+  valueReference = "1209"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "45" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.pin2.i"
+  valueReference = "1210"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "46" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cb.p.i"
+  valueReference = "1211"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "47" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cb.i"
+  valueReference = "1212"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "48" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cb.n.i"
+  valueReference = "1213"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "49" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Gb.p.i"
+  valueReference = "1214"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "50" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "13" startColumn = "5" endLine = "18" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.i"
+  valueReference = "1215"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "51" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor2.i"
+  valueReference = "1216"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "52" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.n.i"
+  valueReference = "1217"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[2]"
+  classIndex = "53" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.i"
+  valueReference = "1218"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "54" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.p.i"
+  valueReference = "1219"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "55" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor1.n.i"
+  valueReference = "1220"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "56" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor1.p.i"
+  valueReference = "1221"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "57" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.n.i"
+  valueReference = "1222"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "58" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.p.i"
+  valueReference = "1223"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "59" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.pin1.i"
+  valueReference = "1224"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "60" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.i"
+  valueReference = "1225"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "61" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.inductor1.i"
+  valueReference = "1226"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "62" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="true" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.n.i"
+  valueReference = "1227"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="threephasesource1.i_abc[1]"
+  classIndex = "63" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ln.p.i"
+  valueReference = "1228"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ln.i"
+  classIndex = "64" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.n.i"
+  valueReference = "1229"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="Ln.i"
+  classIndex = "65" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.p.i"
+  valueReference = "1230"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ln.i"
+  classIndex = "66" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.pin_n.i"
+  valueReference = "1231"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="Ln.i"
+  classIndex = "67" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.i"
+  valueReference = "1232"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ln.i"
+  classIndex = "68" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ln.n.i"
+  valueReference = "1233"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="Ln.i"
+  classIndex = "69" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "ground.p.i"
+  valueReference = "1234"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ln.i"
+  classIndex = "70" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "13" startColumn = "5" endLine = "18" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.n.v"
+  valueReference = "1235"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="cablecircuit1.inductor1.p.v"
+  classIndex = "71" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.inductor1.p.i"
+  valueReference = "1236"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "72" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.n.i"
+  valueReference = "1237"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "73" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.p.i"
+  valueReference = "1238"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "74" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.p.i"
+  valueReference = "1239"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "75" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.i"
+  valueReference = "1240"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "76" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.inductor1.n.i"
+  valueReference = "1241"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "77" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.n.i"
+  valueReference = "1242"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "78" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.p.i"
+  valueReference = "1243"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "79" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.i"
+  valueReference = "1244"
+  description = "Current flowing from pin p to pin n"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "80" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "174" startColumn = "5" endLine = "174" endColumn = "55" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.n.i"
+  valueReference = "1245"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "81" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Gx.p.i"
+  valueReference = "1246"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="cablecircuit1.inductor1.i"
+  classIndex = "82" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "13" startColumn = "5" endLine = "18" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ca.p.i"
+  valueReference = "1247"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ca.i"
+  classIndex = "83" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "53" startColumn = "5" endLine = "58" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ca.n.i"
+  valueReference = "1248"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="Ca.i"
+  classIndex = "84" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "93" startColumn = "5" endLine = "98" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ga.p.i"
+  valueReference = "1249"
+  description = "Current flowing into the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ca.i"
+  classIndex = "85" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "13" startColumn = "5" endLine = "18" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="A" displayUnit="A" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V3.signalSource.y"
+  valueReference = "1250"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.V3.v"
+  classIndex = "86" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Interfaces.mo" startLine = "276" startColumn = "5" endLine = "277" endColumn = "68" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V2.signalSource.y"
+  valueReference = "1251"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.V2.v"
+  classIndex = "87" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Interfaces.mo" startLine = "276" startColumn = "5" endLine = "277" endColumn = "68" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.V1.signalSource.y"
+  valueReference = "1252"
+  description = "Connector of Real output signal"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.V1.v"
+  classIndex = "88" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Interfaces.mo" startLine = "276" startColumn = "5" endLine = "277" endColumn = "68" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.T_heatPort"
+  valueReference = "1253"
+  description = "Temperature of HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.resistor3.T"
+  classIndex = "89" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "313" endColumn = "70" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="false" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.T_heatPort"
+  valueReference = "1254"
+  description = "Temperature of HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.resistor2.T"
+  classIndex = "90" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "313" endColumn = "70" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="false" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.T_heatPort"
+  valueReference = "1255"
+  description = "Temperature of HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="threephasesource1.resistor1.T"
+  classIndex = "91" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "313" endColumn = "70" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="false" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.T_heatPort"
+  valueReference = "1256"
+  description = "Temperature of HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Rn.T"
+  classIndex = "92" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "313" endColumn = "70" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="false" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.T_heatPort"
+  valueReference = "1257"
+  description = "Temperature of HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="cablecircuit1.resistor1.T"
+  classIndex = "93" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "313" endColumn = "70" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="false" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Vc"
+  valueReference = "1258"
+  description = "Phase C voltage, L-G"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Cc.v"
+  classIndex = "94" classType = "rAli"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "95" startColumn = "3" endLine = "95" endColumn = "60" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Vb"
+  valueReference = "1259"
+  description = "Phase B voltage, L-G"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Cb.v"
+  classIndex = "95" classType = "rAli"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "94" startColumn = "3" endLine = "94" endColumn = "60" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Va"
+  valueReference = "1260"
+  description = "Phase A voltage, L-G"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ca.v"
+  classIndex = "96" classType = "rAli"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "93" startColumn = "3" endLine = "93" endColumn = "60" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.n.v"
+  valueReference = "1261"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="fault.v"
+  classIndex = "97" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "87" startColumn = "5" endLine = "92" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ca.p.v"
+  valueReference = "1262"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ca.v"
+  classIndex = "98" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cb.p.v"
+  valueReference = "1263"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Cb.v"
+  classIndex = "99" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Cc.p.v"
+  valueReference = "1264"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Cc.v"
+  classIndex = "100" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Ln.p.v"
+  valueReference = "1265"
+  description = "Potential at the pin"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="Ln.v"
+  classIndex = "101" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "47" startColumn = "5" endLine = "52" endColumn = "61" fileWritable = "true">
+  <Real useStart="false" start="0.0" fixed="false" useNominal="false" nominal="1.0" min="-1.7976931348623157E+308" max="1.7976931348623157E+308" unit="V" displayUnit="V" />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.T_heatPort"
+  valueReference = "1266"
+  description = "Temperature of HeatPort"
+  variability = "continuous" isDiscrete = "false"
+  causality = "internal"
+  alias = "alias" aliasVariable="fault.T"
+  classIndex = "102" classType = "rAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "313" startColumn = "5" endLine = "313" endColumn = "70" fileWritable = "true">
+  <Real useStart="true" start="288.15" fixed="false" useNominal="true" nominal="300.0" min="0.0" max="1.7976931348623157E+308" unit="K" displayUnit="degC" />
+  </ScalarVariable>
+
+  <ScalarVariable
+  name = "Ntran"
+  valueReference = "1267"
+  description = "Number of substation transformers in parallel"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "0" classType = "iPar"
+  fileName = "/home/tshort/models/UrbanPrimary.mo" startLine = "66" startColumn = "3" endLine = "66" endColumn = "78" fileWritable = "true">
+  <Integer useStart="true" start="3" fixed="true" min="-2147483648" max="2147483647"   />
+  </ScalarVariable>
+
+  <ScalarVariable
+  name = "fault.quenched"
+  valueReference = "1268"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "0" classType = "bAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1963" startColumn = "5" endLine = "1963" endColumn = "45" fileWritable = "true">
+  <Boolean useStart="true" start="true" fixed="true"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.off"
+  valueReference = "1269"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "1" classType = "bAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1961" startColumn = "5" endLine = "1961" endColumn = "41" fileWritable = "true">
+  <Boolean useStart="true" start="false" fixed="true"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "$whenCondition1"
+  valueReference = "1270"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "2" classType = "bAlg"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1967" startColumn = "7" endLine = "1967" endColumn = "19" fileWritable = "true">
+  <Boolean useStart="false" start="false" fixed="true"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "Rn.useHeatPort"
+  valueReference = "1271"
+  description = "=true, if HeatPort is enabled"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "0" classType = "bPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "304" startColumn = "5" endLine = "305" endColumn = "71" fileWritable = "true">
+  <Boolean useStart="true" start="false" fixed="true"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor1.useHeatPort"
+  valueReference = "1272"
+  description = "=true, if HeatPort is enabled"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "1" classType = "bPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "304" startColumn = "5" endLine = "305" endColumn = "71" fileWritable = "true">
+  <Boolean useStart="true" start="false" fixed="true"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor2.useHeatPort"
+  valueReference = "1273"
+  description = "=true, if HeatPort is enabled"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "2" classType = "bPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "304" startColumn = "5" endLine = "305" endColumn = "71" fileWritable = "true">
+  <Boolean useStart="true" start="false" fixed="true"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "threephasesource1.resistor3.useHeatPort"
+  valueReference = "1274"
+  description = "=true, if HeatPort is enabled"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "3" classType = "bPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "304" startColumn = "5" endLine = "305" endColumn = "71" fileWritable = "true">
+  <Boolean useStart="true" start="false" fixed="true"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "cablecircuit1.resistor1.useHeatPort"
+  valueReference = "1275"
+  description = "=true, if HeatPort is enabled"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "4" classType = "bPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "304" startColumn = "5" endLine = "305" endColumn = "71" fileWritable = "true">
+  <Boolean useStart="true" start="false" fixed="true"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.useHeatPort"
+  valueReference = "1276"
+  description = "=true, if HeatPort is enabled"
+  variability = "parameter" isDiscrete = "true"
+  causality = "internal"
+  alias = "noAlias"
+  classIndex = "5" classType = "bPar"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Interfaces.mo" startLine = "304" startColumn = "5" endLine = "305" endColumn = "71" fileWritable = "true">
+  <Boolean useStart="true" start="false" fixed="true"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.on"
+  valueReference = "1277"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="fault.off"
+  classIndex = "0" classType = "bAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1960" startColumn = "5" endLine = "1960" endColumn = "23" fileWritable = "true">
+  <Boolean useStart="false" start="false" fixed="false"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "fault.control"
+  valueReference = "1278"
+  description = "true =&gt; p--n connected, false =&gt; switch open"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="fault.off"
+  classIndex = "1" classType = "bAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Electrical/Analog/Ideal.mo" startLine = "1952" startColumn = "5" endLine = "1957" endColumn = "26" fileWritable = "true">
+  <Boolean useStart="false" start="false" fixed="false"   />
+  </ScalarVariable>
+  <ScalarVariable
+  name = "booleanExpression.y"
+  valueReference = "1279"
+  description = "Value of Boolean output"
+  variability = "discrete" isDiscrete = "true"
+  causality = "internal"
+  alias = "negatedAlias" aliasVariable="fault.off"
+  classIndex = "2" classType = "bAli"
+  fileName = "/home/tshort/openmodelica/build/lib/omlibrary/Modelica 3.2.1/Blocks/Sources.mo" startLine = "88" startColumn = "5" endLine = "90" endColumn = "68" fileWritable = "true">
+  <Boolean useStart="false" start="false" fixed="false"   />
+  </ScalarVariable>
+
+  </ModelVariables>
+  
+  
+</fmiModelDescription>
+

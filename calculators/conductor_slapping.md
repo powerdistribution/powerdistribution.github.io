@@ -201,5 +201,3 @@ To see the code that does the majority of the calculations, see
 see the user interface, page calculation code, see
 [here](conductor_slapping.md).
 
-This code is free and open source under the
-[MIT licensed](LICENSE).

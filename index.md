@@ -3,15 +3,19 @@ layout: default
 title:  Electric Power Distribution Handbook
 ---
 
+<!-- This is the main support site for the *Electric Power Distribution Handbook*. -->
+
 # Second edition
 
-Coming first quarter 2014.
+Coming May 20, 2014.
 
 # Purchase
 
-[![Foo](/images/9780849317910.jpg)](http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0849317916&linkCode=as2&tag=electpowerdis-20)
+[![Foo](/images/9781466598652.jpg)](http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0849317916&linkCode=as2&tag=electpowerdis-20)
 
 [Amazon link to the first edition](http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0849317916&linkCode=as2&tag=electpowerdis-20)
+
+[http://www.crcpress.com/product/isbn/9781466598652](http://www.crcpress.com/product/isbn/9781466598652)
 
 For bulk sales, see [CRC Press](http://www.crcpress.com/contactus/ussales).
 
@@ -34,6 +38,12 @@ For bulk sales, see [CRC Press](http://www.crcpress.com/contactus/ussales).
 15. Distributed Generation
 
 [Look inside the first edition at Amazon](http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0849317916&linkCode=as2&tag=electpowerdis-20#reader_0849317916)
+
+# Links
+
+- [EPRI](http://www.epri.com)
+- [EPRI Distribution Portfolio](http://portfolio.epri.com/ProgramTab.aspx?sId=pdu&rId=265&pId=7644)
+- [CRC Press](http://www.crcpress.com)
 
 # Errata
 

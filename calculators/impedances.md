@@ -8,7 +8,7 @@ conductors: [6, 4, 2, 1, 1/0, 2/0, 3/0, 4/0, 250, 266.8, 300, 336.4, 350, 397.5,
 
 ## Phase conductors
 
-```yaml js=jsonForm
+```yaml jquery=jsonForm
 schema: 
   phases: 
     type: string
@@ -30,7 +30,7 @@ yC = ___(30.)
 
 ## Neutral
 
-```yaml js=jsonForm
+```yaml jquery=jsonForm
 schema: 
   neutral: 
     type: string
