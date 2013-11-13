@@ -3,6 +3,8 @@ layout: default
 title:  Questions and Problems
 ---
 
+*NOTE: This section is still under construction.*
+
 This section contains several self-study exercises. Most chapters have
 each of the following:
 

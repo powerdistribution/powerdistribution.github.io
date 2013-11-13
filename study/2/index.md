@@ -105,6 +105,13 @@ title:  2. Overhead Lines
    5. Faster relaying may help.
    6. Automatics are susceptable to burndowns.
 
+0. A typical overhead feeder mains positive sequence impedances per mile is:
+
+   1. 0.2 + 0.6j ohms/mile
+   1. 0.6 + 0.2j ohms/mile
+   1. 0.6 + 0.6j ohms/mile
+   1. 0.6 + 2.0j ohms/mile
+
 # Problems
 
 0. If Va = 1.02 /_ 0 deg, Vb = 1.0 /_ -119 deg, and Vc = 1.01 /_ 119

@@ -40,6 +40,13 @@ title:  6. Voltage Regulation
    2. Local var control
    3. Remote DMS control
 
+0. Where must a 100-A lumped load be placed on a line to cause the
+   same losses as a 100-A uniformly distributed load?
+   1. 1/3
+   1. 1/2
+   1. 2/3
+   1. End of feeder
+
 
 # Problems
 

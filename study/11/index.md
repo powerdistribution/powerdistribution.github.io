@@ -44,6 +44,15 @@ title:  11. Voltage Sags and Momentary Interruptions
    2. 1\.5X
    3. 1\.3X
    
+0. Which PQ devices will help with sags? Mark all that apply.
+   1. Dynamic voltage restorer (DVR)
+   1. Static var compensator (SVC)
+   1. Filter
+   1. UPS
+   1. Ferroresonant transformer
+   1. Static transfer switch
+   1. Mechanical transfer switch
+   1. MOV
 
 # Problems
 

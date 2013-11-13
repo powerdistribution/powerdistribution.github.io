@@ -132,6 +132,11 @@ title:  9. Short-Circuit Protection
    1. 30 cycles
    1. 60 cycles
 
+0. An expulsion fuse may clear in 0.25 cycles.
+
+   1. True
+   1. False
+
 # Problems
 
 0. Using a time-current plotting program (Milsoft Windmill, ), plot the burndown line for a
@@ -142,7 +147,7 @@ title:  9. Short-Circuit Protection
    0. 3/0 ACSR covered, 200-A L recloser (C curve)
    0. 3/0 ACSR bare, 100 K fuse
    0. 3/0 ACSR bare, 200-A L recloser (C curve)
-   0. #2 ACSR bare, WVE electronic recloser, minimum operating current = 560 A, curve = 138
+   0. \#2 ACSR bare, WVE electronic recloser, minimum operating current = 560 A, curve = 138
 
 0. Consider the three candidate recloser locations in the figure
 below. Using Duke Power’s “Fundamental Law of Sectionalizing”,

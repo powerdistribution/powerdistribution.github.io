@@ -31,7 +31,8 @@ title:  10. Reliability
    3. 800 minutes
    
 1. Adding one midpoint recloser to a circuit without other reclosers
-   will reduce SAIFI to what percentage of the original?
+   will reduce SAIFI to what percentage of the original? Assume
+   customers and exposure are equal on both halves.
    
    1. 50%
    2. 75%
@@ -47,11 +48,37 @@ title:  10. Reliability
    for reliability reporting purposes:
    
    1. Is not playing fair
-   2. Has good lawyers
-   3. Is fudging the data
-   
+   1. Has good lawyers
+   1. Is fudging the data
+   1. Can occur with the IEEE beta method
+
+
+
 
 # Problems
+
+0. If a customer is fed from two distribution sources, find SAIFI and
+   SAIDI for the customer if one circuit has SAIFI = 1.2/yr and SAIDI
+   = 200 minutes/yr and the other has SAIFI = 2.0/yr and SAIDI = 400
+   minutes/yr.
+
+0. Now repeat the previous problem and include the reliability of the
+   transfer switch feeding the facility which has an annual failure
+   rate of 1% and a repair time of 24 hours.
+
+0. If the distribution of daily SAIDI follows a lognormal
+   distribution, what portion of annual average SAIDI (without
+   exclusions) occurs in the worst 20 days? Assume that the average of
+   the log of daily SAIDI (in minutes) is alpha = -1.5 and the
+   standard deviation of the log of daily SAIDI is beta = 1.9.
+
+0. Using the regression formulas for prediction of reliability,
+   compare SAIFI without major events for the following two cases:
+
+   1. 1,000,000 customers, 10,000 overhead line miles, and 20,000
+      underground line miles
+   1. 1,000,000 customers, 100,000 overhead line miles, and 20,000
+      underground line miles
 
 # Projects
 
