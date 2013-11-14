@@ -189,7 +189,7 @@ var initializeTabs = function (tabs) {
 
 // Twitter bootstrap-friendly HTML boilerplate for standard inputs
 jsonform.fieldTemplate = function(inner) {
-  return '<div class="control-group jsonform-error-<%= keydash %>' +
+  return '<div class="control-group form-group jsonform-error-<%= keydash %>' +
     '<%= elt.htmlClass ? " " + elt.htmlClass : "" %>' +
     '<%= (node.schemaElement && node.schemaElement.required && (node.schemaElement.type !== "boolean") ? " jsonform-required" : "") %>' +
     '<%= (node.readOnly ? " jsonform-readonly" : "") %>' +
@@ -232,7 +232,7 @@ var fileDisplayTemplate = '<div class="_jsonform-preview">' +
 var inputFieldTemplate = function (type) {
   return {
     'template': '<input type="' + type + '" ' +
-      '<%= (fieldHtmlClass ? "class=\'" + fieldHtmlClass + "\' " : "") %>' +
+      'class="XXXform-control <%= fieldHtmlClass %>"' +
       'name="<%= node.name %>" value="<%= escape(value) %>" id="<%= id %>"' +
       '<%= (node.disabled? " disabled" : "")%>' +
       '<%= (node.readOnly ? " readonly=\'readonly\'" : "") %>' +
@@ -1076,11 +1076,11 @@ jsonform.elementTypes = {
     'template': '<%= elt.msg %>'
   },
   'fieldset':{
-    'template': '<fieldset class="control-group jsonform-error-<%= keydash %> <% if (elt.expandable) { %>expandable<% } %> <%= elt.htmlClass?elt.htmlClass:"" %>" ' +
+    'template': '<fieldset class="control-group form-group jsonform-error-<%= keydash %> <% if (elt.expandable) { %>expandable<% } %> <%= elt.htmlClass?elt.htmlClass:"" %>" ' +
       '<% if (id) { %> id="<%= id %>"<% } %>' +
       '>' +
       '<% if (node.title || node.legend) { %><legend><%= node.title || node.legend %></legend><% } %>' +
-      '<% if (elt.expandable) { %><div class="control-group"><% } %>' +
+      '<% if (elt.expandable) { %><div class="control-group form-group"><% } %>' +
       '<%= children %>' +
       '<% if (elt.expandable) { %></div><% } %>' +
       '</fieldset>'
@@ -1090,7 +1090,7 @@ jsonform.elementTypes = {
       '<% if (id) { %> id="<%= id %>"<% } %>' +
       ' class="expandable <%= elt.htmlClass?elt.htmlClass:"" %>">' +
       '<legend>Advanced options</legend>' +
-      '<div class="control-group">' +
+      '<div class="control-group form-group">' +
       '<%= children %>' +
       '</div>' +
       '</fieldset>'
@@ -1100,7 +1100,7 @@ jsonform.elementTypes = {
       '<% if (id) { %> id="<%= id %>"<% } %>' +
       ' class="expandable <%= elt.htmlClass?elt.htmlClass:"" %>">' +
       '<legend>Authentication settings</legend>' +
-      '<div class="control-group">' +
+      '<div class="control-group form-group">' +
       '<%= children %>' +
       '</div>' +
       '</fieldset>'
@@ -1124,7 +1124,7 @@ jsonform.elementTypes = {
       '<% if (node.formElement.key) { %><input type="hidden" id="<%= node.id %>" name="<%= node.name %>" value="<%= escape(value) %>" /><% } else { %>' +
         '<a id="<%= node.id %>"></a><% } %>' +
       '<div class="tabbable">' +
-        '<div class="control-group<%= node.formElement.hideMenu ? " hide" : "" %>">' +
+        '<div class="form-group control-group<%= node.formElement.hideMenu ? " hide" : "" %>">' +
           '<% if (node.title && !elt.notitle) { %><label class="control-label" for="<%= node.id %>"><%= node.title %></label><% } %>' +
           '<div class="controls"><%= tabs %></div>' +
         '</div>' +

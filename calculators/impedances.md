@@ -99,3 +99,13 @@ println("Zg = " + math.format(zg) + " ohms/1000ft");
 ```
 
 
+## Notes
+
+This app is a simple implementation of the equations outlined in
+section 2.4. The code is hard wired for a 60 Hz calculation, and the
+equations become less accurate at higher frequencies. For more
+sophisticated line modeling, see
+[OpenDSS](http://www.smartgrid.epri.com/SimulationTool.aspx) or a
+transient program like [EMTP-RV](http://emtp.com) or
+[ATP](http://emtp.org).
+

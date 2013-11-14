@@ -146,7 +146,7 @@ title:  14. Grounding and Safety
    - 12\.5 kV, 5-MVA, 6% station transformer, 3/0 ACSR with a
           3/0 neutral
            
-0. For the tree resistance diagram in Fig. ??, find the body current for these scenarios:
+0. For the tree resistance diagram in Fig. 14.26, find the body current for these scenarios:
    
    - Case 1: 
      - Hand-to-foot body resistance = 1000 ohms

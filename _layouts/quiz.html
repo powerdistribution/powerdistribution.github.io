@@ -3,4 +3,42 @@ layout: common
 ---
 {% include header.html %}
 
+<ul class="pagination">
+  <li><a href="../{% if current[2] != "1" %}{{ current[2] | minus: 1 }}{% else %}1{% endif %}">&laquo;</a></li>
+  <li {% if current[2] == "1" %}  class='active'{% endif %}><a href="../1">1</a></li>
+  <li {% if current[2] == "2" %}  class='active'{% endif %}><a href="../2">2</a></li>
+  <li {% if current[2] == "3" %}  class='active'{% endif %}><a href="../3">3</a></li>
+  <li {% if current[2] == "4" %}  class='active'{% endif %}><a href="../4">4</a></li>
+  <li {% if current[2] == "5" %}  class='active'{% endif %}><a href="../5">5</a></li>
+  <li {% if current[2] == "6" %}  class='active'{% endif %}><a href="../6">6</a></li>
+  <li {% if current[2] == "7" %}  class='active'{% endif %}><a href="../7">7</a></li>
+  <li {% if current[2] == "8" %}  class='active'{% endif %}><a href="../8">8</a></li>
+  <li {% if current[2] == "9" %}  class='active'{% endif %}><a href="../9">9</a></li>
+  <li {% if current[2] == "10" %} class='active'{% endif %}><a href="../10">10</a></li>
+  <li {% if current[2] == "11" %} class='active'{% endif %}><a href="../11">11</a></li>
+  <li {% if current[2] == "12" %} class='active'{% endif %}><a href="../12">12</a></li>
+  <li {% if current[2] == "13" %} class='active'{% endif %}><a href="../13">13</a></li>
+  <li {% if current[2] == "14" %} class='active'{% endif %}><a href="../14">14</a></li>
+  <li {% if current[2] == "15" %} class='active'{% endif %}><a href="../15">15</a></li>
+  <li><a href="../{% if current[2] != "15" %}{{ current[2] | plus: 1 }}{% else %}15{% endif %}">&raquo;</a></li>
+</ul>
+
+
 {{ content }}
+
+<p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+  <a rel="license"
+     href="http://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="http://i.creativecommons.org/p/zero/1.0/80x15.png" style="border-style: none;" alt="CC0" />
+  </a>
+  <br />
+  To the extent possible under law,
+  <a rel="dct:publisher"
+     href="http://distributionhandbook/study">
+    <span property="dct:title">Tom Short</span></a>
+  has waived all copyright and related or neighboring rights to
+  these study questions. This work is published from:
+<span property="vcard:Country" datatype="dct:ISO3166"
+      content="US" about="http://distributionhandbook/study">
+  United States</span>.
+</p>

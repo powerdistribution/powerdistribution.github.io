@@ -86,12 +86,12 @@ title:  2. Overhead Lines
    2. Bare conductor has higher ampacity.
    3. Bare and covered have equal ampacity.
 
-0. True/false: Conductor annealing from faults is a function of I2t.
+0. True/false: Conductor annealing from faults is a function of I<sup>2</sup>t.
    
    1. True
    2. False
 
-0. True/false: Conductor burndown from faults is a function of I2t.
+0. True/false: Conductor burndown from faults is a function of I<sup>2</sup>t.
    
    1. True
    2. False
@@ -114,8 +114,9 @@ title:  2. Overhead Lines
 
 # Problems
 
-0. If Va = 1.02 /_ 0 deg, Vb = 1.0 /_ -119 deg, and Vc = 1.01 /_ 119
-   deg, find V1, V2, and V0. Which is larger, V0 or V1?
+0. If Va = 1.02 &ang;0&deg;, Vb = 1.0 &ang;-119&deg;, and Vc =
+   1.01&ang;119&deg;, find V<sub>1</sub>, V<sub>2</sub>, and
+   V<sub>0</sub>. Which is larger, V<sub>0</sub> or V<sub>1</sub>?
 
 0. Calculate the current needed for the "typical burndown" case to
    burn down 556 AAC in 0.5 sec.
@@ -129,7 +130,7 @@ title:  2. Overhead Lines
    temperature of 25C and a conductor temperature of 75C, find the
    ampacity at an ampient temp of 30C and a conductor temperature of 90C.
 
-0. For the following overhead line, find Z1, Z0, Zs, and Zm in ohms/1000ft:
+0. For the following overhead line, find Z<sub>1</sub>, Z<sub>0</sub>, Z<sub>s</sub>, and Z<sub>m</sub> in ohms/1000ft:
 
    - 4/0 AAC covered phase conductors; x = -2ft, 0ft, 2ft; y = -30ft, 31ft, 30ft
    - 2/0 AAC neutral conductor, x = -0ft, y = -26ft
@@ -148,9 +149,12 @@ title:  2. Overhead Lines
    - Load = 300 A per phase
    - Load power factor = 0.9
    - Untransposed line
+
+0. **[OpenDSS]** Repeat the previous question using OpenDSS.
    
 0. Consider a double-circuit line with the following characteristics:
 
+```
    a1            b1            c1
    
    
@@ -161,7 +165,8 @@ title:  2. Overhead Lines
    
    
                   n
-   
+```
+
    The vertical distance between the phase conductors is 3 ft. The
    horizontal distance between conductors is 4 ft. The neutral is 8 ft
    below b2. 

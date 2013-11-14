@@ -5,45 +5,71 @@ title:  Electric Power Distribution Handbook
 
 <!-- This is the main support site for the *Electric Power Distribution Handbook*. -->
 
-# Second edition
 
-Coming May 20, 2014.
+<div class='row'>
+<div class='col-md-4'>
 
-# Purchase
+<h1>Second edition</h1>
 
-[![Foo](/images/9781466598652.jpg)](http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0849317916&linkCode=as2&tag=electpowerdis-20)
+<p>Coming May 20, 2014.</p>
 
-[Amazon link to the first edition](http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0849317916&linkCode=as2&tag=electpowerdis-20)
+<h1 id='purchase'>Purchase</h1>
 
-[http://www.crcpress.com/product/isbn/9781466598652](http://www.crcpress.com/product/isbn/9781466598652)
+<p><a href='http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0849317916&amp;linkCode=as2&amp;tag=electpowerdis-20'><img alt='Foo' src='/images/9781466598652.jpg' /></a></p>
 
-For bulk sales, see [CRC Press](http://www.crcpress.com/contactus/ussales).
+<p><a href='http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0849317916&amp;linkCode=as2&amp;tag=electpowerdis-20'>Amazon link to the first edition</a></p>
 
-# Contents of the second edition
+<p><a href='http://www.crcpress.com/product/isbn/9781466598652'>CRC Press</a></p>
 
-1. Fundamentals of Distribution Systems
-2. Overhead Lines
-3. Overhead Line Performance
-4. Underground Distribution
-5. Transformers
-6. Voltage Regulation
-7. Capacitor Application
-8. Faults
-9. Short-Circuit Protection
-10. Reliability
-11. Voltage Sags and Momentary Interruptions
-12. Other Power Quality Issues
-13. Lightning Protection
-14. Grounding and Safety
-15. Distributed Generation
+<p>For bulk sales, see <a href='http://www.crcpress.com/contactus/ussales'>CRC Press</a>.</p>
+</div>
 
-[Look inside the first edition at Amazon](http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0849317916&linkCode=as2&tag=electpowerdis-20#reader_0849317916)
+<div class='col-md-6'>
+<h1>Contents of the second edition</h1>
 
-# Links
+<ol>
+<li>Fundamentals of Distribution Systems</li>
+<li>Overhead Lines</li>
+<li>Overhead Line Performance</li>
+<li>Underground Distribution</li>
+<li>Transformers</li>
+<li>Voltage Regulation</li>
+<li>Capacitor Application</li>
+<li>Faults</li>
+<li>Short-Circuit Protection</li>
+<li>Reliability</li>
+<li>Voltage Sags and Momentary Interruptions</li>
+<li>Other Power Quality Issues</li>
+<li>Lightning Protection</li>
+<li>Grounding and Safety</li>
+<li>Distributed Generation</li>
+</ol>
 
-- [EPRI](http://www.epri.com)
-- [EPRI Distribution Portfolio](http://portfolio.epri.com/ProgramTab.aspx?sId=pdu&rId=265&pId=7644)
-- [CRC Press](http://www.crcpress.com)
+<p><a href='http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0849317916&amp;linkCode=as2&amp;tag=electpowerdis-20#reader_0849317916'>Look inside the first edition at Amazon</a></p>
+
+</div>
+
+</br>
+</br>
+</br>
+
+<div class="col-md-2 navbar my-sidebar">
+
+<ul class="nav nav-stacked">
+
+<li><a href='http://www.epri.com'>EPRI</a></li>
+
+<li><a href='http://portfolio.epri.com/ProgramTab.aspx?sId=pdu&amp;rId=265&amp;pId=7644'>EPRI Portfolio</a></li>
+
+<li><a href='http://www.smartgrid.epri.com/SimulationTool.aspx'>OpenDSS</a></li>
+
+<li><a href='http://www.crcpress.com'>CRC Press</a></li>
+</ul>
+</div>
+
+
+</div>
+
 
 # Errata
 
@@ -54,7 +80,7 @@ to [me](mailto:tshort@epri.com).
 
 <form method="get" action="http://www.google.com/search?sitesearch=distributionhandbook.com">
 <input type="text"   name="q" size="25" maxlength="255" value="" />
-<input type="submit" value="Google Search" /></td></tr>
+<input type="submit" value="Google Search" />
 </form>
 
 <form name="cse" id="searchbox_demo" action="http://www.google.com/cse">
@@ -64,6 +90,5 @@ to [me](mailto:tshort@epri.com).
   <input name="q" type="text" size="40" />
   <input type="submit" name="sa" value="Search" />
 </form>
-<script type="text/javascript" src="https://www.google.com/cse/tools/onthefly?form=searchbox_demo&lang="></script>
                                 
 
