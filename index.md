@@ -78,7 +78,7 @@ to [me](mailto:tshort@epri.com).
 
 # Search this site
 
-<div>
+<div class="col-md-5">
 <script>
   (function() {
     var cx = '016580382179354871490:lcse729k4hg';
