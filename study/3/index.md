@@ -3,9 +3,9 @@ layout: quiz
 title:  3. Overhead Line Performance
 ---
 
-## 3. Overhead Line Performance
+# 3. Overhead Line Performance
 
-# Questions
+## Questions
 
 0. Mark which of the following are true during major storms.
    
@@ -84,7 +84,7 @@ title:  3. Overhead Line Performance
    4. Small branches into conductors
    5. Trees falling into conductors
 
-# Problems
+## Problems
 
 0. Calculate the time it takes for a tree limb to cause a flashover on
    a 12.5-kV line with 4-ft phase spacings. Will it flash over?
@@ -112,7 +112,7 @@ title:  3. Overhead Line Performance
    - Hazard tree removal = $800 / mile
    - Annual budget = $1300 / mile
 
-# Projects
+## Projects
 
 0. Vegetation management
 

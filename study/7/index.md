@@ -3,9 +3,9 @@ layout: quiz
 title:  7. Capacitor Application
 ---
 
-## 7. Capacitor Application
+# 7. Capacitor Application
 
-# Questions
+## Questions
 
 0. Substation capacitor banks: (mark all that apply)
 
@@ -48,9 +48,9 @@ title:  7. Capacitor Application
    1. False
 
 
-# Problems
+## Problems
 
 0. What is the voltage rise after adding a 3-phase, 3-Mvar capacitor
    bank (12.5 kV, 3-phase short circuit at the point = 2 kA, X/R=4)?
 
-# Projects
+## Projects

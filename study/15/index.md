@@ -3,9 +3,9 @@ layout: quiz
 title:  15. Distributed Generation
 ---
 
-## 15. Distributed Generation
+# 15. Distributed Generation
 
-# Questions
+## Questions
 
 1. True/false: A three-phase synchronous generator will not supply
    fault current when the interface transformer is grounded-wye
@@ -23,6 +23,6 @@ title:  15. Distributed Generation
 
 
 
-# Problems
+## Problems
 
-# Projects
+## Projects

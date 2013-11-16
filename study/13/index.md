@@ -3,9 +3,9 @@ layout: quiz
 title:  13. Lightning Protection
 ---
 
-## 13. Lightning Protection
+# 13. Lightning Protection
 
-# Questions
+## Questions
 
 1. Which of the following can cause damage to distribution equipment?
    Mark all that apply.
@@ -65,7 +65,7 @@ title:  13. Lightning Protection
    
 
 
-# Problems
+## Problems
 
-# Projects
+## Projects
 

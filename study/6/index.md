@@ -3,9 +3,9 @@ layout: quiz
 title:  6. Voltage Regulation
 ---
 
-## 6. Voltage Regulation
+# 6. Voltage Regulation
 
-# Questions
+## Questions
 
 0. On overhead distribution primaries, which of the following is
    responsible for the most voltage drop?
@@ -48,7 +48,7 @@ title:  6. Voltage Regulation
    1. End of feeder
 
 
-# Problems
+## Problems
 
 1. LDC settings problem
 
@@ -56,6 +56,6 @@ title:  6. Voltage Regulation
 
 3. Regulator locating problem
           
-# Projects
+## Projects
 
 1. Voltage drop profile

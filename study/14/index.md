@@ -3,9 +3,9 @@ layout: quiz
 title:  14. Grounding and Safety
 ---
 
-## 14. Grounding and Safety
+# 14. Grounding and Safety
 
-# Questions
+## Questions
 
 1. Per the NESC, do all ground rods on multigrounded systems have to be below 25 ohms?
    
@@ -118,7 +118,7 @@ title:  14. Grounding and Safety
    2. 480-V self-contained meter with 10 kA available fault
       current
        
-# Problems
+## Problems
 
 1. Calculate the resistance to ground of a 1/2-in, 10-ft rod.
 
@@ -170,7 +170,7 @@ title:  14. Grounding and Safety
 0. For a current of 100 mA, what's the duration required for the threshold of defibrillation?
 
 
-# Projects
+## Projects
 
 1. Ground-fault overvoltages
 

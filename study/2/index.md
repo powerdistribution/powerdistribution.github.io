@@ -3,9 +3,9 @@ layout: quiz
 title:  2. Overhead Lines
 ---
 
-## 2. Overhead Lines
+# 2. Overhead Lines
 
-# Questions
+## Questions
 
 0. Which of the following has the largest resistance?
 
@@ -112,7 +112,7 @@ title:  2. Overhead Lines
    1. 0.6 + 0.6j ohms/mile
    1. 0.6 + 2.0j ohms/mile
 
-# Problems
+## Problems
 
 0. If Va = 1.02 &ang;0&deg;, Vb = 1.0 &ang;-119&deg;, and Vc =
    1.01&ang;119&deg;, find V<sub>1</sub>, V<sub>2</sub>, and
@@ -177,7 +177,7 @@ title:  2. Overhead Lines
    2 have the same phasing. Assume no other loading on either circuit.
       
 
-# Projects
+## Projects
 
 0. Ampacity
 

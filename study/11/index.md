@@ -3,9 +3,9 @@ layout: quiz
 title:  11. Voltage Sags and Momentary Interruptions
 ---
 
-## 11. Voltage Sags and Momentary Interruptions
+# 11. Voltage Sags and Momentary Interruptions
 
-# Questions
+## Questions
 
 1. An overhead circuit that uses fuse saving has 5 miles of mains and
    20 miles of total exposure. Annual line interruption rates are
@@ -54,7 +54,7 @@ title:  11. Voltage Sags and Momentary Interruptions
    1. Mechanical transfer switch
    1. MOV
 
-# Problems
+## Problems
 
 1. For a line-to-ground fault 2 miles from the substation, what does
    the bus voltage drop to? 12.47-kV system, Ifault=7 kA at the
@@ -85,7 +85,7 @@ title:  11. Voltage Sags and Momentary Interruptions
    
    Show the vulnerability for momentary interruptions.
 
-# Projects
+## Projects
 
 
 

@@ -3,9 +3,9 @@ layout: quiz
 title:  8. Faults
 ---
 
-## 8. Faults
+# 8. Faults
 
-# Questions
+## Questions
 
 0. A fault at location B is measured as 1 kA. For this event, how much
    current is measured at location A?  
@@ -160,7 +160,7 @@ title:  8. Faults
    1. 10 per unit
    
    
-# Problems
+## Problems
 
 1. Using the impedances in tables 2.7 and 2.8, calculate the
    following bolted fault currents:
@@ -190,7 +190,7 @@ title:  8. Faults
    
    
 
-# Projects
+## Projects
 
 0. Fault app
 

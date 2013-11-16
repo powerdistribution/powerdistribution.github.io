@@ -3,9 +3,9 @@ layout: quiz
 title:  10. Reliability
 ---
 
-## 10. Reliability
+# 10. Reliability
 
-# Questions
+## Questions
 
 1. SAIFI on a grid network is most likely to be:
 
@@ -55,7 +55,7 @@ title:  10. Reliability
 
 
 
-# Problems
+## Problems
 
 0. If a customer is fed from two distribution sources, find SAIFI and
    SAIDI for the customer if one circuit has SAIFI = 1.2/yr and SAIDI
@@ -80,5 +80,5 @@ title:  10. Reliability
    1. 1,000,000 customers, 100,000 overhead line miles, and 20,000
       underground line miles
 
-# Projects
+## Projects
 

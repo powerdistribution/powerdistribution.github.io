@@ -3,9 +3,9 @@ layout: quiz
 title:  9. Short-Circuit Protection
 ---
 
-## 9. Short-Circuit Protection
+# 9. Short-Circuit Protection
 
-# Questions
+## Questions
 
 0. Will a 50-K fuse operate to clear most energized downed wires at
    12.5 kV?
@@ -137,7 +137,7 @@ title:  9. Short-Circuit Protection
    1. True
    1. False
 
-# Problems
+## Problems
 
 0. Using a time-current plotting program (Milsoft Windmill, ), plot the burndown line for a
    3/0 ACSR covered conductor (see chapter 2). Add the clearing curve
@@ -200,7 +200,7 @@ faults/mi/yr.
    0.207 + j0.628 ohms/mi, Z0 = 0.72 + j1.849 ohms/mi).
 
 
-# Projects
+## Projects
 
 0. Make a spreadsheet or other tool to evaluate fuse saving and fuse blowing.
 

@@ -67,6 +67,19 @@ title:  1. Fundamentals of Distribution Systems
    1. Better transformer usage
    1. No circulating current
 
+0. Line losses increase as a function of what? Mark all that apply.
+
+   1. I
+   1. I<sup>2</sup>
+   1. V<sub>pu</sub>
+   1. V<sub>pu</sub><sup>2</sup>
+
+0. Which of the following is likely to have the highest losses?
+
+   1. 12.5-kV circuit, 12-miles long, peak load = 7.5 MVA
+   1. 25-kV circuit, 12-miles long, peak load = 7.5 MVA
+   1. 12.5-kV circuit, 6-miles long, peak load = 10 MVA
+
 ## Problems
 
 0. If a 25-kV distribution line carrying 10 MW is stepped down to

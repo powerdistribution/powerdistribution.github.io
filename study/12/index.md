@@ -3,9 +3,9 @@ layout: quiz
 title:  12. Other Power Quality Issues
 ---
 
-## 12. Other Power Quality Issues
+# 12. Other Power Quality Issues
 
-# Questions
+## Questions
 
 1. If you have customer equipment damage, and damage appears to be in
    surge protectors, what's a likely cause?
@@ -41,6 +41,6 @@ title:  12. Other Power Quality Issues
 
 
 
-# Problems
+## Problems
 
-# Projects
+## Projects

@@ -3,9 +3,9 @@ layout: quiz
 title:  5. Transformers
 ---
 
-## 5. Transformers
+# 5. Transformers
 
-# Questions
+## Questions
 
 0. Which of the following effects the amount of inrush? Select all
    that apply.
@@ -97,6 +97,6 @@ title:  5. Transformers
 
 
 
-# Problems
+## Problems
 
-# Projects
+## Projects
