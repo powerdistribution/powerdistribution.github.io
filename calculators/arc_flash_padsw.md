@@ -157,8 +157,8 @@ $active_element.highcharts(plotinfo)
 # Notes
 
 This app models the arc flash incident energy based on tests of PMH
-padmounted switches. For more information, see section 14.8 and 
-EPRI 1022697 [2011], and Short and Eblen [2012].
+padmounted switches by EPRI and PG&E. For more information, see
+section 14.8 and EPRI 1022697 [2011], and Short and Eblen [2012].
 
 The incident energy in this equipment is higher than predicted by
 [IEEE 1584](mdpad.html?1584.md) because of horizontal busbars.
@@ -169,8 +169,9 @@ increases with increasing duration.
 
 # References
 
-EPRI 1022697, *Distribution Arc Flash: Phase II Test Results and
-Analysis*, Electric Power Research Institute, Palo Alto, CA, 2011.
+[EPRI 1022697](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001022697),
+*Distribution Arc Flash: Phase II Test Results and Analysis*, Electric
+Power Research Institute, Palo Alto, CA, 2011.
 
 Short, T. A. and Eblen, M. L., "Medium-Voltage Arc Flash in Open Air
 and Padmounted Equipment," *IEEE Transactions on Industry Applications*,
