@@ -2,7 +2,9 @@
 - //dl.dropboxusercontent.com/u/17098152/mdpad/FICM.js
 ```
 
-# Conductor Slapping App
+<!-- For some reason Markdown doesn't work before these divs -->
+
+<h2>Conductor Slapping App</h2>
 
 This app models slapping between two conductors for a line-to-line
 fault involving these conductors. Enter the conductor and line
@@ -16,42 +18,61 @@ area: [0.0206, 0.0328, 0.0522, 0.0657, 0.0829, 0.1045, 0.1317, 0.1663, 0.1964, 0
 wc: [0.0246, 0.0392, 0.0623, 0.0785, 0.0991, 0.1249, 0.1575, 0.1987, 0.2347, 0.2506, 0.2818, 0.316, 0.3284, 0.3734, 0.4224, 0.4475, 0.4692, 0.5221, 0.6566, 0.672, 0.7043, 0.7464, 0.821, 0.8452, 0.8958, 0.9387]
 ```
 
-<div id="graph" style='width:300px; height:300px; float: right;'></div>
+<br/>
+<br/>
 
-```yaml jquery=jsonForm
-schema: 
-  flti:
+
+<div class = "row">
+<div class = "col-md-7">
+
+
+```yaml jquery=dform
+class : form-horizontal
+col1class : col-sm-8
+col2class : col-sm-4
+html: 
+  - name: flti
     type: number
-    title: "Fault current, A"
-    default: 5000
-  fltt:
+    bs3caption: "Fault current, A"
+    value: 5000
+  - name: fltt
     type: number
-    title: "Fault duration, cycles (60 Hz)"
-    default: 20
-  conductors: 
-    type: string
-    title: "Conductors"
-    default: 336.4 AAC
-    enum: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]
-  h0:
+    bs3caption: "Fault duration, cycles (60 Hz)"
+    value: 20
+  - name: conductors
+    type: select
+    bs3caption: "Conductors"
+    selectvalue: 336.4 AAC
+    choices: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]
+  - name: h0
     type: number
-    title: "Span length, feet"
-    default: 300
-  y0:
+    bs3caption: "Span length, feet"
+    value: 300
+  - name: y0
     type: number
-    title: "Conductor sag, feet"
-    default: 5.75
-  x1:
+    bs3caption: "Conductor sag, feet"
+    value: 5.75
+  - name: x1
     type: number
-    title: "Horizontal conductor separation, feet"
-    default: 3.67
-  y1:
+    bs3caption: "Horizontal conductor separation, feet"
+    value: 3.67
+  - name: y1
     type: number
-    title: "Vertical conductor separation, feet"
-    default: 0.0
-form: 
-  - "*"
+    bs3caption: "Vertical conductor separation, feet"
+    value: 0.0
 ```
+</div>
+<div class = "col-md-1">
+</div>
+
+<div class = "col-md-4">
+
+<div id="graph" style='width:300px; height:300px;'></div>
+
+</div>
+</div>
+
+
 
 ```js output=markdown
 flti = Number(flti)
@@ -89,9 +110,9 @@ $('#graph').animate( {tabIndex: 0}, {
 });
 
 if (t == 0.0)
-    println("### No slapping")
+    println("**No slapping**")
 else
-    println("### Conductors slap at t = " + t.toFixed(2) + " secs for fault duration = " + fltt.toFixed(1) + " cycles.")
+    println("Conductors slap at t = **" + t.toFixed(2) + " secs** for fault duration = **" + fltt.toFixed(1) + " cycles**.")
 
 function bisect(flti) {
     hi = 2.0*60
@@ -116,9 +137,9 @@ function bisect(flti) {
 critt = bisect(flti)
 
 if (critt > 0.0)
-    println("### Critical fault clearing time = " + critt.toFixed(2) + " cycles.")
+    println("\nCritical fault clearing time = **" + critt.toFixed(2) + " cycles**.")
 else
-    println("### Critical fault clearing time > " + -critt.toFixed(2) + " cycles.")
+    println("\nCritical fault clearing time > **" + -critt.toFixed(2) + " cycles**.")
 
 currents = [1000, 2000, 3000, 4000, 5000, 6000, 8000, 10000]    
 durations = _.map(currents, bisect)
@@ -185,9 +206,9 @@ line-to-line faults. The force from fault current pushes conductors
 away from each other. Once the fault is cleared, the conductors can
 swing into each other.
 
-You can get some crazy answers with large forces (high fault
-currents and/or long durations), especially for smaller conductors.
-The conductor animations should show this.
+You can get some crazy answers with large forces (high fault currents
+and/or long durations), especially for smaller conductors. The
+conductor animations should show this.
 
 This model is likely to be most accurate with horizontal spacings.
 Vertical clearance definitely helps as you will see from the

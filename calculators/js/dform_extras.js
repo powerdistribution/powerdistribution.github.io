@@ -53,3 +53,13 @@ $.dform.subscribe("choices", function(options, type) {
         });
     }
 });
+
+
+// Extend the "value" subscriber for selects to set selected=selected
+// when value equals the item value.
+$.dform.subscribe("value", function(options, type) {
+    var self = this;
+    if(type === "option" && this.parent().attr("selectvalue") === options) {
+        this.attr("selected", "selected");
+    }
+});

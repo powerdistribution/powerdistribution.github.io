@@ -188,7 +188,7 @@ function calculate() {  // page calculation
 }
 
 function plot(data, options) {  // uses Flot
-    pdiv = $('<div/>', {style: 'width:600px;height:400px'}).appendTo($active_element);
+    pdiv = $('<div/>', {style: 'width:35em;height:25em'}).appendTo($active_element);
     $.plot(pdiv, data, options);
 }
 

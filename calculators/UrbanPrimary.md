@@ -5,17 +5,12 @@
 ```yaml script=dataloader
 xml: UrbanPrimary_init.xml
 ```
-
 <style media="screen" type="text/css">
-.form-horizontal .control-label {
-  width: 200px;
-}
-.form-horizontal .controls {
-  margin-left: 220px;
-}
+label {font-weight:normal; size: 0.9em}
 </style>
 
-## Transient Simulations on an Urban Primary
+
+<h2>Transient Simulations on an Urban Primary</h2>
 
 This app models transients that occur on urban systems during a single
 line-to-ground fault. See section 14.2.3 for more information. Adjust
@@ -23,62 +18,70 @@ parameters, and the simulation will run automatically. You'll need a
 recent version of Firefox (fastest) or Chrome.
 
 <br/>
+<br/>
 
-<img src="UrbanPrimary.svg" class="pull-right" style="width:530px; background-color:#ffffff; border:2px solid gray" />
+<div id="status" style="text-align:center"><span id="statustext">
+Simulation loading</span>. &nbsp Time: <span id="statustimer"> </span></div>
+
+<br/>
 
 
-```yaml jquery=jsonForm class="form-horizontal input-small" name=frm
-schema:
-  faultTime:
-    type: string
-    title: Time of the fault [cycles]
-    default: 1.25
-  kVll:
-    type: string
-    title: RMS system voltage [kV]
-    default: 13.8
-  MVA:
-    type: string
-    title: Transformer MVA
-    default: 50.0
-  Xpcnt:
-    type: string
-    title: Transformer impedance [%]
-    default: 15.0
-  Ntran:
-    type: string
-    title: Number of transformers
-    default: 3
-  XRtran:
-    type: string
-    title: Transformer X/R ratio
-    default: 5.0
-  Rcable:
-    type: string
-    title: Cable resistance [ohms]
-    default: 0.05
-  Xcable:
-    type: string
-    title: Cable reactance [ohms]
-    default: 0.05
-  Ccables:
-    type: string
-    title: Capacitance per phase [uF]
-    default: 1.0
-  Xneutral:
-    type: string
-    title: Neutral reactance [ohms]
-    default: 1.0
-  XRneutral:
-    type: string
-    title: Neutral reactor X/R ratio
-    default: 5.0
-form:
-  - "*"
-params:
-  fieldHtmlClass: input-medium
+<div class = "row">
+<div class = "col-md-5">
+
+<br/>
+<br/>
+
+```yaml jquery=dform 
+class : form-horizontal
+col1class : col-sm-8
+col2class : col-sm-4
+html:
+  - name: faultTime
+    type: number
+    bs3caption: Time of the fault [cycles]
+    value: 1.25
+  - name: kVll
+    type: number
+    bs3caption: RMS system voltage [kV]
+    value: 13.8
+  - name: MVA
+    type: number
+    bs3caption: Transformer MVA
+    value: 50.0
+  - name: Xpcnt
+    type: number
+    bs3caption: Transformer impedance [%]
+    value: 15.0
+  - name: Ntran
+    type: number
+    bs3caption: Number of transformers
+    value: 3
+  - name: XRtran
+    type: number
+    bs3caption: Transformer X/R ratio
+    value: 5.0
+  - name: Rcable
+    type: number
+    bs3caption: Cable resistance [ohms]
+    value: 0.05
+  - name: Xcable
+    type: number
+    bs3caption: Cable reactance [ohms]
+    value: 0.05
+  - name: Ccables
+    type: number
+    bs3caption: Capacitance per phase [uF]
+    value: 1.0
+  - name: Xneutral
+    type: number
+    bs3caption: Neutral reactance [ohms]
+    value: 1.0
+  - name: XRneutral
+    type: number
+    bs3caption: Neutral reactor X/R ratio
+    value: 5.0
 ```
-
 ```js
 if (typeof(isRunning) == "undefined") isRunning = false
 
@@ -122,14 +125,6 @@ wworker.addEventListener('error', function(event) {
 
 ```
 
-<div id="status" style="text-align:center"><span id="statustext">
-Simulation loading</span>. &nbsp Time: <span id="statustimer"> </span></div>
-
-
-## Results
-
-<div id="yaxisform"> </div>
-
 ```js
 // read the csv file with the simulation results
 
@@ -149,22 +144,57 @@ wworker.addEventListener("message", function(e) {
 
 ```
 
+
+</div>
+
+
+
+<div class = "col-md-7">
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="mytab">
+  <li class="active"><a href="#model" data-toggle="tab">Model</a></li>
+  <li><a href="#results" data-toggle="tab">Results</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <!-- Model pane -->
+  <div class="tab-pane active" id="model">
+
+<img src="UrbanPrimary.svg" style="width:100%; background-color:#ffffff; border:2px solid gray" />
+
+  </div>
+
+  <!-- Results pane -->
+  <div class="tab-pane" id="results">
+
 ```js id=plotdiv
 if (typeof(header) != "undefined") {
+    console.log($("#mytab a:last").length);
+    $("#mytab a:last").tab("show"); // Select last tab
     y1idx = header.indexOf("Va");
     y2idx = header.indexOf("Vb");
     y3idx = header.indexOf("Vc");
     y4idx = header.indexOf("Vs");
     xidx = 0;
     // pick out the column to plot
-    series1 = x.slice(1).map(function(x) {return [x[xidx], x[y1idx]];});
-    series2 = x.slice(1).map(function(x) {return [x[xidx], x[y2idx]];});
-    series3 = x.slice(1).map(function(x) {return [x[xidx], x[y3idx]];});
-    series4 = x.slice(1).map(function(x) {return [x[xidx], x[y4idx]];});
+    series1 = x.slice(1).map(function(x) {return [x[xidx], x[y1idx]/1000];});
+    series2 = x.slice(1).map(function(x) {return [x[xidx], x[y2idx]/1000];});
+    series3 = x.slice(1).map(function(x) {return [x[xidx], x[y3idx]/1000];});
+    series4 = x.slice(1).map(function(x) {return [x[xidx], x[y4idx]/1000];});
     plot([series1, series2, series3]);
     plot([series4]);
 }
 ```
+  </div>
+</div>
+
+
+
+
+</div>
+</div>
 
 ## Description
 

@@ -1,56 +1,52 @@
 
-<!-- This is a trick to get the input form to the left of the results -->
-<style media="screen" type="text/css">
-.yamlresult {
-    width: 15em; 
-    float: left; 
-    margin-right: 3em;
-    margin-top: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
-    background-color: LightSteelBlue;
-    line-height: 190%;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px; 
-    -khtml-border-radius: 10px;
-}
-</style>
-
 # Arc flash in a padmounted switch
 
-```yaml jquery=jsonForm name=frm
-schema: 
-  D:
+<div class = "row">
+<div class = "col-md-3">
+
+<br/>
+<br/>
+
+```yaml jquery=dform name=frm
+html: 
+  - name: D
     type: number
-    title: "Working distance, in"
-    default: 36
-  clothing:
+    bs3caption: "Working distance, in"
+    value: 36
+  - name: clothing
     type: number
-    title: "Clothing rating, cal/cm^2"
-    default: 8.0
-  I:
+    bs3caption: 
+      html:
+        - html: Clothing rating, cal/cm
+          type: span
+        - type: sup
+          html: 2
+    value: 8.0
+  - name: I
     type: number
-    title: "Bolted current, kA"
-    default: 6.0
-  t:
+    bs3caption: "Bolted current, kA"
+    value: 6.0
+  - name: t
     type: number
-    title: "Duration, sec"
-    default: 1.0
-  k:
+    bs3caption: "Duration, sec"
+    value: 1.0
+  - name: k
     type: number
-    title: "Safety multiplier"
-    default: 1.15
-  graphextras: 
-    type: string
-    title: Plotting extras
-    enum: 
+    bs3caption: "Safety multiplier"
+    value: 1.15
+  - name: graphextras
+    type: select
+    bs3caption: Plotting extras
+    choices: 
       - Vary working distance
       - Vary clothing
       - None
-form: 
-  - "*"
 ```
+
+</div>
+<div class = "col-md-1">
+</div>
+<div class = "col-md-8">
 
 
 ```js
@@ -59,9 +55,6 @@ I = Number(I)
 clothing = Number(clothing)
 D = Number(D)
 k = Number(k)
-
-<!-- t^1.35 = E * d^2.1 / (k * 3547 * I^1.5) -->
-<!-- k * 3547 * I^1.5 * t^1.35 = E * d^2.1 -->
 
 pow = Math.pow
 
@@ -74,7 +67,8 @@ findduration = function(E, I, d, k) {
 console.log(1)
 ```
 
-## Results
+<h3>Results</h3>
+
 
 ```js output=markdown
 console.log(2)
@@ -156,8 +150,9 @@ if (graphextras == "Vary clothing") {
 //plotinfo.series = [{data: series1}]
 $active_element.highcharts(plotinfo)
 ```
+</div>
+</div>
 
-</br>
 
 # Notes
 
