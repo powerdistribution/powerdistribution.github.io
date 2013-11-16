@@ -78,11 +78,6 @@ to [me](mailto:tshort@epri.com).
 
 # Search this site
 
-<form method="get" action="http://www.google.com/search?sitesearch=distributionhandbook.com">
-<input type="text"   name="q" size="25" maxlength="255" value="" />
-<input type="submit" value="Google Search" />
-</form>
-
 <form name="cse" id="searchbox_demo" action="http://www.google.com/cse">
   <input type="hidden" name="cref" value="" />
   <input type="hidden" name="ie" value="utf-8" />
@@ -90,5 +85,5 @@ to [me](mailto:tshort@epri.com).
   <input name="q" type="text" size="40" />
   <input type="submit" name="sa" value="Search" />
 </form>
-                                
-
+<script type="text/javascript" src="https://www.google.com/cse/tools/onthefly?form=searchbox_demo&lang="></script>
+ 
