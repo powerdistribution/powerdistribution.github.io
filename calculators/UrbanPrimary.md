@@ -106,7 +106,7 @@ $xml.find("ScalarVariable[name = 'Ccables']").find("Real").attr("start", Ccables
 // Write out the initialization file
 xmlstring = new XMLSerializer().serializeToString(xml)
 
-$("#statustext").html('<img src="wait.gif" /> Simulation running')
+$("#statustext").html('Simulation running')
 $("#statustimer").html("");
 $('#statustimer').tinyTimer({ from: Date.now() });
 
@@ -171,7 +171,6 @@ wworker.addEventListener("message", function(e) {
 
 ```js id=plotdiv
 if (typeof(header) != "undefined") {
-    console.log($("#mytab a:last").length);
     $("#mytab a:last").tab("show"); // Select last tab
     y1idx = header.indexOf("Va");
     y2idx = header.indexOf("Vb");
