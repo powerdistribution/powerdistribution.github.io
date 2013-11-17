@@ -54,3 +54,12 @@ title:  7. Capacitor Application
    bank (12.5 kV, 3-phase short circuit at the point = 2 kA, X/R=4)?
 
 ## Projects
+
+0. Using the [IEEE ??8700-bus test case](??) in OpenDSS, find the
+   losses at for each of the following cases:
+
+   - Base case.
+   - Remove all capacitors.
+   - Add 1200-kvar fixed capacitors based on the 1/2-kvar method.
+   - Add 600-kvar fixed capacitors based on the 1/2-kvar method.
+  

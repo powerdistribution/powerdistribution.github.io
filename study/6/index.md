@@ -58,4 +58,34 @@ title:  6. Voltage Regulation
           
 ## Projects
 
-1. Voltage drop profile
+0. Using the
+   [IEEE 8500-node test case](http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/IEEETestCases/8500-Node/)
+   in OpenDSS, plot the voltage drop profile (voltage along the line
+   as a function of distance from the substation). Flatten the voltage
+   profile using the following methods:
+
+   1. Balance phases by re-phasing taps.
+   1. Add or move capacitor banks. Use 600-kvar banks.
+   1. Add voltage regulators.
+   1. Reconductor up to 1 mile of line.
+  
+   Evaluate all options at peak load and 40% load. Make a table of the
+   lowest voltage on the primary for each option.
+
+   Implement a voltage reduction algorithm on the base case. Try two
+   different approaches to controlling voltage:
+
+   1. Add voltage feedback to each voltage regulator and LTC control
+      to keep the most remote primary voltage at 119 V.
+
+   1. Use line-drop compensation on each voltage regulator and LTC
+      control to try to keep the most remote primary voltage at 119 V.
+
+   Run an annual hourly (8760 hours) simulation. Use a
+   voltage-dependent load with CVR-watts = 0.6 and CVR-vars = 3.0.
+   Find the average consumption, line losses, and transformer load and
+   no-load losses. Repeat for each of the flattening options
+   identified above.
+
+
+
