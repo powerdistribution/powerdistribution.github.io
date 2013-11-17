@@ -3,18 +3,16 @@ layout: default
 title:  Questions and Problems
 ---
 
-*NOTE: This section is still under construction.*
+**NOTE: This section is still under construction.**
 
 This section contains several self-study exercises. Most chapters have
 each of the following:
 
-- *Questions* -- These are fairly straightforward and are mainly to
+- *Questions* &ndash; These are fairly straightforward and are mainly to
   probe for understanding.
-
-- *Problems* -- These normally require at least a calculator and time
+- *Problems* &ndash; These normally require at least a calculator and time
   to work through problems. 
-
-- *Projects* -- These are in-depth problems that take considerable effort.
+- *Projects* &ndash; These are in-depth problems that take considerable effort.
 
 By chapter:
 
@@ -49,5 +47,5 @@ questions for interactive instruction. This has been used at
 for physics classes. 
 
 Professors and other educators, please contact me if you need
-Handbook-related materials (such as figures) for use in classes.  
+Handbook-related materials (such as figures) for use in classes.
 

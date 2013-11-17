@@ -241,7 +241,7 @@ damping).
 The line model between the substation and the fault is a
 resistance and inductance in series. (Better results might be obtained
 with a more accurate frequency-dependent line model.) Note that these
-impedances represent the loop impedance (2*Z1 + Z0)/3. 
+impedances represent the loop impedance (2*Z<sub>1</sub> + Z<sub>0</sub>)/3. 
 
 ## Background
 
