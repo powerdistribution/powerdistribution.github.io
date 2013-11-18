@@ -55,8 +55,10 @@ title:  7. Capacitor Application
 
 ## Projects
 
-0. Using the [IEEE ??8700-bus test case](??) in OpenDSS, find the
-   losses at for each of the following cases:
+0. Using the 
+   [IEEE 8500-node test case](http://svn.code.sf.net/p/electricdss/code/trunk/Distrib/IEEETestCases/8500-Node/)
+   in OpenDSS, find the losses for each of the following cases. Solve
+   the system at peak load.
 
    - Base case.
    - Remove all capacitors.
