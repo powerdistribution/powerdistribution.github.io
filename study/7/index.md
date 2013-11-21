@@ -47,11 +47,36 @@ title:  7. Capacitor Application
    1. True
    1. False
 
+0. Is an 80 K fuse link an acceptable application on 900-kvar bank on
+   a 12.5-kV system.
+
+   1. Yes
+   1. No
+
+0. Which options can minimize the likelihood of nuisance fuse
+   operations on capacitor cutouts? Mark all that apply.
+
+   1. Tighten fuseholder caps
+   1. Use conductive grease
+   1. Replace the fuse liner when needed
+   1. Do not fuse too tightly
 
 ## Problems
 
 0. What is the voltage rise after adding a 3-phase, 3-Mvar capacitor
    bank (12.5 kV, 3-phase short circuit at the point = 2 kA, X/R=4)?
+
+0. Consider a 12.5-kV express circuit that is four miles long with
+   350-kcmil AAC construction with Z<sub>1</sub> = 0.0557 + j 0.1242
+   ohms/kfeet. Find the amount of capacitance in kvar needed to have
+   zero voltage drop.
+
+0. For a 1200-kvar capacitor bank on a 12.5-kV distribution circuit,
+   calculate the I<sup>2</sup>t for peak outrush into a nearby fault
+   where the resistance between the capacitor and the fault is 0.02
+   ohms. Find V<sub>pu</sub> needed to for the I<sup>2</sup>t to
+   exceed that necessary to blow a 30T fuse.
+
 
 ## Projects
 

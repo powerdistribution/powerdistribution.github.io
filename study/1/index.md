@@ -74,12 +74,19 @@ title:  1. Fundamentals of Distribution Systems
    1. V<sub>pu</sub>
    1. V<sub>pu</sub><sup>2</sup>
 
-0. Which of the following is likely to have the highest losses?
+0. Which of the following is likely to have the highest line losses?
 
    1. 12.5-kV circuit, 12-miles long, peak load = 7.5 MVA
    1. 25-kV circuit, 12-miles long, peak load = 7.5 MVA
    1. 12.5-kV circuit, 6-miles long, peak load = 10 MVA
 
+0. Where must a 100-A lumped load be placed on a line to cause the
+   same losses as a 100-A uniformly distributed load?
+   1. 1/3
+   1. 1/2
+   1. 2/3
+   1. End of feeder
+   
 ## Problems
 
 0. If a 25-kV distribution line carrying 10 MW is stepped down to
