@@ -45,24 +45,6 @@ html:
     value: 0.0
 ```
 
-```text script="eval" name=scrpt
-window.setTimeout(function() {
-$("[data-slider]")
-  .each(function () {
-    var input = $(this);
-    $("<div>")
-      .addClass("output")
-      .insertAfter($(this));
-  })
-  .bind("slider:ready slider:changed", function (event, data) {
-    $(this)
-      .nextAll(".output:first")
-        .html(data.value.toFixed(3));
-  });
-},300)
-```
-  
-
 </div>
 <div class = "col-md-1">
 </div>
