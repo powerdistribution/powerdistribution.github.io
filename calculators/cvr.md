@@ -28,7 +28,7 @@ the utility side based on various parameters.
 
 ```yaml jquery=dform name=frm
 html: 
-  - name: CVR factor
+  - name: CVRf
     type: number
     step: 0.1
     bs3caption: CVR factor
