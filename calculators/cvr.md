@@ -139,7 +139,7 @@ table.table
     th.text-center Overall savings by component
   = tbl
     tr
-      th style="width: 30%" = rowname
+      th style="width: 35%" = rowname
       td.text-center = energy
       td.text-center = component
       td.text-center = overall
