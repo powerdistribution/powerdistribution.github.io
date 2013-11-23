@@ -9,10 +9,11 @@
 .slider {width:80%;}
 </style>
 
-<h1>Conservation Voltage Reduction&mdash;Customer-Side versus Utility-Side Savings</h1>
+<h1>Conservation Voltage Reduction</h1>
+<h2>Customer-Side versus Utility-Side Savings</h2>
 
-This app models the energy savings on the customer side and the
-utility side based on various parameters.
+This app models the energy savings from CVR on the customer side and
+the utility side based on various parameters.
 
 <br/>
 <br/>
@@ -27,24 +28,24 @@ utility side based on various parameters.
 
 ```yaml jquery=dform name=frm
 html: 
-  - name: CVRf
+  - name: CVR factor
     type: number
     step: 0.1
     bs3caption: CVR factor
     value: 0.7
   - name: LL
     type: number
-    step: 0.1
+    step: 0.2
     bs3caption: "Load losses, percent"
     value: 1.8
   - name: NLL
     type: number
-    step: 0.1
+    step: 0.2
     bs3caption: "No-load losses, percent"
     value: 1.6
   - name: lighting
     type: number
-    step: 0.1
+    step: 0.2
     bs3caption: "Unmetered lighting, percent"
     value: 0.0
 ```
