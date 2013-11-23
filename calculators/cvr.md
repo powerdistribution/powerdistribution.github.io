@@ -28,7 +28,7 @@ utility side based on various parameters.
 ```yaml jquery=dform name=frm
 html: 
   - name: CVRf
-    type: text
+    type: number
     bs3caption: CVR factor
     value: 0.7
   - name: LL
@@ -56,7 +56,7 @@ component = {nll: 5.6 / 100, ll: 0.6 / 100, lighting: 2.3 / 100, customer: 2.3 /
 savings = {}
 $.each(energy, function(k,v) {savings[k] = v * component[k]})
 sum = 0.0
-$.each(savings, function(k,v) sum += v)
+$.each(savings, function(k,v) {sum += v})
 overall = {}
 $.each(savings, function(k,v) {overall[k] = v/sum})
 rowtitles = ["No-load losses", "Load losses", "Unmetered lighting", "Behind the meter"]
