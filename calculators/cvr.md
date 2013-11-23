@@ -29,18 +29,22 @@ utility side based on various parameters.
 html: 
   - name: CVRf
     type: number
+    step: 0.1
     bs3caption: CVR factor
     value: 0.7
   - name: LL
     type: number
+    step: 0.1
     bs3caption: "Load losses, percent"
     value: 1.8
   - name: NLL
     type: number
+    step: 0.1
     bs3caption: "No-load losses, percent"
     value: 1.6
   - name: lighting
     type: number
+    step: 0.1
     bs3caption: "Unmetered lighting, percent"
     value: 0.0
 ```
