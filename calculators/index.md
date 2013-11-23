@@ -9,9 +9,9 @@ title:  Distribution apps and calculators
 - [IEEE 1584 arc flash](mdpad.html?1584.md)
 - [Arc flash in a padmounted switch](mdpad.html?arc_flash_padsw.md)
 - [Overhead line impedance calculator](mdpad.html?impedances.md)
-- [Conservation voltage reduction&mdashcustomer vs. utility savings](mdpad.html?cvr.md)
 - [Ferroresonance on 5-legged core transformers](mdpad.html?ferro.md)
 - [Transients on urban primary systems](mdpad.html?UrbanPrimary.md)
+<!-- - [Conservation voltage reduction&mdash;customer vs. utility savings](mdpad.html?cvr.md) -->
 
 Right now, these are all rather beta quality and/or simplistic. **Use
 caution! No warranty!** You will likely need a recent version of Firefox
