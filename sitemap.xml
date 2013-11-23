@@ -15,7 +15,7 @@
     </url>
   {% endfor %}
   {% for page in site.pages %}
-    {% if page.sitemap != null and page.sitemap != empty %}
+    {% if page.sitemap != null %}
       <url>
         <loc>{{ site.baseurl }}{{ page.url }}</loc>
         <lastmod>{{ page.sitemap.lastmod | date_to_xmlschema }}</lastmod>
