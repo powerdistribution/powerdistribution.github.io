@@ -94,3 +94,10 @@ to [me](mailto:tshort@epri.com).
 <gcse:search></gcse:search>
 </div>
 
+<div class="col-md-9">
+<form action="http://www.google.com/cse" id="cse-search-box">
+    <input type="hidden" name="cx" value="016580382179354871490:lcse729k4hg" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="search" id="search-field" name="q"  value="" placeholder="Site search" autosave="plug_srch" results="5" tabindex="1" size="10" />
+</form> 
+</div>
