@@ -11,6 +11,7 @@
 html: 
   - name: D
     type: number
+    step: 5
     bs3caption: "Working distance, in"
     value: 36
   - name: clothing
@@ -28,10 +29,12 @@ html:
     value: 6.0
   - name: t
     type: number
+    step: 0.1
     bs3caption: "Duration, sec"
     value: 1.0
   - name: k
     type: number
+    step: 0.1
     bs3caption: "Safety multiplier"
     value: 1.15
   - name: graphextras

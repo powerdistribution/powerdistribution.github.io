@@ -13,14 +13,15 @@ title:  Distribution apps and calculators
 - [Ferroresonance on 5-legged core transformers](mdpad.html?ferro.md)
 - [Transients on urban primary systems](mdpad.html?UrbanPrimary.md)
 
-Right now, these are all rather beta quality and/or simplistic. **Use
-caution! No warranty!** You will likely need a recent version of Firefox
-or Chrome for these calculators.
+Right now, these are all rather beta quality. **Use caution! No
+warranty!** These apps work best with a recent version of Firefox or
+Chrome. Most of them will work with Internet Explorer 10, albeit with a few
+quirks.
 
 If you find bugs, have ideas for additional calculators, or wish to
 contribute, please let [me](mailto:t.short@ieee.org) know.
 
-# Options for more...
+## Options for more...
 
 - SAIDI/SAIFI predictor
 - Duke sectionalizing calculator(s)

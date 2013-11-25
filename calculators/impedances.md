@@ -25,6 +25,7 @@ html:
     html: Conductor positions in feet
   - name: xA
     type: number
+    step: 0.2
     bs3caption : "x"
     value: -4.0
   - name: yA
@@ -33,6 +34,7 @@ html:
     value: 30.0
   - name: xB
     type: number
+    step: 0.2
     bs3caption : ""
     value:  0.0
   - name: yB
@@ -41,6 +43,7 @@ html:
     value: 31.0
   - name: xC
     type: number
+    step: 0.2
     bs3caption : ""
     value: 4.0
   - name: yC
@@ -68,6 +71,7 @@ html:
     html: &nbsp;
   - name: xN
     type: number
+    step: 0.2
     bs3caption : "x"
     value: 0.0
   - name: yN
@@ -88,10 +92,13 @@ html:
 html: 
   - name: rho
     type: number
+    step: 25.0
+    min: 0.0
     bs3caption : Earth resistivity, ohm-m
     value: 100.0
   - name: condT
     type: number
+    step: 5.0
     bs3caption : Conductor temperature, &deg;C
     value: 25.0
  

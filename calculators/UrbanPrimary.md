@@ -39,14 +39,17 @@ col2class : col-sm-4
 html:
   - name: faultTime
     type: number
+    step: 0.05
     bs3caption: Time of the fault [cycles]
     value: 1.25
   - name: kVll
     type: number
+    step: 5.0
     bs3caption: RMS system voltage [kV]
     value: 13.8
   - name: MVA
     type: number
+    step: 10.0
     bs3caption: Transformer MVA
     value: 50.0
   - name: Xpcnt
@@ -63,18 +66,22 @@ html:
     value: 5.0
   - name: Rcable
     type: number
+    step: 0.01
     bs3caption: Cable resistance [ohms]
     value: 0.05
   - name: Xcable
     type: number
+    step: 0.01
     bs3caption: Cable reactance [ohms]
     value: 0.05
   - name: Ccables
     type: number
+    step: 0.1
     bs3caption: Capacitance per phase [uF]
     value: 1.0
   - name: Xneutral
     type: number
+    step: 0.1
     bs3caption: Neutral reactance [ohms]
     value: 1.0
   - name: XRneutral

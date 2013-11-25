@@ -32,34 +32,46 @@ col2class : col-sm-5
 html: 
   - name: stopTime
     type: number
+    step: 0.1
     bs3caption: Stop time, sec
     value: 0.3
   - name: V
     type: number
+    step: 5.0
     bs3caption: Source voltage, LL, kV
     value: 24.94
   - name: cableLen
     type: number
+    step: 50.0
     bs3caption: Cable length, feet
     value: 200.0
   - name: cableT
     type: number
+    step: 10.0
     bs3caption: Insulation thickness, mils
     value: 260.0
   - name: cableD
     type: number
+    step: 10.0
+    min: 0.0001
     bs3caption: Conductor diameter, mils
     value: 528
   - name: trankVA
     type: number
+    step: 10.0
+    min: 0.0001
     bs3caption: Transformer kVA
     value: 75
   - name: tranLosses
     type: number
+    step: 0.1
+    min: 0.0001
     bs3caption: No-load losses, percent
     value: 0.2
   - name: load
     type: number
+    step: 0.1
+    min: 0.0001
     bs3caption: Resistive load, percent
     value: 0.0001
   <!-- - name: isClosedA -->
