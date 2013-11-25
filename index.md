@@ -78,7 +78,7 @@ to [me](mailto:tshort@epri.com).
 
 # Search this site
 
-<div class="col-md-7">
+<div class="col-md-9">
 <script>
   (function() {
     var cx = '016580382179354871490:lcse729k4hg';
@@ -92,6 +92,5 @@ to [me](mailto:tshort@epri.com).
   })();
 </script>
 <gcse:search></gcse:search>
-<p>Note: this search doesn't work, yet.</p>
 </div>
 
