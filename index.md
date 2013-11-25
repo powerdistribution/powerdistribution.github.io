@@ -98,6 +98,7 @@ to [me](mailto:tshort@epri.com).
 <form action="http://www.google.com/cse" id="cse-search-box">
     <input type="hidden" name="cx" value="016580382179354871490:lcse729k4hg" />
     <input type="hidden" name="ie" value="UTF-8" />
-    <input type="search" id="search-field" name="q"  value="" placeholder="Site search" autosave="plug_srch" results="5" tabindex="1" size="10" />
+    <input type="search" id="search-field" name="q"  value="" placeholder="Site search" autosave="plug_srch" results="5" tabindex="1" size="20" />
+    <input type="submit" value="Search" /> 
 </form> 
 </div>
