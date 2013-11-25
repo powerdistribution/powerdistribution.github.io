@@ -11,7 +11,7 @@
 html: 
   - name: D
     type: number
-    step: 5
+    step: 5.0
     bs3caption: "Working distance, in"
     value: 36
   - name: clothing

@@ -33,13 +33,12 @@ col2class : col-sm-4
 html: 
   - name: flti
     type: number
-    step: 1000
-    step: 1000
+    step: 1000.0
     bs3caption: "Fault current, A"
     value: 5000
   - name: fltt
     type: number
-    step: 5
+    step: 5.0
     bs3caption: "Fault duration, cycles (60 Hz)"
     value: 20
   - name: conductors
@@ -49,7 +48,7 @@ html:
     choices: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]
   - name: h0
     type: number
-    step: 50
+    step: 50.0
     bs3caption: "Span length, feet"
     value: 300
   - name: y0
