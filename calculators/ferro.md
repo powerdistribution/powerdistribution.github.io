@@ -253,5 +253,3 @@ components and explore in more detail. Modelica is a descriptive
 language with component and system libraries for simulating
 electrical, thermal, and mechanical systems.
 
-This page should work in both Firefox and Chrome. It doesn't work in
-Internet Explorer.

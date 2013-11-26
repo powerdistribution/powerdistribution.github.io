@@ -14,8 +14,7 @@ label {font-weight:normal; size: 0.9em}
 
 This app models transients that occur on urban systems during a single
 line-to-ground fault. See section 14.2.3 for more information. Adjust
-parameters, and the simulation will run automatically. You'll need a
-recent version of Firefox (fastest) or Chrome.
+parameters, and the simulation will run automatically. 
 
 <br/>
 <br/>
