@@ -168,7 +168,7 @@ from reducing voltage.
 The load losses on the distribution circuit includes the primary line
 losses, load losses in distribution transformers, and secondary line
 losses. These are a function of the current squared
-(*I*<sup>2</sup>*t*). Depending on the circuit loads, when voltage is
+(*I*<sup>2</sup>*R*). Depending on the circuit loads, when voltage is
 reduced, the current can either increase or decrease, depending on CVR
 factors for both watts and vars and the load power factor. Constant
 energy loads (lower CVR factors) will cause current to increase. A
