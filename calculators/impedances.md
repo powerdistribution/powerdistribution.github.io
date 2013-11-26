@@ -1,3 +1,7 @@
+```yaml script=scriptloader
+- lib/math.min.js
+```
+
 # Overhead Distribution Line Impedances
 
 ```yaml name=d
