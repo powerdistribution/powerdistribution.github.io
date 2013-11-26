@@ -1,7 +1,7 @@
 
 ```yaml script=scriptloader
 - //cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js
-- //github.com/machty/emblem.js/raw/master/dist/emblem.js
+- lib/emblem.min.js
 ```
 <link href="http://loopj.com/jquery-simple-slider/css/simple-slider.css" rel="stylesheet" type="text/css" media="screen, projection" />
 
