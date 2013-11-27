@@ -1,19 +1,20 @@
+# Conservation Voltage Reduction
+## Customer-Side versus Utility-Side Savings
+
+This app models the energy savings from CVR on the customer side and
+the utility side based on various parameters.
+
 
 ```yaml script=scriptloader
 - //cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js
 - lib/emblem.min.js
 ```
+
 <link href="http://loopj.com/jquery-simple-slider/css/simple-slider.css" rel="stylesheet" type="text/css" media="screen, projection" />
 
 <style media="screen" type="text/css">
 .slider {width:80%;}
 </style>
-
-<h1>Conservation Voltage Reduction</h1>
-<h2>Customer-Side versus Utility-Side Savings</h2>
-
-This app models the energy savings from CVR on the customer side and
-the utility side based on various parameters.
 
 <br/>
 <br/>

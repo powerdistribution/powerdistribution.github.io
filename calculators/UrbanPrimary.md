@@ -1,3 +1,9 @@
+## Transient Simulations on an Urban Primary
+
+This app models transients that occur on urban systems during a single
+line-to-ground fault. See section 14.2.3 for more information. Adjust
+parameters, and the simulation will run automatically. 
+
 ```yaml script=scriptloader
 - lib/tinytimer.js
 ```
@@ -9,12 +15,6 @@ xml: UrbanPrimary_init.xml
 label {font-weight:normal; size: 0.9em}
 </style>
 
-
-<h2>Transient Simulations on an Urban Primary</h2>
-
-This app models transients that occur on urban systems during a single
-line-to-ground fault. See section 14.2.3 for more information. Adjust
-parameters, and the simulation will run automatically. 
 
 <br/>
 <br/>

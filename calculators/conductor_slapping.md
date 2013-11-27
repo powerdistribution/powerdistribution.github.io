@@ -1,16 +1,14 @@
-```yaml script=scriptloader
-- //dl.dropboxusercontent.com/u/17098152/mdpad/FICM.js
-```
-
-<!-- For some reason Markdown doesn't work before these divs -->
-
-<h2>Conductor Slapping App</h2>
+## Conductor Slapping App
 
 This app models slapping between two conductors for a line-to-line
 fault involving these conductors. Enter the conductor and line
 characteristics, the fault information, and the relative conductor
 positions. The critical clearing time is the fault duration at which
 conductors swing enough to (nearly) touch.
+
+```yaml script=scriptloader
+- //dl.dropboxusercontent.com/u/17098152/mdpad/FICM.js
+```
 
 ```yaml name=d
 conductors: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]

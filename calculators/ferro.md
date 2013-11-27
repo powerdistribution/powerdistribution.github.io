@@ -1,3 +1,5 @@
+## Ferroresonance on a Five-Legged Core Transformer
+
 ```yaml script=scriptloader
 - lib/tinytimer.js
 ```
@@ -9,10 +11,6 @@ xml: FerroModule.Ferro_init.xml
 <style media="screen" type="text/css">
 label {font-weight:normal; size: 0.9em}
 </style>
-
-
-<h2>Ferroresonance on a Five-Legged Core Transformer</h2>
-
 
 <div id="status" style="text-align:center"><span id="statustext">
 Simulation loading</span>. &nbsp Time: <span id="statustimer"> </span></div>

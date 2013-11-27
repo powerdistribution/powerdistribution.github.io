@@ -1,8 +1,8 @@
+# Overhead Distribution Line Impedances
+
 ```yaml script=scriptloader
 - lib/math.min.js
 ```
-
-# Overhead Distribution Line Impedances
 
 ```yaml name=d
 rac: [3.551, 2.232, 1.402, 1.114, 0.882, 0.7, 0.556, 0.441, 0.373, 0.35, 0.311, 0.278, 0.267, 0.235, 0.208, 0.197, 0.188, 0.169, 0.135, 0.133, 0.127, 0.12, 0.109, 0.106, 0.101, 0.0963]
