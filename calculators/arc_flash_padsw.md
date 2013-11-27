@@ -175,10 +175,10 @@ increases with increasing duration. Here is a picture of the
 horizontal busbars along with a video frame from an arc flash test:
 
 <div class= "row">
-<div class = "col-md-6">
+<div class = "col-md-4">
 <img src="img/padmount2.png" class="img-responsive">
 </div>
-<div class = "col-md-6">
+<div class = "col-md-4">
 <img src="img/padmount1.png" class="img-responsive">
 </div>
 </div>
