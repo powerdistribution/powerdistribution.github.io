@@ -1,8 +1,8 @@
+# Arc flash in a padmounted switch
+
 ```yaml script=scriptloader
 - lib/numeric-1.2.6.min.js
 ```
-
-# Arc flash in a padmounted switch
 
 <div class = "row">
 <div class = "col-md-3">
@@ -171,7 +171,17 @@ The incident energy in this equipment is higher than predicted by
 Magnetic fields from the arc current push the arcs and arc energy out
 of the enclosure towards the worker. This equipment is also unusual in
 that the incident energy is not linear with duration--the heat rate
-increases with increasing duration.
+increases with increasing duration. Here is a picture of the
+horizontal busbars along with a video frame from an arc flash test:
+
+<div class= "row">
+<div class = "col-md-6">
+<img src="img/padmount2.png" class="img-responsive">
+</div>
+<div class = "col-md-6">
+<img src="img/padmount1.png" class="img-responsive">
+</div>
+</div>
 
 # References
 
