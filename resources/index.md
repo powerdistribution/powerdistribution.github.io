@@ -116,7 +116,7 @@ Here are some of my favorite books:
 
 # Industry reports
 
-- NEEA 1207, [Distribution Efficiency Initiative](http://www.saic.com/news/resources.asp?rk=84), Northwest Energy Efficiency Alliance, 2007. 
+- NEEA 1207, [Distribution Efficiency Initiative](http://www.leidos.com/NEEA-DEI_Report.pdf), Northwest Energy Efficiency Alliance, 2007. 
 
 - NEETRAC, [Diagnostic Testing of Underground Cable Systems (Cable Diagnostic Focused Initiative)](http://www.neetrac.gatech.edu/publications/CDFI_Phase_1_Final-Report.pdf), National Electric Energy Testing, Research & Applications Center, Forest Park, GA, 2010.
 
