@@ -80,5 +80,13 @@ title:  10. Reliability
    1. 1,000,000 customers, 100,000 overhead line miles, and 20,000
       underground line miles
 
+0. Consider a single mainline with two switches with line exposure and
+   customers evenly split between the three line sections. Assume a
+   repair time = 4 hours and switch time = 1 hour. Find CAIDI.
+
+0. Repeat the previous example, but now, assume that 50% of customers
+   are on the middle section, 25% are on the first section, and 25%
+   are on the last section. 
+
 ## Projects
 
