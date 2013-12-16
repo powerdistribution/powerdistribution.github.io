@@ -6,7 +6,7 @@ function tanh (arg) {
   return (Math.exp(arg) - Math.exp(-arg)) / (Math.exp(arg) + Math.exp(-arg));
 }
 
-function ficm(flti, fltt, h0, y0, x1, y1, wc, area) {
+function ficm(flti, fltt, h0, y0, x1, y1, wc, area, ret) {
 // flti = fault current, A
 // fltt = fault duration, cycles
 // h0 = span length, ft
@@ -15,7 +15,7 @@ function ficm(flti, fltt, h0, y0, x1, y1, wc, area) {
 // y1 = vertical position of conductor 2 relative to conductor 1, ft
 // wc = conductor weight, lbs per ft?
 // area = conductor cross sectional area, in^2
-
+// ret = type of return. 0 = normal, 1 = return arrays with [t, x0, y0, x1, y1, d]
     var fmr = new Float64Array(3), fms = new Float64Array(3), x = new Float64Array(3), y = new Float64Array(3), xt = new Float64Array(3), yt = new Float64Array(3), ys = new Float64Array(3), tht = new Float64Array(3), acr = new Float64Array(3), vr = new Float64Array(3);
     var acs = new Float64Array(3), vs = new Float64Array(3), x23 = new Float64Array(3), y23 = new Float64Array(3), sang = new Float64Array(3), tens = new Float64Array(3), fstr = new Float64Array(3), fgs = new Float64Array(3), yin = new Float64Array(3);
     var asol = new Float64Array(3), arol = new Float64Array(3), vsol = new Float64Array(3), vrol = new Float64Array(3), fr = new Float64Array(3), fs = new Float64Array(3), sten = new Float64Array(3), fmgx = new Float64Array(3), fmgy = new Float64Array(3);
@@ -26,8 +26,8 @@ function ficm(flti, fltt, h0, y0, x1, y1, wc, area) {
 	var d1223, cal12, cbt12, fm12, arg, hyratio, dw, tcrit, swmax, swmin;
 	var d12sv, flttadd;
 	var i, nphs, npts, n, ncond, cc, faif, nconfig;
-    
-    console.log(flti, fltt, h0, y0, x1, y1, wc, area);
+
+    // console.log(flti, fltt, h0, y0, x1, y1, wc, area);
 
     nphs = 2;     //  number of phases
     // ncond = 5;    //1-1/0 al  2-246.9 al  3-4/0 Cu  4-336 al  5-477 al  6-556.5 ACSR
@@ -37,7 +37,7 @@ function ficm(flti, fltt, h0, y0, x1, y1, wc, area) {
     // fltt = 10.;    // cycles of fault
     flttadd = 0.1;  // cycles increment
     ela = 10.e6;// modulus of elasticity in psi *10e6
-    npts = 2400;  // points of output
+    npts = 5400;  // points of output
     delt = 0.001;  // timestep
     hdelt = 0.5*delt;
     tstop = npts*delt;   // # pts * timestep
@@ -48,6 +48,9 @@ function ficm(flti, fltt, h0, y0, x1, y1, wc, area) {
     utopi = 2./(1.e7);
     fcon = utopi*flti*flti / 4.448;
     fc12 = fcon;
+    
+    if (ret == 1) 
+        var res = [];
 
     tmass = wc / 32.17;
     x[0] = 0.;   // center of rotation coordinates x, y for cond
@@ -168,19 +171,24 @@ function ficm(flti, fltt, h0, y0, x1, y1, wc, area) {
         faif = 1000 * time;
          //     if ((faif % 33) == 0)
         // console.log(time, xtsv[0], ytsv[0], xtsv[1], ytsv[1],d12sv);
+        if (ret == 1 && (n % 10) == 0) {
+            res.push([time, xtsv[0], ytsv[0], xtsv[1], ytsv[1], d12sv]);
+        }
+        // console.log(time, xtsv[0], ytsv[0], xtsv[1], ytsv[1],d12sv);
         time = time + delt;
 
         if (time > tstop) break;
 
     } // n < npts
     //          console.log(stream, " minimum distance= %5.3f at time= %5.3f\n", d12m, tcrit);
+    // console.log(" fault amps= " + flti + "    cycles= " + fltt + "   distance= " + d12m + "   time= " + tcrit);
+    
+    if (ret == 1) return res;
 
     if((d12m < swmax)&&(d12m > swmin))
     {
-      console.log(" fault amps= " + flti + "    cycles= " + fltt + "   distance= " + d12m + "   time= " + tcrit);
       return tcrit;
     }
-    fltt = fltt + flttadd;
     return 0.0;
 
 }
