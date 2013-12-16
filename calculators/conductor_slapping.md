@@ -7,7 +7,7 @@ positions. The critical clearing time is the fault duration at which
 conductors swing enough to (nearly) touch.
 
 ```yaml script=scriptloader
-- //dl.dropboxusercontent.com/u/17098152/mdpad/FICM.js
+- FICM.js
 ```
 
 ```yaml name=d
