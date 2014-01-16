@@ -219,7 +219,7 @@ touch in real life. Again, use your judgement, and review the
 animations.
 
 To see the code that does the majority of the calculations, see
-[here](https://dl.dropboxusercontent.com/u/17098152/mdpad/FICM.js). To
+[here](https://github.com/powerdistribution/powerdistribution.github.io/blob/master/calculators/FICM.js). To
 see the user interface, page calculation code, see
 [here](conductor_slapping.md).
 
