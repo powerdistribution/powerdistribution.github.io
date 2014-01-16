@@ -120,7 +120,9 @@ title:  14. Grounding and Safety
        
 ## Problems
 
-1. Calculate the resistance to ground of a 1/2-in, 10-ft rod.
+1. Calculate the resistance to ground for a ground rod with a diameter
+   of 1/2 in and a length of 10 ft where the soil resistivity is 100
+   ohm-m.
 
 0. Calculate the arc flash incident energy using the IEEE 1584
    equations and assumptions for the following conditions:
