@@ -52,6 +52,29 @@ title:  10. Reliability
    1. Is fudging the data
    1. Can occur with the IEEE beta method
 
+1. Which outage cause is most likely to have repeated operations at a
+   location?
+   
+   1. Lightning
+   1. Tree
+   1. Animal
+   1. Equipment failure
+
+1. Which outage cause is least likely to have repeated operations at a
+   location, meaning it's the most random?
+   
+   1. Lightning
+   1. Tree
+   1. Animal
+   1. Equipment failure
+
+1. What approaches will help avoid issues with regression to the mean
+   when evaluating worst circuits or other reliability-centered
+   programs? Mark all that apply.
+
+   1. Use a control set to normalize the target data set
+   1. Use a longer observation period for the target data set
+   1. Judge effects by time periods before and after changes
 
 
 
@@ -81,7 +104,7 @@ title:  10. Reliability
       underground line miles
 
 0. Consider a single mainline with two switches with line exposure and
-   customers evenly split between the three line sections. Assume a
+   customers evenly split between the three line sections. Assume 
    repair time = 4 hours and switch time = 1 hour. Find CAIDI.
 
 0. Repeat the previous example, but now, assume that 50% of customers

@@ -54,6 +54,15 @@ title:  11. Voltage Sags and Momentary Interruptions
    1. Mechanical transfer switch
    1. MOV
 
+0. If you close a substation bus tie that is normally open, what will
+   happen to the average frequency of voltage sags for customers fed
+   by the substation?
+
+   1. Voltage sag frequency will stay the same
+   1. Voltage sag frequency will increase
+   1. Voltage sag frequency will decrease
+
+
 ## Problems
 
 1. For a line-to-ground fault 2 miles from the substation, what does
