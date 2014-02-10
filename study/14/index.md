@@ -132,7 +132,8 @@ title:  14. Grounding and Safety
    - 6-kA fault current
    - 24-in worker distance
     
-0. Estimate the maximum duration allowed for a 12.5-kV arc with 8 cal/cm^2 clothing for the following conditions:
+0. Estimate the maximum duration allowed for arc flash at 12.5-kV with
+   8 cal/cm^2 clothing for the following conditions:
    
    - ARCPRO, 2-in arc, 15-in working distance
    - ARCPRO, 15-in arc, 15-in working distance

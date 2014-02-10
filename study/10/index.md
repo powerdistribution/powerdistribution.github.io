@@ -74,8 +74,7 @@ title:  10. Reliability
 
    1. Use a control set to normalize the target data set
    1. Use a longer observation period for the target data set
-   1. Judge effects by time periods before and after changes
-
+   1. Exclude the "selection years" from before/after comparisons
 
 
 ## Problems
@@ -87,7 +86,12 @@ title:  10. Reliability
 
 0. Now repeat the previous problem and include the reliability of the
    transfer switch feeding the facility which has an annual failure
-   rate of 1% and a repair time of 24 hours.
+   rate of 1% and a repair time of 24 hours. Also assume that failure
+   of the switch leads to a facility outage.
+
+0. Now repeat the previous problem and include the reliability of the
+   transfer switch feeding the facility, but this time, assume that 5%
+   of the time, the switch fails to operate when called upon.
 
 0. If the distribution of daily SAIDI follows a lognormal
    distribution, what portion of annual average SAIDI (without
@@ -111,5 +115,9 @@ title:  10. Reliability
    are on the middle section, 25% are on the first section, and 25%
    are on the last section. 
 
-## Projects
+0. Using [this daily CMI data](example_CMI_data.csv), calculate SAIDI
+   excluding major events with the following beta values: 1.8, 2, and
+   2.5. Also, note the average number of days excluded with each beta
+   value. There are 800,000 customers served in this example.
+
 

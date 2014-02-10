@@ -74,7 +74,8 @@ title:  2. Overhead Lines
    4. Harmonic resonance
    5. Contaminated insulator
 
-0. True/false: Increased phase separation increases the zero-sequence impedance.
+0. True/false: Increased phase separation increases the zero-sequence
+   reactance.
    
    1. True
    2. False

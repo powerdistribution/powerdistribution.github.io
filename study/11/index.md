@@ -77,24 +77,34 @@ title:  11. Voltage Sags and Momentary Interruptions
    a line-to-ground fault. About how far was the fault from the
    substation? 34.5-kV system, Ifault=10 kA at the substation
    
-3. Repeat for a 12.47-kV system.
+3. Repeat for a 12.47-kV system with the same fault availability at
+   the substation.
 
-4. Need circuit map??. A critical customer is 4 miles from the
-   substation. The customer is sensitive to sags that drop below 0.7
-   per unit. Draw an area of vulnerability marking the area of circuit
-   that can affect the customer. Estimate the number of events per
-   year that could affect the customer. Assume the following:
+4. A critical customer is 4 miles from the substation. The customer is
+   sensitive to sags that drop below 0.7 per unit. Draw an area of
+   vulnerability marking the area of the circuit that can affect the
+   customer. Estimate the number of events per year that could affect
+   the customer. Assume the following:
 
    - 12\.47-kV
    - Ifault=7 kA at the substation
    - assume 1 ohm/mile of line impedance (line-to-ground faults)
-   - 4 feeders fed from the station bus
+   - 3 feeders fed from the station bus
    - fault rate = 0.5 faults/mile/year
-   - 10 mile mainline.
-   
-   Show the vulnerability for momentary interruptions.
+
+   Here is the circuit showing three distribution circuits coming from
+   one substation:
+
+   ![circuits.svg](circuits.svg)
+
+   Then, show the area of vulnerability for momentary interruptions.
+   Estimate the number of momentary interruptions for this customer.
 
 ## Projects
+
+0. Using OpenDSS or another short-circuit tool that can be scripted,
+   write a script to implement the *fault positions method* of
+   evaluating voltage sags. (Challenging)
 
 
 
