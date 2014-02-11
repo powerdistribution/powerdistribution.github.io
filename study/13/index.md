@@ -108,8 +108,7 @@ title:  13. Lightning Protection
    than 45 kA? Use the EPRI (1992) approximation on p. 664.
 
 0. What is the probability of a negative first stroke that is greater
-   than 45 kA? Use the Anderson-Eriksson model in Table 13.1 on p.
-   664.
+   than 45 kA? Use the Anderson-Eriksson model in Table 13.1 on p. 664.
 
 0. In open ground, find the average strikes to an overhead line using
    the Eriksson model. Assume 5 flashes/km^2/year and a line height of
