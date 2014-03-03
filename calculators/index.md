@@ -10,6 +10,7 @@ title:  Distribution apps and calculators
 - [Arc flash in a padmounted switch](mdpad.html?arc_flash_padsw.md)
 - [Overhead line impedance calculator](mdpad.html?impedances.md)
 - [CVR: customer vs. utility savings](mdpad.html?cvr.md)
+- [Voltage impacts of distributed generation](mdpad.html?dg.md)
 - [Ferroresonance on 5-legged core transformers](mdpad.html?ferro.md)
 - [Transients on urban primary systems](mdpad.html?UrbanPrimary.md)
 

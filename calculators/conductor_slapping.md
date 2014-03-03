@@ -11,9 +11,9 @@ conductors swing enough to (nearly) touch.
 ```
 
 ```yaml name=d
-conductors: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]
-area: [0.0206, 0.0328, 0.0522, 0.0657, 0.0829, 0.1045, 0.1317, 0.1663, 0.1964, 0.2097, 0.2358, 0.2644, 0.2748, 0.3124, 0.3534, 0.3744, 0.3926, 0.4369, 0.5494, 0.5622, 0.5892, 0.6245, 0.6874, 0.7072, 0.7495, 0.7854]
-wc: [0.0246, 0.0392, 0.0623, 0.0785, 0.0991, 0.1249, 0.1575, 0.1987, 0.2347, 0.2506, 0.2818, 0.316, 0.3284, 0.3734, 0.4224, 0.4475, 0.4692, 0.5221, 0.6566, 0.672, 0.7043, 0.7464, 0.821, 0.8452, 0.8958, 0.9387]
+conductors: ["#6 AAC", "#4 AAC", "#2 AAC", "#1 AAC", 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC, "#6 ACSR", "#4 ACSR", "#2 ACSR", "#1 ACSR", 1/0 ACSR, 2/0 ACSR, 3/0 ACSR, 4/0 ACSR, 336.4 ACSR, 397.5 ACSR, 477 ACSR, "#6 Cu", "#5 Cu", "#4 Cu", "#3 Cu", "#2 Cu", "#1 Cu", "1/0 Cu", "2/0 Cu", "3/0 Cu", "4/0 Cu", "250 Cu", "350 Cu", "500 Cu"]
+area: [0.0206, 0.0328, 0.0522, 0.0657, 0.0829, 0.1045, 0.1317, 0.1663, 0.1964, 0.2097, 0.2358, 0.2644, 0.2748, 0.3124, 0.3534, 0.3744, 0.3926, 0.4369, 0.5494, 0.5622, 0.5892, 0.6245, 0.6874, 0.7072, 0.7495, 0.7854, 0.0206, 0.0328, 0.0522, 0.0657, 0.0829, 0.1045, 0.1317, 0.1663, 0.2644, 0.3124, 0.3744, 0.02061675, 0.02599674, 0.032782596, 0.041335602, 0.052126998, 0.065887206, 0.0828597, 0.10453674, 0.13179012, 0.16619064, 0.19635, 0.27489, 0.3927]
+wc: [0.0246, 0.0392, 0.0623, 0.0785, 0.0991, 0.1249, 0.1575, 0.1987, 0.2347, 0.2506, 0.2818, 0.316, 0.3284, 0.3734, 0.4224, 0.4475, 0.4692, 0.5221, 0.6566, 0.672, 0.7043, 0.7464, 0.821, 0.8452, 0.8958, 0.9387, 0.036, 0.0574, 0.0912, 0.115, 0.145, 0.183, 0.23, 0.291, 0.462, 0.546, 0.517, 0.08, 0.101, 0.128, 0.161, 0.203, 0.258, 0.326, 0.411, 0.518, 0.653, 0.772, 1.081, 1.544]
 ```
 
 <br/>
@@ -43,7 +43,7 @@ html:
     type: select
     bs3caption: "Conductors"
     selectvalue: 336.4 AAC
-    choices: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]
+    choices: ["#6 AAC", "#4 AAC", "#2 AAC", "#1 AAC", 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC, "#6 ACSR", "#4 ACSR", "#2 ACSR", "#1 ACSR", 1/0 ACSR, 2/0 ACSR, 3/0 ACSR, 4/0 ACSR, 336.4 ACSR, 397.5 ACSR, 477 ACSR, "#6 Cu", "#5 Cu", "#4 Cu", "#3 Cu", "#2 Cu", "#1 Cu", "1/0 Cu", "2/0 Cu", "3/0 Cu", "4/0 Cu", "250 Cu", "350 Cu", "500 Cu"]
   - name: h0
     type: number
     step: 50.0
@@ -101,9 +101,7 @@ plot = $.plot($('#graph'),
 $('#graph').animate( {tabIndex: 0}, {
    duration: 5000,
    step: function ( now, fx ) {
-      //console.log(now)
       nstep = nstep + 1
-      console.log(nstep)
       var z = wirelocs[nstep]
       plot.setData( [{ data: [[0.0, y0], [x1, y0 + y1], [z[1], z[2]], [z[3], z[4]]], points: {show: true} }] );
       plot.draw();
@@ -124,10 +122,10 @@ function bisect(flti) {
         t = ficm(flti, lo + delta, h0, y0, x1, y1, wc, area, 0)
         if (t == 0.0) { // no slapping 
             lo = lo + delta
-            console.log("lo =", lo)
+            //console.log("lo =", lo)
         } else {
             hi = hi - delta 
-            console.log("hi =", hi)
+            //console.log("hi =", hi)
         }
     } while ((hi - lo) > 0.01)    
     if (hi != hiorig)
