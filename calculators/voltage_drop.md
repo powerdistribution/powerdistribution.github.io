@@ -234,7 +234,6 @@ calcZ = function(cond) {
     f = 60     // Hz
     k1 = 0.2794 * f / 60  // for answers in ohms/mi
     Re = 0.0954 * f / 60
-    rho = 100  // ohm-m
     De = 2160 * math.sqrt(rho / f)
     for (var i = 0; i < n; i++) {
         Z.x[i][i] = cond.R[i] + Re
