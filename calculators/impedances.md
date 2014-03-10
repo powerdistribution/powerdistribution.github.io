@@ -30,29 +30,29 @@ html:
   - name: xA
     type: number
     step: 0.2
-    bs3caption : "x"
+    bs3caption : "xA"
     value: -4.0
   - name: yA
     type: number
-    bs3caption : "y"
+    bs3caption : "yA"
     value: 30.0
   - name: xB
     type: number
     step: 0.2
-    bs3caption : ""
+    bs3caption : "xB"
     value:  0.0
   - name: yB
     type: number
-    bs3caption : ""
+    bs3caption : "yB"
     value: 31.0
   - name: xC
     type: number
     step: 0.2
-    bs3caption : ""
+    bs3caption : "xC"
     value: 4.0
   - name: yC
     type: number
-    bs3caption : ""
+    bs3caption : "yC"
     value: 30.0
 ```
 </div>
@@ -76,11 +76,11 @@ html:
   - name: xN
     type: number
     step: 0.2
-    bs3caption : "x"
+    bs3caption : "xN"
     value: 0.0
   - name: yN
     type: number
-    bs3caption : "y"
+    bs3caption : "yN"
     value: 25.0
 ```
 
