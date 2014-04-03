@@ -13,6 +13,7 @@ title:  Distribution apps and calculators
 - [Cable capacitance](mdpad.html?cable_capacitance.md)
 - [CVR: customer vs. utility savings](mdpad.html?cvr.md)
 - [Voltage impacts of a distributed generator](mdpad.html?dg.md)
+- [Fault simulator with various transformer connections](mdpad.html?fault_simulator.md)
 - [Ferroresonance on 5-legged core transformers](mdpad.html?ferro.md)
 - [Transients on urban primary systems](mdpad.html?UrbanPrimary.md)
 
