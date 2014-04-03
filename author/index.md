@@ -36,7 +36,8 @@ Task Force on Weather Normalization of Reliability Data.
 
 Current research areas include:
 
-- Distribution resiliency and hardening - [YouTube video](http://youtu.be/Iq56tlz_guI)
+- Distribution resiliency and hardening -
+  [YouTube video](http://youtu.be/Iq56tlz_guI), [Longer video](http://youtu.be/Oc7-trMOVVQ)
 
 - Arc flash - [YouTube video](http://youtu.be/fZP47mlELSc)
 
