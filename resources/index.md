@@ -93,26 +93,26 @@ handbook are available there.
 Here are some of my favorite books:
 
 - Bollen, M. H. J., [Understanding Power Quality Problems: Voltage Sags
-  and Interruptions](http://www.amazon.com/gp/product/0780347137/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0780347137&linkCode=as2&tag=electpowerdis-20), IEEE Press, New York, 2000.
+  and Interruptions](http://www.amazon.com/gp/product/0780347137/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0780347137&linkCode=as2&tag=electpowerd0e-20), IEEE Press, New York, 2000.
 
-- Brown, R. E., [Electric Power Distribution Reliability](http://www.amazon.com/gp/product/0849375673/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0849375673&linkCode=as2&tag=electpowerdis-20), 2nd ed, CRC
+- Brown, R. E., [Electric Power Distribution Reliability](http://www.amazon.com/gp/product/0849375673/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0849375673&linkCode=as2&tag=electpowerd0e-20), 2nd ed, CRC
   Press, Boca Raton, FL, 2008.
   
 - Cooper Power Systems,
   [Electrical Distribution-System Protection](http://www.delzer.com/v5fmsnet/OeCart/OEFrame.asp?Action=NEWORDER&cmenunodseq=&FromFav=&PmSess1=80594&pos=CPSDLC&v=7)
 
 - Dugan, R. C., McGranaghan, M., Santosa, S., and Beaty, H. W.,
-  [Electrical Power Systems Quality](http://www.amazon.com/gp/product/0071761551/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0071761551&linkCode=as2&tag=electpowerdis-20),
+  [Electrical Power Systems Quality](http://www.amazon.com/gp/product/0071761551/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0071761551&linkCode=as2&tag=electpowerd0e-20),
   Second ed, McGraw Hill, 2003.
 
-- Hileman, A. R., [Insulation Coordination for Power Systems](http://www.amazon.com/gp/product/0824799577/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0824799577&linkCode=as2&tag=electpowerdis-20), CRC Press, Boca Raton, FL, 1999.
+- Hileman, A. R., [Insulation Coordination for Power Systems](http://www.amazon.com/gp/product/0824799577/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0824799577&linkCode=as2&tag=electpowerd0e-20), CRC Press, Boca Raton, FL, 1999.
 
-- Reilly, J. P., [Applied Bioelectricity: From Electrical Stimulation to Electropathology](http://www.amazon.com/gp/product/0387984070/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0387984070&linkCode=as2&tag=electpowerdis-20), Springer-Verlag, New York, 1998.
+- Reilly, J. P., [Applied Bioelectricity: From Electrical Stimulation to Electropathology](http://www.amazon.com/gp/product/0387984070/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0387984070&linkCode=as2&tag=electpowerd0e-20), Springer-Verlag, New York, 1998.
 
 - Westinghouse Electric Corporation,
-  [Electrical Transmission and Distribution Reference Book](http://www.amazon.com/gp/product/B000AOMQV2/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B000AOMQV2&linkCode=as2&tag=electpowerdis-20), 1950.
+  [Electrical Transmission and Distribution Reference Book](http://www.amazon.com/gp/product/B000AOMQV2/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B000AOMQV2&linkCode=as2&tag=electpowerd0e-20), 1950.
 
-- Westinghouse Electric Corporation, [Distribution Systems](http://www.amazon.com/gp/product/B001ODRAIM/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B001ODRAIM&linkCode=as2&tag=electpowerdis-20), vol. 3, 1965.
+- Westinghouse Electric Corporation, [Distribution Systems](http://www.amazon.com/gp/product/B001ODRAIM/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B001ODRAIM&linkCode=as2&tag=electpowerd0e-20), vol. 3, 1965.
 
 # Industry reports
 

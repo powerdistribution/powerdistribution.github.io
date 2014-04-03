@@ -9,15 +9,17 @@ title:  Electric Power Distribution Handbook
 <div class='row'>
 <div class='col-md-4'>
 
-<h1>Second edition</h1>
-
-<p>Coming May 20, 2014.</p>
-
 <h1 id='purchase'>Purchase</h1>
 
-<p><a href='http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0849317916&amp;linkCode=as2&amp;tag=electpowerdis-20'><img alt='Foo' src='/images/9781466598652.jpg' /></a></p>
+<p>
+<a href="http://www.amazon.com/gp/product/1466598654/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1466598654&linkCode=as2&tag=electpowerd0e-20">
+<img alt='Foo' src='/images/9781466598652.jpg' /></a>
+</p>
 
-<p><a href='http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0849317916&amp;linkCode=as2&amp;tag=electpowerdis-20'>Amazon link to the first edition</a></p>
+<p>
+<a href="http://www.amazon.com/gp/product/1466598654/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1466598654&linkCode=as2&tag=electpowerd0e-20">
+Amazon
+</p>
 
 <p><a href='http://www.crcpress.com/product/isbn/9781466598652'>CRC Press</a></p>
 
@@ -45,7 +47,7 @@ title:  Electric Power Distribution Handbook
 <li>Distributed Generation</li>
 </ol>
 
-<p><a href='http://www.amazon.com/gp/product/0849317916/ref=as_li_tf_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0849317916&amp;linkCode=as2&amp;tag=electpowerdis-20#reader_0849317916'>Look inside the first edition at Amazon</a></p>
+<p><a href='http://books.google.com/books?id=fOsxAwAAQBAJ&printsec=frontcover#v=onepage&q&f=false'>Google Books preview</a></p>
 
 </div>
 
