@@ -74,7 +74,7 @@ idx = _.map(c.cables, String).indexOf(cable)
 
 d = c.dia[idx]
 D = d + 2 * ins / 1000
-C = 0.00736 * k / Math.log10(D / d) * len / 1000
+C = 0.00736 * k / math.log10(D / d) * len / 1000
 vars = 2 * Math.PI * f * C * kVlg * kVlg * len / 1000
 
 println("Cable capacitance per phase = " + math.format(C) + " uF")
