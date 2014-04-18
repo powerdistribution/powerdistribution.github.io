@@ -125,4 +125,5 @@ html:
 Then, [Emscripten](http://emscripten.org/) was used to compile the C
 code to JavaScript. The user interface was created in
 [mdpad](http://tshort.github.io/mdpad/). See
-[OpenETran.md](OpenETran.md) for the Markdown code for this page.
+[OpenETran.md](OpenETran.md) for the Markdown code for this page. See
+the complete OpenETran source [here](extras/openetran.zip).
