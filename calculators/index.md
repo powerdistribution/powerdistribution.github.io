@@ -23,8 +23,7 @@ Chrome. Most of them will work with version 11 of Internet Explorer,
 albeit with a few quirks; only a few of the apps work with Internet
 Explorer 9 or earlier versions.
 
-If you find bugs, have ideas for additional calculators, or wish to
-contribute, please let [me](mailto:t.short@ieee.org) know.
+To report on bugs, suggest features, or propose additional calculators, please file an issue [here](https://github.com/powerdistribution/powerdistribution.github.io/issues).
 
 ## Options for more...
 
