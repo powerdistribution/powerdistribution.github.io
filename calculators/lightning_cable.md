@@ -208,7 +208,7 @@ margins.
 [Emscripten](http://emscripten.org/) was used to compile OpenETran's
 code to JavaScript. The user interface was created in
 [mdpad](http://tshort.github.io/mdpad/). See
-[here](lightning-cable.md) for the code with the user interface and
+[here](lightning_cable.md) for the code with the user interface and
 [OpenETran](http://sourceforge.net/projects/openetran/) model input.
 OpenETran and the GNU GSL library (an OpenETran dependency) are
 distributed under the
