@@ -15,7 +15,7 @@ title:  Distribution apps and calculators
 - [Voltage impacts of a distributed generator](mdpad.html?dg.md)
 - [Fault simulator with various transformer connections](mdpad.html?fault_simulator.md)
 - [Lightning protection of underground cables](mdpad.html?lightning_cable.md)
-- [Lightning transients on a tapped underground cables](mdpad.html?cable_transients.md)
+- [Lightning transients on a tapped underground cable](mdpad.html?cable_transients.md)
 - [Ferroresonance on 5-legged core transformers](mdpad.html?ferro.md)
 - [Transients on urban primary systems](mdpad.html?UrbanPrimary.md)
 
