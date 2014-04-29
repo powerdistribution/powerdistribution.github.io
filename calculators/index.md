@@ -14,7 +14,7 @@ title:  Distribution apps and calculators
 - [CVR: customer vs. utility savings](mdpad.html?cvr.md)
 - [Voltage impacts of a distributed generator](mdpad.html?dg.md)
 - [Fault simulator with various transformer connections](mdpad.html?fault_simulator.md)
-- [Lightning protection of underground cables](mdpad.html?lightning-cable.md)
+- [Lightning protection of underground cables](mdpad.html?lightning_cable.md)
 - [Ferroresonance on 5-legged core transformers](mdpad.html?ferro.md)
 - [Transients on urban primary systems](mdpad.html?UrbanPrimary.md)
 
