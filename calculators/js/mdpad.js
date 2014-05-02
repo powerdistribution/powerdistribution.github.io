@@ -113,6 +113,7 @@ function println(str) {
 
 function read_form() {
     // Send commands to javascript to turn form elements into javascript variables.
+    if (this.name == "") return; // Bail out if an element isn't named.
     var cmd = "";
     if (this.type == "text") {
         cmd += this.name + "= \"" + this.value.replace(/"/g,"\\\"")  + "\";";
