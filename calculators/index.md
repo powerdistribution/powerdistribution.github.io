@@ -10,6 +10,7 @@ title:  Distribution apps and calculators
 - [Arc flash in a padmounted switch](mdpad.html?arc_flash_padsw.md)
 - [Overhead line impedance calculator](mdpad.html?impedances.md)
 - [Voltage drop on a line section](mdpad.html?voltage_drop.md)
+- [Burndown on overhead conductors](mdpad.html?burndown.md)
 - [Cable capacitance](mdpad.html?cable_capacitance.md)
 - [CVR: customer vs. utility savings](mdpad.html?cvr.md)
 - [Voltage impacts of a distributed generator](mdpad.html?dg.md)
