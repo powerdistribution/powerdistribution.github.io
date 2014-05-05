@@ -32,10 +32,10 @@ html:
     selectvalue: ANSI extremely inverse
     choices:
       - ANSI moderately inverse
+      - ANSI short-time inverse
       - ANSI inverse
       - ANSI very inverse
       - ANSI extremely inverse
-      - ANSI short-time inverse
   - name: pickup
     type: number
     bs3caption: Pickup current, A
@@ -134,7 +134,7 @@ console.log(1)
 ```yaml name=plotinfo
 chart:
     type: line
-    height: 600
+    height: 700
     spacingRight: 20
 title:
     text: Time-current curve
