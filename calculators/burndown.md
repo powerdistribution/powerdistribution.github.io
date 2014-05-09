@@ -8,6 +8,10 @@ the clearing times of relayed circuit breakers. See also section
 ```yaml script=scriptloader
 - lib/numeric-1.2.6.min.js
 ```
+```yaml name=d
+conductors: ["#6",  "#4",  "#2",  "#1",  1/0,   2/0,   3/0,   4/0,   250, 266.8, 300, 336.4, 350, 397.5, 450, 477, 500, 556.5, 700, 715.5, 750, 795, 874.5, 900, 954, 1000]
+kcmil:      [26.24, 41.74, 66.36, 83.69, 105.6, 133.1, 167.8, 211.6, 250, 266.8, 300, 336.4, 350, 397.5, 450, 477, 500, 556.5, 700, 715.5, 750, 795, 874.5, 900, 954, 1000]
+```
 
 <div class = "row">
 <div class = "col-md-4">
@@ -76,23 +80,10 @@ curve,k1,q1,k2,q2
 
 
 ```js
-function trim(arr) {
-  var start = 0;
-  for (; start < arr.length; start++) {
-    if (arr[start] !== '') break;
-  }
-  var end = arr.length - 1;
-  for (; end >= 0; end--) {
-    if (arr[end] !== '') break;
-  }
-  if (start > end) return [];
-  return arr.slice(start, end - start + 1);
-}
-console.log(trim("  A "))
 function makeobj(x) {
     var res = {}
     for (i = 0; i < x[0].length; i++) {
-        colname = trim(x[0][i])
+        colname = x[0][i]
         res[colname] = Array(x.length - 1)
         for (j = 1; j < x.length; j++) {
             res[colname][j-1] = x[j][i]
@@ -125,7 +116,6 @@ findburndown1 = function(I) {
 findburndown2 = function(I) {
    return +k2 / pow(1000 * I, q2)
 }
-console.log(1)
 ```
 
 
@@ -178,9 +168,36 @@ series3 = _.zip(currents,durations3)
 plotinfo.series = [{name: "Burndown1", data: series1}, 
                    {name: "Burndown2", data: series2}, 
                    {name: "Relay curve", data: series3}] 
-$active_element.highcharts(plotinfo)
-console.log(3)
+//$("#firstplot").highcharts(plotinfo) // done later
 ```
+```js
+pidx = _.map(d.conductors, String).indexOf(conductor2)
+kcmil = d.kcmil[pidx]
+if (material == "ACSR") {
+    k1 = 1.31
+} else if (material == "Copper") {
+    k1 = 0.71
+} else {
+    k1 = 1.0
+}
+if (cover == "Covered") {
+    k2 = 0.345
+} else {
+    k2 = 1.0
+}
+findburndownR = function(I) {
+   return 4.05 / I / 1000 * pow(kcmil, 1.15) * k1 * k2
+}
+durationsR = _.map(currents, findburndownR)
+seriesR = _.zip(currents,durationsR)
+plotinfo2.series = [{name: "Burndown curve", data: seriesR}, 
+                   {name: "Relay curve", data: series3}] 
+$("#firstplot").highcharts(plotinfo)
+$("#secondplot").highcharts(plotinfo2)
+```
+
+<div id="firstplot"/>
+
 </div>
 </div>
 
@@ -194,7 +211,7 @@ conductors. Two curves are provided:
 * *Burndown1* -- This is a "typical" time to burndown.
 
 * *Burndown2* -- This is a more conservative time to burndown for
-  coordinating with clearing curves.
+  coordinating with clearing curves. 
 
 The relay clearing curves are based on equations from ANSI/IEEE
 C37.112-1996 and from SEL relay instruction manuals. Relay curves for
@@ -211,12 +228,124 @@ ground element. Both elements should be below the burndown curves over
 the range of fault current available.
 
 
+# Analysis 
+
+In order to investigate burndowns on a wider range of conductors, I
+combined burndown data from the EPRI tests and the Goode and Gaertner
+tests and applied linear regression and quantile regression to develop
+a model that shows the effects of several variables on time to
+burndown. Here are the main effects:
+
+* *Conductor size:* burndown time varies with *1.0 * kcmil*.
+
+* *Fault current:* burndown time varies as *1.0 / amps*.
+
+* *Covering:* burndown time on covered conductor is approximately 40%
+  faster than on bare conductor. The difference in real life is even
+  more dramatically different because tests on bare conductors were
+  arranged to minimize arc motoring. In real life, motoring is likely
+  to increase the burndown time relative to these results. With
+  covered conductors, the cover naturally inhibits motoring.
+
+* *ACSR:* burndown time is 1.3 to 1.8 times that of AAC. 
+
+* *Copper:* burndown time is 0.4 to 0.8 times that of AAC. 
+
+The following graphs are for various conductors based on a quantile
+regression for &tau; = 0.1, meaning that 90% of burndown times should
+be above the resulting time-current curve. The relay curve is the
+same as given above.
+
+Note that the burndown curve in the graph below is different than
+the burndown curves above. This is because the curves below are
+general based on a fit to a number of conductor configurations. The
+curves above are likely to be more accurate because they were tailored
+based on test data for those specific conductor sizes.
+
+<div class = "row">
+<div class = "col-md-4">
+
+<br/>
+<br/>
+
+```yaml jquery=dform name=frm2
+html: 
+  - name: conductor2
+    type: select
+    bs3caption: Conductor
+    selectvalue: 336.4
+    choices: ["#6",  "#4",  "#2",  "#1",  1/0,   2/0,   3/0,   4/0,   "250", "266.8", "300", "336.4", "350", "397.5", "450", "477", "500", "556.5", "700", "715.5", "750", "795", "874.5", "900", "954", "1000"]
+  - name: material
+    type: select
+    bs3caption: Type
+    choices:
+      - AAC
+      - ACSR
+      - Copper
+  - name: cover
+    type: select
+    bs3caption: Covering
+    selectvalue: Covered
+    choices:
+      - Bare
+      - Covered
+```
+
+</div>
+<div class = "col-md-8">
+
+
+```yaml name=plotinfo2
+chart:
+    type: line
+    height: 700
+    spacingRight: 20
+title:
+    text: Time-current curve
+plotOptions: 
+    series:
+        marker: 
+            enabled: false
+xAxis:
+    type: 'logarithmic'
+    min: 1
+    max: 20
+    endOnTick: false
+    tickInterval: 1
+    minorTickInterval: 0.1
+    gridLineWidth: 1
+    title:
+        text: "Current, kA"
+yAxis:
+    type: 'logarithmic'
+    min: .02
+    max: 10
+    tickInterval: 1
+    minorTickInterval: 0.1
+    title:
+        text: "Time, sec"
+legend: 
+    align: right
+    verticalAlign: middle
+    layout: vertical
+    borderWidth: 0
+```
+
+<div id="secondplot"/>
+</div>
+</div>
+
+
 # References
+
+ANSI/IEEE C37.112-1996, *IEEE Standard Inverse-Time Characteristic
+Equations for Overcurrent Relays*.
 
 [EPRI 1017839](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001017839),
 *Distribution Conductor Burndown Test Results: Small Bare and Large
 Covered Conductor*, Electric Power Research Institute, Palo Alto, CA,
 2009.
 
-ANSI/IEEE C37.112-1996, *IEEE Standard Inverse-Time Characteristic
-Equations for Overcurrent Relays*. 
+Goode, W. B. and Gaertner, G. H., Burndown tests and their effect on
+distribution design, EEI T&D Meeting, Clearwater, FL, Oct. 14-15,
+1965.
