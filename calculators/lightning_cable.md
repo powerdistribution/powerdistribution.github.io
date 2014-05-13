@@ -171,15 +171,21 @@ html:
     
 ```
 
+Cable voltages, kV
 ```js 
     yidx = header.indexOf(graphvar);
     xidx = 0;
     // pick out the column to plot
-    series1 = x.slice(1).map(function(x) {return [x[0]*1e6, x[1]/1e3];});
-    series2 = x.slice(1).map(function(x) {return [x[0]*1e6, x[2]/1e3];});
-    series3 = x.slice(1).map(function(x) {return [x[0]*1e6, x[3]/1e3];});
-    plot([series1, series2, series3]);
+    series = [{label: "Riser",
+               data: x.slice(1).map(function(x) {return [x[0]*1e6, x[1]/1e3];})},
+              {label: "75% to end",
+               data: x.slice(1).map(function(x) {return [x[0]*1e6, x[2]/1e3];})},
+              {label: "End",
+               data: x.slice(1).map(function(x) {return [x[0]*1e6, x[3]/1e3];})}];
+    plot(series, {legend: {noColumns: 3, container: $("#legend")}});
 ```
+<div class="text-center">Time, &mu;sec</div>
+<div id="legend"/>
 
 </div>
 </div>
@@ -200,15 +206,15 @@ Note that this app simplifies some aspects, particularly:
 * The lightning current injection is hard coded at -10 kA with a 1-usec risetime.
 * The arresters use a simplified, piecewise-linear model.
 
-Also, this app does not consider BIL nor does it calculate protective
-margins.
+Also, this app does not consider cable BIL nor does it calculate
+protective margins.
 
 ## Background
 
 [Emscripten](http://emscripten.org/) was used to compile OpenETran's
 code to JavaScript. The user interface was created in
 [mdpad](http://tshort.github.io/mdpad/). See
-[here](lightning_cable.md) for the code with the user interface and
+[here](lightning-cable.md) for the code with the user interface and
 [OpenETran](http://sourceforge.net/projects/openetran/) model input.
 OpenETran and the GNU GSL library (an OpenETran dependency) are
 distributed under the
