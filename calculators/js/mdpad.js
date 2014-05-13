@@ -80,6 +80,7 @@ function convert_yaml() {
     if (typeof nam == 'undefined') nam = "Y";
     var attrjquery = $(this).attr("jquery");
     var attrscript = $(this).attr("script");
+    var attroutid = $(this).attr("outid");
     var first = nam + " = ";
     if ($(this).hasClass("yamlblock")) {
         var last = "(jsyaml.load(inp.text()))";
@@ -91,6 +92,9 @@ function convert_yaml() {
         middle = "out." + attrjquery;    
     } else if (typeof attrscript != 'undefined') {
         middle = attrscript;    
+    }
+    if (typeof attroutid != 'undefined') {
+        out.attr("id", attroutid);
     }
 console.log(first+middle+last);
     eval(first + middle + last);
@@ -133,6 +137,25 @@ function read_form() {
     }
 console.log(cmd);
     eval(cmd);
+}
+
+function read_form() {
+    // Send commands to javascript to turn form elements into javascript variables.
+    if (this.name == "") return; // Bail out if an element isn't named.
+    var cmd = "";
+    if (this.type == "text") {
+        window[this.name]  = this.value;
+    } else if (this.type == "number") {
+        window[this.name]  = this.value;
+    } else if (this.type == "radio" && this.checked) {
+        window[this.name]  = this.value;
+    } else if (this.type == "checkbox") {
+        window[this.name]  = this.checked;
+    } else if (this.nodeName.toLowerCase() == "select") {
+        window[this.name]  = this[this.selectedIndex].value
+    } else if (this.nodeName.toLowerCase() == "textarea") {
+        window[this.name]  = this.value;
+    }
 }
 
 var converter = new Showdown.converter();
