@@ -609,6 +609,16 @@ if (tbl.length > 0) {
   based on the `insulator` component (the `lpm` component is also
   available in OpenETran).
 
+* See [here](OpenETran_library.yaml) for the default library file.
+  This is in [YAML](http://www.yaml.org/) format. This is the same
+  format that the local library is imported and exported in. Note that
+  JSON is a subset of YAML, so either format should work fine.
+
+* The local library is specific to the browser session that you are
+  using. If you switch to another browser (from Chrome to Firefox for
+  example), your local library won't be available. You will have to
+  export then import the library to make those cases available.
+
 
 ## References
 
