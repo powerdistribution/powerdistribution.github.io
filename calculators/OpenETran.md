@@ -409,6 +409,7 @@ inputdata = h[0] + " " + h[1] + " " + h[2] + " " + h[3] + " " + h[4] + " " + h[5
 
 
 ```js
+try {
     Module.FS_createDataFile("/", "overhead.dat", inputdata, true, true)
     Module["arguments"] = ["-plot", "csv", "overhead"]
     Module['calledRun'] = false;
@@ -416,9 +417,12 @@ inputdata = h[0] + " " + h[1] + " " + h[2] + " " + h[3] + " " + h[4] + " " + h[5
     Module.run();
     out = intArrayToString(FS.findObject("/overhead.out").contents);
     csv = intArrayToString(FS.findObject("/overhead.csv").contents);
+}
+finally {
     FS.unlink("/overhead.dat");    // delete the input file
     FS.unlink("/overhead.out");    // delete the output files
     FS.unlink("/overhead.csv");
+}
 ```
 
 <input type="button" value="Calculate" onclick="mdpad.calculate()">
@@ -483,22 +487,26 @@ poleN = Array(N)
 condN = Array(N)
 k = 0
 for (p = p1; p <= p2; p++) {
-    Module.FS_createDataFile("/", "overhead.dat", inputdata, true, true)
-    // TODO: make this right for ncond
-    args = ["-icrit", p, p]
-    for (j = 0; j < ncond; j++) {
-        args.push(1);
-        poleN[k*ncond + j] = p;
-        condN[k*ncond + j] = j + 1;
+    try {
+        Module.FS_createDataFile("/", "overhead.dat", inputdata, true, true)
+        // TODO: make this right for ncond
+        args = ["-icrit", p, p]
+        for (j = 0; j < ncond; j++) {
+            args.push(1);
+            poleN[k*ncond + j] = p;
+            condN[k*ncond + j] = j + 1;
+        }
+        args.push("overhead");
+        Module["arguments"] = args;
+        Module['calledRun'] = false;
+        shouldRunNow = true;
+        Module.run();
+        out2 = intArrayToString(FS.findObject("/overhead.out").contents);
     }
-    args.push("overhead");
-    Module["arguments"] = args;
-    Module['calledRun'] = false;
-    shouldRunNow = true;
-    Module.run();
-    out2 = intArrayToString(FS.findObject("/overhead.out").contents);
-    FS.unlink("/overhead.dat");    // delete the input file
-    FS.unlink("/overhead.out");    // delete the output file
+    finally {
+        FS.unlink("/overhead.dat");    // delete the input file
+        FS.unlink("/overhead.out");    // delete the output file
+    }
     for (j = 0; j < ncond; j++) {
         cI = +out2.match(new RegExp("wire  " + (j+1) + ": (.*)"))[1]; 
         critI[k*ncond + j] = cI
