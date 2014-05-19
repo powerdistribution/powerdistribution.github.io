@@ -593,7 +593,8 @@ if (tbl.length > 0) {
 ## Notes
 
 * Many of the tables contain a pole number. This can be a single
-  number, a set of numbers separated by spaces, or "even" or "odd".
+  number, a set of numbers separated by spaces, or the keywords "all",
+  "even", or "odd".
 
 * The input tables are translated into a raw OpenETran input file
   documented in the OpenETran users manual. For components not given
@@ -603,7 +604,7 @@ if (tbl.length > 0) {
   the input file.
 
 * The Arresters tab is based on the `arrbez` component. If you would
-  like to use the `arrester` component, you must use the raw OpenETran
+  like to use the `arrester` component, you can use the raw OpenETran
   input format in the Advanced tab. Likewise, the Insulators tab is
   based on the `insulator` component (the `lpm` component is also
   available in OpenETran).
