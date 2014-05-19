@@ -640,11 +640,24 @@ IEEE Power and Energy Society General Meeting (PES), July 2013.
 
 ## Background
 
+OpenETran is an open-source transient tool focused on modeling
+lightning to overhead distribution lines. It was open-sourced by
+[EPRI](http://www.epri.com). It was originally used in EPRI's Lightning
+Protection Design Workstation (LPDW). Tom McDermott is the primary
+developer/engineer behind OpenETran.
+
+OpenETran and the GNU GSL library (an OpenETran dependency) are
+distributed under the
+[GNU GPL version 3.0 license](https://www.gnu.org/copyleft/gpl.html).
+The source codes are available as follows:
+[OpenETran](https://svn.code.sf.net/p/openetran/code/) and
+[GNU GSL](http://ftpmirror.gnu.org/gsl/gsl-1.15.tar.gz).
+
 See [here](OpenETran.md) for the code with the user interface and
 model input.
 
-Then, [Emscripten](http://emscripten.org/) was used to compile the C
-code to JavaScript. The user interface was created in
-[mdpad](http://tshort.github.io/mdpad/). See
+OpenETran is written in C. [Emscripten](http://emscripten.org/) was
+used to compile the C code to JavaScript. The user interface was
+created in [mdpad](http://tshort.github.io/mdpad/). See
 [OpenETran.md](OpenETran.md) for the Markdown code for this page. See
 the complete OpenETran source [here](extras/openetran.zip).

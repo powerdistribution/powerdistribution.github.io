@@ -221,6 +221,6 @@ distributed under the
 [GNU GPL version 3.0 license](https://www.gnu.org/copyleft/gpl.html).
 The source codes are available as follows:
 [OpenETran](https://svn.code.sf.net/p/openetran/code/) and
-[GNU GSL](http://ftpmirror.gnu.org/gsl/http://gnu.mirrorcatalogs.com/gsl/gsl-1.15.tar.gz).
+[GNU GSL](http://ftpmirror.gnu.org/gsl/gsl-1.15.tar.gz).
 
 
