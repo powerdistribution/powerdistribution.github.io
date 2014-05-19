@@ -419,6 +419,8 @@ try {
     Module.run();
     out = intArrayToString(FS.findObject("/overhead.out").contents);
     csv = intArrayToString(FS.findObject("/overhead.csv").contents);
+    $("#oeoutput-content").text(out);
+    $("#oeinput-content").text(inputdata);
 }
 finally {
     FS.unlink("/overhead.dat");    // delete the input file
@@ -477,6 +479,53 @@ if (typeof(header) != "undefined") {
 <div class="text-center">Time [&mu;sec]</div>
 </div>
 </div>
+
+<!-- INPUT modal -->
+<a data-toggle="modal" data-target="#output-modal">
+  OpenETran output file
+</a> | <!-- OUTPUT modal --> <a data-toggle="modal" data-target="#input-modal">
+  OpenETran input file
+</a>
+
+
+<!-- Modal -->
+<div class="modal fade" id="output-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel2">OpenETran output</h4>
+      </div>
+      <div class="modal-body">
+         <pre id="oeoutput-content" style="width:100%;height:80%">
+         </pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="input-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel3">OpenETran raw input</h4>
+      </div>
+      <div class="modal-body">
+         <pre id="oeinput-content" style="width:100%;height:80%">
+         </pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 ```js 
 ncond = +h[0]
@@ -540,6 +589,25 @@ if (tbl.length > 0) {
     print(Emblem.compile(Handlebars, tabletemplate)(window))
 }
 ```
+
+## Notes
+
+* Many of the tables contain a pole number. This can be a single
+  number, a set of numbers separated by spaces, or "even" or "odd".
+
+* The input tables are translated into a raw OpenETran input file
+  documented in the OpenETran users manual. For components not given
+  in the input tables, you can enter raw input in the Advanced tab.
+  The "OpenETran header" is entered just after the simulation control
+  parameter line. The "OpenETran trailer" is appended to the end of
+  the input file.
+
+* The Arresters tab is based on the `arrbez` component. If you would
+  like to use the `arrester` component, you must use the raw OpenETran
+  input format in the Advanced tab. Likewise, the Insulators tab is
+  based on the `insulator` component (the `lpm` component is also
+  available in OpenETran).
+
 
 ## References
 
