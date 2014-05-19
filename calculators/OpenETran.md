@@ -633,6 +633,11 @@ EPRI 1022001,
 [Open-Source Distribution Lightning Transients Software](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001022001),
 Electric Power Research Institute, Palo Alto, CA, 2011.
 
+McDermott, T.E.; Short, T.A.; Velez, F.G.; McDaniel, J.S., "Open
+source lightning protection and electromagnetic transients software,"
+IEEE Power and Energy Society General Meeting (PES), July 2013.
+
+
 ## Background
 
 See [here](OpenETran.md) for the code with the user interface and
