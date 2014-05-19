@@ -463,7 +463,7 @@ finally {
 ```js id=plotdiv
 if (typeof(header) != "undefined") {
     series = [];
-    for (var i = 0; i < header.length - 1; i++) {
+    for (var i = 0; i < header.length; i++) {
         if ((new RegExp("P" + polenum + ":")).test(header[i])) {
             series.push({label: header[i],
                          data: x.slice(1).map(function(x) {return [x[0]*1e6, x[i]/1000];})});
