@@ -58,7 +58,8 @@
     - ["all", 1, 4, 418e3, 0.0, 5.42434, 8.4265e21]
     - ["all", 2, 4, 418e3, 0.0, 5.42434, 8.4265e21]
     - ["all", 3, 4, 325e3, 0.0, 5.42434, 8.4265e21]
-  Arresters: []
+  Arresters: 
+    - [null, null, null, null, null, null, null, null]       
   Grounds:
     - ["all", 4, 0, 25.0, 250.0, 400e3, 5e-7, 10.0]
   Meters:

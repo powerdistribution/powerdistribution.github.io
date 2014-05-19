@@ -330,7 +330,7 @@ contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
   <div class="tab-pane" id="arrinp">
 ```yaml jquery=handsontable outid=arrtbl
 data: []
-colHeaders: ["Poles", "N1", "N2", "Vgap [V]", "Vknee [V]", "Rslope [&Omega;]", "L [H/m]", "d [m]"]
+colHeaders: ["Poles", "N1", "N2", "Vgap [V]", "V10 [V]", "Uref [V]", "L [H/m]", "d [m]"]
 columns: [{},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.000'},{type: 'numeric', format: '0.00'},{type: 'numeric', format: '0.0'}]
 width: 900
 height: 250
@@ -379,7 +379,7 @@ html:
     bs3caption: OpenETran header
     value: ""
   - name: oetrailer
-    id: trailer
+    id: oetrailer
     type: textarea
     bs3caption: OpenETran trailer
     value: ""
