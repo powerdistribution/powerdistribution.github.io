@@ -7,7 +7,7 @@ This is a work in progress with the aim of incorporating results into
 [IEEE PES Lightning Performance of Overhead Lines Working Group](http://www.ewh.ieee.org/soc/pes/lpdl/).
 Currently, you can include all features of OpenETran. For some
 features, you may have to enter the raw input codes into the
-appropriate location in th Advanced tab. This app does not (yet) do
+appropriate location in the Advanced tab. This app does not (yet) do
 any shielding or other electrogeometric model calculations.
 
 Modify the input tables by double-clicking (or press F2). On most of
