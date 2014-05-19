@@ -122,9 +122,11 @@ if (typeof(firstrun) == "undefined") {
         <!-- var content = jsyaml.dump(JSON.parse(localStorage.locallib)); -->
         var content = "# OpenETran input file in JSON format\n\n" + localStorage.locallib;
         var link = document.createElement("a");
-        <!-- link.download = "file.yaml"; -->
+        link.download = "openetran-export.yaml";
         link.href = "data:text/plain," + encodeURIComponent(content);
+        document.body.appendChild(link);
         link.click();
+        document.body.removeChild(link);
     }
     localimport = function(evt) {
         var file = evt.target.files[0]; // FileList object
