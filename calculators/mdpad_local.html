@@ -27,6 +27,9 @@
                 "lib/numeric-1.2.6.min.js",
                 "js/md.js",
                 "js/mdpad.js")
+        if(!window.Worker) {
+            window.alert("Browser not supported!\n\nThis app works best with a recent version of Firefox or Chrome. It may work with at least version 11 of Internet Explorer.")
+        }
     </script>  
 
     </head>
