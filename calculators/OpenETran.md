@@ -700,7 +700,7 @@ if (tbl.length > 0) {
   different conductors. It uses Rc = 10 I<sup>0.65</sup> for the
   attractive radius mentioned in IEEE 1410 and IEEE 1243. A &beta; of
   0.9 is used for the attractiveness of ground. This comes reasonably
-  close to Eriksson's equation for flas incidence. One can use this to
+  close to Eriksson's equation for flash incidence. One can use this to
   estimate shielding failures on lines with an overhead shield wire.
   It can also be use to estimate the effect of environmental shielding
   from nearby objects (tree lines, parallel lines, etc). To account
