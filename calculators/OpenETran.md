@@ -7,8 +7,7 @@ This is a work in progress with the aim of incorporating results into
 [IEEE PES Lightning Performance of Overhead Lines Working Group](http://www.ewh.ieee.org/soc/pes/lpdl/).
 Currently, you can include all features of OpenETran. For some
 features, you may have to enter the raw input codes into the
-appropriate location in the Advanced tab. This app does not (yet) do
-any shielding or other electrogeometric model calculations.
+appropriate location in the Advanced tab. 
 
 Modify the input tables by double-clicking (or press F2). On most of
 the tables, you can add or delete rows with the context menu (right
@@ -83,7 +82,7 @@ if (typeof(firstrun) == "undefined") {
         s = "";
         for (i = 0; i < x.length - 1; i++) {
             s = s + "conductor ";
-            for (j = 0; j < x[0].length; j++) {
+            for (j = 0; j < x[0].length - 1; j++) {
                 s = s + x[i][j] + " ";
             }
             s = s + "\n";
@@ -132,7 +131,6 @@ if (typeof(firstrun) == "undefined") {
         var file = evt.target.files[0]; // FileList object
         var reader = new FileReader();
         reader.onload = function(f) {
-            console.log("here");
             var locallib = JSON.parse(localStorage.locallib);
             var filecontents = jsyaml.load(f.target.result);
             ks = Object.keys(filecontents);
@@ -157,6 +155,44 @@ if (typeof(firstrun) == "undefined") {
     k = Object.keys(library)[0]
     fillcase(library[k], k)
     firstrun = false;
+    pow = Math.pow
+    P = function(I) {return 1/(1 + pow((I-.5)/31, 2.6)) - 1/(1 + pow((I+.5)/31, 2.6));}
+    sq = function(x) {return x * x}
+    egm = function(x, y) {
+        var n = x.length
+        var exposure = _.map(y, function(y) {return 0.0})
+        for ( I = 3; I < 200; I++ ) {
+            Rc = 10 * pow(I, 0.65)
+            beta = 0.9
+            exposure1 = _.map(_.range(n), function(k) {return x[k] - 14 * pow(y[k], 0.6)}) // I think how TEM did it
+            exposure2 = _.map(_.range(n), function(k) {return x[k] + 14 * pow(y[k], 0.6)})
+            exposure1 = _.map(_.range(n), function(k) {return x[k] - Math.sqrt(sq(Rc) - sq(beta * Rc - y[k]))})
+            exposure2 = _.map(_.range(n), function(k) {return x[k] + Math.sqrt(sq(Rc) - sq(beta * Rc - y[k]))})
+            for ( i = 0; i < n-1; i++ ) {
+                    for ( j = i + 1; j < n; j++ ) {
+                         if (x[i] < x[j]) {
+                             leftidx = i
+                             rightidx = j
+                         } else {
+                             leftidx = j
+                             rightidx = i
+                         }
+                         // http://2000clicks.com/mathhelp/GeometryConicSectionCircleIntersection.aspx
+                         c2 = sq(x[i] - x[j]) + sq(y[i] - y[j])  // distance squared between conductors
+                         K = 0.25 * Math.sqrt(c2*(4*Rc*Rc - c2))
+                         if (!(K >= 0.0)) continue
+                         X = 0.5 * (x[i] + x[j]) + 2 * (y[leftidx] - y[rightidx]) * K / c2
+                         X2 = 0.5 * (x[i] + x[j]) - 2 * (y[i] - y[j]) * K / c2
+                         exposure2[leftidx] = Math.min(X, exposure2[leftidx])
+                         if (X <= exposure1[leftidx]) exposure1[leftidx] = X
+                         exposure1[rightidx] = Math.max(X, exposure1[rightidx])
+                         if (X >= exposure2[rightidx]) exposure2[rightidx] = X
+                    }
+            }
+            exposure = _.map(_.range(n), function(k) {return exposure[k] + (exposure2[k] - exposure1[k]) * P(I) / 10})
+        }
+        return(exposure)
+    }
 }
 ```
 
@@ -303,9 +339,9 @@ contextMenu: ['undo', 'redo']
   <div class="tab-pane" id="cndinp">
 ```yaml jquery=handsontable outid=cndtbl
 data: []
-colHeaders: ["Conductor", "H [m]", "X [m]", "r [m]", "Vpf [V]"]
-columns: [{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.00000'},{type: 'numeric'}]
-width: 600
+colHeaders: ["Conductor", "H [m]", "X [m]", "r [m]", "Vpf [V]", "Exposed 0/1"]
+columns: [{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.00000'},{type: 'numeric'},{type: 'numeric'}]
+width: 700
 height: 250
 colWidths: 100
 minSpareRows: 1
@@ -536,6 +572,9 @@ critI = Array(N)
 probI = Array(N)
 poleN = Array(N)
 condN = Array(N)
+flashes = Array(N)
+flashovers = Array(N)
+exposed = Array(N)
 k = 0
 for (p = p1; p <= p2; p++) {
     try {
@@ -565,7 +604,22 @@ for (p = p1; p <= p2; p++) {
     }
     k++
 }
-tbl = _.map(_.range(0, N), function(i) {return {pole: poleN[i], cond: condN[i], I: (critI[i]/1000).toFixed(1), prob: probI[i].toFixed(1)}})
+cnd = cs.Conductors.slice(0, ncond)
+x = _.map(cnd, function(x) {return x[2]})
+y = _.map(cnd, function(x) {return x[1]})
+exposed = _.map(cnd, function(x) {return x[5]})
+flashes = egm(x, y)
+totalflashes = _.reduce(_.range(ncond), function(sum, i) { return sum += exposed[i] * flashes[i] }, 0).toFixed(2)
+totalflashovers = (_.reduce(_.range(N), function(sum, i) { j = i % ncond; return sum += exposed[j] * flashes[j] * probI[i]/100 }, 0) / (p2 - p1 + 1)).toFixed(2)
+tbl = _.map(_.range(0, N), function(i) {j = i % ncond;
+    return {
+        pole: poleN[i],
+        cond: condN[i],
+        I: (critI[i]/1000).toFixed(1),
+        prob: probI[i].toFixed(1),
+        flashes: (exposed[j] * flashes[j]).toFixed(2),
+        flashovers: (exposed[j] * flashes[j] * probI[i]/100).toFixed(2)
+}})
 ```
 ```text name=tabletemplate
 br
@@ -577,12 +631,33 @@ table.table
     th.text-center Conductor
     th.text-center Critical current [kA]
     th.text-center Percent flashovers
+    th.text-center Flashes/100 km/yr
+    th.text-center Flashovers/100 km/yr
   = tbl
     tr
       td.text-center = pole
       td.text-center = cond
       td.text-center = I
       td.text-center = prob
+      td.text-center = flashes
+      td.text-center = flashovers
+p
+  em Note that the implementation of the electrogeometric model in
+     this app has not been peer reviewed or rigorously checked (the
+     last two columns).
+h4 Overall hits and flashovers
+br
+div
+  strong = totalflashes
+  span  flashes/100 km/yr for GFD = 1 fl&frasl;km
+  sup 2
+  span &frasl;yr
+div
+  strong = totalflashovers
+  span  flashovers/100 km/yr for GFD = 1 fl&frasl;km
+  sup 2
+  span &frasl;yr
+br
 ```
 ```js output=markdown
 if (tbl.length > 0) {
@@ -591,6 +666,8 @@ if (tbl.length > 0) {
 ```
 
 ## Notes
+
+* This app does not consider induced voltages from nearby strokes.
 
 * Many of the tables contain a pole number. This can be a single
   number, a set of numbers separated by spaces, or the keywords "all",
@@ -618,6 +695,16 @@ if (tbl.length > 0) {
   using. If you switch to another browser (from Chrome to Firefox for
   example), your local library won't be available. You will have to
   export then import the library to make those cases available.
+
+* This app includes an electrogeometric model to estimate hits to
+  different conductors. It uses Rc = 10 I<sup>0.65</sup> for the
+  attractive radius mentioned in IEEE 1410 and IEEE 1243. A &beta; of
+  0.9 is used for the attractiveness of ground. This comes reasonably
+  close to Eriksson's equation for flas incidence. One can use this to
+  estimate shielding failures on lines with an overhead shield wire.
+  It can also be use to estimate the effect of environmental shielding
+  from nearby objects (tree lines, parallel lines, etc). To account
+  for these, add a dummy conductor with the `Exposed` field set to 0.
 
 
 ## References

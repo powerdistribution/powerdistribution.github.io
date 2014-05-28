@@ -1,5 +1,41 @@
 #################################################################
 
+"IEEE 1410-2010 example 2: 35-kV distribution line with an OHGW": 
+  Description:
+    The construction is vertical with post insulators and a fiberglass
+    standoff to run the ground from the shield wire around the
+    insulators. Grounds are at every pole. There are eleven poles
+    modeled. Critical currents are modeled at pole 6. Conductor 4 is 
+    the overbuilt shield wire.
+  Header:
+    - [4, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6, 6, 6]
+  Surge:
+    - ["6", 4, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
+  Conductors:
+    - [1, 11.76, -0.75, 0.00715,   3854.0, 1]
+    - [2, 11.76,  0.75, 0.00715, -11097.0, 1]
+    - [3, 10.54,  0.75, 0.00715,   7243.0, 1]
+    - [4, 13.13,  0.00, 0.00715,      0.0, 1]
+  Insulators:
+    - ["all", 1, 4, 418e3, 0.0, 5.42434, 8.4265e21]
+    - ["all", 2, 4, 418e3, 0.0, 5.42434, 8.4265e21]
+    - ["all", 3, 4, 325e3, 0.0, 5.42434, 8.4265e21]
+  Arresters: 
+    - [null, null, null, null, null, null, null, null]       
+  Grounds:
+    - ["all", 4, 0, 25.0, 250.0, 400e3, 5e-7, 10.0]
+  Meters:
+    - ["6", 1, 4]
+    - ["6", 2, 4]
+    - ["6", 3, 4]
+    - ["7", 1, 4]
+    - ["7", 2, 4]
+    - ["7", 3, 4]
+  OEheader: ""
+  OEtrailer: ""
+
+#################################################################
+
 "IEEE 1410-2010 example 1: 15-kV wooden crossarm design plus arresters": 
   Description:
     Conductors 1 through 3 are phase conductors. Conductor 4 is an
@@ -12,10 +48,10 @@
   Surge:
     - [6, 1, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
   Conductors:
-    - [1, 10.2, -1.12, 0.00715, 0.0]
-    - [2, 10.2,  0.52, 0.00715, 0.0]
-    - [3, 10.2,  1.12, 0.00715, 0.0]
-    - [4,  8.0,  0.00, 0.00715, 0.0]
+    - [1, 10.2, -1.12, 0.00715, 0.0, 1]
+    - [2, 10.2,  0.52, 0.00715, 0.0, 1]
+    - [3, 10.2,  1.12, 0.00715, 0.0, 1]
+    - [4,  8.0,  0.00, 0.00715, 0.0, 0]
   Insulators:
     - ["all", 1, 4, 268e3, 0.0, 5.42434, 8.4265e21]
     - ["all", 2, 4, 152e3, 0.0, 5.42434, 8.4265e21]
@@ -38,22 +74,27 @@
 
 #################################################################
 
-"IEEE 1410-2010 example 2: 35-kV distribution line with an OHGW": 
+"IEEE 1410-2010 example 2 with environmental shielding": 
   Description:
     The construction is vertical with post insulators and a fiberglass
     standoff to run the ground from the shield wire around the
     insulators. Grounds are at every pole. There are eleven poles
     modeled. Critical currents are modeled at pole 6. Conductor 4 is 
-    the overbuilt shield wire.
+    the overbuilt shield wire. 
+
+
+    A dummy conductor (5) is included 20 m from the line to represent a
+    row of trees. 
   Header:
-    - [4, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6, 6, 6]
+    - [5, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6, 6, 6]
   Surge:
     - ["6", 4, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
   Conductors:
-    - [1, 11.76, -0.75, 0.00715,   3854.0]
-    - [2, 11.76,  0.75, 0.00715, -11097.0]
-    - [3, 10.54,  0.75, 0.00715,   7243.0]
-    - [4, 12.13,  0.00, 0.00715,      0.0]
+    - [1, 11.76, -0.75, 0.00715,   3854.0, 1]
+    - [2, 11.76,  0.75, 0.00715, -11097.0, 1]
+    - [3, 10.54,  0.75, 0.00715,   7243.0, 1]
+    - [4, 13.13,  0.00, 0.00715,      0.0, 1]
+    - [5, 20.00, 20.00, 0.00715,      0.0, 0]
   Insulators:
     - ["all", 1, 4, 418e3, 0.0, 5.42434, 8.4265e21]
     - ["all", 2, 4, 418e3, 0.0, 5.42434, 8.4265e21]
@@ -71,3 +112,4 @@
     - ["7", 3, 4]
   OEheader: ""
   OEtrailer: ""
+
