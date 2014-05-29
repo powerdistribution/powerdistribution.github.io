@@ -309,25 +309,32 @@ html:
 
   <!-- Parameters pane -->
   <div class="tab-pane" id="siminp">
+```yaml jquery=handsontable outid=hdrtbl
+data: []
+colHeaders: ["Ncond", "Npole", "Span [m]", "lt [0/1]", "rt [0/1]", "dT [s]", "Tmax [s]"]
+columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'}]
+width: 990
+height: 55
+colWidths: 110
+contextMenu: ['undo', 'redo']
+```
+```yaml jquery=handsontable outid=hd2tbl
+data: []
+colHeaders: ["GFD /km2/yr", "Altitude [m]", "CritI P1", "CritI P2"]
+columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'}]
+width: 600
+height: 55
+colWidths: 110
+contextMenu: ['undo', 'redo']
+```
 <p>Surge</p>
 ```yaml jquery=handsontable outid=srgtbl
 data: []
 colHeaders: ["Pole", "N1", "N2", "Ipeak [A]", "Tfront [s]", "Ttail [s]", "Tstart [s]"]
 columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'}]
-width: 900
+width: 990
 height: 55
-colWidths: 100
-contextMenu: ['undo', 'redo']
-```
-<br/>
-<p>Simulation parameters</p>
-```yaml jquery=handsontable outid=hdrtbl
-data: []
-colHeaders: ["Ncond", "Npole", "Span [m]", "lt [0/1]", "rt [0/1]", "dT [s]", "Tmax [s]", "CritI P1", "CritI P2"]
-columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric'},{type: 'numeric'}]
-width: 1100
-height: 55
-colWidths: 100
+colWidths: 110
 contextMenu: ['undo', 'redo']
 ```
   <br/>
@@ -475,7 +482,6 @@ finally {
     // `header` has the column names. The first is the time, and the rest
     // of the columns are the variables.
     header = x.slice(0,1)[0]
-    if (typeof(graphvar) == "undefined") graphvar = header[1];
     polelist = _.map(header, function(x) {if (/P[0-9]/.test(x)) return Number(x.replace(/P([0-9]*):.*/, "$1"))})
     polelist = _.uniq(_.filter(polelist, function(x) {return typeof(x) != "undefined";}))
     if (typeof(polenum) == "undefined") polenum = polelist[0]
@@ -605,10 +611,10 @@ for (p = p1; p <= p2; p++) {
     k++
 }
 cnd = cs.Conductors.slice(0, ncond)
-x = _.map(cnd, function(x) {return x[2]})
-y = _.map(cnd, function(x) {return x[1]})
+xc = _.map(cnd, function(x) {return x[2]})
+yc = _.map(cnd, function(x) {return x[1]})
 exposed = _.map(cnd, function(x) {return x[5]})
-flashes = egm(x, y)
+flashes = egm(xc, yc)
 totalflashes = _.reduce(_.range(ncond), function(sum, i) { return sum += exposed[i] * flashes[i] }, 0).toFixed(2)
 totalflashovers = (_.reduce(_.range(N), function(sum, i) { j = i % ncond; return sum += exposed[j] * flashes[j] * probI[i]/100 }, 0) / (p2 - p1 + 1)).toFixed(2)
 tbl = _.map(_.range(0, N), function(i) {j = i % ncond;
