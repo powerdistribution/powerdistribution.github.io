@@ -57,6 +57,7 @@ if (typeof(firstrun) == "undefined") {
         $("#casename").val(name)
         $("#description").val(x.Description)
         $("#hdrtbl").handsontable('loadData', x.Header) 
+        $("#hd2tbl").handsontable('loadData', x.Header2) 
         $("#srgtbl").handsontable('loadData', x.Surge) 
         $("#cndtbl").handsontable('loadData', x.Conductors) 
         $("#instbl").handsontable('loadData', x.Insulators) 
@@ -94,6 +95,7 @@ if (typeof(firstrun) == "undefined") {
             Name: $("#casename").val(),
             Description: $("#description").val(),
             Header:      $("#hdrtbl").handsontable('getData'),
+            Header2:     $("#hd2tbl").handsontable('getData'),
             Surge:       $("#srgtbl").handsontable('getData'),
             Conductors:  $("#cndtbl").handsontable('getData'),
             Insulators:  $("#instbl").handsontable('getData'),
@@ -375,9 +377,9 @@ contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
   <div class="tab-pane" id="arrinp">
 ```yaml jquery=handsontable outid=arrtbl
 data: []
-colHeaders: ["Poles", "N1", "N2", "Vgap [V]", "V10 [V]", "Uref [V]", "L [H/m]", "d [m]"]
-columns: [{},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.000'},{type: 'numeric', format: '0.00'},{type: 'numeric', format: '0.0'}]
-width: 900
+colHeaders: ["Poles", "N1", "N2", "Vgap [V]", "V10 [V]", "Uref [V]", "L [H/m]", "d [m]", "Plot: 1/0"]
+columns: [{},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.000'},{type: 'numeric', format: '0.00'},{type: 'numeric', format: '0.0'},{type: 'numeric'}]
+width: 1000
 height: 250
 colWidths: 100
 minSpareRows: 1
@@ -441,6 +443,7 @@ html:
 cs = getcurrentcase()
 cs.Surge[1] = 1       // kludge to add a fake row
 h = cs.Header[0]
+h2 = cs.Header2[0]
 inputdata = h[0] + " " + h[1] + " " + h[2] + " " + h[3] + " " + h[4] + " " + h[5] + " " + h[6] + "\n" +
             cs.OEheader + "\n" +
             totextc(cs.Conductors) + "\n" +
@@ -571,8 +574,9 @@ if (typeof(header) != "undefined") {
 
 ```js 
 ncond = +h[0]
-p1 = +h[7] 
-p2 = +h[8]
+GFD = +h2[0] 
+p1 = +h2[2] 
+p2 = +h2[3]
 N = ncond * (p2 - p1 + 1)
 critI = Array(N)
 probI = Array(N)
@@ -615,16 +619,16 @@ xc = _.map(cnd, function(x) {return x[2]})
 yc = _.map(cnd, function(x) {return x[1]})
 exposed = _.map(cnd, function(x) {return x[5]})
 flashes = egm(xc, yc)
-totalflashes = _.reduce(_.range(ncond), function(sum, i) { return sum += exposed[i] * flashes[i] }, 0).toFixed(2)
-totalflashovers = (_.reduce(_.range(N), function(sum, i) { j = i % ncond; return sum += exposed[j] * flashes[j] * probI[i]/100 }, 0) / (p2 - p1 + 1)).toFixed(2)
+totalflashes = GFD * _.reduce(_.range(ncond), function(sum, i) { return sum += exposed[i] * flashes[i] }, 0).toFixed(2)
+totalflashovers = (GFD * _.reduce(_.range(N), function(sum, i) { j = i % ncond; return sum += exposed[j] * flashes[j] * probI[i]/100 }, 0) / (p2 - p1 + 1)).toFixed(2)
 tbl = _.map(_.range(0, N), function(i) {j = i % ncond;
     return {
         pole: poleN[i],
         cond: condN[i],
         I: (critI[i]/1000).toFixed(1),
         prob: probI[i].toFixed(1),
-        flashes: (exposed[j] * flashes[j]).toFixed(2),
-        flashovers: (exposed[j] * flashes[j] * probI[i]/100).toFixed(2)
+        flashes: (GFD * exposed[j] * flashes[j]).toFixed(2),
+        flashovers: (GFD * exposed[j] * flashes[j] * probI[i]/100).toFixed(2)
 }})
 ```
 ```text name=tabletemplate
@@ -655,12 +659,16 @@ h4 Overall hits and flashovers
 br
 div
   strong = totalflashes
-  span  flashes/100 km/yr for GFD = 1 fl&frasl;km
+  span  flashovers/100 km/yr for GFD = 
+  span =  GFD
+  span  fl&frasl;km
   sup 2
   span &frasl;yr
 div
   strong = totalflashovers
-  span  flashovers/100 km/yr for GFD = 1 fl&frasl;km
+  span  flashovers/100 km/yr for GFD = 
+  span =  GFD
+  span  fl&frasl;km
   sup 2
   span &frasl;yr
 br

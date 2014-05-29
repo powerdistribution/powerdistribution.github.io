@@ -8,7 +8,9 @@
     modeled. Critical currents are modeled at pole 6. Conductor 4 is 
     the overbuilt shield wire.
   Header:
-    - [4, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6, 6, 6]
+    - [4, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6]
+  Header2:
+    - [1.0, 0.0, 6, 6]
   Surge:
     - ["6", 4, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
   Conductors:
@@ -21,7 +23,7 @@
     - ["all", 2, 4, 418e3, 0.0, 5.42434, 8.4265e21]
     - ["all", 3, 4, 325e3, 0.0, 5.42434, 8.4265e21]
   Arresters: 
-    - [null, null, null, null, null, null, null, null]       
+    - [null, null, null, null, null, null, null, null, null]       
   Grounds:
     - ["all", 4, 0, 25.0, 250.0, 400e3, 5e-7, 10.0]
   Meters:
@@ -44,7 +46,9 @@
     on odd poles, and critical currents are evaluated for flashes at 
     poles 6 and 7. There are eleven poles in total.
   Header:
-    - [4, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6, 6, 7]
+    - [4, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6]
+  Header2:
+    - [1.0, 0.0, 6, 7]
   Surge:
     - [6, 1, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
   Conductors:
@@ -57,9 +61,9 @@
     - ["all", 2, 4, 152e3, 0.0, 5.42434, 8.4265e21]
     - ["all", 3, 4, 268e3, 0.0, 5.42434, 8.4265e21]
   Arresters:
-    - ["odd", 1, 4, 0.0, 35.0e3, 0.28, 1.0E-6, 0.0]
-    - ["odd", 2, 4, 0.0, 35.0e3, 0.28, 1.0E-6, 0.0]
-    - ["odd", 3, 4, 0.0, 35.0e3, 0.28, 1.0E-6, 0.0]
+    - ["odd", 1, 4, 0.0, 35.0e3, 0.28, 1.0E-6, 0.0, 0]
+    - ["odd", 2, 4, 0.0, 35.0e3, 0.28, 1.0E-6, 0.0, 0]
+    - ["odd", 3, 4, 0.0, 35.0e3, 0.28, 1.0E-6, 0.0, 0]
   Grounds:
     - ["odd", 4, 0, 25.0, 250.0, 400e3, 5e-7, 10.0]
   Meters:
@@ -86,7 +90,9 @@
     A dummy conductor (5) is included 20 m from the line to represent a
     row of trees. 
   Header:
-    - [5, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6, 6, 6]
+    - [5, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6]
+  Header2:
+    - [1.0, 0.0, 6, 6]
   Surge:
     - ["6", 4, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
   Conductors:
@@ -100,7 +106,7 @@
     - ["all", 2, 4, 418e3, 0.0, 5.42434, 8.4265e21]
     - ["all", 3, 4, 325e3, 0.0, 5.42434, 8.4265e21]
   Arresters: 
-    - [null, null, null, null, null, null, null, null]       
+    - [null, null, null, null, null, null, null, null, null]       
   Grounds:
     - ["all", 4, 0, 25.0, 250.0, 400e3, 5e-7, 10.0]
   Meters:
