@@ -659,7 +659,7 @@ h4 Overall hits and flashovers
 br
 div
   strong = totalflashes
-  span  flashovers/100 km/yr for GFD = 
+  span  flashes/100 km/yr for GFD = 
   span =  GFD
   span  fl&frasl;km
   sup 2
