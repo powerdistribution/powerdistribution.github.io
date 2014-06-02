@@ -8,7 +8,7 @@
     modeled. Critical currents are modeled at pole 6. Conductor 4 is 
     the overbuilt shield wire.
   Header:
-    - [4, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6]
+    - [4, 11, 70.0, 1, 1, 0.02e-6, 5.0e-6]
   Header2:
     - [1.0, 0.0, 6, 6]
   Surge:
@@ -46,7 +46,7 @@
     on odd poles, and critical currents are evaluated for flashes at 
     poles 6 and 7. There are eleven poles in total.
   Header:
-    - [4, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6]
+    - [4, 11, 70.0, 1, 1, 0.02e-6, 5.0e-6]
   Header2:
     - [1.0, 0.0, 6, 7]
   Surge:
@@ -90,7 +90,7 @@
     A dummy conductor (5) is included 20 m from the line to represent a
     row of trees. 
   Header:
-    - [5, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6]
+    - [5, 11, 70.0, 1, 1, 0.02e-6, 5.0e-6]
   Header2:
     - [1.0, 0.0, 6, 6]
   Surge:
