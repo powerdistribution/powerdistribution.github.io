@@ -98,7 +98,7 @@
     A dummy conductor (5) is included 20 m from the line to represent a
     row of trees. 
   Header:
-    - [4, 11, 30.0, 1, 1, 0.02e-6, 5.0e-6]
+    - [4, 11, 70.0, 1, 1, 0.02e-6, 5.0e-6]
   Header2:
     - [1.0, 0.0, 6, 6]
   Surge:
@@ -130,3 +130,142 @@
   OEheader: ""
   OEtrailer: ""
 
+#################################################################
+
+"Single wire": 
+  Description:
+    10-m high line
+  Header:
+    - [1, 11, 70.0, 1, 1, 0.02e-6, 5.0e-6]
+  Header2:
+    - [1.0, 0.0, 6, 6]
+  Surge:
+    - ["6", 1, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
+  Conductors:
+    - [1, 10.0, 0.0, 0.00715,   3854.0, 1]
+  Shielding:
+    - [null, null]
+  GroundSlope:
+    - [0.0, 0.0]
+  Insulators:
+    - [null, null, null, null, null, null, null]       
+  Arresters: 
+    - [null, null, null, null, null, null, null, null, null]       
+  Grounds:
+    - [null, null, null, null, null, null, null, null]       
+  Meters:
+    - ["6", 1, 0]
+  OEheader: ""
+  OEtrailer: ""
+
+#################################################################
+
+"Single wire on slope": 
+  Description:
+    10-m high line
+  Header:
+    - [1, 11, 70.0, 1, 1, 0.02e-6, 5.0e-6]
+  Header2:
+    - [1.0, 0.0, 6, 6]
+  Surge:
+    - ["6", 1, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
+  Conductors:
+    - [1, 10.0, 0.0, 0.00715,   3854.0, 1]
+  Shielding:
+    - [null, null]
+  GroundSlope:
+    - [20.0, -20.0]
+  Insulators:
+    - [null, null, null, null, null, null, null]       
+  Arresters: 
+    - [null, null, null, null, null, null, null, null, null]       
+  Grounds:
+    - [null, null, null, null, null, null, null, null]       
+  Meters:
+    - ["6", 1, 0]
+  OEheader: ""
+  OEtrailer: ""
+
+#################################################################
+
+"Single wire on slope, shifted left": 
+  Description:
+    10-m high line
+  Header:
+    - [1, 11, 70.0, 1, 1, 0.02e-6, 5.0e-6]
+  Header2:
+    - [1.0, 0.0, 6, 6]
+  Surge:
+    - ["6", 1, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
+  Conductors:
+    - [1, 6.36, -10.0, 0.00715,   3854.0, 1]
+  Shielding:
+    - [null, null]
+  GroundSlope:
+    - [20.0, -20.0]
+  Insulators:
+    - [null, null, null, null, null, null, null]       
+  Arresters: 
+    - [null, null, null, null, null, null, null, null, null]       
+  Grounds:
+    - [null, null, null, null, null, null, null, null]       
+  Meters:
+    - ["6", 1, 0]
+  OEheader: ""
+  OEtrailer: ""
+
+#################################################################
+
+"Single wire on slope, shifted right": 
+  Description:
+    10-m high line
+  Header:
+    - [1, 11, 70.0, 1, 1, 0.02e-6, 5.0e-6]
+  Header2:
+    - [1.0, 0.0, 6, 6]
+  Surge:
+    - ["6", 1, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
+  Conductors:
+    - [1, 13.64, 10.0, 0.00715,   3854.0, 1]
+  Shielding:
+    - [null, null]
+  GroundSlope:
+    - [20.0, -20.0]
+  Insulators:
+    - [null, null, null, null, null, null, null]       
+  Arresters: 
+    - [null, null, null, null, null, null, null, null, null]       
+  Grounds:
+    - [null, null, null, null, null, null, null, null]       
+  Meters:
+    - ["6", 1, 0]
+  OEheader: ""
+  OEtrailer: ""
+
+#################################################################
+
+"Single wire on hill": 
+  Description:
+    10-m high line
+  Header:
+    - [1, 11, 70.0, 1, 1, 0.02e-6, 5.0e-6]
+  Header2:
+    - [1.0, 0.0, 6, 6]
+  Surge:
+    - ["6", 1, 0, -30.0e3, 1.0e-6, 100.0e-6, 0.0e-6]
+  Conductors:
+    - [1, 10.0, 0.0, 0.00715,   3854.0, 1]
+  Shielding:
+    - [null, null]
+  GroundSlope:
+    - [20.0, 20.0]
+  Insulators:
+    - [null, null, null, null, null, null, null]       
+  Arresters: 
+    - [null, null, null, null, null, null, null, null, null]       
+  Grounds:
+    - [null, null, null, null, null, null, null, null]       
+  Meters:
+    - ["6", 1, 0]
+  OEheader: ""
+  OEtrailer: ""
