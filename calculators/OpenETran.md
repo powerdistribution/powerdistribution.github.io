@@ -597,7 +597,7 @@ $.plot($('#conductor-layout'),
           xaxis: { tickLength: 5, ticks: 3, min: xmin, max: xmax, font: {size: 11, color: "#000"} },
           yaxis: { tickLength: 5, ticks: 3, min: ymin, max: ymax,
           font: {size: 11, color: "#000"} }})
-env = xc.concat(cs.Shielding.slice(0, cs.Shielding.length))
+env = cs.Shielding.slice(0, cs.Shielding.length)
 xa = xc.concat( _.map(env, function(x) {return x[1]}) )
 ya = yc.concat( _.map(env, function(x) {return x[0]}) )
 xmin = _.reduce(xa, function(min, x) { if (x < min) {return x} else {return min} }, xc[0])
