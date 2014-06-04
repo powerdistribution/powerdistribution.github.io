@@ -60,6 +60,8 @@ if (typeof(firstrun) == "undefined") {
         $("#hd2tbl").handsontable('loadData', x.Header2) 
         $("#srgtbl").handsontable('loadData', x.Surge) 
         $("#cndtbl").handsontable('loadData', x.Conductors) 
+        $("#sldtbl").handsontable('loadData', x.Shielding) 
+        $("#gsltbl").handsontable('loadData', x.GroundSlope) 
         $("#instbl").handsontable('loadData', x.Insulators) 
         $("#arrtbl").handsontable('loadData', x.Arresters) 
         $("#gndtbl").handsontable('loadData', x.Grounds) 
@@ -98,6 +100,8 @@ if (typeof(firstrun) == "undefined") {
             Header2:     $("#hd2tbl").handsontable('getData'),
             Surge:       $("#srgtbl").handsontable('getData'),
             Conductors:  $("#cndtbl").handsontable('getData'),
+            Shielding:   $("#sldtbl").handsontable('getData'),
+            GroundSlope: $("#gsltbl").handsontable('getData'),
             Insulators:  $("#instbl").handsontable('getData'),
             Arresters:   $("#arrtbl").handsontable('getData'),
             Grounds:     $("#gndtbl").handsontable('getData'),
@@ -170,6 +174,17 @@ if (typeof(firstrun) == "undefined") {
             exposure2 = _.map(_.range(n), function(k) {return x[k] + 14 * pow(y[k], 0.6)})
             exposure1 = _.map(_.range(n), function(k) {return x[k] - Math.sqrt(sq(Rc) - sq(beta * Rc - y[k]))})
             exposure2 = _.map(_.range(n), function(k) {return x[k] + Math.sqrt(sq(Rc) - sq(beta * Rc - y[k]))})
+            // redo exposures for angled ground
+            fx = function(x, y, angle, sgn) {
+                kk = Math.tan(Math.PI * angle / 180)
+                hx = beta * Rc - y + sgn * x * kk
+                a = 1 + sq(kk)
+                b = - 2 * kk * hx
+                c = sq(hx) - sq(Rc)
+                return (-b + Math.sqrt(sq(b) - 4 * a * c)) / 2 / a
+            } 
+            exposure1 = _.map(_.range(n), function(k) {return x[k] - fx(x[k], y[k],  leftangle,  1)})
+            exposure2 = _.map(_.range(n), function(k) {return x[k] + fx(x[k], y[k], rightangle, -1)})
             for ( i = 0; i < n-1; i++ ) {
                     for ( j = i + 1; j < n; j++ ) {
                          if (x[i] < x[j]) {
@@ -195,6 +210,14 @@ if (typeof(firstrun) == "undefined") {
         }
         return(exposure)
     }
+    Handsontable.PluginHooks.add('afterChange', function() {
+        $("#loadtables").calculate();
+        $("#condcalc").calculate();
+    });
+    <!-- Handsontable.PluginHooks.add('afterRemoveRow', function() { -->
+    <!--     $("#loadtables").calculate(); -->
+    <!--     $("#condcalc").calculate(); -->
+    <!-- }); -->
 }
 ```
 
@@ -346,16 +369,53 @@ contextMenu: ['undo', 'redo']
 
   <!-- Conductor pane -->
   <div class="tab-pane" id="cndinp">
+<div class = "row">
+<div class = "col-md-7">
 ```yaml jquery=handsontable outid=cndtbl
 data: []
-colHeaders: ["Conductor", "H [m]", "X [m]", "r [m]", "Vpf [V]", "Exposed 0/1"]
-columns: [{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.00000'},{type: 'numeric'},{type: 'numeric'}]
-width: 700
-height: 250
+colHeaders: ["Conductor", "H [m]", "X [m]", "r [m]", "Vpf [V]"]
+columns: [{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.00000'},{type: 'numeric'}]
+width: 600
+height: 220
 colWidths: 100
 minSpareRows: 1
 contextMenu: ['row_above', 'row_below', 'hsep1', 'remove_row', 'hsep2', 'undo', 'redo']
 ```
+<div class = "row">
+<div class = "col-md-5">
+<p>Environmental shielding</p>
+```yaml jquery=handsontable outid=sldtbl
+data: []
+colHeaders: ["H [m]", "X [m]"]
+columns: [{type: 'numeric'},{type: 'numeric'}]
+width: 300
+height: 100
+colWidths: 100
+minSpareRows: 1
+contextMenu: ['row_above', 'row_below', 'hsep1', 'remove_row', 'hsep2', 'undo', 'redo']
+```
+</div>
+<div class = "col-md-5">
+<p>Ground slope [degrees]</p>
+```yaml jquery=handsontable outid=gsltbl
+data: []
+colHeaders: ["Left", "Right"]
+columns: [{type: 'numeric'},{type: 'numeric'}]
+width: 300
+height: 100
+colWidths: 100
+contextMenu: ['undo', 'redo']
+```
+</div>
+</div>
+</div>
+<div class = "col-md-2">
+<div id="conductor-layout" style='width:180px; height:180px';/>
+</div>
+<div class = "col-md-2">
+<div id="conductor-layout2" style='width:180px; height:180px';/>
+</div>
+</div>
   </div>
 
   <!-- Insulator pane -->
@@ -439,9 +499,11 @@ html:
 </div>
 
 
-```js
+```js id=loadtables
 cs = getcurrentcase()
 cs.Surge[1] = 1       // kludge to add a fake row
+leftangle = cs.GroundSlope[0][0]
+rightangle = cs.GroundSlope[0][1]
 h = cs.Header[0]
 h2 = cs.Header2[0]
 inputdata = h[0] + " " + h[1] + " " + h[2] + " " + h[3] + " " + h[4] + " " + h[5] + " " + h[6] + "\n" +
@@ -453,6 +515,11 @@ inputdata = h[0] + " " + h[1] + " " + h[2] + " " + h[3] + " " + h[4] + " " + h[5
             totext("meter",     cs.Meters) +
             totext("surge",     cs.Surge) +
             cs.OEtrailer
+ncond = +h[0]
+GFD = +h2[0] 
+p1 = +h2[2] 
+p2 = +h2[3]
+N = ncond * (p2 - p1 + 1)
 ```
 
 
@@ -480,31 +547,97 @@ finally {
 <br/>
 
 ```js
-    // read the csv file with the simulation results
-    x = $.csv.toArrays(csv, {onParseValue: $.csv.hooks.castToScalar})
-    // `header` has the column names. The first is the time, and the rest
-    // of the columns are the variables.
-    header = x.slice(0,1)[0]
-    polelist = _.map(header, function(x) {if (/P[0-9]/.test(x)) return Number(x.replace(/P([0-9]*):.*/, "$1"))})
-    polelist = _.uniq(_.filter(polelist, function(x) {return typeof(x) != "undefined";}))
-    if (typeof(polenum) == "undefined") polenum = polelist[0]
-    var jsonform = {
-      html: {
-        type: "select",
-        bs3caption: "Pole number for voltage plots [kV]",
-        name: "polenum",
-        selectvalue: polenum,
-        choices: _.map(polelist, String),
-        css: {width: "10em"}
-    }};
-    updatefun = function (evt) {
-        calculate_forms();
-        $("#plotdiv").calculate();
-    }
-    
-    $("#yaxisform").html("");
-    $("#yaxisform").dform(jsonform);
-    $("#yaxisform").change(updatefun);
+// read the csv file with the simulation results
+x = $.csv.toArrays(csv, {onParseValue: $.csv.hooks.castToScalar})
+// `header` has the column names. The first is the time, and the rest
+// of the columns are the variables.
+header = x.slice(0,1)[0]
+polelist = _.map(header, function(x) {if (/P[0-9]/.test(x)) return Number(x.replace(/P([0-9]*):.*/, "$1"))})
+polelist = _.uniq(_.filter(polelist, function(x) {return typeof(x) != "undefined";}))
+if (typeof(polenum) == "undefined") polenum = polelist[0]
+var jsonform = {
+  html: {
+    type: "select",
+    bs3caption: "Pole number for voltage plots [kV]",
+    name: "polenum",
+    selectvalue: polenum,
+    choices: _.map(polelist, String),
+    css: {width: "10em"}
+}};
+updatefun = function (evt) {
+    calculate_forms();
+    $("#plotdiv").calculate();
+}
+
+$("#yaxisform").html("");
+$("#yaxisform").dform(jsonform);
+$("#yaxisform").change(updatefun);
+```
+```js id="condcalc"
+cnd = cs.Conductors.slice(0, ncond)
+xc = _.map(cnd, function(x) {return x[2]})
+yc = _.map(cnd, function(x) {return x[1]})
+xmin = _.reduce(xc, function(min, x) { if (x < min) {return x} else {return min} }, xc[0])
+xmax = _.reduce(xc, function(max, x) { if (x > max) {return x} else {return max} }, xc[0])
+ymin = _.reduce(yc, function(min, x) { if (x < min) {return x} else {return min} }, yc[0])
+ymax = _.reduce(yc, function(max, x) { if (x > max) {return x} else {return max} }, yc[0])
+if (ymax - ymin > xmax - xmin) { // keep the aspect ratio constant
+    delta = (ymax - ymin - xmax + xmin) / 2
+    xmax += delta
+    xmin -= delta
+} else {
+    delta = (xmax - xmin - ymax + ymin) / 2
+    ymax += delta
+    ymin -= delta
+}
+$.plot($('#conductor-layout'), 
+       [{ data: _.map(cnd, function(x) {return [x[2],x[1]]}), 
+          points: { show: true }}],
+        { grid: { show: true, borderWidth: 0 },
+          xaxis: { tickLength: 5, ticks: 3, min: xmin, max: xmax, font: {size: 11, color: "#000"} },
+          yaxis: { tickLength: 5, ticks: 3, min: ymin, max: ymax,
+          font: {size: 11, color: "#000"} }})
+env = xc.concat(cs.Shielding.slice(0, cs.Shielding.length))
+xa = xc.concat( _.map(env, function(x) {return x[1]}) )
+ya = yc.concat( _.map(env, function(x) {return x[0]}) )
+xmin = _.reduce(xa, function(min, x) { if (x < min) {return x} else {return min} }, xc[0])
+xmax = _.reduce(xa, function(max, x) { if (x > max) {return x} else {return max} }, xc[0])
+if (ymax - ymin > xmax - xmin) { // keep the aspect ratio constant
+    delta = (ymax - ymin - xmax + xmin) / 2
+    xmax += delta
+    xmin -= delta
+} else {
+    delta = (xmax - xmin - ymax + ymin) / 2
+    ymax += delta
+    ymin -= delta
+}
+yleft = xmin * Math.tan( Math.PI * leftangle / 180 )
+yright = -xmax * Math.tan( Math.PI * rightangle / 180 )
+ymin = _.reduce(ya, function(min, x) { if (x < min) {return x} else {return min} }, Math.min(ya[0], 0, yleft, yright))
+ymax = _.reduce(ya, function(max, x) { if (x > max) {return x} else {return max} }, Math.max(ya[0], yleft, yright))
+if (ymax - ymin > xmax - xmin) { // keep the aspect ratio constant
+    delta = (ymax - ymin - xmax + xmin) / 2
+    xmax += delta
+    xmin -= delta
+} else {
+    delta = (xmax - xmin - ymax + ymin) / 2
+    ymax += delta
+    ymin -= delta
+}
+yleft = xmin * Math.tan( Math.PI * leftangle / 180 )
+yright = -xmax * Math.tan( Math.PI * rightangle / 180 )
+ymin = _.reduce(ya, function(min, x) { if (x < min) {return x} else {return min} }, Math.min(ya[0], 0, ymin, yleft, yright))
+ymax = _.reduce(ya, function(max, x) { if (x > max) {return x} else {return max} }, Math.max(ya[0], ymax, yleft, yright))
+$.plot($('#conductor-layout2'), 
+       [{ data: _.map(cnd, function(x) {return [x[2],x[1]]}),
+          points: { show: true }},
+        { data: _.map(env, function(x) {return [x[1],x[0]]}),
+          points: { show: true }},
+        { data: [[xmin, yleft], [0,0], [xmax, yright]] }
+        ],
+        { grid: { show: true, borderWidth: 0 },
+          xaxis: { tickLength: 5, ticks: 3, min: xmin, max: xmax, font: {size: 11, color: "#000"} },
+          yaxis: { tickLength: 5, ticks: 3, min: ymin, max: ymax, font: {size: 11, color: "#000"} }})
 ```
 <div class = "row">
 <div class = "col-md-8">
@@ -573,18 +706,12 @@ if (typeof(header) != "undefined") {
 
 
 ```js 
-ncond = +h[0]
-GFD = +h2[0] 
-p1 = +h2[2] 
-p2 = +h2[3]
-N = ncond * (p2 - p1 + 1)
 critI = Array(N)
 probI = Array(N)
 poleN = Array(N)
 condN = Array(N)
 flashes = Array(N)
 flashovers = Array(N)
-exposed = Array(N)
 k = 0
 for (p = p1; p <= p2; p++) {
     try {
@@ -614,21 +741,17 @@ for (p = p1; p <= p2; p++) {
     }
     k++
 }
-cnd = cs.Conductors.slice(0, ncond)
-xc = _.map(cnd, function(x) {return x[2]})
-yc = _.map(cnd, function(x) {return x[1]})
-exposed = _.map(cnd, function(x) {return x[5]})
-flashes = egm(xc, yc)
-totalflashes = GFD * _.reduce(_.range(ncond), function(sum, i) { return sum += exposed[i] * flashes[i] }, 0).toFixed(2)
-totalflashovers = (GFD * _.reduce(_.range(N), function(sum, i) { j = i % ncond; return sum += exposed[j] * flashes[j] * probI[i]/100 }, 0) / (p2 - p1 + 1)).toFixed(2)
+flashes = egm(xa, ya)
+totalflashes = (GFD * _.reduce(_.range(ncond), function(sum, i) { return sum += flashes[i] }, 0)).toFixed(2)
+totalflashovers = (GFD * _.reduce(_.range(N), function(sum, i) { j = i % ncond; return sum += flashes[j] * probI[i]/100 }, 0) / (p2 - p1 + 1)).toFixed(2)
 tbl = _.map(_.range(0, N), function(i) {j = i % ncond;
     return {
         pole: poleN[i],
         cond: condN[i],
         I: (critI[i]/1000).toFixed(1),
         prob: probI[i].toFixed(1),
-        flashes: (GFD * exposed[j] * flashes[j]).toFixed(2),
-        flashovers: (GFD * exposed[j] * flashes[j] * probI[i]/100).toFixed(2)
+        flashes: (GFD * flashes[j]).toFixed(2),
+        flashovers: (GFD * flashes[j] * probI[i]/100).toFixed(2)
 }})
 ```
 ```text name=tabletemplate
@@ -717,8 +840,7 @@ if (tbl.length > 0) {
   close to Eriksson's equation for flash incidence. One can use this to
   estimate shielding failures on lines with an overhead shield wire.
   It can also be use to estimate the effect of environmental shielding
-  from nearby objects (tree lines, parallel lines, etc). To account
-  for these, add a dummy conductor with the `Exposed` field set to 0.
+  from nearby objects (tree lines, parallel lines, etc). 
 
 
 ## References
