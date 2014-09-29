@@ -2,12 +2,10 @@
 
 This app models the voltage rise from unbalanced load on an overhead
 distribution line that couples into a telephone system. The four
-conductors modeled are:
+conductors modeled are illustrated below.
 
-1. Phase conductor
-2. Neutral (multigrounded)
-3. Telephone cable messenger
-4. Telephone cable 
+
+<img src="phone_coupling.svg" style="width:80%" class="img-responsive"/>
 
 The neutral and messenger are ideally grounded, meaning that there is
 no voltage gradient along them. The telephone cable is grounded at

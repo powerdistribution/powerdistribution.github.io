@@ -14,6 +14,7 @@ title:  Distribution apps and calculators
 - [Cable capacitance](mdpad.html?cable_capacitance.md)
 - [CVR: customer vs. utility savings](mdpad.html?cvr.md)
 - [Voltage impacts of a distributed generator](mdpad.html?dg.md)
+- [Coupling to telephone circuits](mdpad.html?phone_coupling.md)
 - [Fault simulator with various transformer connections](mdpad.html?fault_simulator.md)
 - [Lightning protection of overhead lines using EPRI-OpenETran](mdpad_local.html?OpenETran.md)
 - [Lightning protection of underground cables](mdpad.html?lightning_cable.md)
