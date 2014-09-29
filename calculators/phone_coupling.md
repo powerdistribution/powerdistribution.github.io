@@ -23,6 +23,11 @@ rac: [3.551, 2.232, 1.402, 1.114, 0.882, 0.7, 0.556, 0.441, 0.373, 0.35, 0.311, 
 gmr: [0.0055611962035177, 0.00700459393067038, 0.00882262274842038, 0.00990159326021141, 0.0111125174323268, 0.0124715326552536, 0.0139967498560307, 0.0157084948536593, 0.0171990576740366, 0.0177754680514267, 0.0197856043349646, 0.0209605660328388, 0.0214852445181602, 0.0227611387971986, 0.0243123406199979, 0.0249209197027924, 0.0255447325512619, 0.0270616982108416, 0.0308759703782212, 0.0311314761296609, 0.0319107497292355, 0.0327095298674806, 0.0343675751093677, 0.0349387277474913, 0.0361096666226405, 0.0367097709735484]
 conductors: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]
 ```
+```yaml name=dm
+rac: [6.8112, 4.6464, 3.5904, 2.270]
+gmr: [7.016e-06, 2.623e-05, 5.071e-05, 0.0001363]
+conductors: ['3/8" EHS steel', '7/16" EHS steel','1/2" EHS steel','5/8" EHS steel']
+```
 
 
 ```yaml jquery=dform
@@ -116,8 +121,8 @@ html:
           - name: messenger
             type: select
             bs3caption : "Messenger"
-            selectvalue: 6 AAC
-            choices: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]
+            selectvalue: '3/8" EHS steel'
+            choices: ['3/8" EHS steel', '7/16" EHS steel','1/2" EHS steel','5/8" EHS steel']
 ```
 
 
@@ -134,7 +139,7 @@ sq = function(x) {
 }
 
 nidx = _.map(d.conductors, String).indexOf(neutral)
-midx = _.map(d.conductors, String).indexOf(messenger)
+midx = _.map(dm.conductors, String).indexOf(messenger)
 
 cond = {}
 cond.R = []
@@ -212,9 +217,12 @@ This can approximate coupling on two- or three-phase line if you use
 the residual current (vector sum of all phases) as input for the phase
 conductor.
 
-If the voltage on the phone cables gets too high (approximately ? V),
-phones can ring nonstop. This problem is rare. It occurs on long,
-unbalanced circuits. See IEEE 776 and IEEE 1137 for solution options.
+If the voltage on the phone cables gets too high, phones can ring
+nonstop. This problem is rare. It occurs on long, unbalanced circuits.
+See IEEE 776 and IEEE 1137 for solution options. For line-to-ground
+faults on the distribution circuit, the coupled voltage can be
+significant. Model this by entering the fault current as the
+load current value.
 
 For impedances, this app uses a simple implementation of the equations
 outlined in section 2.4. The frequency is fixed at 60 Hz. For more
