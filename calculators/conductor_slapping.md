@@ -88,11 +88,11 @@ area = d.area[idx]
 
 t = ficm(flti, fltt, h0, y0, x1, y1, wc, area, 0)
 wirelocs = ficm(flti, fltt, h0, y0, x1, y1, wc, area, 1)
-console.log(wirelocs)
+//console.log(wirelocs)
 // animate the conductor movement
-var nstep = 0
-var z = wirelocs[nstep]
-console.log([[z[1], z[2]], [z[3], z[4]]])
+nstep = 0
+z = wirelocs[nstep]
+var startpos = [[z[1], z[2]], [z[3], z[4]]]
 plot = $.plot($('#graph'), 
               [{ data: [[0.0, y0], [x1, y0 + y1], [z[1], z[2]], [z[3], z[4]]], 
                  points: { show: true } }], 
@@ -107,11 +107,77 @@ $('#graph').animate( {tabIndex: 0}, {
       plot.draw();
    }
 });
-
 if (t == 0.0)
     println("**No slapping**")
 else
     println("Conductors slap at t = **" + t.toFixed(2) + " secs** for fault duration = **" + fltt.toFixed(1) + " cycles**.")
+```
+
+<div style="line-height: 0.6em; ">
+<small>
+
+```js output=markdown
+
+function sq(x) {
+    return x * x;
+}
+c1peak1idx = -1;
+c1peak2idx = -1;
+c2peak1idx = -1;
+c2peak2idx = -1;
+c1reverse = false;
+c2reverse = false;
+for (var k = 1; k < wirelocs.length; k++) {
+    z1 = wirelocs[k]
+    z0 = wirelocs[k-1]
+    d11 = sq(z1[1] - z[1]) + sq(z1[2] - z[2])
+    d10 = sq(z0[1] - z[1]) + sq(z0[2] - z[2])
+    d21 = sq(z1[3] - z[3]) + sq(z1[4] - z[4])
+    d20 = sq(z0[3] - z[3]) + sq(z0[4] - z[4])
+    // Conductor 1
+    if (c1peak1idx > 0 && c1peak2idx < 0) {
+        if (!c1reverse) { // reverse found
+            if (d11 > d10) {
+                c1reverse = true;
+            };
+        } else if (d11 < d10) {
+            c1peak2idx = k - 1;
+        };
+    }
+    if (c1peak1idx < 0) {
+        if (d11 < d10) { // peak found
+            c1peak1idx = k - 1;
+        }
+    }
+    // Conductor 2
+    if (c2peak1idx > 0 && c2peak2idx < 0) {
+        if (!c2reverse) { // reverse found
+            if (d21 > d20) {
+                c2reverse = true;
+            };
+        } else if (d21 < d20) {
+            c2peak2idx = k - 1;
+        };
+    }
+    if (c2peak1idx < 0) {
+        if (d21 < d20) { // peak found
+            c2peak1idx = k - 1;
+        }
+    }
+}
+console.log(c1peak1idx,c1peak2idx,c2peak1idx,c2peak2idx)
+    
+
+println("\n\n")
+println(" Left/top conductor, 1st swing, X = " + (wirelocs[c1peak1idx][1]).toFixed(1) + " ft, Y = " + (wirelocs[c1peak1idx][2]).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c1peak1idx][0]) + " cycles\n");
+println(" Left/top conductor, 2nd swing, X = " + (wirelocs[c1peak2idx][1]).toFixed(1) + " ft, Y = " + (wirelocs[c1peak2idx][2]).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c1peak2idx][0]) + " cycles\n\n");
+println(" Right/bottom conductor, 1st swing, X = " + ((wirelocs[c2peak1idx][3] - z[3])).toFixed(1) + " ft, Y = " + ((wirelocs[c2peak1idx][4] - z[4])).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c2peak1idx][0]) + " cycles\n\n");
+println(" Right/bottom conductor, 2nd swing, X = " + ((wirelocs[c2peak2idx][3] - z[3])).toFixed(1) + " ft, Y = " + ((wirelocs[c2peak2idx][4] - z[4])).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c2peak2idx][0]) + " cycles\n\n");
+```
+</small>
+</div>
+
+```js output=markdown
 
 function bisect(flti) {
     hi = 2.0*60
@@ -136,9 +202,9 @@ function bisect(flti) {
 critt = bisect(flti)
 
 if (critt > 0.0)
-    println("\nCritical fault clearing time = **" + critt.toFixed(2) + " cycles**.")
+    println("\n**Critical fault clearing time = " + critt.toFixed(2) + " cycles**.")
 else
-    println("\nCritical fault clearing time > **" + -critt.toFixed(2) + " cycles**.")
+    println("\n**Critical fault clearing time > " + -critt.toFixed(2) + " cycles**.")
 
 currents = [1000, 2000, 3000, 4000, 5000, 6000, 8000, 10000]    
 durations = _.map(currents, bisect)

@@ -96,7 +96,7 @@ function ficm(flti, fltt, h0, y0, x1, y1, wc, area, ret) {
             if (d12 < d12m)
                 {
                 d12m = d12;
-                tcrit = time;
+                if (d12 < swmax & tcrit < 0.0001) tcrit = time;
                 }
                 d12sv = d12;
 
@@ -169,18 +169,19 @@ function ficm(flti, fltt, h0, y0, x1, y1, wc, area, ret) {
 
         //c - - - - - increment time and go to start of loop,  if needed
         faif = 1000 * time;
-         //     if ((faif % 33) == 0)
-        // console.log(time, xtsv[0], ytsv[0], xtsv[1], ytsv[1],d12sv);
         if (ret == 1 && (n % 10) == 0) {
             res.push([time, xtsv[0], ytsv[0], xtsv[1], ytsv[1], d12sv]);
         }
         // console.log(time, xtsv[0], ytsv[0], xtsv[1], ytsv[1],d12sv);
+        //if ((n % 100) == 0) {
+        //    console.log(" minimum distance= %5.3f at time= %5.3f, d12m = %5.3f at time= %5.3f", d12, time, d12m, tcrit);
+        //}
         time = time + delt;
 
         if (time > tstop) break;
 
     } // n < npts
-    //          console.log(stream, " minimum distance= %5.3f at time= %5.3f\n", d12m, tcrit);
+    
     // console.log(" fault amps= " + flti + "    cycles= " + fltt + "   distance= " + d12m + "   time= " + tcrit);
     
     if (ret == 1) return res;
