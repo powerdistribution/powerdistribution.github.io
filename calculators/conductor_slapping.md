@@ -280,8 +280,12 @@ Vertical clearance definitely helps as you will see from the
 animations and the critical clearing curves. However, there are some
 cases with vertical spacing that show no slapping that probably would
 touch in real life. Again, use your judgement, and review the
-animations.
-
+animations. EPRI laboratory testing has shown cases where longer
+clearing times reduce slapping on vertical designs. This effect means
+that the calculations for critical currents with the existing
+algorithm are incorrect for vertical designs. The physics of motion is
+still in the ballpark of being correct for vertical designs.
+ 
 To see the code that does the majority of the calculations, see
 [here](https://github.com/powerdistribution/powerdistribution.github.io/blob/master/calculators/FICM.js). To
 see the user interface, page calculation code, see
