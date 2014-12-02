@@ -169,10 +169,10 @@ console.log(c1peak1idx,c1peak2idx,c2peak1idx,c2peak2idx)
     
 
 println("\n\n")
-println(" Left/top conductor, 1st swing, X = " + (wirelocs[c1peak1idx][1]).toFixed(1) + " ft, Y = " + (wirelocs[c1peak1idx][2]).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c1peak1idx][0]) + " cycles\n");
-println(" Left/top conductor, 2nd swing, X = " + (wirelocs[c1peak2idx][1]).toFixed(1) + " ft, Y = " + (wirelocs[c1peak2idx][2]).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c1peak2idx][0]) + " cycles\n\n");
-println(" Right/bottom conductor, 1st swing, X = " + ((wirelocs[c2peak1idx][3] - z[3])).toFixed(1) + " ft, Y = " + ((wirelocs[c2peak1idx][4] - z[4])).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c2peak1idx][0]) + " cycles\n\n");
-println(" Right/bottom conductor, 2nd swing, X = " + ((wirelocs[c2peak2idx][3] - z[3])).toFixed(1) + " ft, Y = " + ((wirelocs[c2peak2idx][4] - z[4])).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c2peak2idx][0]) + " cycles\n\n");
+println(" Left/bottom conductor, 1st swing, X = " + (wirelocs[c1peak1idx][1]).toFixed(1) + " ft, Y = " + (wirelocs[c1peak1idx][2]).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c1peak1idx][0]) + " cycles\n");
+println(" Left/bottom conductor, 2nd swing, X = " + (wirelocs[c1peak2idx][1]).toFixed(1) + " ft, Y = " + (wirelocs[c1peak2idx][2]).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c1peak2idx][0]) + " cycles\n\n");
+println(" Right/top conductor, 1st swing, X = " + ((wirelocs[c2peak1idx][3] - z[3])).toFixed(1) + " ft, Y = " + ((wirelocs[c2peak1idx][4] - z[4])).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c2peak1idx][0]) + " cycles\n\n");
+println(" Right/top conductor, 2nd swing, X = " + ((wirelocs[c2peak2idx][3] - z[3])).toFixed(1) + " ft, Y = " + ((wirelocs[c2peak2idx][4] - z[4])).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c2peak2idx][0]) + " cycles\n\n");
 ```
 </small>
 </div>
