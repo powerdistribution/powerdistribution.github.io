@@ -5,12 +5,11 @@ title:  Tom Short biography
 
 # Biography
 
-Tom Short is a Technical Executive at the Electric Power Research
-Institute (EPRI). His research and study activities have included
-distribution system studies, reliability, power quality, distributed
-generation, lightning protection, and capacitor application. Before
-joining EPRI PEAC in 2000 (later merged into EPRI), he worked for
-Power Technologies, Inc. for ten years.
+Tom Short is a Senior Technical Executive at the Electric Power Research
+Institute (EPRI). His research and study activities have included distribution
+system studies, reliability, power quality, distributed generation, lightning
+protection, and capacitor application. Before joining EPRI PEAC in 2000 (later
+merged into EPRI), he worked for Power Technologies, Inc. for ten years.
 
 Mr. Short has a Master of Science degree in Electrical Engineering
 from Montana State University in 1990.
@@ -37,7 +36,11 @@ Task Force on Weather Normalization of Reliability Data.
 Current research areas include:
 
 - Distribution resiliency and hardening -
-  [YouTube video](http://youtu.be/Iq56tlz_guI), [Longer video](http://youtu.be/Oc7-trMOVVQ)
+
+  - [YouTube video](http://youtu.be/Iq56tlz_guI)
+  - [Longer EPRI video](http://youtu.be/Oc7-trMOVVQ)
+  - [Xcel Energy field testing video](https://www.youtube.com/watch?v=2ZkPKMN3FFM)
+  - [AEP field testing video](https://www.youtube.com/watch?v=tjWpkdcykPU)
 
 - Arc flash - [YouTube video](http://youtu.be/fZP47mlELSc)
 
@@ -49,4 +52,4 @@ Current research areas include:
 
 For more information on EPRI's research programs, see here:
 
-[EPRI Program 180, portfolio of research for 2014](http://portfolio.epri.com/ProgramTab.aspx?sId=pdu&rId=265&pId=7644)
+[EPRI Program 180 - Distribution Systems, portfolio of research](http://www.epri.com/Our-Portfolio/Pages/Portfolio.aspx?program=070605)
