@@ -38,7 +38,7 @@ Right now, many of these are beta quality. **Use caution! No warranty!**
 These apps work best with a recent version of Firefox or Chrome. Most
 of them will work with version 11 of Internet Explorer, albeit with a
 few quirks; only a few of the apps work with Internet Explorer 9 or
-earlier versions.
+earlier versions. Most apps should work on modern phones.
 
 To report on bugs, suggest features, or propose additional
 calculators, please file an issue
