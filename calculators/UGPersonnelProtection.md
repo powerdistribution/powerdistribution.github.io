@@ -8,8 +8,6 @@
 ```yaml script=scriptloader
 - lib/numeric-1.2.6.min.js
 - lib/math.min.js
-- //cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js
-- lib/emblem.min.js
 ```
 
 
