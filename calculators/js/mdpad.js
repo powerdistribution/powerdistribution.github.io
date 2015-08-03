@@ -77,6 +77,7 @@ function convert_yaml() {
     var inp = $(this).find(".yamlinput, .textinput");
     var out = $(this).find(".yamlresult, .textresult");
     var nam = $(this).attr("name");
+    $active_element = out;
     if (typeof nam == 'undefined') nam = "Y";
     var attrjquery = $(this).attr("jquery");
     var attrscript = $(this).attr("script");
