@@ -109,7 +109,7 @@ n:    [1,1,3,3,3,3,3,3,3,3,3,0,0,0]
 
 ```text name=z  script=eval
 (function () {
-z = {r1: _.range(1,11), r2: _.range(2,11), r3: _.range(11)}
+z = {r1: _.range(1,11), r2: _.range(1,10), r3: _.range(11)}
 z.g = _.map(_.range(1,11), function(x){return "g"+x})
 z.b = _.map(_.range(1,11), function(x){return "b"+x})
 z.bg = _.map(_.range(11), function(x){return "bg"+x})
@@ -131,7 +131,7 @@ table
     tr#workerrow
       td Worker location
       td
-      each r1
+      each r2
         td
           input type="radio" name="wloc" value=this checked=checked
     tr#faultrow
@@ -269,8 +269,8 @@ Yaddshunt = function(Y, Rshunt, i) {
 }
 
 ductcables = $("#ducttable select").map(function(){return $(this).val()}).get()
-bonds    = $("#bondrow input:checkbox").map(function(){return $(this).prop("checked")}).get()
-grounds  = $("#groundrow input:checkbox").map(function(){return $(this).prop("checked")}).get()
+bonds    = _.rest($("#bondrow input:checkbox").map(function(){return $(this).prop("checked")}).get())
+grounds  = _.rest($("#groundrow input:checkbox").map(function(){return $(this).prop("checked")}).get())
 brackets = $("#bracketrow input:checkbox").map(function(){return $(this).prop("checked")}).get()
 workmh = Number(wloc)
 faultmh = Number(floc) - 1
@@ -287,7 +287,7 @@ faultmh = Number(floc) - 1
 Nsections = 11  // includes the phantom section for the work location
 Nbus = Nsections + 1
 subBus = 1
-sectionLength = totalLength/Nsections // kfeet
+sectionLength = totalLength/(Nsections-1) // kfeet
 
 
 De= 25920*math.sqrt(rho/60)
@@ -484,33 +484,33 @@ $("#outsummary").html(converter.makeHtml(txt));
 
 
 ```js
-Vmax_f = numeric.rep([Nbus-2], 0.0)
-Vmax_f2 = numeric.rep([Nbus-2], 0.0)
-Vmaxremote_f = numeric.rep([Nbus-2])
-for (var i = 0; i < Nbus - 2; i++) {
+Vmax_f = numeric.rep([Nsections-1], 0.0)
+Vmax_f2 = numeric.rep([Nsections-1], 0.0)
+Vmaxremote_f = numeric.rep([Nsections-1], 0.0)
+for (var i = 0; i < Nsections-1; i++) {
     af = calcs(workmh,i)
     Vmax_f[i] = findmax(af.workV)
     Vmax_f2[i] = findmax(af.workV.getBlock([0,1],[1,Nc-2]))
     Vmaxremote_f[i] = _.max(_.flatten(af.workV.getBlock([0,1],[1,Nc-2]).abs()))
 }
 
-seriesv1 = _.zip(_.range(1, Vmax_f.length), Vmax_f)
+seriesv1 = _.zip(_.range(1, Vmax_f.length+1), Vmax_f)
 $.plot($('#graph1'), [{data: seriesv1, points: {show: true}}])
-seriesv2 = _.zip(_.range(1, Vmax_f2.length), Vmax_f2)
+seriesv2 = _.zip(_.range(1, Vmax_f2.length+1), Vmax_f2)
 $.plot($('#graph2'), [{data: seriesv2, points: {show: true}}])
 
-Vmax_w = numeric.rep([Nbus-2], 0.0)
-Vmax_w2 = numeric.rep([Nbus-2], 0.0)
-Vmaxremote_w = numeric.rep([Nbus-2])
-for (var i = 1; i < Nbus - 2; i++) {
-    aw = calcs(i, faultmh)
+Vmax_w = numeric.rep([Nsections-2], 0.0)
+Vmax_w2 = numeric.rep([Nsections-2], 0.0)
+Vmaxremote_w = numeric.rep([Nsections-2], 0.0)
+for (var i = 0; i < Nsections - 2; i++) {
+    aw = calcs(i+1, faultmh)
     Vmax_w[i] = findmax(aw.workV)
     Vmax_w2[i] = findmax(aw.workV.getBlock([0,1],[1,Nc-2]))
     Vmaxremote_w[i] = _.max(_.flatten(aw.workV.getBlock([0,1],[1,Nc-2]).abs().x))
 }
-seriesv3 = _.zip(_.range(2, Vmax_w.length), Vmax_w)
+seriesv3 = _.zip(_.range(1, Vmax_w.length+1), Vmax_w)
 $.plot($('#graph3'), [{data: seriesv3, points: {show: true}}])
-seriesv4 = _.zip(_.range(2, Vmax_w2.length), Vmax_w2)
+seriesv4 = _.zip(_.range(1, Vmax_w2.length+1), Vmax_w2)
 $.plot($('#graph4'), [{data: seriesv4, points: {show: true}}])
 
 // Fix up voltage and current tables for output
