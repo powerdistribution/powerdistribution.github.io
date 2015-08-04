@@ -99,7 +99,7 @@ html:
 name: ["250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
 R:    [0.0498,0.0254,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0,0,0]
 GMR:  [0.21,0.297,0.216,0.305,0.435,0.216,0.305,0.435,0.216,0.305,0.435,0,0,0]
-Rs:   [0.1699,0.1295,0.3915,0.2061,0.1188,0.783,0.4122,0.2376,1.566,0.8244,0.4752,0.102,0.0435,0.0229]
+Rs:   [0.1699,0.1295,0.0435, 0.0229, 0.0132, 0.087, 0.0458, 0.0264, 0.174, 0.0916, 0.0528,0.102,0.0435,0.0229]
 GMRs: [0.3975,0.5795,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.139,0.216,0.305]
 n:    [1,1,3,3,3,3,3,3,3,3,3,0,0,0]
 ```
@@ -355,17 +355,17 @@ calcs = function(workmh, faultmh) {
     Zc.y[1][1] = 0.0529 * math.log10(De/ac.GMR[fidx])
     // worked shields
     for (var i = 2; i < Nworked+2; i++) {
-        Zc.x[i][i] = ac.Rs[widx] + r_e
+        Zc.x[i][i] = ac.Rs[widx]*Nworked + r_e
         Zc.y[i][i] = 0.0529 * math.log10(De/ac.GMRs[widx])
     }
     // faulted shields
     for (var i = 2+Nworked; i < Nworked+Nfaulted+2; i++) {
-        Zc.x[i][i] = ac.Rs[fidx] + r_e
+        Zc.x[i][i] = ac.Rs[fidx]*Nfaulted + r_e
         Zc.y[i][i] = 0.0529 * math.log10(De/ac.GMRs[fidx])
     }
     // other shields
     for (var i = 0; i < Nextras; i++) {
-        name = _.rest(_.filter(ductcables, function(x){return x!="empty"}))[i]
+        name = _.slice(_.filter(ductcables, function(x){return x!="empty"}), 2)[i]
         eidx = _.indexOf(ac.name, name)
         Zc.x[Nc-Nextras+i][Nc-Nextras+i] = ac.Rs[eidx] + r_e
         Zc.y[Nc-Nextras+i][Nc-Nextras+i] = 0.0529 * math.log10(De/ac.GMRs[eidx])
@@ -451,7 +451,6 @@ calcs = function(workmh, faultmh) {
     for (i = 0; i < Nsections; i++) {
         I.setBlock([i,0], [i,Nc-1], V.getBlock([i,0],[i,Nc-1]).sub(V.getBlock([i+1,0],[i+1,Nc-1])).dot(Yc))
     }
-    //I[,workmh] = NA
     return {V: V, workV: workV, I: I}
 }
 
@@ -559,26 +558,26 @@ table.table
 div.panel-group
   div.panel.panel-default
     div.panel-heading
-      h4.panel-title
+      div.panel-title
         a.accordion-toggle data-toggle="collapse" href="#collapse1" Summary
     div.panel-collapse.collapse.in#collapse1
       div.panel-body
         pre.jsplain#outsummary
   div.panel.panel-default
     div.panel-heading
-      h4.panel-title 
+      div.panel-title 
         a.accordion-toggle data-toggle="collapse" href="#collapse2a" Detailed voltages
     div.panel-collapse.collapse#collapse2a style="overflow:auto"
       div#Vout.panel-body 
   div.panel.panel-default
     div.panel-heading
-      h4.panel-title 
-        a.accordion-toggle data-toggle="collapse" href="#collapse2b" Detailed currents
+      div.panel-title 
+        a.accordion-toggle data-toggle="collapse" href="#collapse2b" Detailed conductor currents
     div.panel-collapse.collapse#collapse2b style="overflow:auto"
       div#Iout.panel-body 
   div.panel.panel-default
     div.panel-heading
-      h4.panel-title 
+      div.panel-title 
         a.accordion-toggle data-toggle="collapse" href="#collapse3" Variations in fault location
     div.panel-collapse.collapse.in#collapse3
       div.panel-body 
@@ -593,7 +592,7 @@ div.panel-group
             div.text-center Faulted manhole number
   div.panel.panel-default
     div.panel-heading
-      h4.panel-title 
+      div.panel-title 
         a.accordion-toggle data-toggle="collapse" href="#collapse4" Variations in work location
     div.panel-collapse.collapse.in#collapse4
       div.panel-body 
