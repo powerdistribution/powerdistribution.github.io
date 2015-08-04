@@ -1,7 +1,10 @@
 
-# Personnel protection (grounding) on underground systems
+# Personnel protection on underground systems
 
-<!-- <img src="UndergroundGrounding.svg" style="width:100%" class="img-responsive"/> -->
+This page models touch voltages induced on a cut cable during a fault on a parallel
+cable. This expands on material in Section 14.6.
+
+<img src="UGPersonnelProtection.svg" style="width:100%" class="img-responsive"/>
 
 <br/>
 
@@ -607,4 +610,102 @@ div.panel-group
             div.text-center Work manhole number
 ```
       
+## Notes
+
+Defaults and assumptions include:
+
+* The worked cable is always in the top left duct location. The faulted cable is
+  in the top middle position. The fault is from the phase to the shield.
+
+* EPR cables are all single-conductor cables in a triplex arrangement. PILC are
+  three-conductor cables. For single-conductor cables, all three are cut at the
+  work site. For three-conductor cables, only one of the phase conductors is
+  modeled (all three phases should have the same voltage). For single-conductor
+  cables in ducts other than the ducts for the worked cable and the faulted
+  cable, the shields are lumped into one impedance that's approximately
+  equivalent to modeling them as individual cables.
+
+* "Bonds" checked at a manhole means that all of the shields are tied together.
+  "Grounds" means bond all of the shields together and tie them to ground
+  through a ground resistance. For bonds applied at the work site, these are on
+  the source side.
+
+* "Bracket grounds" are locations where the worked phase is bonded to the worked
+  shield. For now, there must be at least one bracket ground on each side of the
+  work site.
+
+* "Jumper shield at work site" means that the shield on the worked cable is
+  jumpered across the cut cable.
+
+* The manhole grounds should also include customer grounds. The customer grounds
+  are often better than utility grounds.
+
+* The earth resistivity has a small effect in the app because the substation and
+  manhole ground resistances are specified seperately. These resistances are
+  directly influenced by the earth resistivity.
+
+* For impedance models, this app uses the equations outlined in section 4.4.2.
+  The frequency is fixed at 60 Hz. This app only models the voltage between
+  conductors. It does not model the voltage to the manhole floor. That would
+  require more advanced modeling using finite elements. For detailed simulations
+  that can model manhole potentials, consider a tool like
+  [CDEGS](http://www.sestech.com/products/softpackages/cdegs.htm) or
+  [WinIGS](http://www.ap-concepts.com/win_igs.htm). The touch voltages to the
+  manhole floor involve a voltage divider of the voltage from the conductor to
+  remote earth.
+
+## Reducing touch potentials
+
+To protect against these touch voltages, two approaches are available: bonding
+and isolation/insulation. Touch voltages involving the shields can be remedied
+by bonding the shields together and then bonding these to the manhole rebar and
+any local ground rod. An equipotential ground mat can also be used as an
+alternative to attaching to the rebar. Work practices for bonding the shields
+are feasible, but keeping the phase conductor bonded would be quite challenging.
+
+Using isolation or insulation is another option that can be used. Insulation can
+include boots, gloves, and rubber mats. Using isolation or insulation is
+particularly appropriate for phase conductors. Floating the phases is a good
+option in many cases. The voltage built up in this case is a function of the
+capacitance of the cables and the length of cable being floated. *Floating the
+phases is not currently modeled.* An alternative to floating the phases is to
+keep an insulated cap on the phase, or use insulated gloves when working with
+the phase. 
+
+The results on this page can help determine the level of insulation needed. They
+also show which touch voltages are the highest. The phase-to-phase touch voltage
+across the cut cable is often the highest voltage. Generally, touch voltages are
+worse across the open point (whether involving phases or shields), so when work
+is being performed on one side, workers could cover the other side with an
+insulating blanket.
+
+This app only models one induction hazard. Another scenario that can cause touch
+potentials is a ground potential rise in the substation. This can happen for a
+high-side fault or for a fault on another distribution circuit not along the
+worked cable. Protection approaches identified here are appropriate protections
+against touch voltages transfered from a substation ground potential rise.
+Another hazard for underground workers is inadvertent energization. That is
+difficult to protect against in underground work without fully-rated insulation.
+
+## References
+
+For more information on personnel protection and grounding in underground
+scenarios, see the following references:
+
+* [EPRI 3002003242](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=3002003242),
+  *Grounding for Personnel Protection on Underground Distribution: Simulations for Solid-Dielectric Cable Systems*, Electric
+  Power Research Institute, Palo Alto, CA, 2015.
+
+* [EPRI 3002001289](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=3002001289),
+  *Distribution Grounding of Underground Facilities*, Electric
+  Power Research Institute, Palo Alto, CA, 2013.
+
+* IEEE ESMOL Subcommittee 15.07, "Worker protection while working de-energized
+  underground distribution systems," *IEEE Transactions on Power Delivery*, vol.
+  19, no. 1, pp. 298-302, January 2004.
+
+* Rajotte, Y., Bergeron, R., Chalifoux, A., and Gervais, Y., "Touch Voltages on
+  Underground Distribution Systems During Fault Conditions," *IEEE Transactions on
+  Power Delivery*, vol. 5, no. 2, pp. 1026–33, April 1990.
+
 
