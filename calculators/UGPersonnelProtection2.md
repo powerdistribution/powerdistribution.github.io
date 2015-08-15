@@ -28,7 +28,7 @@ html:
             step: 5
             min: 0.0
             bs3caption: System voltage, kV (L-L)
-            value: 15
+            value: 25
       - type: div
         class: col-md-4
         html:
@@ -102,7 +102,7 @@ html:
 name: ["1/0 Al EPR", "250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
 R:    [0.168, 0.0498,0.0254,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0,0,0]
 GMR:  [0.139, 0.21,0.297,0.216,0.305,0.435,0.216,0.305,0.435,0.216,0.305,0.435,0,0,0]
-Rs:   [0.408, 0.1699,0.1295,0.0435, 0.0229, 0.0132, 0.087, 0.0458, 0.0264, 0.174, 0.0916, 0.0528,0.102,0.0435,0.0229]
+Rs:   [0.136, 0.1699,0.1295,0.0435, 0.0229, 0.0132, 0.087, 0.0458, 0.0264, 0.174, 0.0916, 0.0528,0.102,0.0435,0.0229]
 GMRs: [0.405, 0.3975,0.5795,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.139,0.216,0.305]
 n:    [3,     1,1,3,3,3,3,3,3,3,3,3,0,0,0]
 ```
@@ -146,14 +146,14 @@ table
         input type="checkbox" name="junk" checked="checked" disabled="disabled" readonly="readonly"
       each g
         td
-          input type="checkbox" name=this checked="checked"
+          input type="checkbox" name=this  checked=checked
     tr#bondrow
       td Bonds
       td
         input type="checkbox" name="junk" checked="checked" disabled="disabled" readonly="readonly"
       each b
         td
-          input type="checkbox" name=this checked="checked"
+          input type="checkbox" name=this checked=checked
     tr#bracketrow
       td Bracket grounds
       each bg
@@ -323,19 +323,19 @@ calcs = function(workmh, faultmh) {
     // Fill in an array of distances
     x = numeric.rep([Nc], 0.0)
     y = numeric.rep([Nc], 0.0)
-    // Duct position 1 extra shields
-    if (Nfaulted > 1) {
-        d = ac.GMRs[fidx] / math.sqrt(2)
+    // Duct position 1 extra shields, worked cables
+    if (Nworked > 1) {
+        d = ac.GMRs[widx] * math.sqrt(2) * 2
         x[3] =  d; y[3] = d
         x[4] = -d; y[4] = d
     }
-    // Duct position 2
-    x[1] = x[2+Nfaulted] = ductSpacing
+    // Duct position 2, faulted cables
+    x[1] = x[2+Nworked] = ductSpacing
     // Duct position 2 extra shields
-    if (Nworked > 1) {
-        d = ac.GMRs[widx] / math.sqrt(2)
-        x[3+Nfaulted] =  d + ductSpacing; y[3+Nfaulted] = d
-        x[4+Nfaulted] = -d + ductSpacing; y[4+Nfaulted] = d
+    if (Nfaulted > 1) {
+        d = ac.GMRs[fidx] * math.sqrt(2) * 2
+        x[3+Nworked] =  d + ductSpacing; y[3+Nworked] = d
+        x[4+Nworked] = -d + ductSpacing; y[4+Nworked] = d
     }
     pos = 2 + Nfaulted + Nworked
     for (var i = 2; i < ductcables.length; i++) {
@@ -382,9 +382,9 @@ calcs = function(workmh, faultmh) {
     }
     // fix up the phase-to-neutral diagonals
     Zc.x[2][0] = Zc.x[0][2] = r_e
-    Zc.y[2][0] = Zc.y[0][2] = 0.0529 * math.log10(De/ac.GMRs[fidx])
-    Zc.x[Nfaulted+2][1] = Zc.x[1][Nfaulted+2] = r_e
-    Zc.y[Nfaulted+2][1] = Zc.y[1][Nfaulted+2] = 0.0529 * math.log10(De/ac.GMRs[widx])
+    Zc.y[2][0] = Zc.y[0][2] = 0.0529 * math.log10(De/ac.GMRs[widx])
+    Zc.x[Nworked+2][1] = Zc.x[1][Nworked+2] = r_e
+    Zc.y[Nworked+2][1] = Zc.y[1][Nworked+2] = 0.0529 * math.log10(De/ac.GMRs[fidx])
     
     Zc = Zc.mul(sectionLength )  // actual ohms
 
@@ -420,7 +420,10 @@ calcs = function(workmh, faultmh) {
     if (jumpershield) {
         Y = Yaddshort(Y, workNode + 2, workNode + 2 + Nc)
     }
-    for (var i = workNode + 3; i < workNode+Nc; i++) {
+
+// cut all three phases
+//    for (var i = workNode + 3; i < workNode+Nc; i++) {  // cut only one phase
+    for (var i = workNode + 2 + Nworked; i < workNode+Nc; i++) {  // cut all three phases
         Y = Yaddshort(Y, i, i + Nc)
     }
     // Add bracket grounds
@@ -431,7 +434,7 @@ calcs = function(workmh, faultmh) {
         }
     }
     // Add the jumpers across the fault
-    Y = Yaddshort(Y, toNodes[faultmh] + 1, toNodes[faultmh] + 3)
+    Y = Yaddshort(Y, toNodes[faultmh] + 1, toNodes[faultmh] + Nworked + 2)
 
     // Add the source impedance
     Y = Yaddline1(Y, systemVoltage/Math.sqrt(3) / faultI, 1, 3)
@@ -454,7 +457,7 @@ calcs = function(workmh, faultmh) {
     for (i = 0; i < Nsections; i++) {
         I.setBlock([i,0], [i,Nc-1], V.getBlock([i,0],[i,Nc-1]).sub(V.getBlock([i+1,0],[i+1,Nc-1])).dot(Yc))
     }
-    return {V: V, workV: workV, I: I}
+    return {V: V, workV: workV, I: I, Zc:Zc}
 }
 
 findmax = function(x) { // maximum difference of all values
