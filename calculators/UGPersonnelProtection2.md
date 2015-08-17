@@ -246,25 +246,20 @@ Yaddline = function(Y, Zseries, from, to) {
 }
 
 Yaddshort = function(Y, i, j) {
-    var Yseries = numeric.t(1e5, 0.0)
-    Y.set([i, i], Y.get([i, i]).add(Yseries))
-    Y.set([j, j], Y.get([j, j]).add(Yseries))
-    Y.set([i, j], Y.get([i, j]).sub(Yseries))
-    Y.set([j, i], Y.get([j, i]).sub(Yseries))
+    var Ybig = 1e5
+    Y.x[i][i] = Y.x[j][j] = Y.x[i][i] + Ybig
+    Y.x[i][j] = Y.x[j][i] = Y.x[i][j] - Ybig
     return Y;
 }
 
 Yaddline1 = function(Y, X, i, j) {
-    var Yseries = numeric.t(0, -1/X)
-    Y.set([i, i], Y.get([i, i]).add(Yseries))
-    Y.set([j, j], Y.get([j, j]).add(Yseries))
-    Y.set([i, j], Y.get([i, j]).sub(Yseries))
-    Y.set([j, i], Y.get([j, i]).sub(Yseries))
+    Y.y[i][i] = Y.y[j][j] = Y.y[i][i] - 1/X
+    Y.y[i][j] = Y.y[j][i] = Y.y[i][j] + 1/X
     return Y;
 }
 
 Yaddshunt = function(Y, Rshunt, i) {
-    Y.set([i, i], Y.get([i, i]).add(numeric.t(1/Rshunt, 0.0)))
+    Y.x[i][i] = Y.x[i][i] + 1/Rshunt
     return Y;
 }
 
@@ -441,8 +436,8 @@ calcs = function(workmh, faultmh) {
 
     // make I
     Isrc = numeric.t(numeric.rep([Nc*Nbus], 0), numeric.rep([Nc*Nbus], 0))
-    Isrc.y[1] =  1000*faultI
-    Isrc.y[3] = -1000*faultI
+    Isrc.y[1] = -1000*faultI
+    Isrc.y[3] =  1000*faultI
 
     // Find the voltages:
     V = Y.inv().dot(Isrc)
@@ -457,7 +452,7 @@ calcs = function(workmh, faultmh) {
     for (i = 0; i < Nsections; i++) {
         I.setBlock([i,0], [i,Nc-1], V.getBlock([i,0],[i,Nc-1]).sub(V.getBlock([i+1,0],[i+1,Nc-1])).dot(Yc))
     }
-    return {V: V, workV: workV, I: I, Zc:Zc}
+    return {V: V, workV: workV, I: I, Zc:Zc, Y:Y}
 }
 
 findmax = function(x) { // maximum difference of all values
@@ -522,7 +517,7 @@ colnames = _.map(_.range(a.V.x.length), function(x){return "m"+x})
 rownames = _.flatten(["Worked phase", "Faulted phase", rep("Worked shield",Nworked), rep("Faulted shield",Nfaulted), rep("Other",Nextras)])
 Vout = _.map(_.range(a.V.x[0].length), function(j) {return _.extend({row: rownames[j]}, _.object(colnames, _.map(_.range(a.V.x.length), function(i) {
     return math.round(Math.sqrt(sq(a.V.x[i][j]) + sq(a.V.y[i][j]))) + "∠" +
-           math.round(Math.atan2(a.V.x[i][j], a.V.y[i][j]) * 180 / Math.PI) + "°"; 
+           math.round(Math.atan2(a.V.y[i][j], a.V.x[i][j]) * 180 / Math.PI) + "°"; 
 })))})
 colnamesV = _.map(_.range(workmh+1).concat(_.range(workmh,Nsections)), function(x){return "m"+x})
 colnamesV[0] = "sub"; colnamesV[workmh] += "a"; colnamesV[workmh+1] += "b"
@@ -530,7 +525,7 @@ $("#Vout").html(Emblem.compile(Handlebars, tabletemplate)({colnames: colnamesV, 
 
 Iout = _.map(_.range(Nc), function(j) {return _.extend({row: rownames[j]}, _.object(colnames, _.map(_.range(workmh).concat(_.range(workmh+1,Nsections)), function(i) {
     return math.round(Math.sqrt(sq(a.I.x[i][j]) + sq(a.I.y[i][j]))) + "∠" +
-           math.round(Math.atan2(a.I.x[i][j], a.I.y[i][j]) * 180 / Math.PI) + "°"; 
+           math.round(Math.atan2(a.I.y[i][j], a.I.x[i][j]) * 180 / Math.PI) + "°"; 
 })))})
 colnamesI = _.map(_.range(Nsections-1), function(x){return "m"+x+"-m"+(x+1)})
 colnamesI[0] = "sub-m1"
