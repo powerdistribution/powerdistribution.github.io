@@ -46,7 +46,7 @@ html:
             step: 1
             min: 0.0
             bs3caption : Line length, kfeet
-            value: 5.28
+            value: 10
   - type: div
     class: row
     html:
@@ -58,7 +58,7 @@ html:
             step: 0.1
             min: 0.0
             bs3caption : Sub ground resistance, ohms
-            value: 0.5
+            value: 0.3
       - type: div
         class: col-md-4
         html:
@@ -76,7 +76,7 @@ html:
             step: 5
             min: 0.0
             bs3caption : Manhole ground resistance, ohms
-            value: 10.0
+            value: 5
   - type: div
     class: row
     html:
@@ -88,7 +88,7 @@ html:
             step: 1
             min: 0.0
             bs3caption : Duct spacing, in
-            value: 7.0
+            value: 8.0
       - type: div
         class: col-md-4
         html:
@@ -99,12 +99,12 @@ html:
 ```
 
 ```yaml name=ac
-name: ["250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
-R:    [0.0498,0.0254,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0,0,0]
-GMR:  [0.21,0.297,0.216,0.305,0.435,0.216,0.305,0.435,0.216,0.305,0.435,0,0,0]
-Rs:   [0.1699,0.1295,0.0435, 0.0229, 0.0132, 0.087, 0.0458, 0.0264, 0.174, 0.0916, 0.0528,0.102,0.0435,0.0229]
-GMRs: [0.3975,0.5795,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.139,0.216,0.305]
-n:    [1,1,3,3,3,3,3,3,3,3,3,0,0,0]
+name: ["1/0 Al EPR", "250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
+R:    [0.168, 0.0498,0.0254,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0,0,0]
+GMR:  [0.139, 0.21,0.297,0.216,0.305,0.435,0.216,0.305,0.435,0.216,0.305,0.435,0,0,0]
+Rs:   [0.136, 0.1699,0.1295,0.0435, 0.0229, 0.0132, 0.087, 0.0458, 0.0264, 0.174, 0.0916, 0.0528,0.102,0.0435,0.0229]
+GMRs: [0.405, 0.3975,0.5795,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.139,0.216,0.305]
+n:    [3,     1,1,3,3,3,3,3,3,3,3,3,0,0,0]
 ```
 
 ```text name=z  script=eval
@@ -146,14 +146,14 @@ table
         input type="checkbox" name="junk" checked="checked" disabled="disabled" readonly="readonly"
       each g
         td
-          input type="checkbox" name=this checked="checked"
+          input type="checkbox" name=this  checked=checked
     tr#bondrow
       td Bonds
       td
         input type="checkbox" name="junk" checked="checked" disabled="disabled" readonly="readonly"
       each b
         td
-          input type="checkbox" name=this checked="checked"
+          input type="checkbox" name=this checked=checked
     tr#bracketrow
       td Bracket grounds
       each bg
@@ -163,8 +163,8 @@ table
 ```
 
 ```yaml name=duct
-worked: [ "250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield"]
-other: ["empty", "250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
+worked: ["1/0 Al EPR", "250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield"]
+other: ["empty", "1/0 Al EPR", "250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
 ```
 
 ```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)(duct))})"
@@ -246,25 +246,20 @@ Yaddline = function(Y, Zseries, from, to) {
 }
 
 Yaddshort = function(Y, i, j) {
-    var Yseries = numeric.t(1e5, 0.0)
-    Y.set([i, i], Y.get([i, i]).add(Yseries))
-    Y.set([j, j], Y.get([j, j]).add(Yseries))
-    Y.set([i, j], Y.get([i, j]).sub(Yseries))
-    Y.set([j, i], Y.get([j, i]).sub(Yseries))
+    var Ybig = 1e5
+    Y.x[i][i] = Y.x[j][j] = Y.x[i][i] + Ybig
+    Y.x[i][j] = Y.x[j][i] = Y.x[i][j] - Ybig
     return Y;
 }
 
 Yaddline1 = function(Y, X, i, j) {
-    var Yseries = numeric.t(0, -1/X)
-    Y.set([i, i], Y.get([i, i]).add(Yseries))
-    Y.set([j, j], Y.get([j, j]).add(Yseries))
-    Y.set([i, j], Y.get([i, j]).sub(Yseries))
-    Y.set([j, i], Y.get([j, i]).sub(Yseries))
+    Y.y[i][i] = Y.y[j][j] = Y.y[i][i] - 1/X
+    Y.y[i][j] = Y.y[j][i] = Y.y[i][j] + 1/X
     return Y;
 }
 
 Yaddshunt = function(Y, Rshunt, i) {
-    Y.set([i, i], Y.get([i, i]).add(numeric.t(1/Rshunt, 0.0)))
+    Y.x[i][i] = Y.x[i][i] + 1/Rshunt
     return Y;
 }
 
@@ -323,19 +318,19 @@ calcs = function(workmh, faultmh) {
     // Fill in an array of distances
     x = numeric.rep([Nc], 0.0)
     y = numeric.rep([Nc], 0.0)
-    // Duct position 1 extra shields
-    if (Nfaulted > 1) {
-        d = ac.GMRs[fidx] / math.sqrt(2)
+    // Duct position 1 extra shields, worked cables
+    if (Nworked > 1) {
+        d = ac.GMRs[widx] * math.sqrt(2) * 2
         x[3] =  d; y[3] = d
         x[4] = -d; y[4] = d
     }
-    // Duct position 2
-    x[1] = x[2+Nfaulted] = ductSpacing
+    // Duct position 2, faulted cables
+    x[1] = x[2+Nworked] = ductSpacing
     // Duct position 2 extra shields
-    if (Nworked > 1) {
-        d = ac.GMRs[widx] / math.sqrt(2)
-        x[3+Nfaulted] =  d + ductSpacing; y[3+Nfaulted] = d
-        x[4+Nfaulted] = -d + ductSpacing; y[4+Nfaulted] = d
+    if (Nfaulted > 1) {
+        d = ac.GMRs[fidx] * math.sqrt(2) * 2
+        x[3+Nworked] =  d + ductSpacing; y[3+Nworked] = d
+        x[4+Nworked] = -d + ductSpacing; y[4+Nworked] = d
     }
     pos = 2 + Nfaulted + Nworked
     for (var i = 2; i < ductcables.length; i++) {
@@ -382,9 +377,9 @@ calcs = function(workmh, faultmh) {
     }
     // fix up the phase-to-neutral diagonals
     Zc.x[2][0] = Zc.x[0][2] = r_e
-    Zc.y[2][0] = Zc.y[0][2] = 0.0529 * math.log10(De/ac.GMRs[fidx])
-    Zc.x[Nfaulted+2][1] = Zc.x[1][Nfaulted+2] = r_e
-    Zc.y[Nfaulted+2][1] = Zc.y[1][Nfaulted+2] = 0.0529 * math.log10(De/ac.GMRs[widx])
+    Zc.y[2][0] = Zc.y[0][2] = 0.0529 * math.log10(De/ac.GMRs[widx])
+    Zc.x[Nworked+2][1] = Zc.x[1][Nworked+2] = r_e
+    Zc.y[Nworked+2][1] = Zc.y[1][Nworked+2] = 0.0529 * math.log10(De/ac.GMRs[fidx])
     
     Zc = Zc.mul(sectionLength )  // actual ohms
 
@@ -420,7 +415,10 @@ calcs = function(workmh, faultmh) {
     if (jumpershield) {
         Y = Yaddshort(Y, workNode + 2, workNode + 2 + Nc)
     }
-    for (var i = workNode + 3; i < workNode+Nc; i++) {
+
+// cut all three phases
+//    for (var i = workNode + 3; i < workNode+Nc; i++) {  // cut only one phase
+    for (var i = workNode + 2 + Nworked; i < workNode+Nc; i++) {  // cut all three phases
         Y = Yaddshort(Y, i, i + Nc)
     }
     // Add bracket grounds
@@ -431,15 +429,15 @@ calcs = function(workmh, faultmh) {
         }
     }
     // Add the jumpers across the fault
-    Y = Yaddshort(Y, toNodes[faultmh] + 1, toNodes[faultmh] + 3)
+    Y = Yaddshort(Y, toNodes[faultmh] + 1, toNodes[faultmh] + Nworked + 2)
 
     // Add the source impedance
     Y = Yaddline1(Y, systemVoltage/Math.sqrt(3) / faultI, 1, 3)
 
     // make I
     Isrc = numeric.t(numeric.rep([Nc*Nbus], 0), numeric.rep([Nc*Nbus], 0))
-    Isrc.y[1] =  1000*faultI
-    Isrc.y[3] = -1000*faultI
+    Isrc.y[1] = -1000*faultI
+    Isrc.y[3] =  1000*faultI
 
     // Find the voltages:
     V = Y.inv().dot(Isrc)
@@ -454,7 +452,7 @@ calcs = function(workmh, faultmh) {
     for (i = 0; i < Nsections; i++) {
         I.setBlock([i,0], [i,Nc-1], V.getBlock([i,0],[i,Nc-1]).sub(V.getBlock([i+1,0],[i+1,Nc-1])).dot(Yc))
     }
-    return {V: V, workV: workV, I: I}
+    return {V: V, workV: workV, I: I, Zc:Zc, Y:Y}
 }
 
 findmax = function(x) { // maximum difference of all values
@@ -519,7 +517,7 @@ colnames = _.map(_.range(a.V.x.length), function(x){return "m"+x})
 rownames = _.flatten(["Worked phase", "Faulted phase", rep("Worked shield",Nworked), rep("Faulted shield",Nfaulted), rep("Other",Nextras)])
 Vout = _.map(_.range(a.V.x[0].length), function(j) {return _.extend({row: rownames[j]}, _.object(colnames, _.map(_.range(a.V.x.length), function(i) {
     return math.round(Math.sqrt(sq(a.V.x[i][j]) + sq(a.V.y[i][j]))) + "∠" +
-           math.round(Math.atan2(a.V.x[i][j], a.V.y[i][j]) * 180 / Math.PI) + "°"; 
+           math.round(Math.atan2(a.V.y[i][j], a.V.x[i][j]) * 180 / Math.PI) + "°"; 
 })))})
 colnamesV = _.map(_.range(workmh+1).concat(_.range(workmh,Nsections)), function(x){return "m"+x})
 colnamesV[0] = "sub"; colnamesV[workmh] += "a"; colnamesV[workmh+1] += "b"
@@ -527,7 +525,7 @@ $("#Vout").html(Emblem.compile(Handlebars, tabletemplate)({colnames: colnamesV, 
 
 Iout = _.map(_.range(Nc), function(j) {return _.extend({row: rownames[j]}, _.object(colnames, _.map(_.range(workmh).concat(_.range(workmh+1,Nsections)), function(i) {
     return math.round(Math.sqrt(sq(a.I.x[i][j]) + sq(a.I.y[i][j]))) + "∠" +
-           math.round(Math.atan2(a.I.x[i][j], a.I.y[i][j]) * 180 / Math.PI) + "°"; 
+           math.round(Math.atan2(a.I.y[i][j], a.I.x[i][j]) * 180 / Math.PI) + "°"; 
 })))})
 colnamesI = _.map(_.range(Nsections-1), function(x){return "m"+x+"-m"+(x+1)})
 colnamesI[0] = "sub-m1"
@@ -661,7 +659,8 @@ and isolation/insulation. Touch voltages involving the shields can be remedied
 by bonding the shields together and then bonding these to the manhole rebar and
 any local ground rod. An equipotential ground mat can also be used as an
 alternative to attaching to the rebar. Work practices for bonding the shields
-are feasible, but keeping the phase conductor bonded would be quite challenging.
+are feasible, but work practices for keeping the phase conductor bonded would be
+quite challenging.
 
 Using isolation or insulation is another option that can be used. Insulation can
 include boots, gloves, and rubber mats. Using isolation or insulation is
