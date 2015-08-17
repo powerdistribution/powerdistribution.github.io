@@ -320,7 +320,7 @@ calcs = function(workmh, faultmh) {
     y = numeric.rep([Nc], 0.0)
     // Duct position 1 extra shields, worked cables
     if (Nworked > 1) {
-        d = ac.GMRs[widx] * math.sqrt(2) * 2
+        d = ac.GMRs[widx] / math.sqrt(2) * 2 * 1.1  // the 1.1 factor is to adjust for the outside cable dia vs. dia of shield
         x[3] =  d; y[3] = d
         x[4] = -d; y[4] = d
     }
@@ -328,7 +328,7 @@ calcs = function(workmh, faultmh) {
     x[1] = x[2+Nworked] = ductSpacing
     // Duct position 2 extra shields
     if (Nfaulted > 1) {
-        d = ac.GMRs[fidx] * math.sqrt(2) * 2
+        d = ac.GMRs[fidx] / math.sqrt(2) * 2 * 1.1
         x[3+Nworked] =  d + ductSpacing; y[3+Nworked] = d
         x[4+Nworked] = -d + ductSpacing; y[4+Nworked] = d
     }
