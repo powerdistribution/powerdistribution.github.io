@@ -5,6 +5,10 @@ title:  Distribution apps and calculators
 
 # Distribution apps and calculators
 
+These are live apps that update in your browser. They cover a variety of
+distribution applications. Some are designed mainly to be instructional. Others,
+like most of the protection apps, are useful for real enginnering.
+
 ## Protection
 
 - [Conductor slapping](mdpad.html?conductor_slapping.md)
@@ -22,8 +26,10 @@ title:  Distribution apps and calculators
 
 ## Grounding, coupling, and faults
 
-- [Coupling to telephone circuits](mdpad.html?phone_coupling.md)
+- [Personnel protection on underground systems](mdpad_emblem.html?UGPersonnelProtection.md)
 - [Neutral-to-earth voltages (stray voltage)](mdpad.html?StrayVoltage.md)
+- [Circulating currents on underground cables](mdpad.html?CableCirculatingCurrents.md)
+- [Coupling to telephone circuits](mdpad.html?phone_coupling.md)
 - [Fault simulator with various transformer connections](mdpad.html?fault_simulator.md)
 
 ## Transients
@@ -38,7 +44,7 @@ Right now, many of these are beta quality. **Use caution! No warranty!**
 These apps work best with a recent version of Firefox or Chrome. Most
 of them will work with version 11 of Internet Explorer, albeit with a
 few quirks; only a few of the apps work with Internet Explorer 9 or
-earlier versions. Most apps should work on modern phones.
+earlier versions. Most apps should work on modern tablets and phones.
 
 To report on bugs, suggest features, or propose additional
 calculators, please file an issue
