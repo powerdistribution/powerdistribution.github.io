@@ -104,6 +104,7 @@ R:    [0.0498,0.0254,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0.0435,0.0229,0.0
 GMR:  [0.21,0.297,0.216,0.305,0.435,0.216,0.305,0.435,0.216,0.305,0.435,0,0,0]
 Rs:   [0.1699,0.1295,0.0435, 0.0229, 0.0132, 0.087, 0.0458, 0.0264, 0.174, 0.0916, 0.0528,0.102,0.0435,0.0229]
 GMRs: [0.3975,0.5795,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.5075,0.6125,0.7825,0.139,0.216,0.305]
+Xc:   [21648, 16368, 27135, 21056, 15900, 27135, 21056, 15900, 27135, 21056, 15900, 0, 0, 0]
 n:    [1,1,3,3,3,3,3,3,3,3,3,0,0,0]
 ```
 
@@ -126,7 +127,7 @@ table
       td 
       td Sub
       each r1
-        td = this
+        td = ths
   tbody
     tr#workerrow
       td Worker location
@@ -259,6 +260,14 @@ YaddlineX = function(Y, X, i, j) {
     Y.y[j][j] = Y.y[j][j] - 1/X
     Y.y[i][j] = Y.y[i][j] + 1/X
     Y.y[j][i] = Y.y[j][i] + 1/X
+    return Y;
+}
+
+YaddlineR = function(Y, R, i, j) {
+    Y.x[i][i] = Y.x[i][i] + 1/R
+    Y.x[j][j] = Y.x[j][j] + 1/R
+    Y.x[i][j] = Y.x[i][j] - 1/R
+    Y.x[j][i] = Y.x[j][i] - 1/R
     return Y;
 }
 
@@ -436,6 +445,15 @@ calcs = function(workmh, faultmh) {
 
     // Add the source impedance
     Y = YaddlineX(Y, systemVoltage/Math.sqrt(3) / faultI, 1, 3)
+
+    // Add the cable capacitance to the shield on the worked phase; split 1/2 on each end of a section
+    for (var i = 0; i < toNodes.length; i++) {
+        Y = YaddlineX(Y, -ac.Xc[widx]*(Nsections-1)*2/sectionLength, toNodes[i],   toNodes[i] + 2)
+        Y = YaddlineX(Y, -ac.Xc[widx]*(Nsections-1)*2/sectionLength, fromNodes[i], fromNodes[i] + 2)
+    }
+    // Add a 1000-ohm resistance of a worker across phases and from a phase to the shield
+    Y = YaddlineR(Y, 1000, workNode, workNode + Nc)
+    Y = YaddlineR(Y, 1000, workNode, workNode + 2)
 
     // make I
     Isrc = numeric.t(numeric.rep([Nc*Nbus], 0), numeric.rep([Nc*Nbus], 0))
@@ -634,8 +652,7 @@ Defaults and assumptions include:
   the source side.
 
 * "Bracket grounds" are locations where the worked phase is bonded to the worked
-  shield. For now, there must be at least one bracket ground on each side of the
-  work site.
+  shield. 
 
 * "Jumper shield at work site" means that the shield on the worked cable is
   jumpered across the cut cable.
@@ -646,6 +663,17 @@ Defaults and assumptions include:
 * The earth resistivity has a small effect in the app because the substation and
   manhole ground resistances are specified seperately. These resistances are
   directly influenced by the earth resistivity.
+
+* The cable capacitance on the worked cable is modeled, so you can model
+  floating phases. The resistance of the worker is included in the model. The
+  worker is modeled as a 1000-ohm resistance. One 1000-ohm resistor is placed
+  across the cut phases, and another is placed between the phase and the shield
+  on the cut cable on the source side. These resistances are only important for
+  the floating phase case, because in this case, the capacitance offers a weak
+  driving voltage. 
+
+* The cables are 15-kV cables. The EPR cables have 220-mil insulation. The main
+  effect of the insulation is on the cable capacitance.
 
 * For impedance models, this app uses the equations outlined in section 4.4.2.
   The frequency is fixed at 60 Hz. This app only models the voltage between
@@ -671,10 +699,10 @@ Using isolation or insulation is another option that can be used. Insulation can
 include boots, gloves, and rubber mats. Using isolation or insulation is
 particularly appropriate for phase conductors. Floating the phases is a good
 option in many cases. The voltage built up in this case is a function of the
-capacitance of the cables and the length of cable being floated. *Floating the
-phases is not currently modeled.* An alternative to floating the phases is to
-keep an insulated cap on the phase, or use insulated gloves when working with
-the phase. 
+capacitance of the cables and the length of cable being floated. Floating the
+phases is most effective with the shields/neutrals jumpered at the work site. An
+alternative to floating the phases is to keep an insulated cap to cover the
+phase, or use insulated gloves when working with the phase.
 
 The results on this page can help determine the level of insulation needed. They
 also show which touch voltages are the highest. The phase-to-phase touch voltage
