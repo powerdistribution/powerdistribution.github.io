@@ -664,13 +664,16 @@ Defaults and assumptions include:
   manhole ground resistances are specified seperately. These resistances are
   directly influenced by the earth resistivity.
 
-* The cable capacitance on the worked cable is modeled, so you can model
-  floating phases. The resistance of the worker is included in the model. The
-  worker is modeled as a 1000-ohm resistance. One 1000-ohm resistor is placed
-  across the cut phases, and another is placed between the phase and the shield
-  on the cut cable on the source side. These resistances are only important for
-  the floating phase case, because in this case, the capacitance offers a weak
-  driving voltage. 
+* You can model floating phases as a protection option. To float the phase of
+  the entire length of cable, remove all bracket grounds. Voltage still couples
+  to the worked cable's phase through the cable's capacitance.
+
+* The resistance of the worker is included in the model. The worker is modeled
+  as a 1000-ohm resistance. One 1000-ohm resistor is placed across the cut
+  phases, and another is placed between the phase and the shield on the cut
+  cable on the source side. These resistances are only important for the
+  floating phase case, because in this case, the capacitive coupling offers a
+  weak driving voltage.
 
 * The cables are 15-kV cables. The EPR cables have 220-mil insulation. The main
   effect of the insulation is on the cable capacitance.
