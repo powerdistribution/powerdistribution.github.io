@@ -418,12 +418,11 @@ calcs = function(workmh, faultmh) {
     // Add the jumpers across the work site
     Y = Yaddshort(Y, workNode + 1, workNode + 1 + Nc) // Faulted phase
     if (jumpershield) {
-        Y = Yaddshort(Y, workNode + 2, workNode + 2 + Nc)
+        for (var i = 0; i < Nworked; i++) {
+            Y = Yaddshort(Y, workNode + 2 + i, workNode + 2 + i + Nc)
+        }
     }
-
-// cut all three phases
-//    for (var i = workNode + 3; i < workNode+Nc; i++) {  // cut only one phase
-    for (var i = workNode + 2 + Nworked; i < workNode+Nc; i++) {  // cut all three phases
+    for (var i = workNode + 2 + Nworked; i < workNode+Nc; i++) {  // jumper the faulted phase shields
         Y = Yaddshort(Y, i, i + Nc)
     }
     // Add bracket grounds
@@ -481,6 +480,8 @@ txt = ""
 txt += "Fault current = " + math.format(a.I.abs().x[0][1]) + " A\n"
 txt += "Maximum touch voltage involving phases       = " + math.format(findmax(a.workV)) + " V\n"
 txt += "Maximum touch voltage just involving shields = " + math.format(findmax(a.workV.getBlock([0,1],[1,Nc-2]))) + " V\n"
+txt += "Maximum touch voltage on the source side     = " + math.format(findmax(a.workV.getBlock([0,0],[0,Nc-2]))) + " V (" + math.format(findmax(a.workV.getBlock([0,1],[0,Nc-2]))) + " V without the phase)\n"
+txt += "Maximum touch voltage on the load side       = " + math.format(findmax(a.workV.getBlock([1,0],[1,Nc-2]))) + " V (" + math.format(findmax(a.workV.getBlock([1,1],[1,Nc-2]))) + " V without the phase)\n"
 txt += "Maximum shield voltage to remote earth       = " + math.format(_.max(_.flatten(a.workV.getBlock([0,1],[1,Nc-2]).abs().x))) + " V"
 $("#outsummary").html(converter.makeHtml(txt));
 ```
