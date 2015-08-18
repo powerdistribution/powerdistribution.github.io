@@ -470,7 +470,7 @@ findmax = function(x) { // maximum difference of all values
             }
         }
     }
-    return res
+    return ("     " + String(Math.round(res))).slice(-5)
 }
 
 a = calcs(workmh, faultmh)
