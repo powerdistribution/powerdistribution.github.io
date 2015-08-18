@@ -133,27 +133,27 @@ table
       td
       each r2
         td
-          input type="radio" name="wloc" value=this checked=checked
+          input type="radio" name="wloc" value=this checked="checked"
     tr#faultrow
       td Fault location
       td
       each r1
         td
-          input type="radio" name="floc" value=this checked=checked
+          input type="radio" name="floc" value=this checked="checked"
     tr#groundrow
       td Grounds
       td
         input type="checkbox" name="junk" checked="checked" disabled="disabled" readonly="readonly"
       each g
         td
-          input type="checkbox" name=this  checked=checked
+          input type="checkbox" name=this  checked="checked"
     tr#bondrow
       td Bonds
       td
         input type="checkbox" name="junk" checked="checked" disabled="disabled" readonly="readonly"
       each b
         td
-          input type="checkbox" name=this checked=checked
+          input type="checkbox" name=this checked="checked"
     tr#bracketrow
       td Bracket grounds
       each bg
@@ -247,21 +247,26 @@ Yaddline = function(Y, Zseries, from, to) {
 
 Yaddshort = function(Y, i, j) {
     var Ybig = 1e5
-    Y.x[i][i] = Y.x[j][j] = Y.x[i][i] + Ybig
-    Y.x[i][j] = Y.x[j][i] = Y.x[i][j] - Ybig
+    Y.x[i][i] = Y.x[i][i] + Ybig
+    Y.x[j][j] = Y.x[j][j] + Ybig
+    Y.x[i][j] = Y.x[i][j] - Ybig
+    Y.x[j][i] = Y.x[j][i] - Ybig
     return Y;
 }
 
-Yaddline1 = function(Y, X, i, j) {
-    Y.y[i][i] = Y.y[j][j] = Y.y[i][i] - 1/X
-    Y.y[i][j] = Y.y[j][i] = Y.y[i][j] + 1/X
+YaddlineX = function(Y, X, i, j) {
+    Y.y[i][i] = Y.y[i][i] - 1/X
+    Y.y[j][j] = Y.y[j][j] - 1/X
+    Y.y[i][j] = Y.y[i][j] + 1/X
+    Y.y[j][i] = Y.y[j][i] + 1/X
     return Y;
 }
 
-Yaddshunt = function(Y, Rshunt, i) {
+YaddshuntR = function(Y, Rshunt, i) {
     Y.x[i][i] = Y.x[i][i] + 1/Rshunt
     return Y;
 }
+
 
 ductcables = $("#ducttable select").map(function(){return $(this).val()}).get()
 bonds    = _.rest($("#bondrow input:checkbox").map(function(){return $(this).prop("checked")}).get())
@@ -392,11 +397,11 @@ calcs = function(workmh, faultmh) {
     // add the shunt grounds
     for (var i = 0; i < toNodes.length; i++) {
         if (grounds[i]) {
-            Y = Yaddshunt(Y,Rgrnd,toNodes[i] + 2) 
+            Y = YaddshuntR(Y,Rgrnd,toNodes[i] + 2) 
         }
     }
     // add the sub ground
-    Y = Yaddshunt(Y,Rsub,2) 
+    Y = YaddshuntR(Y,Rsub,2) 
 
     // add the sub bonds
     for (var i = 3; i < Nc; i++) {
@@ -432,7 +437,7 @@ calcs = function(workmh, faultmh) {
     Y = Yaddshort(Y, toNodes[faultmh] + 1, toNodes[faultmh] + Nworked + 2)
 
     // Add the source impedance
-    Y = Yaddline1(Y, systemVoltage/Math.sqrt(3) / faultI, 1, 3)
+    Y = YaddlineX(Y, systemVoltage/Math.sqrt(3) / faultI, 1, 3)
 
     // make I
     Isrc = numeric.t(numeric.rep([Nc*Nbus], 0), numeric.rep([Nc*Nbus], 0))
