@@ -471,18 +471,18 @@ findmax = function(x) { // maximum difference of all values
             }
         }
     }
-    return res
+    return ("     " + String(Math.round(res))).slice(-5)
 }
 
 a = calcs(workmh, faultmh)
 
 txt = ""
-txt += "Fault current = " + math.format(a.I.abs().x[0][1]) + " A\n"
-txt += "Maximum touch voltage involving phases       = " + math.format(findmax(a.workV)) + " V\n"
-txt += "Maximum touch voltage just involving shields = " + math.format(findmax(a.workV.getBlock([0,1],[1,Nc-2]))) + " V\n"
-txt += "Maximum touch voltage on the source side     = " + math.format(findmax(a.workV.getBlock([0,0],[0,Nc-2]))) + " V (" + math.format(findmax(a.workV.getBlock([0,1],[0,Nc-2]))) + " V without the phase)\n"
-txt += "Maximum touch voltage on the load side       = " + math.format(findmax(a.workV.getBlock([1,0],[1,Nc-2]))) + " V (" + math.format(findmax(a.workV.getBlock([1,1],[1,Nc-2]))) + " V without the phase)\n"
-txt += "Maximum shield voltage to remote earth       = " + math.format(_.max(_.flatten(a.workV.getBlock([0,1],[1,Nc-2]).abs().x))) + " V"
+txt += "Fault current = " + Math.round(a.I.abs().x[0][1]) + " A\n"
+txt += "Maximum touch voltages\n"
+txt += "  - all         = " + findmax(a.workV) + " V (" + findmax(a.workV.getBlock([0,1],[1,Nc-2])) + " V without the phases)\n"
+txt += "  - source side = " + findmax(a.workV.getBlock([0,0],[0,Nc-2])) + " V (" + findmax(a.workV.getBlock([0,1],[0,Nc-2])) + " V without the phases)\n"
+txt += "  - load side   = " + findmax(a.workV.getBlock([1,0],[1,Nc-2])) + " V (" + findmax(a.workV.getBlock([1,1],[1,Nc-2])) + " V without the phases)\n"
+txt += "Maximum shield voltage to remote earth = " + Math.round(_.max(_.flatten(a.workV.getBlock([0,1],[1,Nc-2]).abs().x))) + " V"
 $("#outsummary").html(converter.makeHtml(txt));
 ```
 
