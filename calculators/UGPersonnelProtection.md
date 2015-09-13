@@ -8,95 +8,88 @@ cable. This expands on material in Section 14.6.
 
 <br/>
 
+<style>
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 999px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.btn-primary {
+    background-color: #67849E;
+    background-image: none;
+    
+}
+.modal-lg {width:50em}
+</style>
+
+
 ```yaml script=scriptloader
 - lib/numeric-1.2.6.min.js
 - lib/math.min.js
 ```
 
-
-```yaml jquery=dform
-class : form
-html: 
-  - type: div
-    class: row
-    html:
-      - type: div
-        class: col-md-4
-        html:
-          - name: systemVoltage
-            type: number
-            step: 5
-            min: 0.0
-            bs3caption: System voltage, kV (L-L)
-            value: 12.47
-      - type: div
-        class: col-md-4
-        html:
-          - name: faultI
-            type: number
-            step: 1
-            min: 0.0
-            bs3caption: Available ground fault current, kA
-            value: 10.0
-      - type: div
-        class: col-md-4
-        html:
-          - name: totalLength
-            type: number
-            step: 1
-            min: 0.0
-            bs3caption : Line length, kfeet
-            value: 10
-  - type: div
-    class: row
-    html:
-      - type: div
-        class: col-md-4
-        html:
-          - name: Rsub
-            type: number
-            step: 0.1
-            min: 0.0
-            bs3caption : Sub ground resistance, ohms
-            value: 0.3
-      - type: div
-        class: col-md-4
-        html:
-          - name: rho
-            type: number
-            step: 50
-            min: 0.0
-            bs3caption : Earth resistivity, ohms
-            value: 100.0
-      - type: div
-        class: col-md-4
-        html:
-          - name: Rgrnd
-            type: number
-            step: 5
-            min: 0.0
-            bs3caption : Manhole ground resistance, ohms
-            value: 5
-  - type: div
-    class: row
-    html:
-      - type: div
-        class: col-md-4
-        html:
-          - name: ductSpacing
-            type: number
-            step: 1
-            min: 0.0
-            bs3caption : Duct spacing, in
-            value: 8.0
-      - type: div
-        class: col-md-4
-        html:
-          - name: jumpershield
-            type: checkbox
-            bs3caption: Jumper shield at work site
-            checked: false
+```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)())})"
+form.form
+  .row
+    .col-md-6
+      .form-group
+        label.control-label Name
+        .input-group
+          input.form-control#casename type="text" name="CASENAME" value="default case"
+          span.input-group-btn
+            button.btn.btn-primary type="button" data-toggle="modal" data-target="#libraryModal" Save / load ...
+  .row
+    .col-md-4
+      .form-group
+        label.control-label System voltage, kV (L-L) 
+        input.form-control#systemVoltage name="systemVoltage" type="number" step="5" min="0" value="12.47"
+    .col-md-4
+      .form-group
+        label.control-label Available ground fault current, kA
+        input.form-control#faultI name="faultI" type="number" step="1" min="0" value="10"
+    .col-md-4
+      .form-group
+        label.control-label Line length, kfeet
+        input.form-control#totalLength name="totalLength" type="number" step="1" min="0" value="5.28"
+  .row
+    .col-md-4
+      .form-group
+        label.control-label Sub ground resistance, ohms
+        input.form-control#Rsub name="Rsub" type="number" step="0.1" min="0" value="0.5"
+    .col-md-4
+      .form-group
+        label.control-label Earth resistivity, ohms
+        input.form-control#rho name="rho" type="number" step="50" min="0" value="100"
+    .col-md-4
+      .form-group
+        label.control-label Manhole ground resistance, ohms
+        input.form-control#Rgrnd name="Rgrnd" type="number" step="5" min="0" value="10"
+  .row
+    .col-md-4
+      .form-group
+        label.control-label Duct spacing, in
+        input.form-control#ductSpacing name="ductSpacing" type="number" step="1" min="0" value="7"
+    .col-md-4
+      .form-group
+        .checkbox
+          label Jumper shield at work site
+          input#jumpershield name="jumpershield" type="checkbox" checked=false
 ```
+
 
 ```yaml name=ac
 name: ["250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
@@ -120,7 +113,6 @@ return z
 
 ```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)(z))})"
 h3 Manhole information
-
 table
   thead
     tr
@@ -160,7 +152,6 @@ table
       each bg
         td
           input type="checkbox" name=this
-         
 ```
 
 ```yaml name=duct
@@ -170,7 +161,6 @@ other: ["empty", "250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EP
 
 ```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)(duct))})"
 h3 Cables in each duct
-
 table#ducttable
   tbody
     tr
@@ -212,6 +202,9 @@ table#ducttable
         select.form-control.input-sm name="d8"
           each other
             option value=this = this
+br
+button.btn.btn-primary data-toggle="modal" data-target="#cableModal"
+  | Edit cable data
 ```
 
 
@@ -224,8 +217,213 @@ $("#bracketrow input").last().prop("checked", true)
 })()
 ```
 
+<!-- LOCAL LIBRARY -->
+
+<!-- Modal -->
+
+```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)())})"
+.modal.fade#libraryModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title#myModalLabel Local library
+      .modal-body#caselist
+        ul
+          .jsblock#locallist output="markdown" run="normal"
+            pre.jsinput
+              code
+                ` if (typeof(localStorage.locallib) == "undefined") {
+                `     localStorage.locallib = JSON.stringify({});
+                ` }
+                ` var locallib = JSON.parse(localStorage.locallib)
+                ` ks = Object.keys(locallib)
+                ` for (var i = 0; i < ks.length; i++) {
+                `     var k = ks[i];
+                `     println("&lt;"+"li&gt;&lt;"+"a onclick='fillcase(JSON.parse(localStorage.locallib)[\"" + k + "\"], \"" + k + "\"); mdpad.calculate(); return false;'&gt;" + k + "&lt;/a&gt;&lt;/li&gt;")
+                ` }
+            .jsresult style="height:auto; overflow:visible;"
+        br
+      .modal-footer
+        form#local-form
+          button.btn.btn-primary#save-btn  type="button" data-toggle="tooltip" data-placement="top" title="Saves the current case to the local library" Save current case
+          span.btn.btn-primary.btn-file#import-btn
+            span Import...
+            input type="file" name="files[]"
+          button.btn.btn-primary#export-btn type="button" data-toggle="tooltip" data-placement="top" title="Export all local cases to a file" Export...
+          button.btn.btn-primary#delete-btn type="button" data-toggle="tooltip" data-placement="top" title="Delete all local cases" Delete all
+          button.btn.btn-default type="button" data-dismiss="modal" Close
+```
+
+<!-- EDITING CABLE LIBRARY -->
+
+<!-- Modal -->
+
+```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)())})"
+.modal.fade#cableModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-hidden="true" &times;
+        h4.modal-title#myModalLabel Cable data
+      .modal-body style="overflow:auto"
+        #cabletbl style="overflow:auto"
+        br
+        p
+          | `R_p` and `R_n` are the resistances of the phase and neutral in ohms/1000 feet. `GMR_p` and `GMR_n` are the GMR of the phase and neutral in inches. `Xc` is the capacitive reactance in ohms*1000 feet. `n` is the number of cables: use 1 for three-conductor cables, and 3 for single-conductor cables. Use 0 for separate neutrals run in a duct (no phases).
+        p
+          | Modify the data in the table by double-clicking (or press F2). You can add or delete rows with the context menu (right click).
+      .modal-footer
+        form#local-form
+          button.btn.btn-default type="button" data-dismiss="modal" Close
+```
+
+```yaml name="cabletableinfo"
+data: []
+colHeaders: ["Name", "R_p", "GMR_p", "R_n", "GMR_n", "Xc", "n"]
+columns: [{},{type: 'numeric', format: '0.0000'},{type: 'numeric', format: '0.0000'},{type: 'numeric', format: '0.0000'},{type: 'numeric', format: '0.0000'},{type: 'numeric'},{type: 'numeric'}]
+colWidths: [270, 80, 80, 80, 80, 80, 50]
+contextMenu: ["row_above", "row_below", "remove_row", "undo", "redo"]
+minSpareRows: 1
+height: 470
+maxRows: 18
+```
+
+
+```text name=junk script=eval
+$("#cabletbl").handsontable(cabletableinfo)
+$("#cabletbl").handsontable('loadData', _.unzip(_.values(ac)))
+fillselect = function($select, options) {
+    $select.empty()
+    _.map(options, function(x) {
+            $select.append(new Option(x, x))
+          })
+}
+$('#cableModal').on('shown.bs.modal', function() {
+    $(document).off('focusin.bs.modal');    // https://github.com/handsontable/handsontable/issues/937
+    $("#cabletbl").handsontable('render');  // https://github.com/handsontable/handsontable/issues/2779
+});
+updateductselects = function() {
+    // update the duct options
+    var cabledata = $("#cabletbl").handsontable('getData')
+    var ac = _.object(["name", "R", "GMR", "Rs", "GMRs", "Xc", "n"], _.unzip(cabledata))
+    var cablelist = []
+    for (var i = 0; i < ac.name.length; i++) {
+        if (ac.n[i] > 0) {cablelist.push(ac.name[i])}
+    }
+    var otherlist = _.without(["empty"].concat(ac.name), null)
+    var $ds = $("#ducttable select")
+    var oldductcables = ductcables
+    fillselect($ds.eq(0), cablelist)
+    fillselect($ds.eq(1), cablelist)
+    _.map(_.range(2,10), function(i){fillselect($ds.eq(i), otherlist)})
+    // reset cables in ducts
+    _.map(_.range(9), function(i){$ds.eq(i).val(oldductcables[i])})
+}
+$('#cableModal').on('hidden.bs.modal', updateductselects);
+```
 
 <h2>Results</h2>
+
+```js
+function setchecks($i, checks, offset) {
+    _.map(_.range(0, checks.length), function(x){$i.eq(x+offset).prop("checked", checks[x])})
+}
+if (typeof(firstrun) == "undefined") {
+    fillcase = function(x, name) {
+        // fill in the input tables with the case for object x
+        $("#casename").val(name)
+        $("#systemVoltage").val(x.systemVoltage)
+        $("#faultI").val(x.faultI)
+        $("#totalLength").val(x.totalLength)
+        $("#Rsub").val(x.Rsub)
+        $("#rho").val(x.rho)
+        $("#Rgrnd").val(x.Rgrnd)
+        $("#ductSpacing").val(x.ductSpacing)
+        $("#jumpershield").prop("checked", x.jumpershield)
+        $("#workerrow input").eq(x.wloc-1).prop("checked", true)
+        $("#faultrow input").eq(x.floc-1).prop("checked", true)
+        setchecks($("#bondrow input"),    x.bonds, 1)
+        setchecks($("#groundrow input"),  x.grounds, 1)
+        setchecks($("#bracketrow input"), x.brackets, 0)
+        $("#cabletbl").handsontable('loadData', x.cablelibrary)
+        updateductselects()
+        $ds = $("#ducttable select")
+        _.map(_.range(0, x.ductcables.length), function(i){$ds.eq(i).val(x.ductcables[i])})
+    }
+    getcurrentcase = function() {
+        return {
+            Name:          $("#casename").val(),
+            systemVoltage: +$("#systemVoltage").val(),
+            faultI:        +$("#faultI").val(),
+            totalLength:   +$("#totalLength").val(),
+            Rsub:          +$("#Rsub").val(),
+            rho:           +$("#rho").val(),
+            Rgrnd:         +$("#Rgrnd").val(),
+            ductSpacing:   +$("#ductSpacing").val(),
+            jumpershield:  $("#jumpershield").prop("checked"),
+            wloc:          +$("input[name=wloc]:checked").val(),
+            floc:          +$("input[name=floc]:checked").val(),
+            bonds:         _.rest($("#bondrow input:checkbox").map(function(){return $(this).prop("checked")}).get()),
+            grounds:       _.rest($("#groundrow input:checkbox").map(function(){return $(this).prop("checked")}).get()),
+            brackets:      $("#bracketrow input:checkbox").map(function(){return $(this).prop("checked")}).get(),
+            ductcables:    $("#ducttable select").map(function(){return $(this).val()}).get(),
+            cablelibrary:  $("#cabletbl").handsontable('getData')
+        };
+    }
+    localsave = function() {
+        var cs = getcurrentcase();
+        var name = cs.Name;
+        delete cs.Name;
+        var locallib = JSON.parse(localStorage.locallib);
+        locallib[name] = cs;
+        localStorage.locallib = JSON.stringify(locallib);
+        $("#locallist").calculate();
+    }
+    localexport = function(evt) {
+        <!-- var content = jsyaml.dump(JSON.parse(localStorage.locallib)); -->
+        var content = "# UGPersonnelProtection app input file in JSON format\n\n" + localStorage.locallib;
+        var link = document.createElement("a");
+        link.download = "UGPersonnelProtection-export.yaml";
+        link.href = "data:text/plain," + encodeURIComponent(content);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    localimport = function(evt) {
+        var file = evt.target.files[0]; // FileList object
+        var reader = new FileReader();
+        reader.onload = function(f) {
+            var locallib = JSON.parse(localStorage.locallib);
+            var filecontents = jsyaml.load(f.target.result);
+            ks = Object.keys(filecontents);
+            for (var i = 0; i < ks.length; i++) {
+                var k = ks[i];
+                locallib[k] = filecontents[k];
+            }
+            localStorage.locallib = JSON.stringify(locallib);
+            $("#local-form")[0].reset();
+            $("#locallist").calculate();
+        }
+        reader.readAsText(file);
+    }
+    localdelete = function() {
+        localStorage.locallib = JSON.stringify({});
+        $("#locallist").calculate();
+    }
+    $('#save-btn').click(localsave);
+    $('#delete-btn').click(localdelete);
+    $('#export-btn').click(localexport);
+    $('#import-btn').change(localimport);
+    firstrun = false;
+}
+```
+
+```js id=maincalc
+II = getcurrentcase()
+ac = _.object(["name", "R", "GMR", "Rs", "GMRs", "Xc", "n"], _.unzip(II.cablelibrary))
+```
+
 
 ```js
 systemVoltage = Number(systemVoltage); faultI = Number(faultI); totalLength = Number(totalLength)
@@ -282,14 +480,6 @@ grounds  = _.rest($("#groundrow input:checkbox").map(function(){return $(this).p
 brackets = $("#bracketrow input:checkbox").map(function(){return $(this).prop("checked")}).get()
 workmh = Number(wloc)
 faultmh = Number(floc) - 1
-
-// ductcables = ["500-kcmil EPR, 1/3 shield", "500-kcmil EPR, 1/3 shield", "250-kcmil Cu neutral", "empty", "empty", "empty", "empty", "empty", "empty"]
-// ductcables = ["500-kcmil PILC", "500-kcmil PILC", "empty", "empty", "empty", "empty", "empty", "empty", "empty"]
-// bonds = numeric.rep([12], true)
-// grounds = numeric.rep([12], true)
-// brackets = _.flatten([true, numeric.rep([9], false), true])
-// workmh = 3 - 1
-// faultmh = 5 - 1
 
 
 Nsections = 11  // includes the phantom section for the work location
@@ -579,56 +769,56 @@ table.table
 ```
 
 ```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)(duct))})"
-div.panel-group
-  div.panel.panel-default
-    div.panel-heading
-      div.panel-title
+.panel-group
+  .panel.panel-default
+    .panel-heading
+      .panel-title
         a.accordion-toggle data-toggle="collapse" href="#collapse1" Summary
-    div.panel-collapse.collapse.in#collapse1
-      div.panel-body
+    .panel-collapse.collapse.in#collapse1
+      .panel-body
         pre.jsplain#outsummary
-  div.panel.panel-default
-    div.panel-heading
-      div.panel-title 
+  .panel.panel-default
+    .panel-heading
+      .panel-title 
         a.accordion-toggle data-toggle="collapse" href="#collapse2a" Detailed voltages
-    div.panel-collapse.collapse#collapse2a style="overflow:auto"
-      div#Vout.panel-body 
-  div.panel.panel-default
-    div.panel-heading
-      div.panel-title 
+    .panel-collapse.collapse#collapse2a style="overflow:auto"
+      #Vout.panel-body 
+  .panel.panel-default
+    .panel-heading
+      .panel-title 
         a.accordion-toggle data-toggle="collapse" href="#collapse2b" Detailed conductor currents
-    div.panel-collapse.collapse#collapse2b style="overflow:auto"
-      div#Iout.panel-body 
-  div.panel.panel-default
-    div.panel-heading
-      div.panel-title 
+    .panel-collapse.collapse#collapse2b style="overflow:auto"
+      #Iout.panel-body 
+  .panel.panel-default
+    .panel-heading
+      .panel-title 
         a.accordion-toggle data-toggle="collapse" href="#collapse3" Variations in fault location
-    div.panel-collapse.collapse.in#collapse3
-      div.panel-body 
-        div.row
-          div.col-md-6
+    .panel-collapse.collapse.in#collapse3
+      .panel-body 
+        .row
+          .col-md-6
             div Touch voltages, V
-            div#graph1 style='width:100%; height:25em;'
-            div.text-center Faulted manhole number
-          div.col-md-6
+            #graph1 style='width:100%; height:25em;'
+            .text-center Faulted manhole number
+          .col-md-6
             div Touch voltages, not including phases, V
-            div#graph2 style='width:100%; height:25em;'
-            div.text-center Faulted manhole number
-  div.panel.panel-default
-    div.panel-heading
-      div.panel-title 
+            #graph2 style='width:100%; height:25em;'
+            .text-center Faulted manhole number
+  .panel.panel-default
+    .panel-heading
+      .panel-title 
         a.accordion-toggle data-toggle="collapse" href="#collapse4" Variations in work location
-    div.panel-collapse.collapse.in#collapse4
-      div.panel-body 
-        div.row
-          div.col-md-6
+    .panel-collapse.collapse.in#collapse4
+      .panel-body 
+        .row
+          .col-md-6
             div Touch voltages, V
-            div#graph3 style='width:100%; height:25em;'
-            div.text-center Work manhole number
-          div.col-md-6
+            #graph3 style='width:100%; height:25em;'
+            .text-center Work manhole number
+          .col-md-6
             div Touch voltages, not including phases, V
-            div#graph4 style='width:100%; height:25em;'
-            div.text-center Work manhole number
+            #graph4 style='width:100%; height:25em;'
+            .text-center Work manhole number
 ```
       
 ## Notes
@@ -688,6 +878,11 @@ Defaults and assumptions include:
   manhole floor involve a voltage divider of the voltage from the conductor to
   remote earth.
 
+* The saved cases are specific to the browser session that you are using. If you
+  switch to another browser (from Chrome to Firefox for example), your cases
+  won't be available. You will have to export from your original session then
+  import the cases into the new session to make those cases available.
+  
 ## Reducing touch potentials
 
 To protect against these touch voltages, two approaches are available: bonding
