@@ -233,14 +233,14 @@ $("#bracketrow input").last().prop("checked", true)
           .jsblock#locallist output="markdown" run="normal"
             pre.jsinput
               code
-                ` if (typeof(localStorage.locallib) == "undefined") {
-                `     localStorage.locallib = JSON.stringify({});
+                ` if (typeof(localStorage.UGPlocallib) == "undefined") {
+                `     localStorage.UGPlocallib = JSON.stringify({});
                 ` }
-                ` var locallib = JSON.parse(localStorage.locallib)
-                ` ks = Object.keys(locallib)
+                ` var UGPlocallib = JSON.parse(localStorage.UGPlocallib)
+                ` ks = Object.keys(UGPlocallib)
                 ` for (var i = 0; i < ks.length; i++) {
                 `     var k = ks[i];
-                `     println("&lt;"+"li&gt;&lt;"+"a onclick='fillcase(JSON.parse(localStorage.locallib)[\"" + k + "\"], \"" + k + "\"); mdpad.calculate(); return false;'&gt;" + k + "&lt;/a&gt;&lt;/li&gt;")
+                `     println("&lt;"+"li&gt;&lt;"+"a onclick='fillcase(JSON.parse(localStorage.UGPlocallib)[\"" + k + "\"], \"" + k + "\"); mdpad.calculate(); return false;'&gt;" + k + "&lt;/a&gt;&lt;/li&gt;")
                 ` }
             .jsresult style="height:auto; overflow:visible;"
         br
@@ -272,7 +272,7 @@ $("#bracketrow input").last().prop("checked", true)
         p
           | `R_p` and `R_n` are the resistances of the phase and neutral in ohms/1000 feet. `GMR_p` and `GMR_n` are the GMR of the phase and neutral in inches. `Xc` is the capacitive reactance in ohms*1000 feet. `n` is the number of cables: use 1 for three-conductor cables, and 3 for single-conductor cables. Use 0 for separate neutrals run in a duct (no phases).
         p
-          | Modify the data in the table by double-clicking (or press F2). You can add or delete rows with the context menu (right click).
+          | Modify the data in the table by double-clicking a cell (or press F2). You can add or delete rows with the context menu (right click).
       .modal-footer
         form#local-form
           button.btn.btn-default type="button" data-dismiss="modal" Close
@@ -375,14 +375,13 @@ if (typeof(firstrun) == "undefined") {
         var cs = getcurrentcase();
         var name = cs.Name;
         delete cs.Name;
-        var locallib = JSON.parse(localStorage.locallib);
-        locallib[name] = cs;
-        localStorage.locallib = JSON.stringify(locallib);
+        var UGPlocallib = JSON.parse(localStorage.UGPlocallib);
+        UGPlocallib[name] = cs;
+        localStorage.UGPlocallib = JSON.stringify(UGPlocallib);
         $("#locallist").calculate();
     }
     localexport = function(evt) {
-        <!-- var content = jsyaml.dump(JSON.parse(localStorage.locallib)); -->
-        var content = "# UGPersonnelProtection app input file in JSON format\n\n" + localStorage.locallib;
+        var content = "# UGPersonnelProtection app input file in JSON format\n\n" + localStorage.UGPlocallib;
         var link = document.createElement("a");
         link.download = "UGPersonnelProtection-export.yaml";
         link.href = "data:text/plain," + encodeURIComponent(content);
@@ -394,21 +393,21 @@ if (typeof(firstrun) == "undefined") {
         var file = evt.target.files[0]; // FileList object
         var reader = new FileReader();
         reader.onload = function(f) {
-            var locallib = JSON.parse(localStorage.locallib);
+            var UGPlocallib = JSON.parse(localStorage.UGPlocallib);
             var filecontents = jsyaml.load(f.target.result);
             ks = Object.keys(filecontents);
             for (var i = 0; i < ks.length; i++) {
                 var k = ks[i];
-                locallib[k] = filecontents[k];
+                UGPlocallib[k] = filecontents[k];
             }
-            localStorage.locallib = JSON.stringify(locallib);
+            localStorage.UGPlocallib = JSON.stringify(UGPlocallib);
             $("#local-form")[0].reset();
             $("#locallist").calculate();
         }
         reader.readAsText(file);
     }
     localdelete = function() {
-        localStorage.locallib = JSON.stringify({});
+        localStorage.UGPlocallib = JSON.stringify({});
         $("#locallist").calculate();
     }
     $('#save-btn').click(localsave);
