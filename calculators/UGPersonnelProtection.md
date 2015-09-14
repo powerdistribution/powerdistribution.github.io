@@ -270,7 +270,7 @@ $("#bracketrow input").last().prop("checked", true)
         #cabletbl style="overflow:auto"
         br
         p
-          | `R_p` and `R_n` are the resistances of the phase and neutral in ohms/1000 feet. `GMR_p` and `GMR_n` are the GMR of the phase and neutral in inches. `Xc` is the capacitive reactance in ohms*1000 feet. `n` is the number of cables: use 1 for three-conductor cables, and 3 for single-conductor cables. Use 0 for separate neutrals run in a duct (no phases).
+          | `R_p` and `R_n` are the resistances of the phase and neutral in ohms/1000 feet. Note that `R_n` is the total resistance, so for single-conductor cables, the value is 1/3 of the resistance of one of the cable neutrals. `GMR_p` and `GMR_n` are the GMR of the phase and neutral in inches. `Xc` is the capacitive reactance in ohms*1000 feet. `n` is the number of cables: use 1 for three-conductor cables, and 3 for single-conductor cables. Use 0 for separate neutrals run in a duct (no phases).
         p
           | Modify the data in the table by double-clicking a cell (or press F2). You can add or delete rows with the context menu (right click).
       .modal-footer
@@ -468,6 +468,19 @@ YaddlineR = function(Y, R, i, j) {
     return Y;
 }
 
+YaddlineRX = function(Y, R, X, i, j) {
+    var k = sq(R) + sq(X)
+    Y.x[i][i] = Y.x[i][i] + R/k
+    Y.x[j][j] = Y.x[j][j] + R/k
+    Y.x[i][j] = Y.x[i][j] - R/k
+    Y.x[j][i] = Y.x[j][i] - R/k
+    Y.y[i][i] = Y.y[i][i] - X/k
+    Y.y[j][j] = Y.y[j][j] - X/k
+    Y.y[i][j] = Y.y[i][j] + X/k
+    Y.y[j][i] = Y.y[j][i] + X/k
+    return Y;
+}
+
 YaddshuntR = function(Y, Rshunt, i) {
     Y.x[i][i] = Y.x[i][i] + 1/Rshunt
     return Y;
@@ -633,13 +646,14 @@ calcs = function(workmh, faultmh) {
     Y = Yaddshort(Y, toNodes[faultmh] + 1, toNodes[faultmh] + Nworked + 2)
 
     // Add the source impedance
-    Y = YaddlineX(Y, systemVoltage/Math.sqrt(3) / faultI, 1, 3)
+    Y = YaddlineRX(Y, 0.0546 * systemVoltage/Math.sqrt(3) / faultI,  0.9985 * systemVoltage/Math.sqrt(3) / faultI, 1, 3)
 
     // Add the cable capacitance to the shield on the worked phase; split 1/2 on each end of a section
     for (var i = 0; i < toNodes.length; i++) {
-        Y = YaddlineX(Y, -ac.Xc[widx]*(Nsections-1)*2/sectionLength, toNodes[i],   toNodes[i] + 2)
-        Y = YaddlineX(Y, -ac.Xc[widx]*(Nsections-1)*2/sectionLength, fromNodes[i], fromNodes[i] + 2)
+        Y = YaddlineX(Y, -ac.Xc[widx]*2/sectionLength, toNodes[i],   toNodes[i] + 2)
+        Y = YaddlineX(Y, -ac.Xc[widx]*2/sectionLength, fromNodes[i], fromNodes[i] + 2)
     }
+    
     // Add a 1000-ohm resistance of a worker across phases and from a phase to the shield
     Y = YaddlineR(Y, 1000, workNode, workNode + Nc)
     Y = YaddlineR(Y, 1000, workNode, workNode + 2)
