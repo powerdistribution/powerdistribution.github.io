@@ -119,7 +119,7 @@ table
       td 
       td Sub
       each r1
-        td = ths
+        td = this
   tbody
     tr#workerrow
       td Worker location
