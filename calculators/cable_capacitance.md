@@ -4,16 +4,19 @@
 This simple app calculates the capacitance and reactive power of
 single-conductor cables.
 
-```yaml script=scriptloader
+```yaml
+         #: script=scriptloader
 - lib/math.min.js
 ```
 
-```yaml name=c
+```yaml 
+         #: name=c
 dia: [0.355, 0.395, 0.435, 0.48, 0.53, 0.59, 0.645, 0.755, 0.885, 1.08, 1.235]
 cables: ["#2", "#1", "1/0", "2/0", "3/0", "4/0","250 kcmil", "350 kcmil", "500 kcmil", "750 kcmil", "1000 kcmil"]
 ```
 
-```yaml jquery=dform
+```yaml 
+         #: jquery=dform
 html: 
   - name: cable 
     type: select

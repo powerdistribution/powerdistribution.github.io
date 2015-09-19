@@ -72,10 +72,10 @@ function escape_html(str) {
 }
 
 var textbuffer = "";
-           
+
 function convert_yaml() {
-    var inp = $(this).find(".yamlinput, .textinput");
-    var out = $(this).find(".yamlresult, .textresult");
+    var inp = $(this).find(".yamlinput, .textinput, .embleminput");
+    var out = $(this).find(".yamlresult, .textresult, .emblemresult");
     var nam = $(this).attr("name");
     $active_element = out;
     if (typeof nam == 'undefined') nam = "Y";
@@ -85,14 +85,16 @@ function convert_yaml() {
     var first = nam + " = ";
     if ($(this).hasClass("yamlblock")) {
         var last = "(jsyaml.load(inp.text()))";
+    } else if ($(this).hasClass("emblemblock") && nam == "Y") {  // only do this if not named
+        var last = "(function (x) {$active_element.append(Emblem.compile(Handlebars, x)(window))})(inp.text())";
     } else {
         var last = "(inp.text())";
     }
     var middle = "";
     if (typeof attrjquery != 'undefined') {
-        middle = "out." + attrjquery;    
+        middle = "out." + attrjquery;
     } else if (typeof attrscript != 'undefined') {
-        middle = attrscript;    
+        middle = attrscript;
     }
     if (typeof attroutid != 'undefined') {
         out.attr("id", attroutid);
@@ -102,7 +104,7 @@ console.log(first+middle+last);
 }
 
 function convert_yamls() {
-    var code = $("#main_markdown").find(".yamlblock, .textblock").each(convert_yaml);
+    var code = $("#main_markdown").find(".yamlblock, .textblock, .emblemblock").each(convert_yaml);
 }
 
 

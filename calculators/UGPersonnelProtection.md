@@ -37,12 +37,13 @@ cable. This expands on material in Section 14.6.
 </style>
 
 
-```yaml script=scriptloader
+```yaml
+         #: script=scriptloader
 - lib/numeric-1.2.6.min.js
 - lib/math.min.js
 ```
 
-```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)())})"
+```emblem
 form.form
   .row
     .col-md-6
@@ -91,7 +92,8 @@ form.form
 ```
 
 
-```yaml name=ac
+```yaml
+         #: name=ac
 name: ["250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
 R:    [0.0498,0.0254,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0.0435,0.0229,0.0132,0,0,0]
 GMR:  [0.21,0.297,0.216,0.305,0.435,0.216,0.305,0.435,0.216,0.305,0.435,0,0,0]
@@ -111,45 +113,45 @@ return z
 })()
 ```
 
-```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)(z))})"
+```emblem
 h3 Manhole information
 table
   thead
     tr
       td 
       td Sub
-      each r1
+      each z.r1
         td = this
   tbody
     tr#workerrow
       td Worker location
       td
-      each r2
+      each z.r2
         td
           input type="radio" name="wloc" value=this checked="checked"
     tr#faultrow
       td Fault location
       td
-      each r1
+      each z.r1
         td
           input type="radio" name="floc" value=this checked="checked"
     tr#groundrow
       td Grounds
       td
         input type="checkbox" name="junk" checked="checked" disabled="disabled" readonly="readonly"
-      each g
+      each z.g
         td
           input type="checkbox" name=this checked="checked"
     tr#bondrow
       td Bonds
       td
         input type="checkbox" name="junk" checked="checked" disabled="disabled" readonly="readonly"
-      each b
+      each z.b
         td
           input type="checkbox" name=this checked="checked"
     tr#bracketrow
       td Bracket grounds
-      each bg
+      each z.bg
         td
           input type="checkbox" name=this
 ```
@@ -221,7 +223,7 @@ $("#bracketrow input").last().prop("checked", true)
 
 <!-- Modal -->
 
-```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)())})"
+```emblem
 .modal.fade#libraryModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
   .modal-dialog.modal-lg
     .modal-content
@@ -259,7 +261,7 @@ $("#bracketrow input").last().prop("checked", true)
 
 <!-- Modal -->
 
-```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)())})"
+```emblem
 .modal.fade#cableModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
   .modal-dialog.modal-lg
     .modal-content
@@ -418,7 +420,8 @@ if (typeof(firstrun) == "undefined") {
 }
 ```
 
-```js id=maincalc
+```js
+       //: id=maincalc
 II = getcurrentcase()
 ac = _.object(["name", "R", "GMR", "Rs", "GMRs", "Xc", "n"], _.unzip(II.cablelibrary))
 ```
@@ -758,7 +761,8 @@ colnamesI[0] = "sub-m1"
 $("#Iout").html(Emblem.compile(Handlebars, tabletemplate)({colnames: colnamesI, tbl: Iout}))
 ```
 
-```text name=tabletemplate
+```emblem
+           \: name=tabletemplate
 table.table 
   tr
     td
@@ -781,7 +785,7 @@ table.table
       td.text-center = m11
 ```
 
-```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)(duct))})"
+```emblem
 .panel-group
   .panel.panel-default
     .panel-heading

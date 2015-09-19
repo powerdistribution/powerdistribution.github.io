@@ -20,7 +20,7 @@ div.jsresultdone {
     /\* display:inline; \*/
 }
 
-pre.yamlinput, pre.textinput { 
+pre.yamlinput, pre.embleminput, pre.textinput { 
     background-color: white; font-family: monospace;
     margin-top:0em; margin-bottom:0em;
     display:none;
