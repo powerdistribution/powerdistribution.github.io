@@ -31,7 +31,7 @@ cable. This expands on material in Section 14.6.
 .btn-primary {
     background-color: #67849E;
     background-image: none;
-    
+
 }
 .modal-lg {width:50em}
 </style>
@@ -56,7 +56,7 @@ form.form
   .row
     .col-md-4
       .form-group
-        label.control-label System voltage, kV (L-L) 
+        label.control-label System voltage, kV (L-L)
         input.form-control#systemVoltage name="systemVoltage" type="number" step="5" min="0" value="12.47"
     .col-md-4
       .form-group
@@ -103,14 +103,12 @@ Xc:   [21648, 16368, 27135, 21056, 15900, 27135, 21056, 15900, 27135, 21056, 159
 n:    [1,1,3,3,3,3,3,3,3,3,3,0,0,0]
 ```
 
-```text name=z  script=eval
-(function () {
+```js
+       //: run="init"
 z = {r1: _.range(1,11), r2: _.range(1,10), r3: _.range(11)}
 z.g = _.map(_.range(1,11), function(x){return "g"+x})
 z.b = _.map(_.range(1,11), function(x){return "b"+x})
 z.bg = _.map(_.range(11), function(x){return "bg"+x})
-return z
-})()
 ```
 
 ```emblem
@@ -118,7 +116,7 @@ h3 Manhole information
 table
   thead
     tr
-      td 
+      td
       td Sub
       each z.r1
         td = this
@@ -161,48 +159,48 @@ worked: ["250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 s
 other: ["empty", "250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
 ```
 
-```text script="(function (x) {$active_element.append(Emblem.compile(Handlebars, x)(duct))})"
+```emblem
 h3 Cables in each duct
 table#ducttable
   tbody
     tr
       td
         select.form-control.input-sm name="d0"
-          each worked
+          each duct.worked
             option value=this = this
       td
         select.form-control.input-sm name="d1"
-          each worked
+          each duct.worked
             option value=this = this
       td
         select.form-control.input-sm name="d2"
-          each other
+          each duct.other
             option value=this = this
     tr
       td
         select.form-control.input-sm name="d3"
-          each other
+          each duct.other
             option value=this = this
       td
         select.form-control.input-sm name="d4"
-          each other
+          each duct.other
             option value=this = this
       td
         select.form-control.input-sm name="d5"
-          each other
+          each duct.other
             option value=this = this
     tr
       td
         select.form-control.input-sm name="d6"
-          each other
+          each duct.other
             option value=this = this
       td
         select.form-control.input-sm name="d7"
-          each other
+          each duct.other
             option value=this = this
       td
         select.form-control.input-sm name="d8"
-          each other
+          each duct.other
             option value=this = this
 br
 button.btn.btn-primary data-toggle="modal" data-target="#cableModal"
@@ -210,13 +208,12 @@ button.btn.btn-primary data-toggle="modal" data-target="#cableModal"
 ```
 
 
-```text name=junk script=eval
-(function () {
+```js
+       //: run="init"
 $("#workerrow input").eq(2).prop("checked", true)
 $("#faultrow input").eq(4).prop("checked", true)
 $("#bracketrow input").first().prop("checked", true)
 $("#bracketrow input").last().prop("checked", true)
-})()
 ```
 
 <!-- LOCAL LIBRARY -->
@@ -232,19 +229,7 @@ $("#bracketrow input").last().prop("checked", true)
         h4.modal-title#myModalLabel Local library
       .modal-body#caselist
         ul
-          .jsblock#locallist output="markdown" run="normal"
-            pre.jsinput
-              code
-                ` if (typeof(localStorage.UGPlocallib) == "undefined") {
-                `     localStorage.UGPlocallib = JSON.stringify({});
-                ` }
-                ` var UGPlocallib = JSON.parse(localStorage.UGPlocallib)
-                ` ks = Object.keys(UGPlocallib)
-                ` for (var i = 0; i < ks.length; i++) {
-                `     var k = ks[i];
-                `     println("&lt;"+"li&gt;&lt;"+"a onclick='fillcase(JSON.parse(localStorage.UGPlocallib)[\"" + k + "\"], \"" + k + "\"); mdpad.calculate(); return false;'&gt;" + k + "&lt;/a&gt;&lt;/li&gt;")
-                ` }
-            .jsresult style="height:auto; overflow:visible;"
+          #liblist
         br
       .modal-footer
         form#local-form
@@ -255,6 +240,20 @@ $("#bracketrow input").last().prop("checked", true)
           button.btn.btn-primary#export-btn type="button" data-toggle="tooltip" data-placement="top" title="Export all local cases to a file" Export...
           button.btn.btn-primary#delete-btn type="button" data-toggle="tooltip" data-placement="top" title="Delete all local cases" Delete all
           button.btn.btn-default type="button" data-dismiss="modal" Close
+```
+
+```js
+       //: outputid=liblist output=markdown
+
+if (typeof(localStorage.UGPlocallib) == "undefined") {
+    localStorage.UGPlocallib = JSON.stringify({});
+}
+var UGPlocallib = JSON.parse(localStorage.UGPlocallib)
+ks = Object.keys(UGPlocallib)
+for (var i = 0; i < ks.length; i++) {
+    var k = ks[i];
+    println("&lt;li&gt;&lt;a onclick='fillcase(JSON.parse(localStorage.UGPlocallib)[\"" + k + "\"], \"" + k + "\"); mdpad.calculate(); return false;'&gt;" + k + "&lt;/a&gt;&lt;/li&gt;")
+}
 ```
 
 <!-- EDITING CABLE LIBRARY -->
@@ -292,7 +291,8 @@ maxRows: 18
 ```
 
 
-```text name=junk script=eval
+```js
+       //: run="init"
 $("#cabletbl").handsontable(cabletableinfo)
 $("#cabletbl").handsontable('loadData', _.unzip(_.values(ac)))
 fillselect = function($select, options) {
@@ -328,109 +328,95 @@ $('#cableModal').on('hidden.bs.modal', updateductselects);
 <h2>Results</h2>
 
 ```js
+       //: run="init"
 function setchecks($i, checks, offset) {
     _.map(_.range(0, checks.length), function(x){$i.eq(x+offset).prop("checked", checks[x])})
 }
-if (typeof(firstrun) == "undefined") {
-    fillcase = function(x, name) {
-        // fill in the input tables with the case for object x
-        $("#casename").val(name)
-        $("#systemVoltage").val(x.systemVoltage)
-        $("#faultI").val(x.faultI)
-        $("#totalLength").val(x.totalLength)
-        $("#Rsub").val(x.Rsub)
-        $("#rho").val(x.rho)
-        $("#Rgrnd").val(x.Rgrnd)
-        $("#ductSpacing").val(x.ductSpacing)
-        $("#jumpershield").prop("checked", x.jumpershield)
-        $("#workerrow input").eq(x.wloc-1).prop("checked", true)
-        $("#faultrow input").eq(x.floc-1).prop("checked", true)
-        setchecks($("#bondrow input"),    x.bonds, 1)
-        setchecks($("#groundrow input"),  x.grounds, 1)
-        setchecks($("#bracketrow input"), x.brackets, 0)
-        $("#cabletbl").handsontable('loadData', x.cablelibrary)
-        updateductselects()
-        $ds = $("#ducttable select")
-        _.map(_.range(0, x.ductcables.length), function(i){$ds.eq(i).val(x.ductcables[i])})
-    }
-    getcurrentcase = function() {
-        return {
-            Name:          $("#casename").val(),
-            systemVoltage: +$("#systemVoltage").val(),
-            faultI:        +$("#faultI").val(),
-            totalLength:   +$("#totalLength").val(),
-            Rsub:          +$("#Rsub").val(),
-            rho:           +$("#rho").val(),
-            Rgrnd:         +$("#Rgrnd").val(),
-            ductSpacing:   +$("#ductSpacing").val(),
-            jumpershield:  $("#jumpershield").prop("checked"),
-            wloc:          +$("input[name=wloc]:checked").val(),
-            floc:          +$("input[name=floc]:checked").val(),
-            bonds:         _.rest($("#bondrow input:checkbox").map(function(){return $(this).prop("checked")}).get()),
-            grounds:       _.rest($("#groundrow input:checkbox").map(function(){return $(this).prop("checked")}).get()),
-            brackets:      $("#bracketrow input:checkbox").map(function(){return $(this).prop("checked")}).get(),
-            ductcables:    $("#ducttable select").map(function(){return $(this).val()}).get(),
-            cablelibrary:  $("#cabletbl").handsontable('getData')
-        };
-    }
-    localsave = function() {
-        var cs = getcurrentcase();
-        var name = cs.Name;
-        delete cs.Name;
-        var UGPlocallib = JSON.parse(localStorage.UGPlocallib);
-        UGPlocallib[name] = cs;
-        localStorage.UGPlocallib = JSON.stringify(UGPlocallib);
-        $("#locallist").calculate();
-    }
-    localexport = function(evt) {
-        var content = "# UGPersonnelProtection app input file in JSON format\n\n" + localStorage.UGPlocallib;
-        var link = document.createElement("a");
-        link.download = "UGPersonnelProtection-export.yaml";
-        link.href = "data:text/plain," + encodeURIComponent(content);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-    localimport = function(evt) {
-        var file = evt.target.files[0]; // FileList object
-        var reader = new FileReader();
-        reader.onload = function(f) {
-            var UGPlocallib = JSON.parse(localStorage.UGPlocallib);
-            var filecontents = jsyaml.load(f.target.result);
-            ks = Object.keys(filecontents);
-            for (var i = 0; i < ks.length; i++) {
-                var k = ks[i];
-                UGPlocallib[k] = filecontents[k];
-            }
-            localStorage.UGPlocallib = JSON.stringify(UGPlocallib);
-            $("#local-form")[0].reset();
-            $("#locallist").calculate();
-        }
-        reader.readAsText(file);
-    }
-    localdelete = function() {
-        localStorage.UGPlocallib = JSON.stringify({});
-        $("#locallist").calculate();
-    }
-    $('#save-btn').click(localsave);
-    $('#delete-btn').click(localdelete);
-    $('#export-btn').click(localexport);
-    $('#import-btn').change(localimport);
-    firstrun = false;
+
+fillcase = function(x, name) {
+    // fill in the input tables with the case for object x
+    $("#casename").val(name)
+    $("#systemVoltage").val(x.systemVoltage)
+    $("#faultI").val(x.faultI)
+    $("#totalLength").val(x.totalLength)
+    $("#Rsub").val(x.Rsub)
+    $("#rho").val(x.rho)
+    $("#Rgrnd").val(x.Rgrnd)
+    $("#ductSpacing").val(x.ductSpacing)
+    $("#jumpershield").prop("checked", x.jumpershield)
+    $("#workerrow input").eq(x.wloc-1).prop("checked", true)
+    $("#faultrow input").eq(x.floc-1).prop("checked", true)
+    setchecks($("#bondrow input"),    x.bonds, 1)
+    setchecks($("#groundrow input"),  x.grounds, 1)
+    setchecks($("#bracketrow input"), x.brackets, 0)
+    $("#cabletbl").handsontable('loadData', x.cablelibrary)
+    updateductselects()
+    $ds = $("#ducttable select")
+    _.map(_.range(0, x.ductcables.length), function(i){$ds.eq(i).val(x.ductcables[i])})
 }
-```
-
-```js
-       //: id=maincalc
-II = getcurrentcase()
-ac = _.object(["name", "R", "GMR", "Rs", "GMRs", "Xc", "n"], _.unzip(II.cablelibrary))
-```
-
-
-```js
-systemVoltage = Number(systemVoltage); faultI = Number(faultI); totalLength = Number(totalLength)
-Rsub = Number(Rsub); Rgrnd = Number(Rgrnd); rho = Number(rho)
-ductSpacing = Number(ductSpacing)
+getcurrentcase = function() {
+    return {
+        Name:          $("#casename").val(),
+        systemVoltage: +$("#systemVoltage").val(),
+        faultI:        +$("#faultI").val(),
+        totalLength:   +$("#totalLength").val(),
+        Rsub:          +$("#Rsub").val(),
+        rho:           +$("#rho").val(),
+        Rgrnd:         +$("#Rgrnd").val(),
+        ductSpacing:   +$("#ductSpacing").val(),
+        jumpershield:  $("#jumpershield").prop("checked"),
+        wloc:          +$("input[name=wloc]:checked").val(),
+        floc:          +$("input[name=floc]:checked").val(),
+        bonds:         _.rest($("#bondrow input:checkbox").map(function(){return $(this).prop("checked")}).get()),
+        grounds:       _.rest($("#groundrow input:checkbox").map(function(){return $(this).prop("checked")}).get()),
+        brackets:      $("#bracketrow input:checkbox").map(function(){return $(this).prop("checked")}).get(),
+        ductcables:    $("#ducttable select").map(function(){return $(this).val()}).get(),
+        cablelibrary:  $("#cabletbl").handsontable('getData')
+    };
+}
+localsave = function() {
+    var cs = getcurrentcase();
+    var name = cs.Name;
+    delete cs.Name;
+    var UGPlocallib = JSON.parse(localStorage.UGPlocallib);
+    UGPlocallib[name] = cs;
+    localStorage.UGPlocallib = JSON.stringify(UGPlocallib);
+    $("#locallist").calculate();
+}
+localexport = function(evt) {
+    var content = "# UGPersonnelProtection app input file in JSON format\n\n" + localStorage.UGPlocallib;
+    var link = document.createElement("a");
+    link.download = "UGPersonnelProtection-export.yaml";
+    link.href = "data:text/plain," + encodeURIComponent(content);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+localimport = function(evt) {
+    var file = evt.target.files[0]; // FileList object
+    var reader = new FileReader();
+    reader.onload = function(f) {
+        var UGPlocallib = JSON.parse(localStorage.UGPlocallib);
+        var filecontents = jsyaml.load(f.target.result);
+        ks = Object.keys(filecontents);
+        for (var i = 0; i < ks.length; i++) {
+            var k = ks[i];
+            UGPlocallib[k] = filecontents[k];
+        }
+        localStorage.UGPlocallib = JSON.stringify(UGPlocallib);
+        $("#local-form")[0].reset();
+        $("#locallist").calculate();
+    }
+    reader.readAsText(file);
+}
+localdelete = function() {
+    localStorage.UGPlocallib = JSON.stringify({});
+    $("#locallist").calculate();
+}
+$('#save-btn').click(localsave);
+$('#delete-btn').click(localdelete);
+$('#export-btn').click(localexport);
+$('#import-btn').change(localimport);
 
 sq = function(x) {
   return x * x;
@@ -489,6 +475,16 @@ YaddshuntR = function(Y, Rshunt, i) {
     return Y;
 }
 
+```
+
+```js
+II = getcurrentcase()
+ac = _.object(["name", "R", "GMR", "Rs", "GMRs", "Xc", "n"], _.unzip(II.cablelibrary))
+
+systemVoltage = Number(systemVoltage); faultI = Number(faultI); totalLength = Number(totalLength)
+Rsub = Number(Rsub); Rgrnd = Number(Rgrnd); rho = Number(rho)
+ductSpacing = Number(ductSpacing)
+
 ductcables = $("#ducttable select").map(function(){return $(this).val()}).get()
 bonds    = _.rest($("#bondrow input:checkbox").map(function(){return $(this).prop("checked")}).get())
 grounds  = _.rest($("#groundrow input:checkbox").map(function(){return $(this).prop("checked")}).get())
@@ -504,7 +500,7 @@ sectionLength = totalLength/(Nsections-1) // kfeet
 
 
 De= 25920*math.sqrt(rho/60)
-r_e= 0.01807 
+r_e= 0.01807
 
 
 //nidx = _.map(d.conductors, String).indexOf(neutral)
@@ -527,7 +523,7 @@ Nc = _.reduce(ductcables, function(num,x){return num+Number(x!="empty")}, 0) + N
 Nextras = Nc - Nfaulted - Nworked - 2
 
 calcs = function(workmh, faultmh) {
-    
+
     fromNodes = _.flatten([_.range(0, Nc*workmh, Nc), _.range((workmh+1) * Nc, Nc*(Nsections), Nc)])
     toNodes = _.flatten([_.range(Nc, Nc*(workmh+1), Nc), _.range((workmh+2) * Nc, Nc*(Nsections+1), Nc)])
     workNode = toNodes[workmh-1]
@@ -598,11 +594,11 @@ calcs = function(workmh, faultmh) {
     Zc.y[2][0] = Zc.y[0][2] = 0.0529 * math.log10(De/ac.GMRs[widx])
     Zc.x[Nworked+2][1] = Zc.x[1][Nworked+2] = r_e
     Zc.y[Nworked+2][1] = Zc.y[1][Nworked+2] = 0.0529 * math.log10(De/ac.GMRs[fidx])
-    
+
     Zc = Zc.mul(sectionLength )  // actual ohms
 
     Y = numeric.t(numeric.rep([Nc*Nbus,Nc*Nbus], 0.0), numeric.rep([Nc*Nbus,Nc*Nbus], 0.0))
-    
+
     // make the Ybus from the impedances
     for (var i = 0; i < fromNodes.length; i++) {
         Y = Yaddline(Y,Zc,from=fromNodes[i],to=toNodes[i])
@@ -610,11 +606,11 @@ calcs = function(workmh, faultmh) {
     // add the shunt grounds
     for (var i = 0; i < toNodes.length; i++) {
         if (grounds[i]) {
-            Y = YaddshuntR(Y,Rgrnd,toNodes[i] + 2) 
+            Y = YaddshuntR(Y,Rgrnd,toNodes[i] + 2)
         }
     }
     // add the sub ground
-    Y = YaddshuntR(Y,Rsub,2) 
+    Y = YaddshuntR(Y,Rsub,2)
 
     // add the sub bonds
     for (var i = 3; i < Nc; i++) {
@@ -656,7 +652,7 @@ calcs = function(workmh, faultmh) {
         Y = YaddlineX(Y, -ac.Xc[widx]*2/sectionLength, toNodes[i],   toNodes[i] + 2)
         Y = YaddlineX(Y, -ac.Xc[widx]*2/sectionLength, fromNodes[i], fromNodes[i] + 2)
     }
-    
+
     // Add a 1000-ohm resistance of a worker across phases and from a phase to the shield
     Y = YaddlineR(Y, 1000, workNode, workNode + Nc)
     Y = YaddlineR(Y, 1000, workNode, workNode + 2)
@@ -672,7 +668,7 @@ calcs = function(workmh, faultmh) {
                        [V.x[workNode+Nc]].concat(V.x.slice(workNode+2+Nc, workNode+2*Nc))],
                       [[V.y[workNode]].concat(V.y.slice(workNode+2, workNode+Nc)),
                        [V.y[workNode+Nc]].concat(V.y.slice(workNode+2+Nc, workNode+2*Nc))])   // Voltages on either side of the cut cable
-    V = numeric.t(_.chunk(V.x, Nc), _.chunk(V.y, Nc)) 
+    V = numeric.t(_.chunk(V.x, Nc), _.chunk(V.y, Nc))
     // Find the line currents:
     I = numeric.t(numeric.rep([Nsections, Nc], 0), numeric.rep([Nsections, Nc], 0))
     Yc = Zc.inv()
@@ -746,7 +742,7 @@ colnames = _.map(_.range(a.V.x.length), function(x){return "m"+x})
 rownames = _.flatten(["Worked phase", "Faulted phase", rep("Worked shield",Nworked), rep("Faulted shield",Nfaulted), rep("Other",Nextras)])
 Vout = _.map(_.range(a.V.x[0].length), function(j) {return _.extend({row: rownames[j]}, _.object(colnames, _.map(_.range(a.V.x.length), function(i) {
     return math.round(Math.sqrt(sq(a.V.x[i][j]) + sq(a.V.y[i][j]))) + "∠" +
-           math.round(Math.atan2(a.V.y[i][j], a.V.x[i][j]) * 180 / Math.PI) + "°"; 
+           math.round(Math.atan2(a.V.y[i][j], a.V.x[i][j]) * 180 / Math.PI) + "°";
 })))})
 colnamesV = _.map(_.range(workmh+1).concat(_.range(workmh,Nsections)), function(x){return "m"+x})
 colnamesV[0] = "sub"; colnamesV[workmh] += "a"; colnamesV[workmh+1] += "b"
@@ -754,7 +750,7 @@ $("#Vout").html(Emblem.compile(Handlebars, tabletemplate)({colnames: colnamesV, 
 
 Iout = _.map(_.range(Nc), function(j) {return _.extend({row: rownames[j]}, _.object(colnames, _.map(_.range(workmh).concat(_.range(workmh+1,Nsections)), function(i) {
     return math.round(Math.sqrt(sq(a.I.x[i][j]) + sq(a.I.y[i][j]))) + "∠" +
-           math.round(Math.atan2(a.I.y[i][j], a.I.x[i][j]) * 180 / Math.PI) + "°"; 
+           math.round(Math.atan2(a.I.y[i][j], a.I.x[i][j]) * 180 / Math.PI) + "°";
 })))})
 colnamesI = _.map(_.range(Nsections-1), function(x){return "m"+x+"-m"+(x+1)})
 colnamesI[0] = "sub-m1"
@@ -763,7 +759,7 @@ $("#Iout").html(Emblem.compile(Handlebars, tabletemplate)({colnames: colnamesI, 
 
 ```emblem
            \: name=tabletemplate
-table.table 
+table.table
   tr
     td
     = colnames
@@ -796,22 +792,22 @@ table.table
         pre.jsplain#outsummary
   .panel.panel-default
     .panel-heading
-      .panel-title 
+      .panel-title
         a.accordion-toggle data-toggle="collapse" href="#collapse2a" Detailed voltages
     .panel-collapse.collapse#collapse2a style="overflow:auto"
-      #Vout.panel-body 
+      #Vout.panel-body
   .panel.panel-default
     .panel-heading
-      .panel-title 
+      .panel-title
         a.accordion-toggle data-toggle="collapse" href="#collapse2b" Detailed conductor currents
     .panel-collapse.collapse#collapse2b style="overflow:auto"
-      #Iout.panel-body 
+      #Iout.panel-body
   .panel.panel-default
     .panel-heading
-      .panel-title 
+      .panel-title
         a.accordion-toggle data-toggle="collapse" href="#collapse3" Variations in fault location
     .panel-collapse.collapse.in#collapse3
-      .panel-body 
+      .panel-body
         .row
           .col-md-6
             div Touch voltages, V
@@ -823,10 +819,10 @@ table.table
             .text-center Faulted manhole number
   .panel.panel-default
     .panel-heading
-      .panel-title 
+      .panel-title
         a.accordion-toggle data-toggle="collapse" href="#collapse4" Variations in work location
     .panel-collapse.collapse.in#collapse4
-      .panel-body 
+      .panel-body
         .row
           .col-md-6
             div Touch voltages, V
@@ -837,7 +833,7 @@ table.table
             #graph4 style='width:100%; height:25em;'
             .text-center Work manhole number
 ```
-      
+
 ## Notes
 
 Defaults and assumptions include:
@@ -859,7 +855,7 @@ Defaults and assumptions include:
   the source side.
 
 * "Bracket grounds" are locations where the worked phase is bonded to the worked
-  shield. 
+  shield.
 
 * "Jumper shield at work site" means that the shield on the worked cable is
   jumpered across the cut cable.
@@ -899,7 +895,7 @@ Defaults and assumptions include:
   switch to another browser (from Chrome to Firefox for example), your cases
   won't be available. You will have to export from your original session then
   import the cases into the new session to make those cases available.
-  
+
 ## Reducing touch potentials
 
 To protect against these touch voltages, two approaches are available: bonding
@@ -954,5 +950,3 @@ scenarios, see the following references:
 * Rajotte, Y., Bergeron, R., Chalifoux, A., and Gervais, Y., "Touch Voltages on
   Underground Distribution Systems During Fault Conditions," *IEEE Transactions on
   Power Delivery*, vol. 5, no. 2, pp. 1026–33, April 1990.
-
-
