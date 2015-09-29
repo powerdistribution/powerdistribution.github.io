@@ -10,11 +10,13 @@ cable, and at the cable open point.
 
 <img src="cable_riser.svg" style="width:100%" />
 
-```yaml script=scriptloader
+```yaml
+         #: script=scriptloader
 - OpenETran.js
 ```
 
-```text name=inputtemplate
+```text
+         #: name=inputtemplate
 * adapted from openetran/Test/scout.dat
 time 2 0.01e-6 14.0e-6
 
@@ -72,9 +74,10 @@ poles 3 6 7
 <div class = "col-md-5">
 
 
-```yaml jquery=dform
+```yaml
+         #: jquery=dform
 class : form
-html: 
+html:
   - name: LEADLEN
     type: number
     step: 1.0
@@ -102,7 +105,7 @@ html:
     value: 50.0
     css:
       width: 13em
-  - name: CABLELEN 
+  - name: CABLELEN
     type: number
     step: 50.0
     bs3caption : "Cable length, ft"
@@ -161,18 +164,18 @@ html:
 // read the csv file with the simulation results
 
     x = $.csv.toArrays(csv, {onParseValue: $.csv.hooks.castToScalar})
-    
+
     // `header` has the column names. The first is the time, and the rest
     // of the columns are the variables.
     header = x.slice(0,1)[0]
-    
+
     // Select graph variables with a select box based on the header values
     if (typeof(graphvar) == "undefined") graphvar = header[1];
-    
+
 ```
 
 Cable voltages, kV
-```js 
+```js
     yidx = header.indexOf(graphvar);
     xidx = 0;
     // pick out the column to plot
@@ -222,5 +225,3 @@ distributed under the
 The source codes are available as follows:
 [OpenETran](https://svn.code.sf.net/p/openetran/code/) and
 [GNU GSL](http://ftpmirror.gnu.org/gsl/gsl-1.15.tar.gz).
-
-

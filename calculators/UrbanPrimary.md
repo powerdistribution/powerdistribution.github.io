@@ -2,13 +2,15 @@
 
 This app models transients that occur on urban systems during a single
 line-to-ground fault. See section 14.2.3 for more information. Adjust
-parameters, and the simulation will run automatically. 
+parameters, and the simulation will run automatically.
 
-```yaml script=scriptloader
+```yaml
+         #:  script=scriptloader
 - lib/tinytimer.js
 ```
 
-```yaml script=dataloader
+```yaml
+         #:  script=dataloader
 xml: UrbanPrimary_init.xml
 ```
 <style media="screen" type="text/css">
@@ -31,7 +33,8 @@ Simulation loading</span>. &nbsp Time: <span id="statustimer"> </span></div>
 <br/>
 <br/>
 
-```yaml jquery=dform 
+```yaml
+         #:  jquery=dform
 class : form-horizontal
 col1class : col-sm-8
 col2class : col-sm-4
@@ -175,7 +178,8 @@ wworker.addEventListener("message", function(e) {
   <!-- Results pane -->
   <div class="tab-pane" id="results">
 
-```js id=plotdiv
+```js
+         //:  id=plotdiv
 if (typeof(header) != "undefined") {
     $("#mytab a:last").tab("show"); // Select last tab
     y1idx = header.indexOf("Va");
@@ -233,7 +237,7 @@ urban cables:
 - 500 kcmil, 345-mil insulation, XLPE: 0.066 uF/1000 ft
 - 750 kcmil, 345-mil insulation, XLPE: 0.077 uF/1000 ft
 
-Multiply the numbers above by 1.3 for EPR. 
+Multiply the numbers above by 1.3 for EPR.
 
 - 500 kcmil, 175-mil insulation, PILC: 0.164 uF/1000 ft
 - 750 kcmil, 175-mil insulation, PILC: 0.195 uF/1000 ft
@@ -247,7 +251,7 @@ damping).
 The line model between the substation and the fault is a
 resistance and inductance in series. (Better results might be obtained
 with a more accurate frequency-dependent line model.) Note that these
-impedances represent the loop impedance (2*Z<sub>1</sub> + Z<sub>0</sub>)/3. 
+impedances represent the loop impedance (2*Z<sub>1</sub> + Z<sub>0</sub>)/3.
 
 ## Background
 

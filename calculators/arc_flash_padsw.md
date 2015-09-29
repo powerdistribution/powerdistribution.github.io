@@ -1,6 +1,7 @@
 # Arc flash in a padmounted switch
 
-```yaml script=scriptloader
+```yaml
+         #: script=scriptloader
 - lib/numeric-1.2.6.min.js
 ```
 
@@ -10,8 +11,9 @@
 <br/>
 <br/>
 
-```yaml jquery=dform name=frm
-html: 
+```yaml
+         #:  jquery=dform name=frm
+html:
   - name: D
     type: number
     step: 5.0
@@ -19,7 +21,7 @@ html:
     value: 36
   - name: clothing
     type: number
-    bs3caption: 
+    bs3caption:
       html:
         - html: Clothing rating, cal/cm
           type: span
@@ -43,7 +45,7 @@ html:
   - name: graphextras
     type: select
     bs3caption: Plotting extras
-    choices: 
+    choices:
       - Vary working distance
       - Vary clothing
       - None
@@ -76,7 +78,8 @@ console.log(1)
 <h3>Results</h3>
 
 
-```js output=markdown
+```js
+        //: output=markdown
 console.log(2)
 cals = findcals(I, t, D, k)
 console.log(3)
@@ -90,7 +93,8 @@ println("Duration limit for the given current and clothing = **" + duration.toFi
 
 ```
 
-```yaml name=plotinfo
+```yaml
+         #:  name=plotinfo
 chart:
     type: line
     width: 500
@@ -98,10 +102,10 @@ chart:
     spacingRight: 20
 title:
     text: Time-current curve
-                
-plotOptions: 
+
+plotOptions:
     series:
-        marker: 
+        marker:
             enabled: false
 xAxis:
     type: 'logarithmic'
@@ -123,7 +127,7 @@ yAxis:
     title:
         text: "Time, sec"
 
-legend: 
+legend:
     align: right
     verticalAlign: middle
     layout: vertical
@@ -131,7 +135,7 @@ legend:
 ```
 
 ```js
-currents = numeric.pow(10,numeric.linspace(0,2,100)) 
+currents = numeric.pow(10,numeric.linspace(0,2,100))
 durations1 = _.map(currents, function(I) {return findduration(clothing, I, D, k)})
 series1 = _.zip(currents,durations1)
 if (graphextras == "Vary clothing") {
@@ -139,17 +143,17 @@ if (graphextras == "Vary clothing") {
     series0 = _.zip(currents,durations0)
     durations2 = _.map(currents, function(I) {return findduration(clothing / 2, I, D, k)})
     series2 = _.zip(currents,durations2)
-    plotinfo.series = [{name: clothing*2 + " cals at " + D + '"', data: series0}, 
-                       {name: clothing   + " cals at " + D + '"', data: series1}, 
-                       {name: clothing/2 + " cals at " + D + '"', data: series2}] 
+    plotinfo.series = [{name: clothing*2 + " cals at " + D + '"', data: series0},
+                       {name: clothing   + " cals at " + D + '"', data: series1},
+                       {name: clothing/2 + " cals at " + D + '"', data: series2}]
 } else if (graphextras == "Vary working distance") {
     durations0 = _.map(currents, function(I) {return findduration(clothing, I, D * 2, k)})
     series0 = _.zip(currents,durations0)
     durations2 = _.map(currents, function(I) {return findduration(clothing, I, D / 2, k)})
     series2 = _.zip(currents,durations2)
-    plotinfo.series = [{name: clothing + " cals at " + D*2 + '"', data: series0}, 
-                       {name: clothing + " cals at " + D + '"', data: series1}, 
-                       {name: clothing + " cals at " + D/2 + '"', data: series2}] 
+    plotinfo.series = [{name: clothing + " cals at " + D*2 + '"', data: series0},
+                       {name: clothing + " cals at " + D + '"', data: series1},
+                       {name: clothing + " cals at " + D/2 + '"', data: series2}]
 } else {
     plotinfo.series = [{name: clothing + " cals at " + D + '"', data: series1}]
 }
@@ -192,5 +196,3 @@ Power Research Institute, Palo Alto, CA, 2011.
 Short, T. A. and Eblen, M. L., "Medium-Voltage Arc Flash in Open Air
 and Padmounted Equipment," *IEEE Transactions on Industry Applications*,
 vol. 48, no. 1, pp. 245-253, Jan.-Feb. 2012.
-
-

@@ -12,15 +12,17 @@ in the same duct. An optional neutral can also be given.
 
 <br/>
 
-```yaml script=scriptloader
+```yaml
+          #: script=scriptloader
 - lib/numeric-1.2.6.min.js
 - lib/math.min.js
 ```
 
 
-```yaml jquery=dform
+```yaml
+          #: jquery=dform
 class : form
-html: 
+html:
   - type: div
     class: row
     html:
@@ -38,7 +40,7 @@ html:
           - name: shield
             type: select
             bs3caption : Concentric neutral conductivity
-            selectvalue: 1/6 
+            selectvalue: 1/6
             choices: [1/3, 1/6, 1/12]
   - type: div
     class: row
@@ -70,7 +72,8 @@ html:
             choices: ["1", "2", "3", "4"]
 ```
 
-```yaml name=ac
+```yaml
+          #: name=ac
 name: [250 kcmil, 500 kcmil , 1000 kcmil]
 R:    [0.0435,0.0229,0.0132]
 GMR:  [0.216,0.305,0.435]
@@ -104,7 +107,7 @@ Yaddshunt = function(Y, Rshunt, i) {
 }
 
 De= 25920*math.sqrt(rho/60)
-r_e= 0.01807 
+r_e= 0.01807
 
 cidx = _.indexOf(ac.name, cable)
 nidx = _.indexOf(ac.name, neutral)
@@ -150,17 +153,17 @@ findY = function(Zc) {
     Y = Yaddline(Y,Zc,0,7)
     // add the shunt grounds
     for (var i = 3; i < 7; i++) {
-        Y = Yaddshunt(Y,Rshort,i) 
-        Y = Yaddshunt(Y,Rshort,i+7) 
+        Y = Yaddshunt(Y,Rshort,i)
+        Y = Yaddshunt(Y,Rshort,i+7)
     }
     // connections to phases to avoid numeric problems
     for (var i = 0; i < 3; i++) {
-        Y = Yaddshunt(Y,1/Rshort,i) 
-        Y = Yaddshunt(Y,1/Rshort,i+7) 
+        Y = Yaddshunt(Y,1/Rshort,i)
+        Y = Yaddshunt(Y,1/Rshort,i+7)
     }
     return Y
 }
-    
+
 // make I
 Isrc = numeric.t(numeric.rep([14], 0), numeric.rep([14], 0))
 Isrc.x[0] =  100; Isrc.y[0] =    0
@@ -227,7 +230,7 @@ println("Seperate neutral current = " + Math.round(Iabs2[6]) + " %")
 
 * All conductors are copper.
 
-* Cables are 100% insulation, 15-kV class. 
+* Cables are 100% insulation, 15-kV class.
 
 * The loading on each phase is balanced.
 

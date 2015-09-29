@@ -9,7 +9,8 @@ distribution line. The circuit modeled is illustrated below.
 <br/>
 
 
-```yaml script=scriptloader
+```yaml
+         #:  script=scriptloader
 - lib/numeric-1.2.6.min.js
 - lib/math.min.js
 ```
@@ -21,9 +22,10 @@ conductors: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250
 ```
 
 
-```yaml jquery=dform
+```yaml
+         #:  jquery=dform
 class : form
-html: 
+html:
   - type: div
     class: row
     html:
@@ -180,7 +182,7 @@ Y = numeric.t(numeric.rep([n,n], 0.0), numeric.rep([n,n], 0.0))
 for (var i = 0; i < n - numberOfConductors - 1; i = i + numberOfConductors) {
     Y = Yaddline(Y, Zcond, i, i+numberOfConductors);
 }
-    
+
 // add the shunt grounds
 for (var i = 2*numberOfConductors - 1; i < n - 1; i = i + numberOfConductors) {
     Y.set([i, i], Y.get([i, i]).add(numeric.t(1/Zgrnd, 0.0)))
@@ -251,13 +253,13 @@ println("Maximum NEV = " + math.format(_.max(vn)) + " V")
 </div>
 
 
-```js 
+```js
     x = _.range(0, (numberOfSections+1) * sectionLength / 5.28, sectionLength / 5.28)
     seriesvn = _.zip(x,vn)
     $.plot($('#graph1'), [seriesvn]);
 ```
 
-```js 
+```js
     seriesI = [{label: "Phase",
                 data: _.zip(x,I.abs().x[0])},
                {label: "Neutral",
@@ -279,7 +281,7 @@ Contact Voltage Working Group has a draft guide that is in ballot:
   Contact Voltage, April 2015.
 
 This app can approximate coupling on two- or three-phase lines if you use
-the unbalanced current (vector sum of all phases) as input for the 
+the unbalanced current (vector sum of all phases) as input for the
 conductor.
 
 The line ground resistances also include customer grounds. The customer grounds

@@ -5,7 +5,8 @@ This app models the energy savings from CVR on the customer side and
 the utility side based on various parameters.
 
 
-```yaml script=scriptloader
+```yaml
+         #:  script=scriptloader
 - //cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js
 - lib/emblem.min.js
 ```
@@ -27,8 +28,9 @@ the utility side based on various parameters.
 <br/>
 <br/>
 
-```yaml jquery=dform name=frm
-html: 
+```yaml
+         #:  jquery=dform name=frm
+html:
   - name: CVRf
     type: number
     step: 0.1
@@ -83,7 +85,8 @@ println("Customer-side savings = **" + (100 * overall.customer).toFixed(1)+ "%**
 <br/>
 
 
-```yaml name=options
+```yaml
+         #:  name=options
 legend:
     show: false
 bars:
@@ -91,7 +94,7 @@ bars:
     barWidth: 0.7
     align: center
     horizontal: true
-yaxis: 
+yaxis:
     mode: categories
     tickLength: 2
     autoscaleMargin: 0.5
@@ -116,7 +119,8 @@ $.plot("#graph1", [[[100*overall.customer, 0], [100*(1-overall.customer), 1]]], 
 <!-- Generate a table with the results -->
 <!-- Uses an emblem template -->
 
-```text name=tabletemplate
+```emblem
+           \: run=normal
 br
 br
 table.table
@@ -131,10 +135,6 @@ table.table
       td.text-center = energy
       td.text-center = component
       td.text-center = overall
-```
-
-```js output=markdown
-print(Emblem.compile(Handlebars, tabletemplate)(window))
 ```
 
 
@@ -184,5 +184,3 @@ summary results as the baseline.
 Lighting load is often unmetered. This load normally is quite
 sensitive to voltage, so voltage reduction leads to significant
 savings in lighting load.
-
-

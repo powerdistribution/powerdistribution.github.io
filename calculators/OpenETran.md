@@ -7,7 +7,7 @@ This is a work in progress with the aim of incorporating results into
 [IEEE PES Lightning Performance of Overhead Lines Working Group](http://www.ewh.ieee.org/soc/pes/lpdl/).
 Currently, you can include all features of OpenETran. For some
 features, you may have to enter the raw input codes into the
-appropriate location in the Advanced tab. 
+appropriate location in the Advanced tab.
 
 Modify the input tables by double-clicking (or press F2). On most of
 the tables, you can add or delete rows with the context menu (right
@@ -40,13 +40,15 @@ table inputs.
 </style>
 
 
-```yaml script=scriptloader
+```yaml
+        #: script=scriptloader
 - OpenETran.js
 - //cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js
 - lib/emblem.min.js
 ```
 
-```yaml script=dataloader
+```yaml
+        #: script=dataloader
 library: OpenETran_library.yaml
 ```
 
@@ -56,16 +58,16 @@ if (typeof(firstrun) == "undefined") {
         // fill in the input tables with the case for object x
         $("#casename").val(name)
         $("#description").val(x.Description)
-        $("#hdrtbl").handsontable('loadData', x.Header) 
-        $("#hd2tbl").handsontable('loadData', x.Header2) 
-        $("#srgtbl").handsontable('loadData', x.Surge) 
-        $("#cndtbl").handsontable('loadData', x.Conductors) 
-        $("#sldtbl").handsontable('loadData', x.Shielding) 
-        $("#gsltbl").handsontable('loadData', x.GroundSlope) 
-        $("#instbl").handsontable('loadData', x.Insulators) 
-        $("#arrtbl").handsontable('loadData', x.Arresters) 
-        $("#gndtbl").handsontable('loadData', x.Grounds) 
-        $("#mtrtbl").handsontable('loadData', x.Meters)
+        $("#hdrtbl").find(".mdresult").handsontable('loadData', x.Header)
+        $("#hd2tbl").find(".mdresult").handsontable('loadData', x.Header2)
+        $("#srgtbl").find(".mdresult").handsontable('loadData', x.Surge)
+        $("#cndtbl").find(".mdresult").handsontable('loadData', x.Conductors)
+        $("#sldtbl").find(".mdresult").handsontable('loadData', x.Shielding)
+        $("#gsltbl").find(".mdresult").handsontable('loadData', x.GroundSlope)
+        $("#instbl").find(".mdresult").handsontable('loadData', x.Insulators)
+        $("#arrtbl").find(".mdresult").handsontable('loadData', x.Arresters)
+        $("#gndtbl").find(".mdresult").handsontable('loadData', x.Grounds)
+        $("#mtrtbl").find(".mdresult").handsontable('loadData', x.Meters)
         $("#oeheader").val(x.OEheader)
         $("#oetrailer").val(x.OEtrailer)
     }
@@ -96,16 +98,16 @@ if (typeof(firstrun) == "undefined") {
         return {
             Name: $("#casename").val(),
             Description: $("#description").val(),
-            Header:      $("#hdrtbl").handsontable('getData'),
-            Header2:     $("#hd2tbl").handsontable('getData'),
-            Surge:       $("#srgtbl").handsontable('getData'),
-            Conductors:  $("#cndtbl").handsontable('getData'),
-            Shielding:   $("#sldtbl").handsontable('getData'),
-            GroundSlope: $("#gsltbl").handsontable('getData'),
-            Insulators:  $("#instbl").handsontable('getData'),
-            Arresters:   $("#arrtbl").handsontable('getData'),
-            Grounds:     $("#gndtbl").handsontable('getData'),
-            Meters:      $("#mtrtbl").handsontable('getData'),
+            Header:      $("#hdrtbl").find(".mdresult").handsontable('getData'),
+            Header2:     $("#hd2tbl").find(".mdresult").handsontable('getData'),
+            Surge:       $("#srgtbl").find(".mdresult").handsontable('getData'),
+            Conductors:  $("#cndtbl").find(".mdresult").handsontable('getData'),
+            Shielding:   $("#sldtbl").find(".mdresult").handsontable('getData'),
+            GroundSlope: $("#gsltbl").find(".mdresult").handsontable('getData'),
+            Insulators:  $("#instbl").find(".mdresult").handsontable('getData'),
+            Arresters:   $("#arrtbl").find(".mdresult").handsontable('getData'),
+            Grounds:     $("#gndtbl").find(".mdresult").handsontable('getData'),
+            Meters:      $("#mtrtbl").find(".mdresult").handsontable('getData'),
             OEheader:    $("#oeheader").val(),
             OEtrailer:   $("#oetrailer").val()
         };
@@ -160,7 +162,7 @@ if (typeof(firstrun) == "undefined") {
     $('#import-btn').change(localimport);
     k = Object.keys(library)[0]
     fillcase(library[k], k)
-    firstrun = false;
+    firstrun = false  
     pow = Math.pow
     P = function(I) {return 1/(1 + pow((I-.5)/31, 2.6)) - 1/(1 + pow((I+.5)/31, 2.6));}
     sq = function(x) {return x * x}
@@ -182,7 +184,7 @@ if (typeof(firstrun) == "undefined") {
                 b = - 2 * kk * hx
                 c = sq(hx) - sq(Rc)
                 return (-b + Math.sqrt(sq(b) - 4 * a * c)) / 2 / a
-            } 
+            }
             exposure1 = _.map(_.range(n), function(k) {return x[k] - fx(x[k], y[k],  leftangle,  1)})
             exposure2 = _.map(_.range(n), function(k) {return x[k] + fx(x[k], y[k], rightangle, -1)})
             for ( i = 0; i < n-1; i++ ) {
@@ -241,7 +243,9 @@ if (typeof(firstrun) == "undefined") {
       </div>
       <div id="caselist" class="modal-body">
         <ul>
-```js output=markdown
+
+```js
+        //: output=markdown
 ks = Object.keys(library)
 for (var i = 0; i < ks.length; i++) {
     var k = ks[i];
@@ -271,7 +275,8 @@ for (var i = 0; i < ks.length; i++) {
       </div>
       <div id="caselist" class="modal-body">
         <ul>
-```js id=locallist output=markdown
+```js
+        //: id=locallist output=markdown
 if (typeof(localStorage.locallib) == "undefined") {
     localStorage.locallib = JSON.stringify({});
 }
@@ -314,9 +319,11 @@ for (var i = 0; i < ks.length; i++) {
 <div class="tab-content">
   <!-- Case pane -->
   <div class="tab-pane active" id="cseinp">
-```yaml jquery=dform
+
+```yaml
+         #: jquery=dform
 class : form
-html: 
+html:
   - name: CASENAME
     id: casename
     type: input
@@ -334,7 +341,9 @@ html:
 
   <!-- Parameters pane -->
   <div class="tab-pane" id="siminp">
-```yaml jquery=handsontable outid=hdrtbl
+
+```yaml
+         #: jquery=handsontable id=hdrtbl
 data: []
 colHeaders: ["Ncond", "Npole", "Span [m]", "lt [0/1]", "rt [0/1]", "dT [s]", "Tmax [s]"]
 columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'}]
@@ -343,7 +352,9 @@ height: 55
 colWidths: 110
 contextMenu: ['undo', 'redo']
 ```
-```yaml jquery=handsontable outid=hd2tbl
+
+```yaml
+         #: jquery=handsontable id=hd2tbl
 data: []
 colHeaders: ["GFD /km2/yr", "Altitude [m]", "CritI P1", "CritI P2"]
 columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'}]
@@ -352,8 +363,11 @@ height: 55
 colWidths: 110
 contextMenu: ['undo', 'redo']
 ```
+
 <p>Surge</p>
-```yaml jquery=handsontable outid=srgtbl
+
+```yaml
+         #: jquery=handsontable id=srgtbl
 data: []
 colHeaders: ["Pole", "N1", "N2", "Ipeak [A]", "Tfront [s]", "Ttail [s]", "Tstart [s]"]
 columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'}]
@@ -362,6 +376,7 @@ height: 55
 colWidths: 110
 contextMenu: ['undo', 'redo']
 ```
+
   <br/>
   <br/>
   </div>
@@ -371,7 +386,8 @@ contextMenu: ['undo', 'redo']
   <div class="tab-pane" id="cndinp">
 <div class = "row">
 <div class = "col-md-7">
-```yaml jquery=handsontable outid=cndtbl
+```yaml
+         #: jquery=handsontable id=cndtbl
 data: []
 colHeaders: ["Conductor", "H [m]", "X [m]", "r [m]", "Vpf [V]"]
 columns: [{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.00000'},{type: 'numeric'}]
@@ -384,7 +400,8 @@ contextMenu: ['row_above', 'row_below', 'hsep1', 'remove_row', 'hsep2', 'undo', 
 <div class = "row">
 <div class = "col-md-5">
 <p>Environmental shielding</p>
-```yaml jquery=handsontable outid=sldtbl
+```yaml
+         #: jquery=handsontable id=sldtbl
 data: []
 colHeaders: ["H [m]", "X [m]"]
 columns: [{type: 'numeric'},{type: 'numeric'}]
@@ -397,7 +414,8 @@ contextMenu: ['row_above', 'row_below', 'hsep1', 'remove_row', 'hsep2', 'undo', 
 </div>
 <div class = "col-md-5">
 <p>Ground slope [degrees]</p>
-```yaml jquery=handsontable outid=gsltbl
+```yaml
+         #: jquery=handsontable id=gsltbl
 data: []
 colHeaders: ["Left", "Right"]
 columns: [{type: 'numeric'},{type: 'numeric'}]
@@ -420,7 +438,8 @@ contextMenu: ['undo', 'redo']
 
   <!-- Insulator pane -->
   <div class="tab-pane" id="insinp">
-```yaml jquery=handsontable outid=instbl
+```yaml
+         #: jquery=handsontable id=instbl
 data:
   - ["all", 4, 0, 25.0, 250.0, 400e3, 5e-7, 10.0]
 colHeaders: ["Poles", "N1", "N2", "CFO [V]", "Vb", "Beta", "DE"]
@@ -435,7 +454,8 @@ contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
 
   <!-- Arrester pane -->
   <div class="tab-pane" id="arrinp">
-```yaml jquery=handsontable outid=arrtbl
+```yaml
+         #: jquery=handsontable id=arrtbl
 data: []
 colHeaders: ["Poles", "N1", "N2", "Vgap [V]", "V10 [V]", "Uref [V]", "L [H/m]", "d [m]", "Plot: 1/0"]
 columns: [{},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.000'},{type: 'numeric', format: '0.00'},{type: 'numeric', format: '0.0'},{type: 'numeric'}]
@@ -449,7 +469,8 @@ contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
 
   <!-- Grounds pane -->
   <div class="tab-pane" id="gndinp">
-```yaml jquery=handsontable outid=gndtbl
+```yaml
+         #: jquery=handsontable id=gndtbl
 data: []
 colHeaders: ["Poles", "N1", "N2", "R60 [&Omega;]", "&rho; [&Omega;-m]", "E0 [V/m]", "L [H/m]", "d [m]"]
 columns: [{},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'}]
@@ -463,7 +484,8 @@ contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
 
   <!-- Meter pane -->
   <div class="tab-pane" id="mtrinp">
-```yaml jquery=handsontable outid=mtrtbl
+```yaml
+         #: jquery=handsontable id=mtrtbl
 data: []
 colHeaders: ["Poles", "N1", "N2"]
 columns: [{},{type: 'numeric'},{type: 'numeric'}]
@@ -477,9 +499,10 @@ contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
 
   <!-- Advanced pane -->
   <div class="tab-pane" id="advinp">
-```yaml jquery=dform
+```yaml
+         #: jquery=dform
 class : form
-html: 
+html:
   - name: oeheader
     id: oeheader
     type: textarea
@@ -499,7 +522,8 @@ html:
 </div>
 
 
-```js id=loadtables
+```js
+        //: id=loadtables
 cs = getcurrentcase()
 cs.Surge[1] = 1       // kludge to add a fake row
 leftangle = cs.GroundSlope[0][0]
@@ -509,15 +533,15 @@ h2 = cs.Header2[0]
 inputdata = h[0] + " " + h[1] + " " + h[2] + " " + h[3] + " " + h[4] + " " + h[5] + " " + h[6] + "\n" +
             cs.OEheader + "\n" +
             totextc(cs.Conductors) + "\n" +
-            totext("insulator", cs.Insulators) + 
+            totext("insulator", cs.Insulators) +
             totext("arrbez",    cs.Arresters) +
             totext("ground",    cs.Grounds) +
             totext("meter",     cs.Meters) +
             totext("surge",     cs.Surge) +
             cs.OEtrailer
 ncond = +h[0]
-GFD = +h2[0] 
-p1 = +h2[2] 
+GFD = +h2[0]
+p1 = +h2[2]
 p2 = +h2[3]
 N = ncond * (p2 - p1 + 1)
 ```
@@ -573,7 +597,8 @@ $("#yaxisform").html("");
 $("#yaxisform").dform(jsonform);
 $("#yaxisform").change(updatefun);
 ```
-```js id="condcalc"
+```js
+        //: id="condcalc"
 cnd = cs.Conductors.slice(0, ncond)
 xc = _.map(cnd, function(x) {return x[2]})
 yc = _.map(cnd, function(x) {return x[1]})
@@ -590,8 +615,8 @@ if (ymax - ymin > xmax - xmin) { // keep the aspect ratio constant
     ymax += delta
     ymin -= delta
 }
-$.plot($('#conductor-layout'), 
-       [{ data: _.map(cnd, function(x) {return [x[2],x[1]]}), 
+$.plot($('#conductor-layout'),
+       [{ data: _.map(cnd, function(x) {return [x[2],x[1]]}),
           points: { show: true }}],
         { grid: { show: true, borderWidth: 0 },
           xaxis: { tickLength: 5, ticks: 3, min: xmin, max: xmax, font: {size: 11, color: "#000"} },
@@ -628,7 +653,7 @@ yleft = xmin * Math.tan( Math.PI * leftangle / 180 )
 yright = -xmax * Math.tan( Math.PI * rightangle / 180 )
 ymin = _.reduce(ya, function(min, x) { if (x < min) {return x} else {return min} }, Math.min(ya[0], 0, ymin, yleft, yright))
 ymax = _.reduce(ya, function(max, x) { if (x > max) {return x} else {return max} }, Math.max(ya[0], ymax, yleft, yright))
-$.plot($('#conductor-layout2'), 
+$.plot($('#conductor-layout2'),
        [{ data: _.map(cnd, function(x) {return [x[2],x[1]]}),
           points: { show: true }},
         { data: _.map(env, function(x) {return [x[1],x[0]]}),
@@ -642,7 +667,8 @@ $.plot($('#conductor-layout2'),
 <div class = "row">
 <div class = "col-md-8">
 <div id="yaxisform"/>
-```js id=plotdiv
+```js
+        //: id=plotdiv
 if (typeof(header) != "undefined") {
     series = [];
     for (var i = 0; i < header.length; i++) {
@@ -705,7 +731,7 @@ if (typeof(header) != "undefined") {
 </div>
 
 
-```js 
+```js
 critI = Array(N)
 probI = Array(N)
 poleN = Array(N)
@@ -735,7 +761,7 @@ for (p = p1; p <= p2; p++) {
         FS.unlink("/overhead.out");    // delete the output file
     }
     for (j = 0; j < ncond; j++) {
-        cI = +out2.match(new RegExp("wire  " + (j+1) + ": (.*)"))[1]; 
+        cI = +out2.match(new RegExp("wire  " + (j+1) + ": (.*)"))[1];
         critI[k*ncond + j] = cI
         probI[k*ncond + j] = 100 / (1 + Math.pow(cI / 31000, 2.6))
     }
@@ -782,21 +808,22 @@ h4 Overall hits and flashovers
 br
 div
   strong = totalflashes
-  span  flashes/100 km/yr for GFD = 
+  span  flashes/100 km/yr for GFD =
   span =  GFD
   span  fl&frasl;km
   sup 2
   span &frasl;yr
 div
   strong = totalflashovers
-  span  flashovers/100 km/yr for GFD = 
+  span  flashovers/100 km/yr for GFD =
   span =  GFD
   span  fl&frasl;km
   sup 2
   span &frasl;yr
 br
 ```
-```js output=markdown
+```js
+        //: output=markdown
 if (tbl.length > 0) {
     print(Emblem.compile(Handlebars, tabletemplate)(window))
 }
@@ -840,7 +867,7 @@ if (tbl.length > 0) {
   close to Eriksson's equation for flash incidence. One can use this to
   estimate shielding failures on lines with an overhead shield wire.
   It can also be use to estimate the effect of environmental shielding
-  from nearby objects (tree lines, parallel lines, etc). 
+  from nearby objects (tree lines, parallel lines, etc).
 
 
 ## References

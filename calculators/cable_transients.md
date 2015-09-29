@@ -7,11 +7,13 @@ underground cable with a split (section 13.6.3).
 <img src="cable_split.svg" style="width:80%" />
 <br/>
 
-```yaml script=scriptloader
+```yaml
+          #: script=scriptloader
 - OpenETran.js
 ```
 
-```text name=inputtemplate
+```text
+          #: name=inputtemplate
 * adapted from openetran/Test/scout.dat
 time 2 0.01e-6 14.0e-6
 
@@ -81,9 +83,10 @@ poles all
 ```
 
 
-```yaml jquery=dform
+```yaml
+          #: jquery=dform
 class : form
-html: 
+html:
   - type: div
     class: row
     html:
@@ -172,16 +175,16 @@ html:
 // read the csv file with the simulation results
 
     x = $.csv.toArrays(csv, {onParseValue: $.csv.hooks.castToScalar})
-    
+
     // `header` has the column names. The first is the time, and the rest
     // of the columns are the variables.
     header = x.slice(0,1)[0]
-    
+
     // Select graph variables with a select box based on the header values
     if (typeof(graphvar) == "undefined") graphvar = header[1];
-    
+
 ```
-```js 
+```js
     yidx = header.indexOf(graphvar);
     xidx = 0;
     // pick out the column to plot
@@ -191,7 +194,7 @@ html:
     series4 = x.slice(1).map(function(x) {return [x[0]*1e6, x[35]/1e3];});
     ymin = 1.05 * _.min(x.map(function(xx) {return _.min(xx);}))/1000;
     ymax = 1.05 * _.max(x.map(function(xx) {return _.max(xx);}))/1000;
-    $.plot($('#graph'), 
+    $.plot($('#graph'),
               [series2, series3, series4, series1],
               { xaxis: { min: 0, max: 1e6 * x[x.length-1][0]},
                 yaxis: { min: ymin, max: ymax } });
@@ -199,8 +202,8 @@ html:
 ```js
 // animation
 var nstep = 0
-var plot = $.plot($('#animation'), 
-              [{ data: [[0.0, 0.0], [30.0, 0.0]] }], 
+var plot = $.plot($('#animation'),
+              [{ data: [[0.0, 0.0], [30.0, 0.0]] }],
               { xaxis: { min: 0, max: +CABLELEN1 + Math.max(+CABLELEN2, +CABLELEN3)},
                 yaxis: { min: ymin, max: ymax } });
 $('#animation').stop()
@@ -256,5 +259,3 @@ distributed under the
 The source codes are available as follows:
 [OpenETran](https://svn.code.sf.net/p/openetran/code/) and
 [GNU GSL](http://ftpmirror.gnu.org/gsl/http://gnu.mirrorcatalogs.com/gsl/gsl-1.15.tar.gz).
-
-

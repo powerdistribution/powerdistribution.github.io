@@ -12,7 +12,7 @@ $(document).ready(function() {
         url: window.location.search.substring(1),
         success: function (response) {
             var converter = new Showdown.converter({ extensions: ['md'] });
-            $('#main_markdown').html(converter.makeHtml(response)); 
+            $('#main_markdown').html(converter.makeHtml(response));
             deferred.resolve();
             $(".mdblock[run='init']").each(calculate_block);
             deferred.done(calculate);
@@ -60,7 +60,7 @@ function dataloader(x) {
             fun = dataloadermap[filetype] || "";
             eval(key + " = " + fun + "(content)");
             _dl_defer.resolve();
-        }); 
+        });
     });
 }
 
@@ -89,7 +89,7 @@ function calculate_block() {
     var first = "";  // text to be eval'd
     var middle = "";
     var last = "";
-    var hasname = typeof nam != 'undefined';
+    var hasname = typeof nam != 'undefined' && nam != "";
     if (hasname) {
         first = nam + " = ";
     }
@@ -113,7 +113,7 @@ function calculate_block() {
     $out.css('height', $out.height()).css('overflow', 'hidden'); // keep the page from jumping around
     $out.html("");
     textbuffer = "";
-    console.log(first + middle + last);
+    //console.log(first + middle + last);
     eval(first + middle + last);
     if (textbuffer != "") {
         if ($this.attr("output") == "markdown") {
@@ -158,7 +158,7 @@ var converter = new Showdown.converter();
 var $active_element;
 
 function calculate_forms() {  // page calculation
-    var form_cmd = $(":input").map(read_form); 
+    var form_cmd = $(":input").map(read_form);
 }
 
 function calculate() {  // page calculation
@@ -176,7 +176,7 @@ function plot(data, options) {  // uses Flot
 }
 
 jQuery.fn.calculate = function() {
-    calculate_block($(this[0]));
+        return this.each(calculate_block);
 };
 
 return{
@@ -186,5 +186,3 @@ return{
 }
 
 }();
-
-

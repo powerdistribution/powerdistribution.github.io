@@ -5,24 +5,27 @@ This app models faults at different points on a power system with
 different transformer connections. The line-to-ground voltages in per
 unit are shown in blue, and the currents in kA are in green.
 
-```yaml script=scriptloader
+```yaml  
+         #: script=scriptloader
 - lib/tinytimer.js
 ```
 
-```yaml script=dataloader
-xml: FaultSimulatorPackage.FaultSimulator_init.xml 
+```yaml
+         #:  script=dataloader
+xml: FaultSimulatorPackage.FaultSimulator_init.xml
 ```
 
-```yaml jquery=dform
+```yaml
+         #:  jquery=dform
 class : form
-html: 
+html:
   - type: div
     class: row
     html:
       - type: div
         class: col-md-3
         html:
-          - name: faultloc 
+          - name: faultloc
             type: select
             bs3caption : "Fault location"
             selectvalue: 2
@@ -34,7 +37,7 @@ html:
             type: select
             bs3caption : "Fault type"
             selectvalue: A
-            choices: ["A", "B", "C", "AB", "BC", "CA", "ABg", "BCg", "CAg", "ABC"] 
+            choices: ["A", "B", "C", "AB", "BC", "CA", "ABg", "BCg", "CAg", "ABC"]
   - type: div
     class: row
     html:
@@ -45,7 +48,7 @@ html:
             type: select
             bs3caption : "Transformer 1 connection"
             selectvalue: "Wye Wye"
-            choices: ["Wye Wye", "Delta Wye", "Wye Delta"] 
+            choices: ["Wye Wye", "Delta Wye", "Wye Delta"]
       - type: div
         class: col-md-3
         html:
@@ -53,7 +56,7 @@ html:
             type: select
             bs3caption : "Primary neutral"
             selectvalue: "Solidly grounded"
-            choices: ["Solidly grounded", "High impedance"] 
+            choices: ["Solidly grounded", "High impedance"]
       - type: div
         class: col-md-3
         html:
@@ -61,7 +64,7 @@ html:
             type: select
             bs3caption : "Secondary neutral"
             selectvalue: "Solidly grounded"
-            choices: ["Solidly grounded", "1 ohm", "High impedance"] 
+            choices: ["Solidly grounded", "1 ohm", "High impedance"]
   - type: div
     class: row
     html:
@@ -72,7 +75,7 @@ html:
             type: select
             bs3caption : "Transformer 2 connection"
             selectvalue: "Wye Wye"
-            choices: ["Wye Wye", "Delta Wye", "Wye Delta"] 
+            choices: ["Wye Wye", "Delta Wye", "Wye Delta"]
       - type: div
         class: col-md-3
         html:
@@ -80,7 +83,7 @@ html:
             type: select
             bs3caption : "Primary neutral"
             selectvalue: "Solidly grounded"
-            choices: ["Solidly grounded", "1 ohm", "High impedance"] 
+            choices: ["Solidly grounded", "1 ohm", "High impedance"]
       - type: div
         class: col-md-3
         html:
@@ -88,7 +91,7 @@ html:
             type: select
             bs3caption : "Secondary neutral"
             selectvalue: "Solidly grounded"
-            choices: ["Solidly grounded", "High impedance"] 
+            choices: ["Solidly grounded", "High impedance"]
 ```
 
 <br/>
@@ -204,7 +207,7 @@ timer = $("#statustimer").data("tinyTimer")
 // Start the simulation!
 basename = "FaultSimulatorPackage.FaultSimulator"
 
-if (typeof(wworker) != "undefined" && isRunning) wworker.terminate() 
+if (typeof(wworker) != "undefined" && isRunning) wworker.terminate()
 if (typeof(wworker) == "undefined" || isRunning) wworker = new Worker(basename + ".js")
 isRunning = true
 
@@ -231,7 +234,8 @@ wworker.addEventListener("message", function(e) {
 
 ```
 
-```js id=plotdiv
+```js
+         //:  id=plotdiv
 sq= function(x) {
   return x * x;
 }
@@ -295,7 +299,7 @@ Here are some examples to try:
 * Use a delta -- grounded-wye connection for transformer 1, and apply
   a line-to-ground fault at point 2. Note the currents on the high
   side. Repeat for a line-to-line fault and a line-to-line-to-ground
-  fault. 
+  fault.
 
 * Use a delta -- grounded-wye connection for transformer 1, and apply
   a line-to-ground fault at point 2. Change from a solidly grounded
@@ -331,4 +335,3 @@ interface. Use OpenModelica (or another Modelica tool) if you want to
 change modeling components and explore in more detail.
 [OpenDSS](http://www.smartgrid.epri.com/SimulationTool.aspx) is
 another tool that's useful for this type of analysis.
-

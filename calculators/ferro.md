@@ -1,11 +1,13 @@
 ## Ferroresonance on a Five-Legged Core Transformer
 
-```yaml script=scriptloader
+```yaml
+         #:  script=scriptloader
 - lib/tinytimer.js
 ```
 
-```yaml script=dataloader
-xml: FerroModule.Ferro_init.xml 
+```yaml
+         #:  script=dataloader
+xml: FerroModule.Ferro_init.xml
 ```
 
 <style media="screen" type="text/css">
@@ -23,11 +25,12 @@ Simulation loading</span>. &nbsp Time: <span id="statustimer"> </span></div>
 <div class = "col-md-5">
 
 
-```yaml jquery=dform name=frm 
+```yaml
+         #:  jquery=dform name=frm
 class : form-horizontal
 col1class : col-sm-7
 col2class : col-sm-5
-html: 
+html:
   - name: stopTime
     type: number
     step: 0.1
@@ -124,7 +127,7 @@ timer = $("#statustimer").data("tinyTimer")
 // Start the simulation!
 basename = "FerroModule.Ferro"
 
-if (typeof(wworker) != "undefined" && isRunning) wworker.terminate() 
+if (typeof(wworker) != "undefined" && isRunning) wworker.terminate()
 if (typeof(wworker) == "undefined" || isRunning) wworker = new Worker(basename + ".js")
 isRunning = true
 
@@ -180,7 +183,8 @@ wworker.addEventListener("message", function(e) {
   <div class="tab-pane" id="results">
 
 
-```js id=plotdiv
+```js
+         //:  id=plotdiv
 if (typeof(header) != "undefined") {
     console.log(header);
     $("#mytab a:last").tab("show"); // Select last tab
@@ -250,4 +254,3 @@ OpenModelica (or another Modelica tool) if you want to change modeling
 components and explore in more detail. Modelica is a descriptive
 language with component and system libraries for simulating
 electrical, thermal, and mechanical systems.
-

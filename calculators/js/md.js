@@ -3,7 +3,7 @@
 // var a=1
 // ```
 //
-// to 
+// to
 //
 // <div class='jsblock' a=x b=y>
 //   <pre class='jsinput'>
@@ -45,19 +45,18 @@ var _Templater = {
             {
               type    : 'lang',
               filter  : function(text) {
-                  text = text.replace(/(?:^|\n)```(js|yaml|emblem|slim|text) *(?:\n *#\:|\n *\\\:|\n *\/\/\:)? *(.*)\n([\s\S]*?)\n```/g,
+                  text = text.replace(/(?:^|\n)```\{?\.?(js|yaml|emblem|slim|text) *(?:\n *#\:|\n *\\\:|\n *\/\/\:)? *([^\}\n]*)\}?\n([\s\S]*?)\n```/g,
                     function(wholeMatch,m1,m2,m3) {
                         var blockname = m1;
                         var extras = m2;
                         var codeblock = m3;
-
                         codeblock = codeblock.replace(/^\n+/g,""); // trim leading newlines
                         codeblock = codeblock.replace(/\n+$/g,""); // trim trailing whitespace
 
                         // add class="" if it's not there
                         if (!/class=/.test(extras)) extras = extras + ' class=""';
                         // add the class
-                        extras = extras.replace(/(.*class=".*)(.*".*)/,"$1 mdblock $2");
+                        extras = extras.replace(/(.*class=".*)(.*".*)/,"$1mdblock$2");
                         // add default run mode if it's not specified
                         if (!/run=/.test(extras)) extras = extras + ' run="' + (blockname == "js" ? "normal" : "init") + '"';
                         extras = extras + ' lang="' + blockname + '"';
