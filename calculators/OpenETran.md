@@ -43,8 +43,7 @@ table inputs.
 ```yaml
         #: script=scriptloader
 - OpenETran.js
-- //cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js
-- lib/emblem.min.js
+- lib/handsontable.full.min.js
 ```
 
 ```yaml
