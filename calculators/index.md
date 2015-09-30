@@ -21,7 +21,7 @@ like most of the protection apps, are useful for real enginnering.
 - [Overhead line impedance calculator](mdpad.html?impedances.md)
 - [Voltage drop on a line section](mdpad.html?voltage_drop.md)
 - [Cable capacitance](mdpad.html?cable_capacitance.md)
-- [CVR: customer vs. utility savings](mdpad_hot.html?cvr.md)
+- [CVR: customer vs. utility savings](mdpad.html?cvr.md)
 - [Voltage impacts of a distributed generator](mdpad.html?dg.md)
 
 ## Grounding, coupling, and faults
@@ -34,7 +34,7 @@ like most of the protection apps, are useful for real enginnering.
 
 ## Transients
 
-- [Lightning protection of overhead lines using EPRI-OpenETran](mdpad_hot.html?OpenETran.md)
+- [Lightning protection of overhead lines using EPRI-OpenETran](mdpad_local.html?OpenETran.md)
 - [Lightning protection of underground cables](mdpad.html?lightning_cable.md)
 - [Lightning transients on a tapped underground cable](mdpad.html?cable_transients.md)
 - [Ferroresonance on 5-legged core transformers](mdpad.html?ferro.md)

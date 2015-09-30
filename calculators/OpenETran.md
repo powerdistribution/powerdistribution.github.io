@@ -43,7 +43,6 @@ table inputs.
 ```yaml
         #: script=scriptloader
 - OpenETran.js
-- lib/handsontable.full.min.js
 ```
 
 ```yaml
