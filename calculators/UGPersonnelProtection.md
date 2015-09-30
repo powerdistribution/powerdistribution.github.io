@@ -243,7 +243,7 @@ $("#bracketrow input").last().prop("checked", true)
 ```
 
 ```js
-       //: outputid=liblist output=markdown
+       //: id=locallist outputid=liblist output=markdown
 
 if (typeof(localStorage.UGPlocallib) == "undefined") {
     localStorage.UGPlocallib = JSON.stringify({});
