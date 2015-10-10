@@ -36,12 +36,15 @@ cable. This expands on material in Section 14.6.
 .modal-lg {width:50em}
 </style>
 
+<!-- Load scripts -->
 
 ```yaml
          #: script=scriptloader
 - lib/numeric-1.2.6.min.js
 - lib/math.min.js
 ```
+
+<!-- First input forms -->
 
 ```emblem
 form.form
@@ -91,6 +94,7 @@ form.form
           input#jumpershield name="jumpershield" type="checkbox" checked=false
 ```
 
+<!-- Cable data -->
 
 ```yaml
          #: name=ac
@@ -103,6 +107,8 @@ Xc:   [21648, 16368, 27135, 21056, 15900, 27135, 21056, 15900, 27135, 21056, 159
 n:    [1,1,3,3,3,3,3,3,3,3,3,0,0,0]
 ```
 
+<!-- Set up data for manhole form elements -->
+
 ```js
        //: run="init"
 z = {r1: _.range(1,11), r2: _.range(1,10), r3: _.range(11)}
@@ -110,6 +116,8 @@ z.g = _.map(_.range(1,11), function(x){return "g"+x})
 z.b = _.map(_.range(1,11), function(x){return "b"+x})
 z.bg = _.map(_.range(11), function(x){return "bg"+x})
 ```
+
+<!-- Manhole form elements -->
 
 ```emblem
 h3 Manhole information
@@ -154,10 +162,15 @@ table
           input type="checkbox" name=this
 ```
 
-```yaml name=duct
+<!-- Data for duct options -->
+
+```yaml
+        #: name=duct
 worked: ["250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield"]
 other: ["empty", "250-kcmil PILC"       , "500-kcmil PILC"       , "250-kcmil EPR, 1/3 shield"        , "500-kcmil EPR, 1/3 shield"        , "1000-kcmil EPR, 1/3 shield"       , "250-kcmil EPR, 1/6 shield"        , "500-kcmil EPR, 1/6 shield"        , "1000-kcmil EPR, 1/6 shield"       , "250-kcmil EPR, 1/12 shield"        , "500-kcmil EPR, 1/12 shield"        , "1000-kcmil EPR, 1/12 shield", "1/0 neutral"       , "250-kcmil neutral" , "500-kcmil neutral"]
 ```
+
+<!-- Select inputs for cables in each duct -->
 
 ```emblem
 h3 Cables in each duct
@@ -207,6 +220,7 @@ button.btn.btn-primary data-toggle="modal" data-target="#cableModal"
   | Edit cable data
 ```
 
+<!-- Set up default inputs for manhole worker, fault, and brackets -->
 
 ```js
        //: run="init"
@@ -216,9 +230,7 @@ $("#bracketrow input").first().prop("checked", true)
 $("#bracketrow input").last().prop("checked", true)
 ```
 
-<!-- LOCAL LIBRARY -->
-
-<!-- Modal -->
+<!-- LOCAL LIBRARY Modal -->
 
 ```emblem
 .modal.fade#libraryModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -242,6 +254,8 @@ $("#bracketrow input").last().prop("checked", true)
           button.btn.btn-default type="button" data-dismiss="modal" Close
 ```
 
+<!-- Initialize local library -->
+
 ```js
        //: id=locallist outputid=liblist output=markdown
 
@@ -256,9 +270,7 @@ for (var i = 0; i < ks.length; i++) {
 }
 ```
 
-<!-- EDITING CABLE LIBRARY -->
-
-<!-- Modal -->
+<!-- EDITING CABLE LIBRARY Modal -->
 
 ```emblem
 .modal.fade#cableModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -279,7 +291,10 @@ for (var i = 0; i < ks.length; i++) {
           button.btn.btn-default type="button" data-dismiss="modal" Close
 ```
 
-```yaml name="cabletableinfo"
+<!-- Cable data -->
+
+```yaml
+         #: name="cabletableinfo"
 data: []
 colHeaders: ["Name", "R_p", "GMR_p", "R_n", "GMR_n", "Xc", "n"]
 columns: [{},{type: 'numeric', format: '0.0000'},{type: 'numeric', format: '0.0000'},{type: 'numeric', format: '0.0000'},{type: 'numeric', format: '0.0000'},{type: 'numeric'},{type: 'numeric'}]
@@ -290,6 +305,7 @@ height: 470
 maxRows: 18
 ```
 
+<!-- Initial code to set up modals  -->
 
 ```js
        //: run="init"
@@ -326,6 +342,8 @@ $('#cableModal').on('hidden.bs.modal', updateductselects);
 ```
 
 <h2>Results</h2>
+
+<!-- JS functions defined for saving/loading and for calcs -->
 
 ```js
        //: run="init"
@@ -476,6 +494,8 @@ YaddshuntR = function(Y, Rshunt, i) {
 }
 
 ```
+
+<!-- MAIN CALCULATIONS -->
 
 ```js
 II = getcurrentcase()
@@ -705,6 +725,7 @@ txt += "Maximum shield voltage to remote earth = " + Math.round(_.max(_.flatten(
 $("#outsummary").html(converter.makeHtml(txt));
 ```
 
+<!-- Calculations for graphs and output tables -->
 
 ```js
 Vmax_f = numeric.rep([Nsections-1], 0.0)
@@ -757,6 +778,8 @@ colnamesI[0] = "sub-m1"
 $("#Iout").html(Emblem.compile(Handlebars, tabletemplate)({colnames: colnamesI, tbl: Iout}))
 ```
 
+<!-- Template for detailed voltage and current tables -->
+
 ```emblem
            \: name=tabletemplate
 table.table
@@ -780,6 +803,8 @@ table.table
       td.text-center = m10
       td.text-center = m11
 ```
+
+<!-- HTML for the output section -->
 
 ```emblem
 .panel-group
