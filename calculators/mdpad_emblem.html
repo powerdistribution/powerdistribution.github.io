@@ -4,37 +4,37 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>MD live page</title>
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/css/jquery-ui.css" rel="stylesheet"/>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/jquery-ui.css" rel="stylesheet"/>
         <link href="lib/handsontable.full.min.css" rel="stylesheet"/>
         <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
-        <link href="/calculators/mdpad.css" rel="stylesheet" type="text/css" />
-        <script src="/calculators/lib/head.min.js"></script>
+        <link href="mdpad.css" rel="stylesheet" type="text/css" />
+        <script src="lib/head.min.js"></script>
     <script>
         var start = new Date();
-        head.js("//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js",
-                "//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js",
-                "//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js",
-                "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js",
+        head.js("http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js",
+                "http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js",
+                "http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js",
+                "http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js",
                 "lib/js-yaml.min.js",
                 "lib/jquery.csv-0.71.min.js",
                 "lib/jquery.dform-1.1.0.min.js",
                 "lib/handsontable.full.min.js",
                 "js/dform_extras.js",
-                "//cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js",
-                "//cdnjs.cloudflare.com/ajax/libs/flot/0.8.1/jquery.flot.min.js",
-                "//cdnjs.cloudflare.com/ajax/libs/highcharts/3.0.2/highcharts.js",
+                "http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js",
+                "http://cdnjs.cloudflare.com/ajax/libs/flot/0.8.1/jquery.flot.min.js",
+                "http://cdnjs.cloudflare.com/ajax/libs/highcharts/3.0.2/highcharts.js",
                 //  "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js",
                 //  "//cdnjs.cloudflare.com/ajax/libs/emblem/0.4.0/emblem.min.js",
                 "lib/handlebars.js",
                 "lib/emblem.min.js",
                 "js/md.js",
                 "js/mdpad.js")
-        
+
         if(!window.Worker) {
             window.alert("Browser not supported!\n\nThis app works best with a recent version of Firefox or Chrome. It may work with at least version 11 of Internet Explorer.")
         }
-    </script>  
+    </script>
 
     </head>
     <body>
@@ -65,7 +65,7 @@
       </div>
     </nav>
 
-      <div id="site" class="site"> 
+      <div id="site" class="site">
         <div id="mdpad_error_div" class="color-scheme-error">
         </div>
         <div id="main_markdown">
