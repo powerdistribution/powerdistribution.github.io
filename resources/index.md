@@ -69,6 +69,7 @@ bring the search right to the top as well as similar reports.
 
 - [EPRI 1022218](http://my.epri.com/portal/server.pt?Abstract_id=000000000001022218), 208-V Arc Flash Testing: Network Protectors and Meters, 2010.
 - [EPRI 1022002](http://my.epri.com/portal/server.pt?Abstract_id=000000000001022002), 480-V Distribution Arc Flash Updates, 2011.  
+- [EPRI 3002006373](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000003002006373), Arc Flash Update for 480-V Network Protectors, 2015.  
   
 
 ## Underground
@@ -120,4 +121,39 @@ Here are some of my favorite books:
 
 - NEETRAC, [Diagnostic Testing of Underground Cable Systems (Cable Diagnostic Focused Initiative)](http://www.neetrac.gatech.edu/publications/CDFI_Phase_1_Final-Report.pdf), National Electric Energy Testing, Research & Applications Center, Forest Park, GA, 2010.
 
+# Papers
 
+These are a selection of papers I've authored or coauthored. The links are to an approved version (as opposed to the published version) as allowed by IEEE for public posting.
+
+## Arc flash
+
+* M\. L. Eblen, T. A. Short, and W.-J. Lee, "Medium-Voltage Arc Flash in Switchgear and Live-Front Transformers," IEEE Electrical Safety Workshop, 2015. [preprint](../papers/ieee_esw_preprint_arc_flash_meblen_tshort_wlee_2015_medvoltageR4.pdf)
+
+* T\. A. Short and M. L. Eblen, "Medium-Voltage Arc Flash in Open Air and Padmounted Equipment," *IEEE Transactions on Industry Applications*, vol. 48, pp. 245-253, 2012.  [Approved version](../papers/ieee_repc_arc_flash_tshort_meblen_2011_IAS_submission.pdf)
+
+* M\. L. Eblen and T. A. Short, "Arc-Flash Testing of Typical 480-V Utility Equipment," *IEEE Transactions on Industry Applications*, vol. 48, pp. 581-592, 2012.  [Approved version](../papers/ieee_ias_meblen_tshort_arc_flash_testing_typical_480V_utility_equipment_2012.pdf)
+
+* M\. L. Eblen and T. A. Short, "Arc-Flash Testing of Typical 480-V Utility Equipment," IEEE Electrical Safety Workshop, Memphis, TN, 2010.  [Approved version](../papers/ieee_esw_meblen_tshort_arc_flash_testing_typical_480V_utility_equipment_2010.pdf)
+
+* T\. A. Short, "Arc-Flash Analysis Approaches for Medium-Voltage Distribution," *IEEE Transactions on Industry Applications*, vol. 47, pp. 1902-1909, 2011.  [Approved version](../papers/ieee_repc_tshort_medium_voltage_arc_flash_2009_submission.pdf)
+
+## Voltage reduction and distribution efficiency
+
+- R\. C. Belvin and T. A. Short, "Voltage Reduction Results on a 24-kV Circuit," IEEE/PES Transmission and Distribution Conference, Orlando, FL, 2012. [Approved version](../papers/ieee_td_green_circuits_rbelvin_voltage_reduction_24-kV_circuit_2012.pdf)
+
+- T\. A. Short and R. Mee, "Voltage Reduction Field Trials on Distribution Circuits," IEEE/PES Transmission and Distribution Conference, Orlando, FL, 2012. [Approved version](../papers/ieee_td_green_circuits_tshort_voltage_reduction_field_trials_2012.pdf)
+
+- J\. A. Taylor, T. A. Short, and B. Bushey, "Efficiency Impacts of Distribution Secondaries," IEEE/PES Transmission and Distribution Conference, Orlando, FL, 2012. [Approved version](../papers/ieee_td_green_circuits_jtaylor_efficiency_impacts_distribution_secondaries_2012.pdf)
+
+- M\. Rylander, T. A. Short, and R. Fletcher, "Economics of Distribution Efficiency Projects," IEEE/PES Transmission and Distribution Conference, Orlando, FL, 2012. [Approved version](../papers/ieee_td_green_circuits_mrylander_Economics_2012.pdf)
+
+- R\. Arritt, T. A. Short, and D. L. Brooks, "Summary of Modeling Results for Distribution Efficiency Case Studies," IEEE/PES Transmission and Distribution Conference, Orlando, FL, 2012. [Approved version](../papers/ieee_td_rarritt_summary_modeling_results_distribution_efficiency_2012.pdf)
+
+## Other
+
+- T\. A. Short, "Advanced Metering for Phase Identification, Transformer Identification, and Secondary Modeling," *IEEE Transactions on Smart Grid,* vol. 4, no. 2, June 2013.
+ [Approved version](../papers/ieee_smart_grid_tshort_AMI_for_phase_identification_accepted_draft_2012-07-11.pdf)
+
+- T\. A. Short, "Open-source distribution transient modeling with Modelica," IEEE/PES Transmission and Distribution Conference and Exposition, 2008.  [Approved version](../papers/ieee_td_tshort_modelica_2008.pdf)
+
+- T\. A. Short, D. D. Sabin, and M. F. McGranaghan, "Using PQ Monitoring and Substation Relays for Fault Location on Distribution Systems," IEEE Rural Electric Power Conference, 2007.  [Approved version](../papers/ieee_repc_fault_location_tshort_2007_submission.pdf)
