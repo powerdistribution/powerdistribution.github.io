@@ -92,6 +92,10 @@ form.form
         .checkbox
           label Jumper shield at work site
           input#jumpershield name="jumpershield" type="checkbox" checked=false
+      .form-group
+        .checkbox
+          label Connect phases together
+          input#jumperphase name="jumperphase" type="checkbox" checked=false
 ```
 
 <!-- Cable data -->
@@ -362,6 +366,7 @@ fillcase = function(x, name) {
     $("#Rgrnd").val(x.Rgrnd)
     $("#ductSpacing").val(x.ductSpacing)
     $("#jumpershield").prop("checked", x.jumpershield)
+    $("#jumperphase").prop("checked", x.jumperphase)
     $("#workerrow input").eq(x.wloc-1).prop("checked", true)
     $("#faultrow input").eq(x.floc-1).prop("checked", true)
     setchecks($("#bondrow input"),    x.bonds, 1)
@@ -383,6 +388,7 @@ getcurrentcase = function() {
         Rgrnd:         +$("#Rgrnd").val(),
         ductSpacing:   +$("#ductSpacing").val(),
         jumpershield:  $("#jumpershield").prop("checked"),
+        jumperphase:   $("#jumperphase").prop("checked"),
         wloc:          +$("input[name=wloc]:checked").val(),
         floc:          +$("input[name=floc]:checked").val(),
         bonds:         _.rest($("#bondrow input:checkbox").map(function(){return $(this).prop("checked")}).get()),
@@ -650,6 +656,9 @@ calcs = function(workmh, faultmh) {
         for (var i = 0; i < Nworked; i++) {
             Y = Yaddshort(Y, workNode + 2 + i, workNode + 2 + i + Nc)
         }
+    }
+    if (jumperphase) {
+        Y = Yaddshort(Y, workNode, workNode + Nc) // Worked phase
     }
     for (var i = workNode + 2 + Nworked; i < workNode+Nc; i++) {  // jumper the faulted phase shields
         Y = Yaddshort(Y, i, i + Nc)
@@ -947,11 +956,14 @@ worse across the open point (whether involving phases or shields), so when work
 is being performed on one side, workers could cover the other side with an
 insulating blanket.
 
+The option "Connect phases together" connects the phase of the worked cable to
+help evaluate touch voltages once the phases have been joined back together.
+
 This app only models one induction hazard. Another scenario that can cause touch
 potentials is a ground potential rise in the substation. This can happen for a
 high-side fault or for a fault on another distribution circuit not along the
 worked cable. Protection approaches identified here are appropriate protections
-against touch voltages transfered from a substation ground potential rise.
+against touch voltages transferred from a substation ground potential rise.
 Another hazard for underground workers is inadvertent energization. That is
 difficult to protect against in underground work without fully-rated insulation.
 
