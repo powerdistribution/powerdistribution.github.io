@@ -1,5 +1,5 @@
 
-# Personnel protection on underground systems
+# Personnel protection on underground systems: Adjacent fault
 
 This page models touch voltages induced on a cut cable during a fault on a parallel
 cable. This expands on material in Section 14.6.
@@ -894,11 +894,19 @@ Defaults and assumptions include:
 * "Jumper shield at work site" means that the shield on the worked cable is
   jumpered across the cut cable.
 
+* The option "Connect phases together" connects the phase of the worked cable to
+  help evaluate touch voltages once the phases have been joined back together.
+  
+* The system voltage and substation ground resistance have no effect on this
+  model because the model is driven by the GPR voltage. The system voltage,
+  fault current available, and substation ground resistance will all affect
+  how high the GPR can go.
+
 * The manhole grounds should also include customer grounds. The customer grounds
   are often better than utility grounds.
 
 * The earth resistivity has a small effect in the app because the substation and
-  manhole ground resistances are specified seperately. These resistances are
+  manhole ground resistances are specified separately. These resistances are
   directly influenced by the earth resistivity.
 
 * You can model floating phases as a protection option. To float the phase of
@@ -955,9 +963,6 @@ across the cut cable is often the highest voltage. Generally, touch voltages are
 worse across the open point (whether involving phases or shields), so when work
 is being performed on one side, workers could cover the other side with an
 insulating blanket.
-
-The option "Connect phases together" connects the phase of the worked cable to
-help evaluate touch voltages once the phases have been joined back together.
 
 This app only models one induction hazard. Another scenario that can cause touch
 potentials is a ground potential rise in the substation. This can happen for a
