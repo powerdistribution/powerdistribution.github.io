@@ -87,5 +87,5 @@ var _Templater = {
     // Client-side export
     if (typeof window !== 'undefined' && window.Showdown && window.Showdown.extensions) { window.Showdown.extensions.md = md; }
     // Server-side export
-    if (typeof module !== 'undefined') module.exports = mdpad_sd_ext;
+    if (typeof module !== 'undefined') module.exports = md;
 }());
