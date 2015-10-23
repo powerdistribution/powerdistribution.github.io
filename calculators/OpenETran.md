@@ -40,15 +40,21 @@ table inputs.
 </style>
 
 
+<!-- Script loader -->
+
 ```yaml
         #: script=scriptloader
 - OpenETran.js
 ```
 
+<!-- Load default library -->
+
 ```yaml
         #: script=dataloader
 library: OpenETran_library.yaml
 ```
+
+<!-- Initial setup -->
 
 ```js
 if (typeof(firstrun) == "undefined") {
@@ -728,6 +734,7 @@ if (typeof(header) != "undefined") {
   </div>
 </div>
 
+<!-- Main calculations -->
 
 ```js
 critI = Array(N)
@@ -778,7 +785,11 @@ tbl = _.map(_.range(0, N), function(i) {j = i % ncond;
         flashovers: (GFD * flashes[j] * probI[i]/100).toFixed(2)
 }})
 ```
-```text name=tabletemplate
+
+<!-- Emblem template for output -->
+
+```emblem
+         #: name=tabletemplate
 br
 h4 Flashover probabilities
 br
@@ -820,6 +831,9 @@ div
   span &frasl;yr
 br
 ```
+
+<!-- Generate output -->
+
 ```js
         //: output=markdown
 if (tbl.length > 0) {
