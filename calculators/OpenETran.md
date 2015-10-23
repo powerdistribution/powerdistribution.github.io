@@ -525,6 +525,7 @@ html:
 
 </div>
 
+<!-- Load tables -->
 
 ```js
         //: id=loadtables
@@ -550,6 +551,7 @@ p2 = +h2[3]
 N = ncond * (p2 - p1 + 1)
 ```
 
+<!-- Create the input data file and run the simulation -->
 
 ```js
 try {
