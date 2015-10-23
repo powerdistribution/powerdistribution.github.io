@@ -25,14 +25,10 @@ wc: [0.0246, 0.0392, 0.0623, 0.0785, 0.0991, 0.1249, 0.1575, 0.1987, 0.2347, 0.2
 <br/>
 <br/>
 
-
-<div class = "row">
-<div class = "col-md-7">
-
 <!-- Input form -->
 
 ```yaml
-          #: jquery=dform
+          #: jquery=dform outputid=inputform
 class : form-horizontal
 col1class : col-sm-8
 col2class : col-sm-4
@@ -70,18 +66,21 @@ html:
     bs3caption: "Vertical conductor separation, feet"
     value: 0.0
 ```
+
+<div class = "row">
+<div class = "col-md-7">
+<div id = "inputform">
+</div>
 </div>
 <div class = "col-md-1">
 </div>
 
 <div class = "col-md-4">
-
 <div id="graph" style='width:300px; height:300px;'></div>
-
 </div>
 </div>
 
-
+<!-- Main animation/calculation -->
 
 ```js
           //: output=markdown
@@ -118,11 +117,14 @@ else
 
 <div style="line-height: 0.6em; ">
 <small>
+<div id="output2"></div>
+</small>
+</div>
 
-<!-- Main calculations / output -->
+<!-- Conductor position calculations -->
 
 ```js 
-       //: output=markdown
+       //: output=markdown outputid=output2
 
 function sq(x) {
     return x * x;
@@ -180,8 +182,6 @@ println(" Left/bottom conductor, 2nd swing, X = " + (wirelocs[c1peak2idx][1]).to
 println(" Right/top conductor, 1st swing, X = " + ((wirelocs[c2peak1idx][3] - z[3])).toFixed(1) + " ft, Y = " + ((wirelocs[c2peak1idx][4] - z[4])).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c2peak1idx][0]) + " cycles\n\n");
 println(" Right/top conductor, 2nd swing, X = " + ((wirelocs[c2peak2idx][3] - z[3])).toFixed(1) + " ft, Y = " + ((wirelocs[c2peak2idx][4] - z[4])).toFixed(1) + " ft @ " + Math.round(60*wirelocs[c2peak2idx][0]) + " cycles\n\n");
 ```
-</small>
-</div>
 
 <!-- Find critical clearing times -->
 
