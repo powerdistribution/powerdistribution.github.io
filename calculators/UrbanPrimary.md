@@ -17,30 +17,36 @@ parameters, and the simulation will run automatically.
          #:  script=dataloader
 xml: UrbanPrimary_init.xml
 ```
-<style media="screen" type="text/css">
-label {font-weight:normal; size: 0.9em}
-</style>
 
+<!-- Emblem template for input and results -->
 
-<br/>
-<br/>
-
-<div id="status" style="text-align:center"><span id="statustext">
-Simulation loading</span>. &nbsp Time: <span id="statustimer"> </span></div>
-
-<br/>
-
-
-<div class = "row">
-<div class = "col-md-5">
-
-<br/>
-<br/>
+```emblem
+#status style="text-align:center"
+  span#statustext Simulation loading
+  span &nbsp;&nbsp;Time: 
+  span#statustimer
+br
+br
+.row
+  .col-md-5
+    #inputform
+  .col-md-7
+    ul.nav.nav-tabs#mytab
+      li.active
+        a href="#model" data-toggle="tab" Model
+      li
+        a href="#results" data-toggle="tab" Results
+    .tab-content
+      .tab-pane.active#model
+        img src="UrbanPrimary.svg" style="width:100%; background-color:#ffffff; border:2px solid gray"     
+      .tab-pane#results
+        #mdresults
+```
 
 <!-- Input form -->
 
 ```yaml
-         #:  jquery=dform
+         #:  jquery=dform outputid=inputform
 class : form-horizontal
 col1class : col-sm-8
 col2class : col-sm-4
@@ -163,35 +169,10 @@ wworker.addEventListener("message", function(e) {
 
 ```
 
-
-</div>
-
-
-
-<div class = "col-md-7">
-
-<!-- Nav tabs -->
-<ul class="nav nav-tabs" id="mytab">
-  <li class="active"><a href="#model" data-toggle="tab">Model</a></li>
-  <li><a href="#results" data-toggle="tab">Results</a></li>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content">
-  <!-- Model pane -->
-  <div class="tab-pane active" id="model">
-
-<img src="UrbanPrimary.svg" style="width:100%; background-color:#ffffff; border:2px solid gray" />
-
-  </div>
-
-  <!-- Results pane -->
-  <div class="tab-pane" id="results">
-
 <!-- Plot results -->
 
 ```js
-         //:  id=plotdiv
+         //:  id=plotdiv outputid=mdresults
 if (typeof(header) != "undefined") {
     $("#mytab a:last").tab("show"); // Select last tab
     y1idx = header.indexOf("Va");
@@ -209,12 +190,6 @@ if (typeof(header) != "undefined") {
 }
 ```
 
-  </div>
-</div>
-
-
-</div>
-</div>
 
 ## Description
 
