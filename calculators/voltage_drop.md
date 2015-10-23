@@ -5,11 +5,15 @@ load on an overhead distribution line. The load is constant throughout
 the segment modeled. The voltages at the start of the segment are
 balanced.
 
+<!-- Script loader -->
+
 ```yaml
          #:  script=scriptloader
 - lib/numeric-1.2.6.min.js
 - lib/math.min.js
 ```
+
+<!-- Conductor data -->
 
 ```yaml
          #:  name=d
@@ -18,6 +22,7 @@ gmr: [0.0055611962035177, 0.00700459393067038, 0.00882262274842038, 0.0099015932
 conductors: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]
 ```
 
+<!-- Input form -->
 
 ```yaml
          #:  jquery=dform
@@ -202,6 +207,8 @@ html:
 
 ## Results
 
+<!-- Main calculations -->
+
 ```js
 
 sq = function(x) {
@@ -278,6 +285,8 @@ println("Load-side voltages (L-N) = " + numeric.prettyPrint(Vload.abs().x) + " V
 println("                         = " + numeric.prettyPrint(Vload.abs().div(Vbase).x) + " pu")
 println("                         = " + numeric.prettyPrint(Vload.abs().div(Vbase).mul(120).x) + " V on a 120-V base")
 ```
+
+<!-- Plot -->
 
 ```js
 seriesVsub = [];

@@ -5,15 +5,21 @@ This app models faults at different points on a power system with
 different transformer connections. The line-to-ground voltages in per
 unit are shown in blue, and the currents in kA are in green.
 
+<!-- Load scripts -->
+
 ```yaml  
          #: script=scriptloader
 - lib/tinytimer.js
 ```
 
+<!-- Load OpenModelica input file -->
+
 ```yaml
          #:  script=dataloader
 xml: FaultSimulatorPackage.FaultSimulator_init.xml
 ```
+
+<!-- Input form -->
 
 ```yaml
          #:  jquery=dform
@@ -112,9 +118,9 @@ html:
 Simulation loading</span>. &nbsp Time: <span id="statustimer"> </span></small></div>
 
 
+<!-- Adjust the SVG and the XML input file based on user inputs -->
 
 ```js
-// Adjust the SVG and the XML input file based on user inputs
 //
 $xml = $(xml)
 //
@@ -189,6 +195,8 @@ $xml.find("ScalarVariable[name = 'transformer2.Xn1']").find("Real").attr("start"
 $xml.find("ScalarVariable[name = 'transformer2.Xn2']").find("Real").attr("start", neutraloptions[tran2sn])
 ```
 
+<!-- Start the timer and launch the simulation -->
+
 ```js
 if (typeof(isRunning) == "undefined") isRunning = false
 
@@ -214,13 +222,11 @@ isRunning = true
 wworker.postMessage({basename: basename, xmlstring: xmlstring})
 wworker.addEventListener('error', function(event) {
 });
-
-
 ```
 
+<!-- Read the csv file with the simulation results -->
 
 ```js
-// read the csv file with the simulation results
 
 wworker.addEventListener("message", function(e) {
     $("#statustext").html(e.data.status)
@@ -233,6 +239,8 @@ wworker.addEventListener("message", function(e) {
 }, false);
 
 ```
+
+<!-- Plot results -->
 
 ```js
          //:  id=plotdiv

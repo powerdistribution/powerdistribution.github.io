@@ -10,10 +10,14 @@ cable, and at the cable open point.
 
 <img src="cable_riser.svg" style="width:100%" />
 
+<!-- Script loader -->
+
 ```yaml
          #: script=scriptloader
 - OpenETran.js
 ```
+
+<!-- Input data template -->
 
 ```text
          #: name=inputtemplate
@@ -73,6 +77,7 @@ poles 3 6 7
 <div class = "row">
 <div class = "col-md-5">
 
+<!-- Input form -->
 
 ```yaml
          #: jquery=dform
@@ -133,6 +138,8 @@ html:
 </div>
 <div class = "col-md-7">
 
+<!-- Generate input file and run the simulation -->
+
 ```js
     if (!arresteratopen) ELBOWVOLTAGE = 10000.0
     if (scouts) {RISERLOCATIONS = "2 3 4"} else {RISERLOCATIONS = "3"}
@@ -160,8 +167,9 @@ html:
 
 <h2>Results</h2>
 
+<!-- Read the csv file with the simulation results -->
+
 ```js
-// read the csv file with the simulation results
 
     x = $.csv.toArrays(csv, {onParseValue: $.csv.hooks.castToScalar})
 
@@ -175,6 +183,9 @@ html:
 ```
 
 Cable voltages, kV
+
+<!-- Plot results -->
+
 ```js
     yidx = header.indexOf(graphvar);
     xidx = 0;

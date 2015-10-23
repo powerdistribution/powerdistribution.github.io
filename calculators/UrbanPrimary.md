@@ -4,10 +4,14 @@ This app models transients that occur on urban systems during a single
 line-to-ground fault. See section 14.2.3 for more information. Adjust
 parameters, and the simulation will run automatically.
 
+<!-- Script loader -->
+
 ```yaml
          #:  script=scriptloader
 - lib/tinytimer.js
 ```
+
+<!-- Load OpenModelica input data template -->
 
 ```yaml
          #:  script=dataloader
@@ -32,6 +36,8 @@ Simulation loading</span>. &nbsp Time: <span id="statustimer"> </span></div>
 
 <br/>
 <br/>
+
+<!-- Input form -->
 
 ```yaml
          #:  jquery=dform
@@ -91,6 +97,9 @@ html:
     bs3caption: Neutral reactor X/R ratio
     value: 5.0
 ```
+
+<!-- Modify input and launch simulation -->
+
 ```js
 if (typeof(isRunning) == "undefined") isRunning = false
 
@@ -134,8 +143,9 @@ wworker.addEventListener('error', function(event) {
 
 ```
 
+<!-- Read the csv file with the simulation results -->
+
 ```js
-// read the csv file with the simulation results
 
 wworker.addEventListener("message", function(e) {
     $("#statustext").html(e.data.status)
@@ -178,6 +188,8 @@ wworker.addEventListener("message", function(e) {
   <!-- Results pane -->
   <div class="tab-pane" id="results">
 
+<!-- Plot results -->
+
 ```js
          //:  id=plotdiv
 if (typeof(header) != "undefined") {
@@ -196,10 +208,9 @@ if (typeof(header) != "undefined") {
     plot([series4]);
 }
 ```
+
   </div>
 </div>
-
-
 
 
 </div>

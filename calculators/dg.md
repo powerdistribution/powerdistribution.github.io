@@ -6,12 +6,15 @@ generator on the system. The circuit has **no other load**. The main
 parameters that affect the voltage are the line impedances (based on
 conductor type) and the power factor of the generator.
 
+<!-- Load scripts -->
+
 ```yaml
          #:  script=scriptloader
 - lib/numeric-1.2.6.min.js
 - lib/math.min.js
 ```
 
+<!-- Conductor data -->
 
 ```yaml
          #:  name=d
@@ -23,6 +26,8 @@ conductors: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250
 <div class="row">
 <div class="col-md-4">
 <br>
+
+<!-- Input form -->
 
 ```yaml
          #:  jquery=dform
@@ -67,6 +72,8 @@ html:
 <div class = "col-md-7">
 
 <h3>Results</h3>
+
+<!-- Main calculations -->
 
 ```js
 xA = -4; xB = 0;  xC = 4;  xN = 0.3
@@ -116,6 +123,8 @@ println("Percent change in voltage if the generator trips = " + math.format(pcnt
 
 <h3>Voltage vs. Distance</h3>
 
+<!-- Make plot -->
+
 ```js
 distances = math.range(0, .1, distance)
 N = 50
@@ -130,6 +139,8 @@ plot([series1]);
 ```
 <br/>
 <br/>
+
+<!-- Write output -->
 
 ```js
 println("|I| = " + math.format(math.abs(I)) + " A")

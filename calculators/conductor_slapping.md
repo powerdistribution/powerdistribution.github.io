@@ -6,10 +6,14 @@ characteristics, the fault information, and the relative conductor
 positions. The critical clearing time is the fault duration at which
 conductors swing enough to (nearly) touch.
 
+<!-- Script loader -->
+
 ```yaml
           #: script=scriptloader
 - FICM.js
 ```
+
+<!-- Conductor data  -->
 
 ```yaml 
           #: name=d
@@ -25,6 +29,7 @@ wc: [0.0246, 0.0392, 0.0623, 0.0785, 0.0991, 0.1249, 0.1575, 0.1987, 0.2347, 0.2
 <div class = "row">
 <div class = "col-md-7">
 
+<!-- Input form -->
 
 ```yaml
           #: jquery=dform
@@ -114,7 +119,10 @@ else
 <div style="line-height: 0.6em; ">
 <small>
 
-```js output=markdown
+<!-- Main calculations / output -->
+
+```js 
+       //: output=markdown
 
 function sq(x) {
     return x * x;
@@ -175,7 +183,10 @@ println(" Right/top conductor, 2nd swing, X = " + ((wirelocs[c2peak2idx][3] - z[
 </small>
 </div>
 
-```js output=markdown
+<!-- Find critical clearing times -->
+
+```js
+       //:  output=markdown
 
 function bisect(flti) {
     hi = 2.0*60
@@ -210,6 +221,8 @@ series = _.zip(currents,durations)
 series = _.filter(series,function(x) {return x[1] > 0.0})
 ```
 
+<!-- Plotting info -->
+
 ```yaml
           #: name=plotinfo
 chart:
@@ -230,6 +243,8 @@ title:
 legend:
     enabled: false
 ```
+
+<!-- Make the plot -->
 
 ```js
 plotinfo.series = [{data: series}]

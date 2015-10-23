@@ -7,10 +7,14 @@ underground cable with a split (section 13.6.3).
 <img src="cable_split.svg" style="width:80%" />
 <br/>
 
+<!-- Script loader -->
+
 ```yaml
           #: script=scriptloader
 - OpenETran.js
 ```
+
+<!-- OpenETran input data template -->
 
 ```text
           #: name=inputtemplate
@@ -82,6 +86,7 @@ pairs 1 0
 poles all
 ```
 
+<!-- Input form -->
 
 ```yaml
           #: jquery=dform
@@ -135,6 +140,8 @@ html:
             value: 500.0
 ```
 
+<!-- Create input file and run the simulation -->
+
 ```js
     if (CABLELEN1 < 30) CABLELEN1 = 30
     if (CABLELEN2 < 30) CABLELEN2 = 30
@@ -170,9 +177,9 @@ html:
 </div>
 </div>
 
+<!-- Read the csv file with the simulation results -->
 
 ```js
-// read the csv file with the simulation results
 
     x = $.csv.toArrays(csv, {onParseValue: $.csv.hooks.castToScalar})
 
@@ -184,6 +191,9 @@ html:
     if (typeof(graphvar) == "undefined") graphvar = header[1];
 
 ```
+
+<!-- Plot -->
+
 ```js
     yidx = header.indexOf(graphvar);
     xidx = 0;
@@ -199,8 +209,10 @@ html:
               { xaxis: { min: 0, max: 1e6 * x[x.length-1][0]},
                 yaxis: { min: ymin, max: ymax } });
 ```
+
+<!-- Animation -->
+
 ```js
-// animation
 var nstep = 0
 var plot = $.plot($('#animation'),
               [{ data: [[0.0, 0.0], [30.0, 0.0]] }],

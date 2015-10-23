@@ -4,11 +4,15 @@ This app compares burndown curves of various overhead conductors to
 the clearing times of relayed circuit breakers. See also section
 2.9.2.
 
+<!-- Script loader -->
 
 ```yaml
           #:  script=scriptloader
 - lib/numeric-1.2.6.min.js
 ```
+
+<!-- Conductor data -->
+
 ```yaml
           #:  name=d
 conductors: ["#6",  "#4",  "#2",  "#1",  1/0,   2/0,   3/0,   4/0,   250, 266.8, 300, 336.4, 350, 397.5, 450, 477, 500, 556.5, 700, 715.5, 750, 795, 874.5, 900, 954, 1000]
@@ -20,6 +24,8 @@ kcmil:      [26.24, 41.74, 66.36, 83.69, 105.6, 133.1, 167.8, 211.6, 250, 266.8,
 
 <br/>
 <br/>
+
+<!-- Input form -->
 
 ```yaml
           #:  jquery=dform name=frm
@@ -60,6 +66,8 @@ html:
     value: 6
 ```
 
+<!-- Relay data (csv) -->
+
 ```text
           #: name=relaydata
 curve,A,B,p
@@ -69,6 +77,8 @@ curve,A,B,p
 "ANSI extremely inverse",  5.67,   0.0352,  2.0
 "ANSI short-time inverse", 0.323,  0.00262, 2.0
 ```
+
+<!-- Burndown data (csv) -->
 
 ```text
           #: name=burndowndata
@@ -83,6 +93,7 @@ curve,k1,q1,k2,q2
 </div>
 <div class = "col-md-8">
 
+<!-- Main calculations -->
 
 ```js
 function makeobj(x) {
@@ -124,7 +135,7 @@ findburndown2 = function(I) {
 ```
 
 
-
+<!-- Plot info -->
 
 ```yaml
           #: name=plotinfo
@@ -163,6 +174,8 @@ legend:
     borderWidth: 0
 ```
 
+<!-- Plots -->
+
 ```js
 currents = numeric.pow(10,numeric.linspace(-.5,1.5,100))
 durations1 = _.map(currents, findburndown1)
@@ -175,8 +188,6 @@ plotinfo.series = [{name: "Burndown1", data: series1},
                    {name: "Burndown2", data: series2},
                    {name: "Relay curve", data: series3}]
 //$("#firstplot").highcharts(plotinfo) // done later
-```
-```js
 pidx = _.map(d.conductors, String).indexOf(conductor2)
 kcmil = d.kcmil[pidx]
 if (material == "ACSR") {
@@ -274,6 +285,8 @@ based on test data for those specific conductor sizes.
 <br/>
 <br/>
 
+<!-- Input form -->
+
 ```yaml
           #:  jquery=dform name=frm2
 html:
@@ -301,6 +314,7 @@ html:
 </div>
 <div class = "col-md-8">
 
+<!-- Plot info -->
 
 ```yaml
           #:  name=plotinfo2

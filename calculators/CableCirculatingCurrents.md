@@ -12,12 +12,15 @@ in the same duct. An optional neutral can also be given.
 
 <br/>
 
+<!-- Script loader -->
+
 ```yaml
           #: script=scriptloader
 - lib/numeric-1.2.6.min.js
 - lib/math.min.js
 ```
 
+<!-- Input form -->
 
 ```yaml
           #: jquery=dform
@@ -72,6 +75,8 @@ html:
             choices: ["1", "2", "3", "4"]
 ```
 
+<!-- Conductor data -->
+
 ```yaml
           #: name=ac
 name: [250 kcmil, 500 kcmil , 1000 kcmil]
@@ -79,6 +84,8 @@ R:    [0.0435,0.0229,0.0132]
 GMR:  [0.216,0.305,0.435]
 GMRs: [0.5075,0.6125,0.7825]
 ```
+
+<!-- Main calculations -->
 
 ```js
 neutralLocation = neutralLocation - 1
@@ -212,6 +219,8 @@ Iabs2 = I2.abs().x
 
 ## Flat construction results
 
+<!-- Results -->
+
 ```js
 println("Concentric neutral currents = " + _.map(_.range(3,6), function(i){return Math.round(Iabs[i])}) + " %")
 println("Seperate neutral current = " + Math.round(Iabs[6]) + " %")
@@ -219,6 +228,8 @@ println("Seperate neutral current = " + Math.round(Iabs[6]) + " %")
 
 
 ## Results with all cables in one duct (triplex)
+
+<!-- Results in one duct -->
 
 ```js
 println("Concentric neutral currents = " + _.map(_.range(3,6), function(i){return Math.round(Iabs2[i])}) + " %")

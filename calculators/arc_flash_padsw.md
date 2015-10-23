@@ -1,5 +1,7 @@
 # Arc flash in a padmounted switch
 
+<!-- Script loader -->
+
 ```yaml
          #: script=scriptloader
 - lib/numeric-1.2.6.min.js
@@ -10,6 +12,8 @@
 
 <br/>
 <br/>
+
+<!-- Input form -->
 
 ```yaml
          #:  jquery=dform name=frm
@@ -56,6 +60,7 @@ html:
 </div>
 <div class = "col-md-8">
 
+<!-- Define main calculation functions -->
 
 ```js
 
@@ -67,19 +72,16 @@ findcals = function(I, t, d, k) {
 findduration = function(E, I, d, k) {
    return pow(E * pow(d, 2.1) / (k * 3547 * pow(I, 1.5)), 1/1.35);
 }
-console.log(1)
 ```
 
 <h3>Results</h3>
 
+<!-- Run and print results -->
 
 ```js
         //: output=markdown
-console.log(2)
 cals = findcals(I, t, D, k)
-console.log(3)
 duration = findduration(clothing, I, D, k)
-console.log(4)
 
 println()
 println("Incident energy for the given current and duration = **" + cals.toFixed(2) + " cal/cm^2**")
@@ -87,6 +89,8 @@ println()
 println("Duration limit for the given current and clothing = **" + duration.toFixed(2) + " secs**")
 
 ```
+
+<!-- Plot info -->
 
 ```yaml
          #:  name=plotinfo
@@ -129,6 +133,8 @@ legend:
     borderWidth: 0
 ```
 
+<!-- Plot -->
+
 ```js
 currents = numeric.pow(10,numeric.linspace(0,2,100))
 durations1 = _.map(currents, function(I) {return findduration(clothing, I, D, k)})
@@ -155,6 +161,7 @@ if (graphextras == "Vary clothing") {
 //plotinfo.series = [{data: series1}]
 $active_element.highcharts(plotinfo)
 ```
+
 </div>
 </div>
 

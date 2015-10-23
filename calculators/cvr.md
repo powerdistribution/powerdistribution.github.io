@@ -22,6 +22,8 @@ the utility side based on various parameters.
 <br/>
 <br/>
 
+<!-- Input form -->
+
 ```yaml
          #:  jquery=dform name=frm
 html:
@@ -52,6 +54,8 @@ html:
 </div>
 <div class = "col-md-7">
 
+<!-- Main calculations -->
+
 ```js
 energy = {nll: NLL/100, ll: LL/100, lighting: lighting/100, customer: 1 - LL/100 - NLL/100 - lighting/100}
 component = {nll: 5.6 / 100, ll: 0.6 / 100, lighting: 2.3 / 100, customer: 2.3 / 100 * CVRf / 0.8}
@@ -78,6 +82,7 @@ println("Customer-side savings = **" + (100 * overall.customer).toFixed(1)+ "%**
 
 <br/>
 
+<!-- Plot options -->
 
 ```yaml
          #:  name=options
@@ -103,6 +108,8 @@ xaxis:
     max: 100
     ticks: 2
 ```
+
+<!-- Generate plot -->
 
 ```js
 $.plot("#graph1", [[[100*overall.customer, 0], [100*(1-overall.customer), 1]]], options, "20em", "5em")

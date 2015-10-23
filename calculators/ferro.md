@@ -1,9 +1,13 @@
 ## Ferroresonance on a Five-Legged Core Transformer
 
+<!-- Script loader -->
+
 ```yaml
          #:  script=scriptloader
 - lib/tinytimer.js
 ```
+
+<!-- Load OpenModelica input file -->
 
 ```yaml
          #:  script=dataloader
@@ -24,6 +28,7 @@ Simulation loading</span>. &nbsp Time: <span id="statustimer"> </span></div>
 <div class = "row">
 <div class = "col-md-5">
 
+<!-- Input form -->
 
 ```yaml
          #:  jquery=dform name=frm
@@ -89,6 +94,8 @@ html:
   <!--   value: false -->
 ```
 
+<!-- Adjust the XML input file based on user inputs and launch the simulation -->
+
 ```js
 if (typeof(isRunning) == "undefined") isRunning = false
 
@@ -139,8 +146,9 @@ wworker.addEventListener('error', function(event) {
 ```
 
 
+<!-- Read the csv file with the simulation results -->
+
 ```js
-// read the csv file with the simulation results
 
 wworker.addEventListener("message", function(e) {
     $("#statustext").html(e.data.status)
@@ -182,6 +190,7 @@ wworker.addEventListener("message", function(e) {
   <!-- Results pane -->
   <div class="tab-pane" id="results">
 
+<!-- Plot results -->
 
 ```js
          //:  id=plotdiv
