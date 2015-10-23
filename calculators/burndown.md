@@ -19,16 +19,45 @@ conductors: ["#6",  "#4",  "#2",  "#1",  1/0,   2/0,   3/0,   4/0,   250, 266.8,
 kcmil:      [26.24, 41.74, 66.36, 83.69, 105.6, 133.1, 167.8, 211.6, 250, 266.8, 300, 336.4, 350, 397.5, 450, 477, 500, 556.5, 700, 715.5, 750, 795, 874.5, 900, 954, 1000]
 ```
 
-<div class = "row">
-<div class = "col-md-4">
+<!-- Relay data (csv) -->
 
-<br/>
-<br/>
+```text
+          #: name=relaydata
+curve,A,B,p
+"ANSI moderately inverse", 0.0104, 0.0226,  0.02
+"ANSI inverse",            5.95,   0.18,    2.0
+"ANSI very inverse",       3.88,   0.0963,  2.0
+"ANSI extremely inverse",  5.67,   0.0352,  2.0
+"ANSI short-time inverse", 0.323,  0.00262, 2.0
+```
+
+<!-- Burndown data (csv) -->
+
+```text
+          #: name=burndowndata
+curve,k1,q1,k2,q2
+"#4 ACSR bare",           5074.3, 1.2772,     2682, 1.2110
+"#2 ACSR bare",            185.1, 0.7407,   117.64, 0.7358
+"336.4 kcmil Al covered",  24106, 1.3254,    22253, 1.3335
+"556.4 kcmil Al covered",  41549, 1.3222,    26878, 1.2839
+```
+
+<!-- Emblem template for input and plot -->
+
+```emblem
+.row
+  .col-sm-4
+    br
+    br
+    #inputform
+  .col-sm-8
+    #firstplot
+```
 
 <!-- Input form -->
 
 ```yaml
-          #:  jquery=dform name=frm
+          #:  jquery=dform name=frm outputid=inputform
 html:
   - name: conductor
     type: select
@@ -65,33 +94,6 @@ html:
     step: 1.0
     value: 6
 ```
-
-<!-- Relay data (csv) -->
-
-```text
-          #: name=relaydata
-curve,A,B,p
-"ANSI moderately inverse", 0.0104, 0.0226,  0.02
-"ANSI inverse",            5.95,   0.18,    2.0
-"ANSI very inverse",       3.88,   0.0963,  2.0
-"ANSI extremely inverse",  5.67,   0.0352,  2.0
-"ANSI short-time inverse", 0.323,  0.00262, 2.0
-```
-
-<!-- Burndown data (csv) -->
-
-```text
-          #: name=burndowndata
-curve,k1,q1,k2,q2
-"#4 ACSR bare",           5074.3, 1.2772,     2682, 1.2110
-"#2 ACSR bare",            185.1, 0.7407,   117.64, 0.7358
-"336.4 kcmil Al covered",  24106, 1.3254,    22253, 1.3335
-"556.4 kcmil Al covered",  41549, 1.3222,    26878, 1.2839
-```
-
-
-</div>
-<div class = "col-md-8">
 
 <!-- Main calculations -->
 
@@ -174,49 +176,6 @@ legend:
     borderWidth: 0
 ```
 
-<!-- Plots -->
-
-```js
-currents = numeric.pow(10,numeric.linspace(-.5,1.5,100))
-durations1 = _.map(currents, findburndown1)
-series1 = _.zip(currents,durations1)
-durations2 = _.map(currents, findburndown2)
-series2 = _.zip(currents,durations2)
-durations3 = _.map(currents, findrelay)
-series3 = _.zip(currents,durations3)
-plotinfo.series = [{name: "Burndown1", data: series1},
-                   {name: "Burndown2", data: series2},
-                   {name: "Relay curve", data: series3}]
-//$("#firstplot").highcharts(plotinfo) // done later
-pidx = _.map(d.conductors, String).indexOf(conductor2)
-kcmil = d.kcmil[pidx]
-if (material == "ACSR") {
-    k1 = 1.31
-} else if (material == "Copper") {
-    k1 = 0.71
-} else {
-    k1 = 1.0
-}
-if (cover == "Covered") {
-    k2 = 0.345
-} else {
-    k2 = 1.0
-}
-findburndownR = function(I) {
-   return 4.05 / I / 1000 * pow(kcmil, 1.15) * k1 * k2
-}
-durationsR = _.map(currents, findburndownR)
-seriesR = _.zip(currents,durationsR)
-plotinfo2.series = [{name: "Burndown curve", data: seriesR},
-                   {name: "Relay curve", data: series3}]
-$("#firstplot").highcharts(plotinfo)
-$("#secondplot").highcharts(plotinfo2)
-```
-
-<div id="firstplot"/>
-
-</div>
-</div>
 
 
 # Notes
@@ -279,16 +238,22 @@ general based on a fit to a number of conductor configurations. The
 curves above are likely to be more accurate because they were tailored
 based on test data for those specific conductor sizes.
 
-<div class = "row">
-<div class = "col-md-4">
+<!-- Emblem template for input and plot -->
 
-<br/>
-<br/>
+```emblem
+.row
+  .col-sm-4
+    br
+    br
+    #inputform2
+  .col-sm-8
+    #secondplot
+```
 
 <!-- Input form -->
 
 ```yaml
-          #:  jquery=dform name=frm2
+          #:  jquery=dform outputid=inputform2
 html:
   - name: conductor2
     type: select
@@ -310,9 +275,6 @@ html:
       - Bare
       - Covered
 ```
-
-</div>
-<div class = "col-md-8">
 
 <!-- Plot info -->
 
@@ -353,9 +315,44 @@ legend:
     borderWidth: 0
 ```
 
-<div id="secondplot"/>
-</div>
-</div>
+<!-- Plots -->
+
+```js
+currents = numeric.pow(10,numeric.linspace(-.5,1.5,100))
+durations1 = _.map(currents, findburndown1)
+series1 = _.zip(currents,durations1)
+durations2 = _.map(currents, findburndown2)
+series2 = _.zip(currents,durations2)
+durations3 = _.map(currents, findrelay)
+series3 = _.zip(currents,durations3)
+plotinfo.series = [{name: "Burndown1", data: series1},
+                   {name: "Burndown2", data: series2},
+                   {name: "Relay curve", data: series3}]
+//$("#firstplot").highcharts(plotinfo) // done later
+pidx = _.map(d.conductors, String).indexOf(conductor2)
+kcmil = d.kcmil[pidx]
+if (material == "ACSR") {
+    k1 = 1.31
+} else if (material == "Copper") {
+    k1 = 0.71
+} else {
+    k1 = 1.0
+}
+if (cover == "Covered") {
+    k2 = 0.345
+} else {
+    k2 = 1.0
+}
+findburndownR = function(I) {
+   return 4.05 / I / 1000 * pow(kcmil, 1.15) * k1 * k2
+}
+durationsR = _.map(currents, findburndownR)
+seriesR = _.zip(currents,durationsR)
+plotinfo2.series = [{name: "Burndown curve", data: seriesR},
+                   {name: "Relay curve", data: series3}]
+$("#firstplot").highcharts(plotinfo)
+$("#secondplot").highcharts(plotinfo2)
+```
 
 
 # References
