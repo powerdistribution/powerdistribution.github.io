@@ -165,8 +165,8 @@ br/
 br/
 .row
   .col-md-8
-    #plot
     #yaxisform
+    #plot
     .text-center Time [&mu;sec]
 /! INPUT modal
 a data-target="#output-modal" data-toggle="modal" 
