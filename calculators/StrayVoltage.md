@@ -8,6 +8,7 @@ distribution line. The circuit modeled is illustrated below.
 
 <br/>
 
+<!-- Script loader -->
 
 ```yaml
          #:  script=scriptloader
@@ -15,12 +16,16 @@ distribution line. The circuit modeled is illustrated below.
 - lib/math.min.js
 ```
 
-```yaml name=d
+<!-- Conductor data  -->
+
+```yaml 
+         #: name=d
 rac: [3.551, 2.232, 1.402, 1.114, 0.882, 0.7, 0.556, 0.441, 0.373, 0.35, 0.311, 0.278, 0.267, 0.235, 0.208, 0.197, 0.188, 0.169, 0.135, 0.133, 0.127, 0.12, 0.109, 0.106, 0.101, 0.0963]
 gmr: [0.0055611962035177, 0.00700459393067038, 0.00882262274842038, 0.00990159326021141, 0.0111125174323268, 0.0124715326552536, 0.0139967498560307, 0.0157084948536593, 0.0171990576740366, 0.0177754680514267, 0.0197856043349646, 0.0209605660328388, 0.0214852445181602, 0.0227611387971986, 0.0243123406199979, 0.0249209197027924, 0.0255447325512619, 0.0270616982108416, 0.0308759703782212, 0.0311314761296609, 0.0319107497292355, 0.0327095298674806, 0.0343675751093677, 0.0349387277474913, 0.0361096666226405, 0.0367097709735484]
 conductors: [6 AAC, 4 AAC, 2 AAC, 1 AAC, 1/0 AAC, 2/0 AAC, 3/0 AAC, 4/0 AAC, 250 AAC, 266.8 AAC, 300 AAC, 336.4 AAC, 350 AAC, 397.5 AAC, 450 AAC, 477 AAC, 500 AAC, 556.5 AAC, 700 AAC, 715.5 AAC, 750 AAC, 795 AAC, 874.5 AAC, 900 AAC, 954 AAC, 1000 AAC]
 ```
 
+<!-- Input form -->
 
 ```yaml
          #:  jquery=dform
@@ -117,6 +122,8 @@ html:
 
 
 <h2>Results</h2>
+
+<!-- Main calculations -->
 
 ```js
 
@@ -250,14 +257,13 @@ println("Maximum NEV = " + math.format(_.max(vn)) + " V")
 </div>
 </div>
 
+<!-- Graphs -->
 
 ```js
     x = _.range(0, (numberOfSections+1) * sectionLength / 5.28, sectionLength / 5.28)
     seriesvn = _.zip(x,vn)
     $.plot($('#graph1'), [seriesvn]);
-```
-
-```js
+    
     seriesI = [{label: "Phase",
                 data: _.zip(x,I.abs().x[0])},
                {label: "Neutral",
