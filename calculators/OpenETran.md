@@ -54,6 +54,152 @@ table inputs.
 library: OpenETran_library.yaml
 ```
 
+<!-- Emblem page template (complicated) -->
+
+```slim
+/! DEFAULT AND LOCAL LIBRARY BUTTONS
+/! Button trigger modal
+button data-target="#myModal" data-toggle="modal" 
+  | Open default library
+/! Button trigger modal
+button data-target="#myModal2" data-toggle="modal" 
+  | Open local library
+/! Modal for default library
+#myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+        h4#myModalLabel.modal-title Built-in library
+      #caselist.modal-body
+        ul
+          #caselist-result
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
+/! Modal for local library
+#myModal2.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+        h4#myModalLabel.modal-title Local library
+      #caselist.modal-body
+        ul
+          #caselist-result2
+      .modal-footer
+        form#local-form
+          button#save-btn.btn.btn-primary data-placement="top" data-toggle="tooltip" title="Saves the current case to the local library" type="button"  
+            | Save current case
+          span#import-btn.btn.btn-primary.btn-file
+            | Import...
+            input name="files[]" type="file" 
+          button#export-btn.btn.btn-primary data-placement="top" data-toggle="tooltip" title="Export all local cases to a file" type="button"  Export...
+          button#delete-btn.btn.btn-primary data-placement="top" data-toggle="tooltip" title="Delete all local cases" type="button"  Delete all
+          button.btn.btn-default data-dismiss="modal" type="button"  Close
+h2 Input tables
+ul#mytab.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#cseinp"  Case
+  li
+    a data-toggle="tab" href="#siminp"  Parameters
+  li
+    a data-toggle="tab" href="#cndinp"  Conductors
+  li
+    a data-toggle="tab" href="#insinp"  Insulators
+  li
+    a data-toggle="tab" href="#arrinp"  Arresters
+  li
+    a data-toggle="tab" href="#gndinp"  Grounds
+  li
+    a data-toggle="tab" href="#mtrinp"  Meters
+  li
+    a data-toggle="tab" href="#advinp"  Advanced
+/! Tab panes
+.tab-content
+  /! Case pane
+  #cseinp.tab-pane.active
+    #cseinp-form
+  /! Parameters pane
+  #siminp.tab-pane
+    #hdrtbl
+    #hd2tbl
+    p Surge
+    #srgtbl
+    br/
+    br/
+  /! Conductor pane
+  #cndinp.tab-pane
+    .row
+      .col-md-7
+        #cndtbl
+        .row
+          .col-md-5
+            p Environmental shielding
+            #sldtbl
+          .col-md-5
+            p Ground slope [degrees]
+            #gsltbl
+      .col-md-2
+        #conductor-layout style='width:180px; height:180px'
+      .col-md-2
+        #conductor-layout2 style='width:180px; height:180px'
+  /! Insulator pane
+  #insinp.tab-pane
+    #instbl
+  /! Arrester pane
+  #arrinp.tab-pane
+    #arrtbl
+  /! Grounds pane
+  #gndinp.tab-pane
+    #gndtbl
+  /! Meter pane
+  #mtrinp.tab-pane
+    #mtrtbl
+  /! Advanced pane
+  #advinp.tab-pane
+    #advinp
+  br/
+  br/
+input onclick="mdpad.calculate()" type="button" value="Calculate" 
+br/
+br/
+.row
+  .col-md-8
+    #plotdiv
+    #yaxisform
+    .text-center Time [&mu;sec]
+/! INPUT modal
+a data-target="#output-modal" data-toggle="modal" 
+  | OpenETran output file
+| \|
+/! OUTPUT modal
+a data-target="#input-modal" data-toggle="modal" 
+  | OpenETran input file
+/! Modal
+#output-modal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel2" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+        h4#myModalLabel2.modal-title OpenETran output
+      .modal-body
+        pre#oeoutput-content style="width:100%;height:80%" 
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
+/! Modal
+#input-modal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel3" role="dialog" tabindex="-1" 
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  &times;
+        h4#myModalLabel3.modal-title OpenETran raw input
+      .modal-body
+        pre#oeinput-content style="width:100%;height:80%" 
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
+
+```
+
 <!-- Initial setup -->
 
 ```js
@@ -62,16 +208,16 @@ if (typeof(firstrun) == "undefined") {
         // fill in the input tables with the case for object x
         $("#casename").val(name)
         $("#description").val(x.Description)
-        $("#hdrtbl").find(".mdresult").handsontable('loadData', x.Header)
-        $("#hd2tbl").find(".mdresult").handsontable('loadData', x.Header2)
-        $("#srgtbl").find(".mdresult").handsontable('loadData', x.Surge)
-        $("#cndtbl").find(".mdresult").handsontable('loadData', x.Conductors)
-        $("#sldtbl").find(".mdresult").handsontable('loadData', x.Shielding)
-        $("#gsltbl").find(".mdresult").handsontable('loadData', x.GroundSlope)
-        $("#instbl").find(".mdresult").handsontable('loadData', x.Insulators)
-        $("#arrtbl").find(".mdresult").handsontable('loadData', x.Arresters)
-        $("#gndtbl").find(".mdresult").handsontable('loadData', x.Grounds)
-        $("#mtrtbl").find(".mdresult").handsontable('loadData', x.Meters)
+        $("#hdrtbl").handsontable('loadData', x.Header)
+        $("#hd2tbl").handsontable('loadData', x.Header2)
+        $("#srgtbl").handsontable('loadData', x.Surge)
+        $("#cndtbl").handsontable('loadData', x.Conductors)
+        $("#sldtbl").handsontable('loadData', x.Shielding)
+        $("#gsltbl").handsontable('loadData', x.GroundSlope)
+        $("#instbl").handsontable('loadData', x.Insulators)
+        $("#arrtbl").handsontable('loadData', x.Arresters)
+        $("#gndtbl").handsontable('loadData', x.Grounds)
+        $("#mtrtbl").handsontable('loadData', x.Meters)
         $("#oeheader").val(x.OEheader)
         $("#oetrailer").val(x.OEtrailer)
     }
@@ -102,16 +248,16 @@ if (typeof(firstrun) == "undefined") {
         return {
             Name: $("#casename").val(),
             Description: $("#description").val(),
-            Header:      $("#hdrtbl").find(".mdresult").handsontable('getData'),
-            Header2:     $("#hd2tbl").find(".mdresult").handsontable('getData'),
-            Surge:       $("#srgtbl").find(".mdresult").handsontable('getData'),
-            Conductors:  $("#cndtbl").find(".mdresult").handsontable('getData'),
-            Shielding:   $("#sldtbl").find(".mdresult").handsontable('getData'),
-            GroundSlope: $("#gsltbl").find(".mdresult").handsontable('getData'),
-            Insulators:  $("#instbl").find(".mdresult").handsontable('getData'),
-            Arresters:   $("#arrtbl").find(".mdresult").handsontable('getData'),
-            Grounds:     $("#gndtbl").find(".mdresult").handsontable('getData'),
-            Meters:      $("#mtrtbl").find(".mdresult").handsontable('getData'),
+            Header:      $("#hdrtbl").handsontable('getData'),
+            Header2:     $("#hd2tbl").handsontable('getData'),
+            Surge:       $("#srgtbl").handsontable('getData'),
+            Conductors:  $("#cndtbl").handsontable('getData'),
+            Shielding:   $("#sldtbl").handsontable('getData'),
+            GroundSlope: $("#gsltbl").handsontable('getData'),
+            Insulators:  $("#instbl").handsontable('getData'),
+            Arresters:   $("#arrtbl").handsontable('getData'),
+            Grounds:     $("#gndtbl").handsontable('getData'),
+            Meters:      $("#mtrtbl").handsontable('getData'),
             OEheader:    $("#oeheader").val(),
             OEtrailer:   $("#oetrailer").val()
         };
@@ -227,60 +373,21 @@ if (typeof(firstrun) == "undefined") {
 }
 ```
 
-<!-- DEFAULT LIBRARY -->
-<!-- Button trigger modal -->
-<button data-toggle="modal" data-target="#myModal">
-  Open default library
-</button>
-<!-- Button trigger modal -->
-<button data-toggle="modal" data-target="#myModal2">
-  Open local library
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Built-in library</h4>
-      </div>
-      <div id="caselist" class="modal-body">
-        <ul>
+<!-- Generate default library case list -->
 
 ```js
-        //: output=markdown
+        //: output=markdown outputid=caselist-result
 ks = Object.keys(library)
 for (var i = 0; i < ks.length; i++) {
     var k = ks[i];
     println("&lt;li&gt;&lt;a onclick='fillcase(library[\"" + k + "\"], \"" + k + "\"); return false;'&gt;" + k + "&lt;/a&gt;&lt;/li&gt;")
 }
 ```
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+ 
+<!-- Generate local library case list -->
 
-<!-- LOCAL LIBRARY -->
-
-<h2> Input tables</h2>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Local library</h4>
-      </div>
-      <div id="caselist" class="modal-body">
-        <ul>
 ```js
-        //: id=locallist output=markdown
+        //: id=locallist output=markdown outputid=caselist-result2
 if (typeof(localStorage.locallib) == "undefined") {
     localStorage.locallib = JSON.stringify({});
 }
@@ -291,41 +398,11 @@ for (var i = 0; i < ks.length; i++) {
     println("&lt;li&gt;&lt;a onclick='fillcase(JSON.parse(localStorage.locallib)[\"" + k + "\"], \"" + k + "\"); return false;'&gt;" + k + "&lt;/a&gt;&lt;/li&gt;")
 }
 ```
-        </ul>
-        </br>
-      </div>
-      <div class="modal-footer">
-        <form id="local-form">
-          <button id="save-btn"   type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Saves the current case to the local library">Save current case</button>
-          <span   id="import-btn" class="btn btn-primary btn-file"> Import... <input type="file" name="files[]"> </span>
-          <!-- <a      id="export-btn" class="btn btn-primary btn-file" href="data:text/plain," + jsyaml. + "&#10;"> Export... </a> -->
-          <button id="export-btn" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Export all local cases to a file">Export...</button>
-          <button id="delete-btn" type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Delete all local cases">Delete all</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
-<ul class="nav nav-tabs" id="mytab">
-  <li class="active"><a href="#cseinp" data-toggle="tab">Case</a></li>
-  <li><a href="#siminp" data-toggle="tab">Parameters</a></li>
-  <li><a href="#cndinp" data-toggle="tab">Conductors</a></li>
-  <li><a href="#insinp" data-toggle="tab">Insulators</a></li>
-  <li><a href="#arrinp" data-toggle="tab">Arresters</a></li>
-  <li><a href="#gndinp" data-toggle="tab">Grounds</a></li>
-  <li><a href="#mtrinp" data-toggle="tab">Meters</a></li>
-  <li><a href="#advinp" data-toggle="tab">Advanced</a></li>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content">
-  <!-- Case pane -->
-  <div class="tab-pane active" id="cseinp">
+<!-- Case pane input -->
 
 ```yaml
-         #: jquery=dform
+         #: jquery=dform outputid=cseinp-form
 class : form
 html:
   - name: CASENAME
@@ -341,13 +418,10 @@ html:
     value: ""
 ```
 
-  </div>
-
-  <!-- Parameters pane -->
-  <div class="tab-pane" id="siminp">
+<!-- Parameter pane input -->
 
 ```yaml
-         #: jquery=handsontable id=hdrtbl
+         #: jquery=handsontable outputid=hdrtbl
 data: []
 colHeaders: ["Ncond", "Npole", "Span [m]", "lt [0/1]", "rt [0/1]", "dT [s]", "Tmax [s]"]
 columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'}]
@@ -357,8 +431,10 @@ colWidths: 110
 contextMenu: ['undo', 'redo']
 ```
 
+<!-- Parameter pane input 2 -->
+
 ```yaml
-         #: jquery=handsontable id=hd2tbl
+         #: jquery=handsontable outputid=hd2tbl
 data: []
 colHeaders: ["GFD /km2/yr", "Altitude [m]", "CritI P1", "CritI P2"]
 columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'}]
@@ -368,10 +444,10 @@ colWidths: 110
 contextMenu: ['undo', 'redo']
 ```
 
-<p>Surge</p>
+<!-- Surge input -->
 
 ```yaml
-         #: jquery=handsontable id=srgtbl
+         #: jquery=handsontable outputid=srgtbl
 data: []
 colHeaders: ["Pole", "N1", "N2", "Ipeak [A]", "Tfront [s]", "Ttail [s]", "Tstart [s]"]
 columns: [{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'}]
@@ -381,17 +457,10 @@ colWidths: 110
 contextMenu: ['undo', 'redo']
 ```
 
-  <br/>
-  <br/>
-  </div>
+<!-- Conductor pane input -->
 
-
-  <!-- Conductor pane -->
-  <div class="tab-pane" id="cndinp">
-<div class = "row">
-<div class = "col-md-7">
 ```yaml
-         #: jquery=handsontable id=cndtbl
+         #: jquery=handsontable outputid=cndtbl
 data: []
 colHeaders: ["Conductor", "H [m]", "X [m]", "r [m]", "Vpf [V]"]
 columns: [{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.00000'},{type: 'numeric'}]
@@ -401,11 +470,11 @@ colWidths: 100
 minSpareRows: 1
 contextMenu: ['row_above', 'row_below', 'hsep1', 'remove_row', 'hsep2', 'undo', 'redo']
 ```
-<div class = "row">
-<div class = "col-md-5">
-<p>Environmental shielding</p>
+
+<!-- Shielding input -->
+
 ```yaml
-         #: jquery=handsontable id=sldtbl
+         #: jquery=handsontable outputid=sldtbl
 data: []
 colHeaders: ["H [m]", "X [m]"]
 columns: [{type: 'numeric'},{type: 'numeric'}]
@@ -415,11 +484,11 @@ colWidths: 100
 minSpareRows: 1
 contextMenu: ['row_above', 'row_below', 'hsep1', 'remove_row', 'hsep2', 'undo', 'redo']
 ```
-</div>
-<div class = "col-md-5">
-<p>Ground slope [degrees]</p>
+
+<!-- Ground slope input -->
+
 ```yaml
-         #: jquery=handsontable id=gsltbl
+         #: jquery=handsontable outputid=gsltbl
 data: []
 colHeaders: ["Left", "Right"]
 columns: [{type: 'numeric'},{type: 'numeric'}]
@@ -428,22 +497,11 @@ height: 100
 colWidths: 100
 contextMenu: ['undo', 'redo']
 ```
-</div>
-</div>
-</div>
-<div class = "col-md-2">
-<div id="conductor-layout" style='width:180px; height:180px';/>
-</div>
-<div class = "col-md-2">
-<div id="conductor-layout2" style='width:180px; height:180px';/>
-</div>
-</div>
-  </div>
 
-  <!-- Insulator pane -->
-  <div class="tab-pane" id="insinp">
+<!-- Insulator pane input -->
+
 ```yaml
-         #: jquery=handsontable id=instbl
+         #: jquery=handsontable outputid=instbl
 data:
   - ["all", 4, 0, 25.0, 250.0, 400e3, 5e-7, 10.0]
 colHeaders: ["Poles", "N1", "N2", "CFO [V]", "Vb", "Beta", "DE"]
@@ -454,12 +512,11 @@ colWidths: 100
 minSpareRows: 1
 contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
 ```
-  </div>
 
-  <!-- Arrester pane -->
-  <div class="tab-pane" id="arrinp">
+<!-- Arrester pane input -->
+
 ```yaml
-         #: jquery=handsontable id=arrtbl
+         #: jquery=handsontable outputid=arrtbl
 data: []
 colHeaders: ["Poles", "N1", "N2", "Vgap [V]", "V10 [V]", "Uref [V]", "L [H/m]", "d [m]", "Plot: 1/0"]
 columns: [{},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.000'},{type: 'numeric', format: '0.00'},{type: 'numeric', format: '0.0'},{type: 'numeric'}]
@@ -469,12 +526,11 @@ colWidths: 100
 minSpareRows: 1
 contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
 ```
-  </div>
 
-  <!-- Grounds pane -->
-  <div class="tab-pane" id="gndinp">
+<!-- Ground pane input -->
+
 ```yaml
-         #: jquery=handsontable id=gndtbl
+         #: jquery=handsontable outputid=gndtbl
 data: []
 colHeaders: ["Poles", "N1", "N2", "R60 [&Omega;]", "&rho; [&Omega;-m]", "E0 [V/m]", "L [H/m]", "d [m]"]
 columns: [{},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'},{type: 'numeric', format: '0.0'}]
@@ -484,12 +540,11 @@ colWidths: 100
 minSpareRows: 1
 contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
 ```
-  </div>
 
-  <!-- Meter pane -->
-  <div class="tab-pane" id="mtrinp">
+<!-- Meter pane input -->
+
 ```yaml
-         #: jquery=handsontable id=mtrtbl
+         #: jquery=handsontable outputid=mtrtbl
 data: []
 colHeaders: ["Poles", "N1", "N2"]
 columns: [{},{type: 'numeric'},{type: 'numeric'}]
@@ -499,12 +554,11 @@ colWidths: 100
 minSpareRows: 1
 contextMenu: ['row_above', 'row_below', 'remove_row', 'hsep1', 'undo', 'redo']
 ```
-  </div>
 
-  <!-- Advanced pane -->
-  <div class="tab-pane" id="advinp">
+<!-- Advanced pane input -->
+
 ```yaml
-         #: jquery=dform
+         #: jquery=dform outputid=advinp
 class : form
 html:
   - name: oeheader
@@ -518,12 +572,6 @@ html:
     bs3caption: OpenETran trailer
     value: ""
 ```
-    <br/>
-    <br/>
-  </div>
-
-
-</div>
 
 <!-- Load tables -->
 
@@ -572,9 +620,7 @@ finally {
 }
 ```
 
-<input type="button" value="Calculate" onclick="mdpad.calculate()">
-<br/>
-<br/>
+<!-- Read results and plot -->
 
 ```js
 // read the csv file with the simulation results
@@ -603,6 +649,9 @@ $("#yaxisform").html("");
 $("#yaxisform").dform(jsonform);
 $("#yaxisform").change(updatefun);
 ```
+
+<!-- Find and plot conductor layouts -->
+
 ```js
         //: id="condcalc"
 cnd = cs.Conductors.slice(0, ncond)
@@ -670,11 +719,11 @@ $.plot($('#conductor-layout2'),
           xaxis: { tickLength: 5, ticks: 3, min: xmin, max: xmax, font: {size: 11, color: "#000"} },
           yaxis: { tickLength: 5, ticks: 3, min: ymin, max: ymax, font: {size: 11, color: "#000"} }})
 ```
-<div class = "row">
-<div class = "col-md-8">
-<div id="yaxisform"/>
+
+<!-- Plot results -->
+
 ```js
-        //: id=plotdiv
+        //: outputid=plotdiv
 if (typeof(header) != "undefined") {
     series = [];
     for (var i = 0; i < header.length; i++) {
@@ -686,57 +735,8 @@ if (typeof(header) != "undefined") {
     plot(series);
 }
 ```
-<div class="text-center">Time [&mu;sec]</div>
-</div>
-</div>
 
-<!-- INPUT modal -->
-<a data-toggle="modal" data-target="#output-modal">
-  OpenETran output file
-</a> | <!-- OUTPUT modal --> <a data-toggle="modal" data-target="#input-modal">
-  OpenETran input file
-</a>
-
-
-<!-- Modal -->
-<div class="modal fade" id="output-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel2">OpenETran output</h4>
-      </div>
-      <div class="modal-body">
-         <pre id="oeoutput-content" style="width:100%;height:80%">
-         </pre>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="input-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel3">OpenETran raw input</h4>
-      </div>
-      <div class="modal-body">
-         <pre id="oeinput-content" style="width:100%;height:80%">
-         </pre>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Main calculations -->
+<!-- Main critical current calculations -->
 
 ```js
 critI = Array(N)
@@ -791,7 +791,7 @@ tbl = _.map(_.range(0, N), function(i) {j = i % ncond;
 <!-- Emblem template for output -->
 
 ```emblem
-         #: name=tabletemplate
+         #: run=normal
 br
 h4 Flashover probabilities
 br
@@ -834,14 +834,6 @@ div
 br
 ```
 
-<!-- Generate output -->
-
-```js
-        //: output=markdown
-if (tbl.length > 0) {
-    print(Emblem.compile(Handlebars, tabletemplate)(window))
-}
-```
 
 ## Notes
 
