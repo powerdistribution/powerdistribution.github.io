@@ -7,16 +7,25 @@
 - lib/numeric-1.2.6.min.js
 ```
 
-<div class = "row">
-<div class = "col-md-3">
+<!-- Emblem structure for input and results -->
 
-<br/>
-<br/>
+```emblem
+.row
+  .col-md-3
+    br
+    br
+    #inputform
+  .col-md-1
+  .col-md-8
+    h3 Results
+    #results
+    #plot
+```
 
 <!-- Input form -->
 
 ```yaml
-         #:  jquery=dform name=frm
+         #:  jquery=dform name=frm outputid=inputform
 html:
   - name: D
     type: number
@@ -55,11 +64,6 @@ html:
       - None
 ```
 
-</div>
-<div class = "col-md-1">
-</div>
-<div class = "col-md-8">
-
 <!-- Define main calculation functions -->
 
 ```js
@@ -74,12 +78,10 @@ findduration = function(E, I, d, k) {
 }
 ```
 
-<h3>Results</h3>
-
 <!-- Run and print results -->
 
 ```js
-        //: output=markdown
+        //: output=markdown outputid=results
 cals = findcals(I, t, D, k)
 duration = findduration(clothing, I, D, k)
 
@@ -159,12 +161,8 @@ if (graphextras == "Vary clothing") {
     plotinfo.series = [{name: clothing + " cals at " + D + '"', data: series1}]
 }
 //plotinfo.series = [{data: series1}]
-$active_element.highcharts(plotinfo)
+$("#plot").highcharts(plotinfo)
 ```
-
-</div>
-</div>
-
 
 # Notes
 
@@ -180,14 +178,15 @@ that the incident energy is not linear with duration--the heat rate
 increases with increasing duration. Here is a picture of the
 horizontal busbars along with a video frame from an arc flash test:
 
-<div class= "row">
-<div class = "col-md-4">
-<img src="img/padmount2.png" class="img-responsive">
-</div>
-<div class = "col-md-4">
-<img src="img/padmount1.png" class="img-responsive">
-</div>
-</div>
+<!-- Emblem structure for displaying pictures -->
+
+```emblem
+.row
+  .col-md-4
+    img.img-responsive src="img/padmount2.png"
+  .col-md-4
+    img.img-responsive src="img/padmount1.png"
+```
 
 # References
 
