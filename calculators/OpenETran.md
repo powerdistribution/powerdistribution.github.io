@@ -56,7 +56,7 @@ library: OpenETran_library.yaml
 
 <!-- Emblem page template (complicated) -->
 
-```emblem
+```slim
 /! DEFAULT AND LOCAL LIBRARY BUTTONS
 /! Button trigger modal
 button data-target="#myModal" data-toggle="modal" 
