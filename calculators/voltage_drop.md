@@ -203,11 +203,6 @@ html:
 ## Results
 
 ```js
-xA = Number(xA); xB = Number(xB); xC = Number(xC); xN = Number(xN)
-yA = Number(yA); yB = Number(yB); yC = Number(yC); yN = Number(yN)
-rho = Number(rho)
-Ia = Number(Ia); Ib = Number(Ib); Ic = Number(Ic)
-pfA = Number(pfA); pfB = Number(pfB); pfC = Number(pfC)
 
 sq = function(x) {
   return x * x;

@@ -81,8 +81,7 @@ GMRs: [0.5075,0.6125,0.7825]
 ```
 
 ```js
-ductSpacing = Number(ductSpacing)
-neutralLocation = Number(neutralLocation) - 1
+neutralLocation = neutralLocation - 1
 shieldMultiplier = Number(shield.substring(2))
 rho = 100
 Rshort = 1e-5

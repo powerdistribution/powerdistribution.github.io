@@ -69,13 +69,10 @@ html:
 <h3>Results</h3>
 
 ```js
-xA = Number(-4); xB = Number(0); xC = Number(4); xN = Number(0.3)
-yA = Number(35); yB = Number(36); yC = Number(35); yN = Number(33)
-rho = Number(100)
-condT = Number(100)
-pf = Number(pf)
-distance = Number(distance)
-kVA = Number(kVA)
+xA = -4; xB = 0;  xC = 4;  xN = 0.3
+yA = 35; yB = 36; yC = 35; yN = 33
+rho = 100
+condT = 100
 
 sq= function(x) {
   return x * x;

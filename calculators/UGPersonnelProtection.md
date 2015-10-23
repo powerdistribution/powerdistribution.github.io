@@ -507,10 +507,6 @@ YaddshuntR = function(Y, Rshunt, i) {
 II = getcurrentcase()
 ac = _.object(["name", "R", "GMR", "Rs", "GMRs", "Xc", "n"], _.unzip(II.cablelibrary))
 
-systemVoltage = Number(systemVoltage); faultI = Number(faultI); totalLength = Number(totalLength)
-Rsub = Number(Rsub); Rgrnd = Number(Rgrnd); rho = Number(rho)
-ductSpacing = Number(ductSpacing)
-
 ductcables = $("#ducttable select").map(function(){return $(this).val()}).get()
 bonds    = _.rest($("#bondrow input:checkbox").map(function(){return $(this).prop("checked")}).get())
 grounds  = _.rest($("#groundrow input:checkbox").map(function(){return $(this).prop("checked")}).get())

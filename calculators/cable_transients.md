@@ -136,9 +136,9 @@ html:
 ```
 
 ```js
-    if (Number(CABLELEN1) < 30) CABLELEN1 = 30
-    if (Number(CABLELEN2) < 30) CABLELEN2 = 30
-    if (Number(CABLELEN3) < 30) CABLELEN3 = 30
+    if (CABLELEN1 < 30) CABLELEN1 = 30
+    if (CABLELEN2 < 30) CABLELEN2 = 30
+    if (CABLELEN3 < 30) CABLELEN3 = 30
     inputdata = inputtemplate.replace("RISERVOLTAGE", 1000.0 * RISERVOLTAGE)
     inputdata = inputdata.replace("LEADLEN", LEADLEN)
     inputdata = inputdata.replace(/SECTIONLEN1/g,  1/10.0/3.28 * CABLELEN1)

@@ -58,11 +58,6 @@ html:
 
 
 ```js
-t = Number(t)
-I = Number(I)
-clothing = Number(clothing)
-D = Number(D)
-k = Number(k)
 
 pow = Math.pow
 

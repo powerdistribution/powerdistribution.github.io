@@ -119,8 +119,6 @@ html:
 <h2>Results</h2>
 
 ```js
-Zsub = Number(Zsub); groundsPerKFeet = Number(groundsPerKFeet); averageGround = Number(averageGround); rho = Number(rho)
-totalLengthMi = Number(totalLengthMi); harmonic = Number(harmonic); UnbalanceI = Number(UnbalanceI)
 
 if (harmonicSelect == "Fundamental") {
     var harmonic = 1

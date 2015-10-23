@@ -80,12 +80,6 @@ html:
 
 ```js
           //: output=markdown
-flti = Number(flti)
-fltt = Number(fltt)
-h0 = Number(h0)
-y0 = Number(y0)
-x1 = Number(x1)
-y1 = Number(y1)
 idx = _.map(d.conductors, String).indexOf(conductors)
 wc = d.wc[idx]
 area = d.area[idx]

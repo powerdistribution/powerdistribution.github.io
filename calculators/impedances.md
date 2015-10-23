@@ -121,10 +121,6 @@ html:
 ## Results
 
 ```js
-xA = Number(xA); xB = Number(xB); xC = Number(xC); xN = Number(xN)
-yA = Number(yA); yB = Number(yB); yC = Number(yC); yN = Number(yN)
-rho = Number(rho)
-condT = Number(condT)
 
 sq= function(x) {
   return x * x;

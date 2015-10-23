@@ -132,9 +132,6 @@ html:
 ## Results
 
 ```js
-Hphase = Number(Hphase); Hneutral = Number(Hneutral); Hmessenger = Number(Hmessenger); Hphone = Number(Hphone)
-rho = Number(rho)
-I = Number(I)
 
 sq = function(x) {
   return x * x;

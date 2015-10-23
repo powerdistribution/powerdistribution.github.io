@@ -66,11 +66,6 @@ html:
 <h3>Results</h3>
 
 ```js
-kV = Number(kV)
-ins = Number(ins)
-k = Number(k)
-f = Number(f)
-len = Number(len)
 kVlg = kV / Math.sqrt(3)
 
 idx = _.map(c.cables, String).indexOf(cable)
@@ -85,5 +80,3 @@ println("Cable capacitance per phase = " + math.format(C) + " uF")
 println("Capacitive impedance = " + math.format(1000*ohms) + " kohms")
 println("Reactive power per phase = " + math.format(vars / 1000) + " kvar")
 ```
-
-
