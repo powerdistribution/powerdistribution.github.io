@@ -197,3 +197,4 @@ Power Research Institute, Palo Alto, CA, 2011.
 Short, T. A. and Eblen, M. L., "Medium-Voltage Arc Flash in Open Air
 and Padmounted Equipment," *IEEE Transactions on Industry Applications*,
 vol. 48, no. 1, pp. 245-253, Jan.-Feb. 2012.
+[Approved version](../papers/ieee_repc_arc_flash_tshort_meblen_2011_IAS_submission.pdf)
