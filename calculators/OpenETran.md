@@ -165,13 +165,13 @@ br/
 br/
 .row
   .col-md-8
-    #plotdiv
+    #plot
     #yaxisform
     .text-center Time [&mu;sec]
 /! INPUT modal
 a data-target="#output-modal" data-toggle="modal" 
   | OpenETran output file
-| \|
+| |
 /! OUTPUT modal
 a data-target="#input-modal" data-toggle="modal" 
   | OpenETran input file
@@ -642,7 +642,7 @@ var jsonform = {
 }};
 updatefun = function (evt) {
     calculate_forms();
-    $("#plotdiv").calculate();
+    $("#doplot").calculate();
 }
 
 $("#yaxisform").html("");
@@ -723,7 +723,7 @@ $.plot($('#conductor-layout2'),
 <!-- Plot results -->
 
 ```js
-        //: outputid=plotdiv
+        //: id=doplot outputid=plot
 if (typeof(header) != "undefined") {
     series = [];
     for (var i = 0; i < header.length; i++) {
