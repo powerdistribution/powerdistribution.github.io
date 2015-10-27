@@ -96,16 +96,25 @@ nstep = 0
 z = wirelocs[nstep]
 var startpos = [[z[1], z[2]], [z[3], z[4]]]
 plot = $.plot($('#graph'),
-              [{ data: [[0.0, y0], [x1, y0 + y1], [z[1], z[2]], [z[3], z[4]]],
-                 points: { show: true } }],
-              { xaxis: { min: -y0 - 1, max: x1 + y0 + 1},
+              [{ data: [[0.0, y0], [x1, y0 + y1]],
+                 points: { show: true } },
+               { data: [[z[1], z[2]], [z[3], z[4]]],
+                 points: { show: true, radius: 4, lineWidth: 4, fill: true, fillColor: false } },
+              ],
+              { colors: ["#ecb204", "rgba(#087fdd, 0.83)"],
+                xaxis: { min: -y0 - 1, max: x1 + y0 + 1},
                 yaxis: { min: -2, max: Math.max(2*y0 + x1) }});
 $('#graph').animate( {tabIndex: 0}, {
    duration: 5000,
    step: function ( now, fx ) {
       nstep = nstep + 1
       var z = wirelocs[nstep]
-      plot.setData( [{ data: [[0.0, y0], [x1, y0 + y1], [z[1], z[2]], [z[3], z[4]]], points: {show: true} }] );
+      plot.setData( 
+              [{ data: [[0.0, y0], [x1, y0 + y1]],
+                 points: { show: true } },
+               { data: [[z[1], z[2]], [z[3], z[4]]],
+                 points: { show: true, radius: 4, lineWidth: 4, fill: true, fillColor: false } },
+              ])
       plot.draw();
    }
 });
@@ -173,7 +182,6 @@ for (var k = 1; k < wirelocs.length; k++) {
         }
     }
 }
-console.log(c1peak1idx,c1peak2idx,c2peak1idx,c2peak2idx)
 
 
 println("\n\n")
@@ -274,9 +282,9 @@ fault. The main scenario that causes the most issues is where the
 initial fault is downstream of a recloser, and a follow-on fault
 occurs upstream of the recloser and trips the circuit breaker.
 
-The animation at the right is a view along the length of the line. The
-two stationary conductor positions at the pole are shown. The two dots
-that move are the conductor positions at the center of the span.
+The animation at the right is a view along the length of the line. The two
+stationary conductor positions at the pole are shown in yellow. The two blue
+circles that move are the conductor positions at the center of the span.
 
 Conductor motion is a function of fault current, fault duration, phase
 spacings, span lengths, and conductor sag. A line-to-line fault causes
