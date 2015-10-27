@@ -940,6 +940,13 @@ Defaults and assumptions include:
   the entire length of cable, remove all bracket grounds. Voltage still couples
   to the worked cable's phase through the cable's capacitance.
 
+* The "Approximate critical bracket-to-bracket spacing" output is an estimate of
+  the critical distance between bracket grounds needed to keep the touch voltage
+  across the cut phases below 100 V. Results should scale linearly, so if you
+  choose a 200-V limit, the critical distance between bracket grounds is twice that 
+  shown. This critical distance applies to the configuration and fault current
+  entered.
+
 * The resistance of the worker is included in the model. The worker is modeled
   as a 1000-ohm resistance. One 1000-ohm resistor is placed across the cut
   phases, and another is placed between the phase and the shield on the cut
