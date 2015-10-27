@@ -720,6 +720,34 @@ findmax = function(x) { // maximum difference of all values
 
 a = calcs(workmh, faultmh)
 
+// Find critical distance between the closest bracket ground
+//    and the farthest bracket ground (or fault point)
+lowerbracket = -1
+for (var i = workmh - 1; i >= 0; i--) {
+    if (brackets[i]) {
+        lowerbracket = i
+        break
+    }
+}
+upperbracket = -1
+for (var i = lowerbracket + 1; i < 11; i++) {
+    if (brackets[i] || faultmh + 1 == i) {
+        upperbracket = i
+        break
+    }
+}
+hasupperbracket = false 
+for (var i = workmh + 1; i < 11; i++) {
+    if (brackets[i]) {
+        hasupperbracket = true
+        break
+    }
+}
+ppV = findmax(a.workV.getBlock([0,0], [1,0]))
+d = (upperbracket - lowerbracket) * sectionLength
+criticalbracketdist = (upperbracket - lowerbracket) * sectionLength * 100 * 1000 / ppV
+isgoodcritdist = hasupperbracket && lowerbracket >= 0 && !jumperphase
+
 txt = ""
 txt += "Fault current = " + Math.round(a.I.abs().x[0][1]) + " A\n"
 txt += "Maximum touch voltages\n"
@@ -727,6 +755,9 @@ txt += "  - all         = " + findmax(a.workV) + " V (" + findmax(a.workV.getBlo
 txt += "  - source side = " + findmax(a.workV.getBlock([0,0],[0,Nc-2])) + " V (" + findmax(a.workV.getBlock([0,1],[0,Nc-2])) + " V without the phases)\n"
 txt += "  - load side   = " + findmax(a.workV.getBlock([1,0],[1,Nc-2])) + " V (" + findmax(a.workV.getBlock([1,1],[1,Nc-2])) + " V without the phases)\n"
 txt += "Maximum shield voltage to remote earth = " + Math.round(_.max(_.flatten(a.workV.getBlock([0,1],[1,Nc-2]).abs().x))) + " V"
+if (isgoodcritdist) {
+    txt += "\nApproximate critical bracket-to-bracket spacing for a voltage across phases of 100 V = " + Math.round(criticalbracketdist) + " ft"
+}
 $("#outsummary").html(converter.makeHtml(txt));
 ```
 
