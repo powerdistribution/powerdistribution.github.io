@@ -95,7 +95,7 @@ function calculate_block() {
     }
     if (attrlang == "js") {
         last = $inp.text();
-    } else if (attrlang == "yaml") {
+    } else if (attrlang == "yaml" && attrscript != "") {
         last = "(jsyaml.load($inp.text()))";
     } else if ((attrlang == "emblem" || attrlang == "slim") && !hasname) {  // only do this if not named
         last = "(function (x) {$active_element.append(Emblem.compile(Handlebars, x)(window))})($inp.text())";
