@@ -77,7 +77,7 @@ Amazon
 
 <p>
 Watch this area for corrections. If you spot errors, please send them
-to [me](mailto:tshort@epri.com).
+to <a href='mailto:tshort@epri.com'>me</a>.
 </p>
 
 <h1>Search this site</h1>
