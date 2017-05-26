@@ -19,7 +19,7 @@ title:  Electric Power Distribution Handbook
 <p>
 <a href="http://www.amazon.com/gp/product/1466598654/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1466598654&linkCode=as2&tag=electpowerd0e-20">
 Amazon
-</p>
+</a></p>
 
 <p><a href='http://www.crcpress.com/product/isbn/9781466598652'>CRC Press</a></p>
 
@@ -51,9 +51,9 @@ Amazon
 
 </div>
 
-</br>
-</br>
-</br>
+<br/>
+<br/>
+<br/>
 
 <div class="col-md-2 navbar my-sidebar">
 
@@ -73,12 +73,14 @@ Amazon
 </div>
 
 
-# Errata
+<h1>Errata</h1>
 
+<p>
 Watch this area for corrections. If you spot errors, please send them
 to [me](mailto:tshort@epri.com).
+</p>
 
-# Search this site
+<h1>Search this site</h1>
 
 <!-- <div class="col-md-9"> -->
 <!-- <script> -->
