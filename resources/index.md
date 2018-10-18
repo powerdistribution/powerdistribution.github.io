@@ -21,11 +21,6 @@ You should be able to find out information on any EPRI report cited in
 the handbook using the search box at epri.com. Report numbers should
 bring the search right to the top as well as similar reports.
 
-<form action="http://www.epri.com/search/Pages/results.aspx" method="get">
-  <input name="k" type="text" size="30" />
-  <input type="submit" value="Search EPRI" />
-</form>
-
 ## Fault location
 
 - [EPRI 1012438](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001012438), Distribution Fault Location: Field Data and
