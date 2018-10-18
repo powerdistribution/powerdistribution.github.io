@@ -63,7 +63,7 @@ Amazon
 
 <li><a href='http://portfolio.epri.com/ProgramTab.aspx?sId=pdu&amp;rId=265&amp;pId=7644'>EPRI Portfolio</a></li>
 
-<li><a href='http://www.smartgrid.epri.com/SimulationTool.aspx'>OpenDSS</a></li>
+<li><a href='http://smartgrid.epri.com/SimulationTool.aspx'>OpenDSS</a></li>
 
 <li><a href='http://www.crcpress.com'>CRC Press</a></li>
 </ul>

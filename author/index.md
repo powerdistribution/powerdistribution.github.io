@@ -42,9 +42,9 @@ Current research areas include:
   - [Xcel Energy field testing video](https://www.youtube.com/watch?v=2ZkPKMN3FFM)
   - [AEP field testing video](https://www.youtube.com/watch?v=tjWpkdcykPU)
 
-- Arc flash - [YouTube video](http://youtu.be/fZP47mlELSc)
+- Detection of downed conductors
 
-- Efficiency and volt-var control
+- Arc flash - [YouTube video](http://youtu.be/fZP47mlELSc)
 
 - Fault location
 

@@ -28,12 +28,12 @@ bring the search right to the top as well as similar reports.
 
 ## Fault location
 
-- [EPRI 1012438](http://my.epri.com/portal/server.pt?Abstract_id=000000000001012438), Distribution Fault Location: Field Data and
+- [EPRI 1012438](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001012438), Distribution Fault Location: Field Data and
   Analysis, 2006.
 
 ## Distribution capacitors
 
-- [EPRI 1002154](http://my.epri.com/portal/server.pt?Abstract_id=000000000001002154), Improved Reliability of Switched Capacitor
+- [EPRI 1002154](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001002154), Improved Reliability of Switched Capacitor
   Banks and Capacitor Technology: Fusing Recommendations and
   Using Distribution Capacitors for Transmission Support, 2004.
 - [EPRI 1010655](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001010655),
@@ -42,22 +42,22 @@ bring the search right to the top as well as similar reports.
   
 ## Reliability and power quality
 
-- [EPRI 1002188](http://my.epri.com/portal/server.pt?Abstract_id=000000000001002188), Power Quality Implications of Distribution
+- [EPRI 1002188](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001002188), Power Quality Implications of Distribution
   Construction, 2004.
-- [EPRI 1008506](http://my.epri.com/portal/server.pt?Abstract_id=000000000001008506), Power Quality Implications of Transmission and
+- [EPRI 1008506](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001008506), Power Quality Implications of Transmission and
   Distribution Construction: Tree Faults and Equipment Issues, 2005.
-- [EPRI 1010192](http://my.epri.com/portal/server.pt?Abstract_id=000000000001010192), T&D System Design and Construction for
+- [EPRI 1010192](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001010192), T&D System Design and Construction for
   Enhanced Reliability and Power Quality, 2006.
-- [EPRI 1012443](http://my.epri.com/portal/server.pt?Abstract_id=000000000001012443), Utility Line Inspections and Audits, 2007.
+- [EPRI 1012443](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001012443), Utility Line Inspections and Audits, 2007.
 
 ## Distributed generation
 
-- [EPRI 1000419](http://my.epri.com/portal/server.pt?Abstract_id=000000000001000419), Engineering Guide for Integration of
+- [EPRI 1000419](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001000419), Engineering Guide for Integration of
   Distributed Generation and Storage Into Power Distribution
   Systems, 2000.
-- [EPRI 1005917](http://my.epri.com/portal/server.pt?Abstract_id=000000000001005917), Distributed Generation Relaying Impacts on
+- [EPRI 1005917](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001005917), Distributed Generation Relaying Impacts on
   Power Quality, 2001.
-- [EPRI TR-105589](http://my.epri.com/portal/server.pt?Abstract_id=TR-105589), Engineering Handbook for Dispersed Energy
+- [EPRI TR-105589](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=TR-105589), Engineering Handbook for Dispersed Energy
   Systems on Utility Distribution Systems, 1995.
 
 ## Efficiency
@@ -67,8 +67,8 @@ bring the search right to the top as well as similar reports.
 
 ## Arc flash
 
-- [EPRI 1022218](http://my.epri.com/portal/server.pt?Abstract_id=000000000001022218), 208-V Arc Flash Testing: Network Protectors and Meters, 2010.
-- [EPRI 1022002](http://my.epri.com/portal/server.pt?Abstract_id=000000000001022002), 480-V Distribution Arc Flash Updates, 2011.  
+- [EPRI 1022218](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001022218), 208-V Arc Flash Testing: Network Protectors and Meters, 2010.
+- [EPRI 1022002](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001022002), 480-V Distribution Arc Flash Updates, 2011.  
 - [EPRI 3002006373](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000003002006373), Arc Flash Update for 480-V Network Protectors, 2015.  
   
 
@@ -117,9 +117,7 @@ Here are some of my favorite books:
 
 # Industry reports
 
-- NEEA 1207, [Distribution Efficiency Initiative](http://www.leidos.com/NEEA-DEI_Report.pdf), Northwest Energy Efficiency Alliance, 2007. 
-
-- NEETRAC, [Diagnostic Testing of Underground Cable Systems (Cable Diagnostic Focused Initiative)](http://www.neetrac.gatech.edu/publications/CDFI_Phase_1_Final-Report.pdf), National Electric Energy Testing, Research & Applications Center, Forest Park, GA, 2010.
+- NEETRAC, [Cable Diagnostic Focused Initiative (CDFI) publications](http://www.neetrac.gatech.edu/cdfi-publications.html), National Electric Energy Testing, Research & Applications Center, Forest Park, GA.
 
 # Papers
 

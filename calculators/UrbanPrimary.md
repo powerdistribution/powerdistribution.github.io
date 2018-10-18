@@ -203,12 +203,12 @@ overvoltages.
 
 In addition to section 14.2.3, see these references:
 
-- [EPRI 1009528](http://my.epri.com/portal/server.pt?Abstract_id=000000000001009528),
+- [EPRI 1009528](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001009528),
   Impact of Transients on the Performance of Paper-Insulated
   Lead-Covered (PILC) Cable Systems: Phase 1: Analysis of Follow-On
   Faults, Electric Power Research Institute, Palo Alto, CA, 2004.
 
-- [EPRI 1012924](http://my.epri.com/portal/server.pt?Abstract_id=000000000001012924),
+- [EPRI 1012924](http://www.epri.com/abstracts/Pages/ProductAbstract.aspx?ProductId=000000000001012924),
   Program on Technology Innovation: Impact of Transients on the
   Performance of Paper-Insulated Lead-Covered (PILC) Cable Systems,
   Electric Power Research Institute, Palo Alto, CA, 2005.

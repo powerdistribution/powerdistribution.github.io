@@ -42,9 +42,7 @@ for more exercises, please let me know.
 The *Questions* that focus on concepts may work well with the
 [Peer Instruction](http://blog.peerinstruction.net/) approach to
 instruction. With this approach, lectures incorporate concept-related
-questions for interactive instruction. This has been used at
-[Harvard University](http://mazur.harvard.edu/research/detailspage.php?ed=1&rowid=8)
-for physics classes. 
+questions for interactive instruction. 
 
 Professors and other educators, please contact me if you need
 Handbook-related materials (such as figures) for use in classes.
