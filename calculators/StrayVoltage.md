@@ -79,7 +79,7 @@ html:
             type: number
             step: 50
             min: 0.0
-            bs3caption : Earth resistivity, ohms
+            bs3caption : Earth resistivity, ohm-m
             value: 100.0
       - type: div
         class: col-md-4
@@ -278,11 +278,9 @@ println("Maximum NEV = " + math.format(_.max(vn)) + " V")
 
 ## Notes
 
-For more information on NEV, see section 14.5.3. Also, the IEEE PES Stray &
-Contact Voltage Working Group has a draft guide that is in ballot:
-
-* IEEE P1695™/D2, Draft Guide to Understanding, Diagnosing and Mitigating Stray and
-  Contact Voltage, April 2015.
+For more information on NEV, see section 14.5.3. Also, see 
+[IEEE 1695-2016](https://standards.ieee.org/standard/1695-2016.html), 
+IEEE Guide to Understanding, Diagnosing, and Mitigating Stray and Contact Voltage.
 
 This app can approximate coupling on two- or three-phase lines if you use
 the unbalanced current (vector sum of all phases) as input for the
