@@ -26,6 +26,7 @@ Amazon
 <p>For bulk sales, see <a href='http://www.crcpress.com/contactus/ussales'>CRC Press</a>.</p>
 </div>
 
+
 <div class='col-md-6'>
 <h1>Contents of the second edition</h1>
 
