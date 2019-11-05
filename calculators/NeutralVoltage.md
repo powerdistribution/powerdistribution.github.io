@@ -65,36 +65,6 @@ html:
       - type: div
         class: col-md-4
         html:
-          - name: groundsPerKFeet
-            type: number
-            step: 1
-            min: 0.0
-            bs3caption : Grounds per 1000 feet
-            value: 2.0
-      - type: div
-        class: col-md-4
-        html:
-          - name: averageGround
-            type: number
-            step: 5
-            min: 0.0
-            bs3caption : Average ground resistance, ohms
-            value: 20.0
-      - type: div
-        class: col-md-4
-        html:
-          - name: Zsub
-            type: number
-            step: 0.1
-            min: 0.0
-            bs3caption : Substation ground resistance, ohms
-            value: 1.2
-  - type: div
-    class: row
-    html:
-      - type: div
-        class: col-md-4
-        html:
           - name: systemVoltage
             type: number
             step: 1.0
@@ -135,11 +105,41 @@ html:
       - type: div
         class: col-md-4
         html:
+          - name: Zsub
+            type: number
+            step: 0.1
+            min: 0.0
+            bs3caption : Substation ground resistance, ohms
+            value: 1.2
+  - type: div
+    class: row
+    html:
+      - type: div
+        class: col-md-4
+        html:
+          - name: groundsPerKFeet
+            type: number
+            step: 1
+            min: 0.0
+            bs3caption : Grounds per 1000 feet
+            value: 5.0
+      - type: div
+        class: col-md-4
+        html:
+          - name: averageGround
+            type: text
+            step: 5
+            min: 0.0
+            bs3caption : Average ground resistance, ohms
+            value: "default"
+      - type: div
+        class: col-md-4
+        html:
           - name: rho
             type: number
             step: 50
             min: 0.0
-            bs3caption : Earth resistivity, ohms
+            bs3caption : Earth resistivity, ohm-m
             value: 100.0
 ```
 
@@ -200,6 +200,15 @@ numberOfSections = 50
 subBus = 1
 totalLength = totalLengthMi * 5.28  // ohms/kfeet
 sectionLength = totalLength/numberOfSections  // kfeet
+if (averageGround == "well") {
+    rodlen = 200/3.28
+    averageGround = rho/2/Math.PI/rodlen*(Math.log(4*rodlen/(8.6*0.0254) - 1))
+} else if (isNaN(Number(averageGround))) {
+    rodlen = 8/3.28
+    averageGround = rho/2/Math.PI/rodlen*(Math.log(4*rodlen/(5/8*0.0254) - 1))
+} else {
+    averageGround = Number(averageGround)
+}
 Zgrnd = averageGround/(groundsPerKFeet * totalLength) * numberOfSections  // ohms (average ground per section)
 d_ab = conductorSeparation  // feet (distance between the phase and neutral)
 
@@ -303,13 +312,12 @@ println("Substation NEV = " + math.format(V.abs().x[1]) + " V")
 
 ## Notes
 
-The ground resistances on the line should also include customer grounds. 
-The customer grounds can have a larger impact than the utility grounds.
+The ground rods and resistances on the line should also include customer grounds. 
+The customer grounds normally have a larger impact than the utility grounds.
 
-Also note that the earth resistivity only has a small effect. In the
-calculations, this only really affects the line impedances. Of course, earth
-resistivity will affect the line and substation ground resisitances, but those
-are entered separately.
+If the "Average ground resistance" is "default", each ground is calculated
+assuming an 8-ft ground rod and using the earth resistivity given. 
+For other values, enter a custom numeric value.
 
 For impedance models, this app uses a simple
 implementation of the equations outlined in section 2.4. The frequency is fixed
