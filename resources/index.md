@@ -120,6 +120,8 @@ These are a selection of papers I've authored or coauthored. The links are to an
 
 ## Arc flash
 
+* T. A. Short and M. L. Eblen, "Comparison of IEEE 1584-2018 Predictions with Tests on Real-World Equipment," IEEE Electrical Safety Workshop, 2021. [submission](../papers/ieee_esw_tshort_meblen_comparison_of_ieee_1584-2018_predictions_with_tests_2021.pdf)
+
 * M\. L. Eblen and T. A. Short, "Low Voltage Arc Sustainability," IEEE Electrical Safety Workshop, 2017. [submission](../papers/ieee_esw_meblen_tshort_LowVoltageArcSustainability_submission_2016.pdf)
 
 * M\. L. Eblen, T. A. Short, and W.-J. Lee, "Medium-Voltage Arc Flash in Switchgear and Live-Front Transformers," IEEE Electrical Safety Workshop, 2015. [preprint](../papers/ieee_esw_preprint_arc_flash_meblen_tshort_wlee_2015_medvoltageR4.pdf)
