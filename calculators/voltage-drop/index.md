@@ -13,6 +13,7 @@ balanced.
 ## Results
 
 <div id="mdpad-results"></div>
+<div id="mdpad-phasorplot"></div>
 
 ## Notes
 
@@ -311,6 +312,24 @@ function mdpad_update() {
       )
     )
     m.render(document.querySelector("#mdpad-results"), layout);
+    series = function(name, x) {
+        var z = M.zeros(6)
+        for (const i of [0,2,4]) {
+            z = assign(z, IX(x, i/2), i+1)
+        }
+        return {x: M.re(z)._data, y: M.im(z)._data, name: name}
+    }
+    var phasorplot = mplotly([
+                              series("Vsub",  Vsub),
+                              series("Vload", Vload),
+                              series("I",     I),
+                              // { name: "Vload", x: M.re(Vload)._data, y: M.im(Vload)._data },
+                              // { name: "I",     x: M.re(I),     y: M.im(I) },
+                             ], 
+                    { width: 350, height: 350, margin: { l: 10, r: 10, t: 20, b: 10}, yaxis: {scaleanchor: 'x', scaleratio: 1, visible: false}, xaxis: {visible: false}, hovermode: 'closest',
+                      legend: {x:0.9, y:0.9},
+                    })
+    m.render(document.getElementById("mdpad-phasorplot"), phasorplot)
 }
 
 
