@@ -48,7 +48,6 @@ transient program like [EMTP-RV](http://emtp.com) or
 <script src="https://distribution.epri.com/js/mdpad.min.js"></script>
 <script src="https://distribution.epri.com/js/mdpad-mithril.js"></script>
 <script src="https://distribution.epri.com/js/math.min.js"></script>
-<script src="https://distribution.epri.com/js/network-faults.js"></script>
 
 
 <script>
@@ -83,6 +82,15 @@ function IX(A, ...idx) {
 
 const an = (degrees) => M.exp(c(0.0, degrees * M.pi / 180))
 const pf = (x) => M.multiply(M.sign(x), c(x, M.sin(M.acos(x))))
+const ang = (z) => M.atan2(M.im(z), M.re(z)) * 180 / M.pi
+
+function seq(x) {
+    return [
+        M.divide(M.sum(IX(x, 0), M.multiply(an(120), IX(x, 1)), M.multiply(an(-120), IX(x, 2))), 3),
+        M.divide(M.sum(IX(x, 0), M.multiply(an(-120), IX(x, 1)), M.multiply(an(120), IX(x, 2))), 3),
+        M.divide(M.sum(x), 3)
+    ]
+}
 
 const rac = [3.551, 2.232, 1.402, 1.114, 0.882, 0.7, 0.556, 0.441, 0.373, 0.35, 0.311, 0.278, 0.267, 0.235, 0.208, 0.197, 0.188, 0.169, 0.135, 0.133, 0.127, 0.12, 0.109, 0.106, 0.101, 0.0963]
 const gmr = [0.0055611962035177, 0.00700459393067038, 0.00882262274842038, 0.00990159326021141, 0.0111125174323268, 0.0124715326552536, 0.0139967498560307, 0.0157084948536593, 0.0171990576740366, 0.0177754680514267, 0.0197856043349646, 0.0209605660328388, 0.0214852445181602, 0.0227611387971986, 0.0243123406199979, 0.0249209197027924, 0.0255447325512619, 0.0270616982108416, 0.0308759703782212, 0.0311314761296609, 0.0319107497292355, 0.0327095298674806, 0.0343675751093677, 0.0349387277474913, 0.0361096666226405, 0.0367097709735484]
@@ -100,60 +108,68 @@ function mdpad_init() {
         m("h3", "Phase and neutral positions in feet"),
         m(".row",
           m(".col-md-3",
-              minput({ title:"xA", mdpad:"xA", value:-4.0, step:0.2 })),
+            minput({ title:"xA", mdpad:"xA", value:-4.0, step:0.2 })),
           m(".col-md-3",
-              minput({ title:"xB", mdpad:"xB", value: 0.0, step:0.2 })),
+            minput({ title:"xB", mdpad:"xB", value: 0.0, step:0.2 })),
           m(".col-md-3",
-              minput({ title:"xC", mdpad:"xC", value: 4.0, step:0.2 })),
+            minput({ title:"xC", mdpad:"xC", value: 4.0, step:0.2 })),
           m(".col-md-3",
-              minput({ title:"xN", mdpad:"xN", value: 0.0, step:0.2 })),
+            minput({ title:"xN", mdpad:"xN", value: 0.0, step:0.2 })),
           ),
         m(".row",
           m(".col-md-3",
-              minput({ title:"yA", mdpad:"yA", value:35.0, min: 0.0, step:0.2 })),
+            minput({ title:"yA", mdpad:"yA", value:35.0, min: 0.0, step:0.2 })),
           m(".col-md-3",
-              minput({ title:"yB", mdpad:"yB", value:36.0, min: 0.0, step:0.2 })),
+            minput({ title:"yB", mdpad:"yB", value:36.0, min: 0.0, step:0.2 })),
           m(".col-md-3",
-              minput({ title:"yC", mdpad:"yC", value:35.0, min: 0.0, step:0.2 })),
+            minput({ title:"yC", mdpad:"yC", value:35.0, min: 0.0, step:0.2 })),
           m(".col-md-3",
-              minput({ title:"yN", mdpad:"yN", value:30.0, min: 0.0, step:0.2 })),
+            minput({ title:"yN", mdpad:"yN", value:30.0, min: 0.0, step:0.2 })),
           ),
         m(".row",
           m(".col-md-3",
-              minput({ title:"Earth resistivity, ohm-m", mdpad:"rho", value:100.0, min: 0.0, step:50 })),
+            minput({ title:"Earth resistivity, ohm-m", mdpad:"rho", value:100.0, min: 0.0, step:50 })),
           m(".col-md-3",
-              minput({ title:"Voltage (L-N), volts", mdpad:"Vbase", value:7200.0, min: 0.0, step:100 })),
+            minput({ title:"Voltage (L-N), volts", mdpad:"Vbase", value:7200.0, min: 0.0, step:100 })),
           m(".col-md-3",
-              minput({ title:"Line length, miles", mdpad:"len", value:5.0, min: 0.0, step:1 })),
+            minput({ title:"Voltage setpoints, pu", mdpad:"Vsetpoint", value:1.04, min: 0.0, step:0.01 })),
+          m(".col-md-3",
+            minput({ title:"Line length, miles", mdpad:"len", value:5.0, min: 0.0, step:1 })),
           ),
         m("h3", "Phase currents and power factors"),
         m(".row",
           m(".col-md-3",
-              minput({ title:"Ia, A", mdpad:"Ia", value:100.0, min: 0.0, step:10.0 })),
+            minput({ title:"Ia, A", mdpad:"Ia", value:100.0, min: 0.0, step:10.0 })),
           m(".col-md-3",
-              minput({ title:"Ib, A", mdpad:"Ib", value:100.0, min: 0.0, step:10.0 })),
+            minput({ title:"Ib, A", mdpad:"Ib", value:100.0, min: 0.0, step:10.0 })),
           m(".col-md-3",
-              minput({ title:"Ic, A", mdpad:"Ic", value:100.0, min: 0.0, step:10.0 })),
+            minput({ title:"Ic, A", mdpad:"Ic", value:100.0, min: 0.0, step:10.0 })),
           ),
         m(".row",
           m(".col-md-3",
-              minput({ title:"pfA", mdpad:"pfA", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
+            minput({ title:"pfA", mdpad:"pfA", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
           m(".col-md-3",
-              minput({ title:"pfB", mdpad:"pfB", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
+            minput({ title:"pfB", mdpad:"pfB", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
           m(".col-md-3",
-              minput({ title:"pfC", mdpad:"pfC", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
+            minput({ title:"pfC", mdpad:"pfC", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
+          ),
+        m(".row",
+          m(".col-md-3",
+            mselect({ title:"Roll phases", mdpad:"rolling", options:["None", "A-B-C 🠖 B-C-A 🠖 C-A-B", "A-B-C 🠖 C-A-B 🠖 B-C-A"] })),
+          m(".col-md-3",
+            mselect({ title:"Regulator", mdpad:"vreg", options:["None", "50%", "75%", "100%"] })),
           ),
         )
     m.render(document.querySelector("#mdpad"), layout);
 }
-j
+
 calcZ = function(cond) {
-    n = cond.R.length
-    Z = numeric.t(numeric.identity(n), numeric.identity(n))
-    f = 60     // Hz
-    k1 = 0.2794 * f / 60  // for answers in ohms/mi
-    Re = 0.0954 * f / 60
-    De = 2160 * math.sqrt(rho / f)
+    var n = cond.R.length
+    var Z = numeric.t(numeric.identity(n), numeric.identity(n))
+    var f = 60     // Hz
+    var k1 = 0.2794 * f / 60  // for answers in ohms/mi
+    var Re = 0.0954 * f / 60
+    var De = 2160 * math.sqrt(cond.rho / f)
     for (var i = 0; i < n; i++) {
         Z.x[i][i] = cond.R[i] + Re
         Z.y[i][i] = k1 * math.log10(De / cond.gmr[i])
@@ -175,23 +191,20 @@ calcZ = function(cond) {
     return Z
 }
 
-calcZ2 = function(cond) {
+calcZ = function(cond) {
     let n = cond.R.length
-    let Z = numeric.t(numeric.identity(n), numeric.identity(n))
+    let Z = M.zeros(n, n)
     let f = 60     // Hz
     let k1 = 0.2794 * f / 60  // for answers in ohms/mi
     let Re = 0.0954 * f / 60
     let De = 2160 * M.sqrt(cond.rho / f)
     for (var i = 0; i < n; i++) {
-        Z.x[i][i] = cond.R[i] + Re
-        Z.y[i][i] = k1 * M.log10(De / cond.gmr[i])
+        Z = assign(Z, c(cond.R[i] + Re, k1 * M.log10(De / cond.gmr[i])), i, i)
         if (i < n)
             for (var k = i + 1; k < n; k++) {
-                let dik = M.sqrt(sq(cond.y[i] - cond.y[k]) + sq(cond.x[i] - cond.x[k]))
-                Z.x[i][k] = Re
-                Z.y[i][k] = k1 * M.log10(De / dik)
-                Z.x[k][i] = Z.x[i][k]
-                Z.y[k][i] = Z.y[i][k]
+                dik = M.sqrt(sq(cond.y[i] - cond.y[k]) + sq(cond.x[i] - cond.x[k]))
+                Z = assign(Z, c(Re, k1 * M.log10(De / dik)), i, k)
+                Z = assign(Z, c(Re, k1 * M.log10(De / dik)), k, i)
             }
     }
     // Eliminate grounded wires
@@ -211,7 +224,7 @@ function mdpad_update() {
     pidx = _.map(conductors, String).indexOf(mdpad.phases)
     nidx = _.map(conductors, String).indexOf(mdpad.neutral)
 
-    var cond = {}
+    cond = {}
     cond.R = []
     cond.gmr = []
     cond.y = []
@@ -225,26 +238,79 @@ function mdpad_update() {
     }
     cond.R[3]   = rac[nidx]   // ac resistance, ohms/mi
     cond.gmr[3] = gmr[nidx]   // ft
-    Z = calcZ(cond).mul(mdpad.len)
-    qfA = -M.sign(mdpad.pfA) * M.sqrt(1 - sq(mdpad.pfA))
-    qfB = -M.sign(mdpad.pfB) * M.sqrt(1 - sq(mdpad.pfB))
-    qfC = -M.sign(mdpad.pfC) * M.sqrt(1 - sq(mdpad.pfC))
-    pfA = M.sign(mdpad.Ia) * M.abs(mdpad.pfA)
-    pfB = M.sign(mdpad.Ib) * M.abs(mdpad.pfB)
-    pfC = M.sign(mdpad.Ic) * M.abs(mdpad.pfC)
-    Ia = M.abs(mdpad.Ia)
-    Ib = M.abs(mdpad.Ib)
-    Ic = M.abs(mdpad.Ic)
-    I = numeric.t([Ia,       -0.5 * Ib,      -0.5 * Ic],
-                  [ 0, -0.8660254 * Ib, 0.8660254 * Ic]).mul(numeric.t([pfA, pfB, pfC], [qfA, qfB, qfC]))
-    Vsub = numeric.t([1.0,       -0.5,      -0.5],
-                     [0.0, -0.8660254, 0.8660254]).mul(mdpad.Vbase)
-    Vload = Vsub.sub(Z.dot(I))
-    console.log(Vload)
     I = [M.multiply(mdpad.Ia, pf(mdpad.pfA)), M.multiply(mdpad.Ib, pf(mdpad.pfB), an(-120)), M.multiply(mdpad.Ic, pf(mdpad.pfC), an(120))]
-    Vsub = M.multiply(mdpad.Vbase, [an(0), an(-120), an(120)])
-    Vload2 = M.subtract(Vsub, M.multiply(Z, I))
-    console.log(Vload2)
+    Z = M.multiply(calcZ(cond), mdpad.len)
+    Vsub = M.multiply(mdpad.Vbase * mdpad.Vsetpoint, [an(0), an(-120), an(120)])
+    Vload = M.subtract(Vsub, M.multiply(Z, I))
+    V = [Vsub]
+    d = [0.0, 1/3, 1/2, 1/2, 2/3, 3/4, 3/4, 1, 1]
+    V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/3)))
+    if (mdpad.rolling == "A-B-C 🠖 B-C-A 🠖 C-A-B") {
+        Z = IX(Z, [1,2,0], [1,2,0])
+    }
+    V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/6)))
+    if (mdpad.vreg == "50%") {
+        ratio = M.multiply(M.abs(V[V.length-1]), 1/mdpad.Vbase, 1/mdpad.Vsetpoint)
+        I = M.dotMultiply(I, ratio)
+        V.push(M.dotDivide(V[V.length-1], ratio))
+    } else {
+        V.push(V[V.length-1])
+    }
+    V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/6)))
+    if (mdpad.rolling == "A-B-C 🠖 B-C-A 🠖 C-A-B") {
+        Z = IX(Z, [1,2,0], [1,2,0])
+    }
+    V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/12)))
+    if (mdpad.vreg == "75%") {
+        ratio = M.multiply(M.abs(V[V.length-1]), 1/mdpad.Vbase, 1/mdpad.Vsetpoint)
+        I = M.dotMultiply(I, ratio)
+        V.push(M.dotDivide(V[V.length-1], ratio))
+    } else {
+        V.push(V[V.length-1])
+    }
+    V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/4)))
+    if (mdpad.vreg == "100%") {
+        ratio = M.multiply(M.abs(V[V.length-1]), 1/mdpad.Vbase, 1/mdpad.Vsetpoint)
+        I = M.dotMultiply(I, ratio)
+        V.push(M.dotDivide(V[V.length-1], ratio))
+    } else {
+        V.push(V[V.length-1])
+    }
+    Vload = V[V.length-1]
+    Vabs = M.abs(Vload)
+    Vseq = seq(Vload)
+    Vll = M.subtract(Vload, IX(Vload, [1, 2, 0]))
+    Vllabs = M.abs(Vll)
+    fmt0 = (x) => f(x, 0)
+    var layout = m("div",
+      m(".row",
+        m(".col-md-5",
+          m("h3", "Line-to-neutral voltages"),
+          mdatatable({"Phase": ["A", "B", "C"],
+                      "V": Vabs.map((x) => x.toFixed())._data, 
+                      "angle": Vload.map((x) => f(ang(x), 3) + "°")._data,
+                      "per unit": Vabs.map((x) => (x/mdpad.Vbase).toFixed(4))._data,
+                      "120-V base": Vabs.map((x) => (x/mdpad.Vbase*120).toFixed(1))._data,
+                      }),
+        ),
+        m(".col-md-2",
+          m("h3", "Sequence V"),
+          mdatatable({"": ["1", "2", "0"],
+                      "per unit": Vseq.map((x) => (M.abs(x)/mdpad.Vbase).toFixed(4)),
+                      }),
+        ),
+        m(".col-md-5",
+          m("h3", "Line-to-line voltages"),
+          mdatatable({"Phase": ["A-B", "B-C", "C-A"],
+                      "V": Vllabs.map((x) => x.toFixed())._data, 
+                      "angle": Vll.map((x) => f(ang(x), 3) + "°")._data,
+                      "per unit": Vllabs.map((x) => (x/mdpad.Vbase/M.sqrt(3)).toFixed(4))._data,
+                      "120-V base": Vllabs.map((x) => (x/mdpad.Vbase*120/M.sqrt(3)).toFixed(1))._data,
+                      }),
+        )
+      )
+    )
+    m.render(document.querySelector("#mdpad-results"), layout);
 }
 
 
