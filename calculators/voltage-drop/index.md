@@ -3,6 +3,8 @@ layout: default
 title:  Voltage Drop (or Rise) along a Line Section
 ---
 
+# Voltage Drop (or Rise) along a Line Section
+
 This app models the voltage drop or rise from unbalanced or balanced
 load on an overhead distribution line. The load is constant throughout
 the segment modeled. The voltages at the start of the segment are

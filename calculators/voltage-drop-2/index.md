@@ -3,6 +3,8 @@ layout: default
 title:  Voltage Drop (or Rise) along a Double-Circuit Line
 ---
 
+# Voltage Drop (or Rise) along a Double-Circuit Line
+
 This app models the voltage drop or rise from unbalanced or balanced
 load on an overhead distribution line. The load is constant throughout
 the segment modeled. The voltages at the start of the segment are
@@ -126,7 +128,7 @@ function mdpad_init() {
           m(".col-md-3",
             minput({ title:"yB", mdpad:"yB", value:41.0, min: 0.0, step:0.2 })),
           m(".col-md-3",
-            minput({ title:"yC", mdpad:"yC", value:41.0, min: 0.0, step:0.2 })),
+            minput({ title:"yC", mdpad:"yC", value:40.0, min: 0.0, step:0.2 })),
           ),
         m(".row",
           m(".col-md-3",
@@ -172,6 +174,8 @@ function mdpad_init() {
             minput({ title:"Iy, A", mdpad:"Iy", value:100.0, min: 0.0, step:10.0 })),
           m(".col-md-3",
             minput({ title:"Iz, A", mdpad:"Iz", value:100.0, min: 0.0, step:10.0 })),
+          m(".col-md-3",
+            mselect({ title:"Position", mdpad:"xyzload", options:["100%", "75%", "50%"] })),
           ),
         m(".row",
           m(".col-md-3",
@@ -187,9 +191,11 @@ function mdpad_init() {
           m(".col-md-3",
             mselect({ title:"Roll phases", mdpad:"rolling", options:["None", "A-B-C 🠖 B-C-A 🠖 C-A-B", "A-B-C 🠖 C-A-B 🠖 B-C-A"] })),
           m(".col-md-3",
-            mselect({ title:"Regulator", mdpad:"vreg", options:["None", "50%", "75%", "100%"] })),
-          ),
+            mselect({ title:"Regulator abc", mdpad:"vreg1", options:["None", "50%", "75%", "100%"] })),
+          m(".col-md-3",
+            mselect({ title:"Regulator xyz", mdpad:"vreg2", options:["None", "50%", "75%", "100%"] })),
         )
+      )
     m.render(document.querySelector("#mdpad"), layout);
 }
 
@@ -286,12 +292,12 @@ function mdpad_update() {
         Z = IX(Z, [2,0,1,5,3,4], [2,0,1,5,3,4])
     }
     V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/6)))
-    if (mdpad.vreg == "50%") {
-        ratio = M.multiply(M.abs(V[V.length-1]), 1/mdpad.Vbase, 1/mdpad.Vsetpoint)
-        I = M.dotMultiply(I, ratio)
-        V.push(M.dotDivide(V[V.length-1], ratio))
-    } else {
-        V.push(V[V.length-1])
+    ratio = M.concat(mdpad.vreg1 == "50%" ? M.multiply(M.abs(IX(V[V.length-1], [0,1,2])), 1/mdpad.Vbase, 1/mdpad.Vsetpoint) : [1, 1, 1],
+                     mdpad.vreg2 == "50%" ? M.multiply(M.abs(IX(V[V.length-1], [3,4,5])), 1/mdpad.Vbase, 1/mdpad.Vsetpoint) : [1, 1, 1])
+    I = M.dotMultiply(I, ratio)
+    V.push(M.dotDivide(V[V.length-1], ratio))
+    if (mdpad.xyzload == "50%") {
+        I = assign(I, [0.0,0.0,0.0], [3,4,5])
     }
     V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/6)))
     if (mdpad.rolling == "A-B-C 🠖 B-C-A 🠖 C-A-B") {
@@ -300,21 +306,18 @@ function mdpad_update() {
         Z = IX(Z, [2,0,1,5,3,4], [2,0,1,5,3,4])
     }
     V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/12)))
-    if (mdpad.vreg == "75%") {
-        ratio = M.multiply(M.abs(V[V.length-1]), 1/mdpad.Vbase, 1/mdpad.Vsetpoint)
-        I = M.dotMultiply(I, ratio)
-        V.push(M.dotDivide(V[V.length-1], ratio))
-    } else {
-        V.push(V[V.length-1])
+    ratio = M.concat(mdpad.vreg1 == "75%" ? M.multiply(M.abs(IX(V[V.length-1], [0,1,2])), 1/mdpad.Vbase, 1/mdpad.Vsetpoint) : [1, 1, 1],
+                     mdpad.vreg2 == "75%" ? M.multiply(M.abs(IX(V[V.length-1], [3,4,5])), 1/mdpad.Vbase, 1/mdpad.Vsetpoint) : [1, 1, 1])
+    I = M.dotMultiply(I, ratio)
+    V.push(M.dotDivide(V[V.length-1], ratio))
+    if (mdpad.xyzload == "75%") {
+        I = assign(I, [0.0,0.0,0.0], [3,4,5])
     }
     V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/4)))
-    if (mdpad.vreg == "100%") {
-        ratio = M.multiply(M.abs(V[V.length-1]), 1/mdpad.Vbase, 1/mdpad.Vsetpoint)
-        I = M.dotMultiply(I, ratio)
-        V.push(M.dotDivide(V[V.length-1], ratio))
-    } else {
-        V.push(V[V.length-1])
-    }
+    ratio = M.concat(mdpad.vreg1 == "100%" ? M.multiply(M.abs(IX(V[V.length-1], [0,1,2])), 1/mdpad.Vbase, 1/mdpad.Vsetpoint) : [1, 1, 1],
+                     mdpad.vreg2 == "100%" ? M.multiply(M.abs(IX(V[V.length-1], [3,4,5])), 1/mdpad.Vbase, 1/mdpad.Vsetpoint) : [1, 1, 1])
+    I = M.dotMultiply(I, ratio)
+    V.push(M.dotDivide(V[V.length-1], ratio))
     Vload = V[V.length-1]
     Vabs = M.abs(Vload)
     Vseq = M.concat(seq(IX(Vload, [0,1,2])), seq(IX(Vload, [3,4,5])))
@@ -393,7 +396,7 @@ function mdpad_update() {
                               {x: d, y:V.map((x) => M.abs(seq(IX(x, [3,4,5]))[1]) / mdpad.Vbase), name: "V2xyz", mode: 'lines'},
                               {x: d, y:V.map((x) => M.abs(seq(IX(x, [3,4,5]))[2]) / mdpad.Vbase), name: "V0xyz", mode: 'lines'},
                              ], 
-                    { width: 850, height: 350, margin: { l: 60, r: 10, t: 20, b: 50}, hovermode: 'closest',
+                    { width: 875, height: 350, margin: { l: 60, r: 10, t: 20, b: 50}, hovermode: 'closest',
                       xaxis: {title: "Distance, mi"},
                       yaxis: {title: "Voltage, pu"},
                       paper_bgcolor: 'rgba(0,0,0,0)',
