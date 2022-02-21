@@ -1,6 +1,6 @@
 ---
 layout: default
-title:  Voltage Drop (or Rise) along a Line Section
+title:  Voltage Drop (or Rise) along a Double-Circuit Line
 ---
 
 This app models the voltage drop or rise from unbalanced or balanced
@@ -109,16 +109,32 @@ function mdpad_init() {
             minput({ title:"xB", mdpad:"xB", value: 0.0, step:0.2 })),
           m(".col-md-3",
             minput({ title:"xC", mdpad:"xC", value: 4.0, step:0.2 })),
+          ),
+        m(".row",
+          m(".col-md-3",
+            minput({ title:"xX", mdpad:"xX", value:-4.0, step:0.2 })),
+          m(".col-md-3",
+            minput({ title:"xY", mdpad:"xY", value: 1.0, step:0.2 })),
+          m(".col-md-3",
+            minput({ title:"xZ", mdpad:"xZ", value: 4.0, step:0.2 })),
           m(".col-md-3",
             minput({ title:"xN", mdpad:"xN", value: 0.0, step:0.2 })),
           ),
         m(".row",
           m(".col-md-3",
-            minput({ title:"yA", mdpad:"yA", value:35.0, min: 0.0, step:0.2 })),
+            minput({ title:"yA", mdpad:"yA", value:40.0, min: 0.0, step:0.2 })),
           m(".col-md-3",
-            minput({ title:"yB", mdpad:"yB", value:36.0, min: 0.0, step:0.2 })),
+            minput({ title:"yB", mdpad:"yB", value:41.0, min: 0.0, step:0.2 })),
           m(".col-md-3",
-            minput({ title:"yC", mdpad:"yC", value:35.0, min: 0.0, step:0.2 })),
+            minput({ title:"yC", mdpad:"yC", value:41.0, min: 0.0, step:0.2 })),
+          ),
+        m(".row",
+          m(".col-md-3",
+            minput({ title:"yX", mdpad:"yX", value:35.0, min: 0.0, step:0.2 })),
+          m(".col-md-3",
+            minput({ title:"yY", mdpad:"yY", value:35.0, min: 0.0, step:0.2 })),
+          m(".col-md-3",
+            minput({ title:"yZ", mdpad:"yZ", value:35.0, min: 0.0, step:0.2 })),
           m(".col-md-3",
             minput({ title:"yN", mdpad:"yN", value:30.0, min: 0.0, step:0.2 })),
           ),
@@ -150,6 +166,24 @@ function mdpad_init() {
             minput({ title:"pfC", mdpad:"pfC", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
           ),
         m(".row",
+          m(".col-md-3",
+            minput({ title:"Ix, A", mdpad:"Ix", value:100.0, min: 0.0, step:10.0 })),
+          m(".col-md-3",
+            minput({ title:"Iy, A", mdpad:"Iy", value:100.0, min: 0.0, step:10.0 })),
+          m(".col-md-3",
+            minput({ title:"Iz, A", mdpad:"Iz", value:100.0, min: 0.0, step:10.0 })),
+          ),
+        m(".row",
+          m(".col-md-3",
+            minput({ title:"pfX", mdpad:"pfX", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
+          m(".col-md-3",
+            minput({ title:"pfY", mdpad:"pfY", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
+          m(".col-md-3",
+            minput({ title:"pfZ", mdpad:"pfZ", value:1.0, min: -1.0, max: 1.0, step:0.01 })),
+          ),
+        m(".row",
+          m(".col-md-3",
+            mselect({ title:"Swap phases", mdpad:"swap", options:["None", "X-Y-Z 🠖 Z-X-Y", "X-Y-Z 🠖 Y-Z-X", "X-Y-Z 🠖 Z-Y-X", "X-Y-Z 🠖 Y-X-Z", "X-Y-Z 🠖 X-Z-Y"] })),
           m(".col-md-3",
             mselect({ title:"Roll phases", mdpad:"rolling", options:["None", "A-B-C 🠖 B-C-A 🠖 C-A-B", "A-B-C 🠖 C-A-B 🠖 B-C-A"] })),
           m(".col-md-3",
@@ -216,6 +250,8 @@ calcZ = function(cond) {
     return Z
 }
 
+const swap = {"None": [0,1,2,3,4,5], "X-Y-Z 🠖 Z-X-Y": [0,1,2,5,3,4], "X-Y-Z 🠖 Y-Z-X": [0,1,2,4,5,3], "X-Y-Z 🠖 Z-Y-X": [0,1,2,5,4,3], "X-Y-Z 🠖 Y-X-Z": [0,1,2,4,3,5], "X-Y-Z 🠖 X-Z-Y": [0,1,2,3,5,4]}
+
 function mdpad_update() {
     pidx = _.map(conductors, String).indexOf(mdpad.phases)
     nidx = _.map(conductors, String).indexOf(mdpad.neutral)
@@ -226,25 +262,28 @@ function mdpad_update() {
     cond.y = []
     cond.ngrnd = 1       // number of grounded conductors -- always the last conductors
     cond.rho = mdpad.rho
-    cond.y = [mdpad.yA, mdpad.yB, mdpad.yC, mdpad.yN]        // ft
-    cond.x = [mdpad.xA, mdpad.xB, mdpad.xC, mdpad.xN]
-    for (var i = 0; i < 3; i++) {
+    cond.y = [mdpad.yA, mdpad.yB, mdpad.yC, mdpad.yX, mdpad.yY, mdpad.yZ, mdpad.yN]        // ft
+    cond.x = [mdpad.xA, mdpad.xB, mdpad.xC, mdpad.xX, mdpad.xY, mdpad.xZ, mdpad.xN]
+    for (var i = 0; i < 6; i++) {
         cond.R[i]   = rac[pidx]   // ac resistance, ohms/mi
         cond.gmr[i] = gmr[pidx]   // ft
     }
-    cond.R[3]   = rac[nidx]   // ac resistance, ohms/mi
-    cond.gmr[3] = gmr[nidx]   // ft
-    I = [M.multiply(mdpad.Ia, pf(mdpad.pfA)), M.multiply(mdpad.Ib, pf(mdpad.pfB), an(-120)), M.multiply(mdpad.Ic, pf(mdpad.pfC), an(120))]
+    cond.R[6]   = rac[nidx]   // ac resistance, ohms/mi
+    cond.gmr[6] = gmr[nidx]   // ft
+    I = [M.multiply(mdpad.Ia, pf(mdpad.pfA)), M.multiply(mdpad.Ib, pf(mdpad.pfB), an(-120)), M.multiply(mdpad.Ic, pf(mdpad.pfC), an(120)),
+         M.multiply(mdpad.Ix, pf(mdpad.pfX)), M.multiply(mdpad.Iy, pf(mdpad.pfY), an(-120)), M.multiply(mdpad.Iz, pf(mdpad.pfZ), an(120))]
     Z = M.multiply(calcZ(cond), mdpad.len)
-    Vsub = M.multiply(mdpad.Vbase * mdpad.Vsetpoint, [an(0), an(-120), an(120)])
+    idx = swap[mdpad.swap]
+    Z = IX(Z, idx, idx)
+    Vsub = M.multiply(mdpad.Vbase * mdpad.Vsetpoint, [an(0), an(-120), an(120), an(0), an(-120), an(120)])
     Vload = M.subtract(Vsub, M.multiply(Z, I))
     V = [Vsub]
     d = [0.0, 1/3, 1/2, 1/2, 2/3, 3/4, 3/4, 1, 1].map((x) => x*mdpad.len)
     V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/3)))
     if (mdpad.rolling == "A-B-C 🠖 B-C-A 🠖 C-A-B") {
-        Z = IX(Z, [1,2,0], [1,2,0])
+        Z = IX(Z, [1,2,0,4,5,3], [1,2,0,4,5,3])
     } else if (mdpad.rolling == "A-B-C 🠖 C-A-B 🠖 B-C-A") {
-        Z = IX(Z, [2,0,1], [2,0,1])
+        Z = IX(Z, [2,0,1,5,3,4], [2,0,1,5,3,4])
     }
     V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/6)))
     if (mdpad.vreg == "50%") {
@@ -256,9 +295,9 @@ function mdpad_update() {
     }
     V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/6)))
     if (mdpad.rolling == "A-B-C 🠖 B-C-A 🠖 C-A-B") {
-        Z = IX(Z, [1,2,0], [1,2,0])
+        Z = IX(Z, [1,2,0,4,5,3], [1,2,0,4,5,3])
     } else if (mdpad.rolling == "A-B-C 🠖 C-A-B 🠖 B-C-A") {
-        Z = IX(Z, [2,0,1], [2,0,1])
+        Z = IX(Z, [2,0,1,5,3,4], [2,0,1,5,3,4])
     }
     V.push(M.subtract(V[V.length-1], M.multiply(Z, I, 1/12)))
     if (mdpad.vreg == "75%") {
@@ -278,13 +317,13 @@ function mdpad_update() {
     }
     Vload = V[V.length-1]
     Vabs = M.abs(Vload)
-    Vseq = seq(Vload)
-    Vll = M.subtract(Vload, IX(Vload, [1, 2, 0]))
+    Vseq = M.concat(seq(IX(Vload, [0,1,2])), seq(IX(Vload, [3,4,5])))
+    Vll = M.subtract(Vload, IX(Vload, [1, 2, 0, 4, 5, 3]))
     Vllabs = M.abs(Vll)
     fmt0 = (x) => f(x, 0)
     series = function(name, x) {
-        var z = M.zeros(6)
-        for (const i of [0,2,4]) {
+        var z = M.zeros(12)
+        for (const i of [0,2,4,6,8,10]) {
             z = assign(z, IX(x, i/2), i+1)
         }
         return {x: M.re(z)._data, y: M.im(z)._data, name: name}
@@ -307,7 +346,7 @@ function mdpad_update() {
       m(".row",
         m(".col-md-3",
           m("h3", "Line-to-neutral voltages"),
-          mdatatable({"": ["A", "B", "C"],
+          mdatatable({"": ["A", "B", "C", "X", "Y", "Z"],
                       "V": Vabs.map((x) => x.toFixed())._data, 
                       "angle": Vload.map((x) => f(ang(x), 3) + "°")._data,
                       "per unit": Vabs.map((x) => (x/mdpad.Vbase).toFixed(4))._data,
@@ -316,13 +355,13 @@ function mdpad_update() {
         ),
         m(".col-md-2",
           m("h3", "Sequence V"),
-          mdatatable({"": ["1", "2", "0"],
+          mdatatable({"": ["1", "2", "0", "1", "2", "0"],
                       "per unit": Vseq.map((x) => (M.abs(x)/mdpad.Vbase).toFixed(4)),
                       }),
         ),
         m(".col-md-3",
           m("h3", "Line-to-line voltages"),
-          mdatatable({"": ["A-B", "B-C", "C-A"],
+          mdatatable({"": ["A-B", "B-C", "C-A", "X-Y", "Y-Z", "Z-X"],
                       "V": Vllabs.map((x) => x.toFixed())._data, 
                       "angle": Vll.map((x) => f(ang(x), 3) + "°")._data,
                       "per unit": Vllabs.map((x) => (x/mdpad.Vbase/M.sqrt(3)).toFixed(4))._data,
@@ -337,6 +376,9 @@ function mdpad_update() {
                               {x: d, y:V.map((x) => M.abs(IX(x, 0)) / mdpad.Vbase), name: "Va", mode: 'lines'},
                               {x: d, y:V.map((x) => M.abs(IX(x, 1)) / mdpad.Vbase), name: "Vb", mode: 'lines'},
                               {x: d, y:V.map((x) => M.abs(IX(x, 2)) / mdpad.Vbase), name: "Vc", mode: 'lines'},
+                              {x: d, y:V.map((x) => M.abs(IX(x, 3)) / mdpad.Vbase), name: "Vx", mode: 'lines'},
+                              {x: d, y:V.map((x) => M.abs(IX(x, 4)) / mdpad.Vbase), name: "Vy", mode: 'lines'},
+                              {x: d, y:V.map((x) => M.abs(IX(x, 5)) / mdpad.Vbase), name: "Vz", mode: 'lines'},
                              ], 
                     { width: 850, height: 350, margin: { l: 60, r: 10, t: 20, b: 50}, hovermode: 'closest',
                       xaxis: {title: "Distance, mi"},
@@ -346,8 +388,10 @@ function mdpad_update() {
                     })
     m.render(document.getElementById("mdpad-vdropplot"), vdropplot)
     var vdropplot2 = mplotly([
-                              {x: d, y:V.map((x) => M.abs(seq(x)[1]) / mdpad.Vbase), name: "V2", mode: 'lines'},
-                              {x: d, y:V.map((x) => M.abs(seq(x)[2]) / mdpad.Vbase), name: "V0", mode: 'lines'},
+                              {x: d, y:V.map((x) => M.abs(seq(IX(x, [0,1,2]))[1]) / mdpad.Vbase), name: "V2", mode: 'lines'},
+                              {x: d, y:V.map((x) => M.abs(seq(IX(x, [0,1,2]))[2]) / mdpad.Vbase), name: "V0", mode: 'lines'},
+                              {x: d, y:V.map((x) => M.abs(seq(IX(x, [3,4,5]))[1]) / mdpad.Vbase), name: "V2xyz", mode: 'lines'},
+                              {x: d, y:V.map((x) => M.abs(seq(IX(x, [3,4,5]))[2]) / mdpad.Vbase), name: "V0xyz", mode: 'lines'},
                              ], 
                     { width: 850, height: 350, margin: { l: 60, r: 10, t: 20, b: 50}, hovermode: 'closest',
                       xaxis: {title: "Distance, mi"},
