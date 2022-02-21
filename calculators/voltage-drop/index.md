@@ -40,12 +40,10 @@ transient program like [EMTP-RV](http://emtp.com) or
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mithril/2.0.4/mithril.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
 <script src="https://cdn.plot.ly/plotly-basic-1.54.1.min.js"></script>
-<script src="https://distribution.epri.com/js/mdpad.min.js"></script>
-<script src="https://distribution.epri.com/js/mdpad-mithril.js"></script>
-<script src="https://distribution.epri.com/js/math.min.js"></script>
+<script src="../js/mdpad.min.js"></script>
+<script src="../js/mdpad-mithril.js"></script>
+<script src="../js/math.min.js"></script>
 
 
 <script>
@@ -219,8 +217,8 @@ calcZ = function(cond) {
 }
 
 function mdpad_update() {
-    pidx = _.map(conductors, String).indexOf(mdpad.phases)
-    nidx = _.map(conductors, String).indexOf(mdpad.neutral)
+    pidx = conductors.map(String).indexOf(mdpad.phases)
+    nidx = conductors.map(String).indexOf(mdpad.neutral)
 
     cond = {}
     cond.R = []
