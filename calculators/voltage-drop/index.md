@@ -34,9 +34,7 @@ to the setpoint).
 For impedances, this app uses a simple implementation of the equations
 outlined in section 2.4. The frequency is fixed at 60 Hz. For more
 sophisticated line modeling and voltage drop calculations, see
-[OpenDSS](http://www.smartgrid.epri.com/SimulationTool.aspx) or a
-transient program like [EMTP-RV](http://emtp.com) or
-[ATP](http://emtp.org).
+[OpenDSS](http://www.smartgrid.epri.com/SimulationTool.aspx).
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mithril/2.0.4/mithril.min.js"></script>
@@ -217,6 +215,7 @@ calcZ = function(cond) {
 }
 
 function mdpad_update() {
+    
     pidx = conductors.map(String).indexOf(mdpad.phases)
     nidx = conductors.map(String).indexOf(mdpad.neutral)
 
@@ -228,6 +227,23 @@ function mdpad_update() {
     cond.rho = mdpad.rho
     cond.y = [mdpad.yA, mdpad.yB, mdpad.yC, mdpad.yN]        // ft
     cond.x = [mdpad.xA, mdpad.xB, mdpad.xC, mdpad.xN]
+    var conductorplot = 
+        mplotly([
+                  {x: cond.x,
+                   y: cond.y,
+                   mode: 'markers+text',
+                   textposition: 'bottom',
+                   text: ['A', 'B', 'C', 'N']},
+                 ], 
+                { width: 200, height: 150, margin: { l: 00, r: 00, t: 00, b: 00}, 
+                  yaxis: {scaleanchor: 'x', scaleratio: 0.91, visible: false}, 
+                  xaxis: {visible: false}, 
+                  hovermode: 'closest',
+                  paper_bgcolor: 'rgba(0,0,0,0)',
+                  plot_bgcolor: 'rgba(0,0,0,0)'
+                },
+                { displayModeBar: false }
+                )
     for (var i = 0; i < 3; i++) {
         cond.R[i]   = rac[pidx]   // ac resistance, ohms/mi
         cond.gmr[i] = gmr[pidx]   // ft
@@ -289,8 +305,25 @@ function mdpad_update() {
         }
         return {x: M.re(z)._data, y: M.im(z)._data, name: name}
     }
+    series_add = function(name, x, y) {
+        var z = M.multiply(M.ones(9), NaN)
+        for (const i of [0,1,2]) {
+            z = assign(z, IX(x, i), 3*i)
+            z = assign(z, IX(y, i), 3*i + 1)
+        }
+        return {x: M.re(z)._data, y: M.im(z)._data, name: name}
+    }
+    // Complicated rolls to arrange the voltage-drop differences, so the 
+    // first one is the drop due to the self impedance, and then the next
+    // two are drops from the next phases due to mutual impedances.
+    Vdrop1 = M.subtract(Vsub,   M.dotMultiply(M.squeeze(M.diag(Z)), I))
+    Vdrop2 = M.subtract(Vdrop1, M.dotMultiply(M.squeeze(M.diag(IX(Z, [0, 1, 2], [1, 2, 0]))), IX(I, [1, 2, 0])))
+    Vdrop3 = M.subtract(Vdrop2, M.dotMultiply(M.squeeze(M.diag(IX(Z, [0, 1, 2], [2, 0, 1]))), IX(I, [2, 0, 1])))
     var phasorplot = mplotly([
-                              series("Vsub",  Vsub),
+                              {...series("Vsub", Vsub),
+                               mode: 'markers+lines+text',
+                               textposition: 'bottom',
+                               text: ['', 'A', '', 'B', '', 'C']},
                               series("Vload", Vload),
                               series("I",     I),
                              ], 
@@ -302,12 +335,35 @@ function mdpad_update() {
                       paper_bgcolor: 'rgba(0,0,0,0)',
                       plot_bgcolor: 'rgba(0,0,0,0)'
                     },
-                    { displayModeBar: false })
+                    { displayModeBar: false }
+                    )
+    var phasorplot2 = mplotly([
+                              {...series("Vsub", Vsub),
+                               mode: 'markers+lines+text',
+                               textposition: 'bottom',
+                               text: ['', 'A', '', 'B', '', 'C']},
+                              series_add("Vdrop self", Vsub, Vdrop1),
+                              series_add("Vdrop ph+1", Vdrop1, Vdrop2),
+                              series_add("Vdrop ph+2", Vdrop2, Vdrop3),
+                              series("Vload", Vload),
+                             ], 
+                    { width: 600, height: 600, margin: { l: 00, r: 00, t: 00, b: 00}, 
+                      yaxis: {scaleanchor: 'x', scaleratio: 1, visible: false}, 
+                      xaxis: {visible: false}, 
+                      hovermode: 'closest',
+                      legend: {x:0.8, y:0.9},
+                      paper_bgcolor: 'rgba(0,0,0,0)',
+                      plot_bgcolor: 'rgba(0,0,0,0)'
+                    },
+                    // { displayModeBar: false }
+                    )
+    Vdrop = M.subtract(Vload, Vsub)
     var layout = m("div",
+      m(".row", conductorplot),
       m(".row",
         m(".col-md-3",
           m("h3", "Line-to-neutral voltages"),
-          mdatatable({"": ["A", "B", "C"],
+          mdatatable({"": ["A", "B", "C", "N"],
                       "V": Vabs.map((x) => x.toFixed())._data, 
                       "angle": Vload.map((x) => f(ang(x), 3) + "°")._data,
                       "per unit": Vabs.map((x) => (x/mdpad.Vbase).toFixed(4))._data,
@@ -326,10 +382,19 @@ function mdpad_update() {
                       "V": Vllabs.map((x) => x.toFixed())._data, 
                       "angle": Vll.map((x) => f(ang(x), 3) + "°")._data,
                       "per unit": Vllabs.map((x) => (x/mdpad.Vbase/M.sqrt(3)).toFixed(4))._data,
-                      // "120-V base": Vllabs.map((x) => (x/mdpad.Vbase*120/M.sqrt(3)).toFixed(1))._data,
                       }),
         ),
-        m(".col-md-2", phasorplot)
+        m(".col-md-2", phasorplot),
+      ),
+      m(".row",
+        m("h2", "Voltage Drops"),
+        mdpad.rolling == "None" && mdpad.vreg == "None" ? m(".col-md-8", phasorplot2) : "",
+        m(".col-md-3",
+          mdatatable({"": ["A", "B", "C"],
+                      "V": Vdrop.map((x) => M.abs(x).toFixed())._data, 
+                      "angle": Vdrop.map((x) => f(ang(x), 3) + "°")._data,
+                      }),
+        ),
       )
     )
     m.render(document.querySelector("#mdpad-results"), layout);

@@ -268,6 +268,23 @@ function mdpad_update() {
     cond.rho = mdpad.rho
     cond.y = [mdpad.yA, mdpad.yB, mdpad.yC, mdpad.yX, mdpad.yY, mdpad.yZ, mdpad.yN]        // ft
     cond.x = [mdpad.xA, mdpad.xB, mdpad.xC, mdpad.xX, mdpad.xY, mdpad.xZ, mdpad.xN]
+    var conductorplot = 
+        mplotly([
+                  {x: cond.x,
+                   y: cond.y,
+                   mode: 'markers+text',
+                   textposition: 'bottom',
+                   text: ['A', 'B', 'C', 'X', 'Y', 'Z', 'N']},
+                 ], 
+                { width: 200, height: 150, margin: { l: 00, r: 00, t: 00, b: 00}, 
+                  yaxis: {scaleanchor: 'x', scaleratio: 0.91, visible: false}, 
+                  xaxis: {visible: false}, 
+                  hovermode: 'closest',
+                  paper_bgcolor: 'rgba(0,0,0,0)',
+                  plot_bgcolor: 'rgba(0,0,0,0)'
+                },
+                { displayModeBar: false }
+                )
     for (var i = 0; i < 6; i++) {
         cond.R[i]   = rac[pidx]   // ac resistance, ohms/mi
         cond.gmr[i] = gmr[pidx]   // ft
@@ -323,16 +340,43 @@ function mdpad_update() {
     Vllabs = M.abs(Vll)
     fmt0 = (x) => f(x, 0)
     series = function(name, x) {
+        var z = M.zeros(6)
+        for (const i of [0,2,4]) {
+            z = assign(z, IX(x, i/2), i+1)
+        }
+        return {x: M.re(z)._data, y: M.im(z)._data, name: name}
+    }
+    series2 = function(name, x) {
         var z = M.zeros(12)
         for (const i of [0,2,4,6,8,10]) {
             z = assign(z, IX(x, i/2), i+1)
         }
         return {x: M.re(z)._data, y: M.im(z)._data, name: name}
     }
+    series_add = function(name, x, y) {
+        var z = M.multiply(M.ones(9), NaN)
+        for (const i of [0,1,2]) {
+            z = assign(z, IX(x, i), 3*i)
+            z = assign(z, IX(y, i), 3*i + 1)
+        }
+        return {x: M.re(z)._data, y: M.im(z)._data, name: name}
+    }
+    // Complicated rolls to arrange the voltage-drop differences, so the 
+    // first one is the drop due to the self impedance, and then the next
+    // two are drops from the next phases due to mutual impedances.
+    Vdrop1 = M.subtract(Vsub,   M.dotMultiply(M.squeeze(M.diag(Z)), I))
+    Vdrop2 = M.subtract(Vdrop1, M.dotMultiply(M.squeeze(M.diag(IX(Z, [0, 1, 2, 3, 4, 5], [1, 2, 3, 4, 5, 0]))), IX(I, [1, 2, 3, 4, 5, 0])))
+    Vdrop3 = M.subtract(Vdrop2, M.dotMultiply(M.squeeze(M.diag(IX(Z, [0, 1, 2, 3, 4, 5], [2, 3, 4, 5, 0, 1]))), IX(I, [2, 3, 4, 5, 0, 1])))
+    Vdrop4 = M.subtract(Vdrop3, M.dotMultiply(M.squeeze(M.diag(IX(Z, [0, 1, 2, 3, 4, 5], [3, 4, 5, 0, 1, 2]))), IX(I, [3, 4, 5, 0, 1, 2])))
+    Vdrop5 = M.subtract(Vdrop4, M.dotMultiply(M.squeeze(M.diag(IX(Z, [0, 1, 2, 3, 4, 5], [4, 5, 0, 1, 2, 3]))), IX(I, [4, 5, 0, 1, 2, 3])))
+    Vdrop6 = M.subtract(Vdrop5, M.dotMultiply(M.squeeze(M.diag(IX(Z, [0, 1, 2, 3, 4, 5], [5, 0, 1, 2, 3, 4]))), IX(I, [5, 0, 1, 2, 3, 4])))
     var phasorplot = mplotly([
-                              series("Vsub",  Vsub),
-                              series("Vload", Vload),
-                              series("I",     I),
+                              {...series2("Vsub", Vsub),
+                               mode: 'markers+lines+text',
+                               textposition: 'bottom',
+                               text: ['', 'A', '', 'B', '', 'C']},
+                              series2("Vload", Vload),
+                              series2("I",     I),
                              ], 
                     { width: 300, height: 300, margin: { l: 00, r: 00, t: 00, b: 00}, 
                       yaxis: {scaleanchor: 'x', scaleratio: 1, visible: false}, 
@@ -343,7 +387,55 @@ function mdpad_update() {
                       plot_bgcolor: 'rgba(0,0,0,0)'
                     },
                     { displayModeBar: false })
+    var phasorplot2 = mplotly([
+                              {...series("Vsub", IX(Vsub, [0, 1, 2])),
+                               mode: 'markers+lines+text',
+                               textposition: 'bottom',
+                               text: ['', 'A', '', 'B', '', 'C']},
+                              series_add("Vdrop self", IX(Vsub, [0, 1, 2]), IX(Vdrop1, [0, 1, 2])),
+                              series_add("Vdrop ph+1", IX(Vdrop1, [0, 1, 2]), IX(Vdrop2, [0, 1, 2])),
+                              series_add("Vdrop ph+2", IX(Vdrop2, [0, 1, 2]), IX(Vdrop3, [0, 1, 2])),
+                              series_add("Vdrop 2",    IX(Vdrop3, [0, 1, 2]), IX(Vdrop4, [0, 1, 2])),
+                              series_add("Vdrop 2+1",  IX(Vdrop4, [0, 1, 2]), IX(Vdrop5, [0, 1, 2])),
+                              series_add("Vdrop 2+2",  IX(Vdrop5, [0, 1, 2]), IX(Vdrop6, [0, 1, 2])),
+                              series("Vload", IX(Vload, [0, 1, 2])),
+                             ], 
+                    { width: 600, height: 600, margin: { l: 00, r: 00, t: 00, b: 00}, 
+                      yaxis: {scaleanchor: 'x', scaleratio: 1, visible: false}, 
+                      xaxis: {visible: false}, 
+                      hovermode: 'closest',
+                      legend: {x:0.8, y:0.9},
+                      paper_bgcolor: 'rgba(0,0,0,0)',
+                      plot_bgcolor: 'rgba(0,0,0,0)'
+                    },
+                    // { displayModeBar: false }
+                    )
+    var phasorplot3 = mplotly([
+                              {...series("Vsub", IX(Vsub, [3,4,5])),
+                               mode: 'markers+lines+text',
+                               textposition: 'bottom',
+                               text: ['', 'X', '', 'Y', '', 'Z']},
+                              series_add("Vdrop self", IX(Vsub, [3,4,5]), IX(Vdrop1, [3,4,5])),
+                              series_add("Vdrop ph+1", IX(Vdrop1, [3,4,5]), IX(Vdrop2, [3,4,5])),
+                              series_add("Vdrop ph+2", IX(Vdrop2, [3,4,5]), IX(Vdrop3, [3,4,5])),
+                              series_add("Vdrop 2",    IX(Vdrop3, [3,4,5]), IX(Vdrop4, [3,4,5])),
+                              series_add("Vdrop 2+1",  IX(Vdrop4, [3,4,5]), IX(Vdrop5, [3,4,5])),
+                              series_add("Vdrop 2+2",  IX(Vdrop5, [3,4,5]), IX(Vdrop6, [3,4,5])),
+                              series("Vload", IX(Vload, [3,4,5])),
+                             ], 
+                    { width: 600, height: 600, margin: { l: 00, r: 00, t: 00, b: 00}, 
+                      yaxis: {scaleanchor: 'x', scaleratio: 1, visible: false}, 
+                      xaxis: {visible: false}, 
+                      hovermode: 'closest',
+                      legend: {x:0.8, y:0.9},
+                      paper_bgcolor: 'rgba(0,0,0,0)',
+                      plot_bgcolor: 'rgba(0,0,0,0)'
+                    },
+                    // { displayModeBar: false }
+                    )
+    Vdrop = M.subtract(Vload, Vsub)
     var layout = m("div",
+      m(".row", conductorplot),
       m(".row",
         m(".col-md-3",
           m("h3", "Line-to-neutral voltages"),
@@ -370,6 +462,19 @@ function mdpad_update() {
                       }),
         ),
         m(".col-md-2", phasorplot)
+      ),
+      m(".row",
+        m("h2", "Voltage Drops"),
+        mdpad.swap == "None" && mdpad.rolling == "None" && 
+        mdpad.vreg2 == "None" && mdpad.vreg2 == "None" ? 
+          m(".row", m(".col-md-6", phasorplot2),
+                    m(".col-md-6", phasorplot3)) : "",
+        m(".col-md-3",
+          mdatatable({"": ["A", "B", "C", "X", "Y", "Z"],
+                      "V": Vdrop.map((x) => M.abs(x).toFixed())._data, 
+                      "angle": Vdrop.map((x) => f(ang(x), 3) + "°")._data,
+                      }),
+        ),
       )
     )
     m.render(document.querySelector("#mdpad-results"), layout);
