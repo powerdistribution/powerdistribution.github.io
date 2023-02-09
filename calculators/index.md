@@ -19,7 +19,7 @@ like most of the protection apps, are useful for real enginnering.
 ## Impedances and voltage drop
 
 - [Overhead line impedance calculator](mdpad.html?impedances.md)
-- [Voltage drop on a line section](mdpad.html?voltage_drop.md)
+- [Voltage drop on a line section](voltage-drop)
 - [Cable capacitance](mdpad.html?cable_capacitance.md)
 - [CVR: customer vs. utility savings](mdpad.html?cvr.md)
 - [Voltage impacts of a distributed generator](mdpad.html?dg.md)
@@ -30,7 +30,7 @@ like most of the protection apps, are useful for real enginnering.
 - [Neutral-to-earth voltages (stray voltage)](mdpad.html?StrayVoltage.md)
 - [Circulating currents on underground cables](mdpad.html?CableCirculatingCurrents.md)
 - [Coupling to telephone circuits](mdpad.html?phone_coupling.md)
-- [Fault simulator with various transformer connections](mdpad.html?fault_simulator.md)
+- [Fault simulator with various transformer connections](fault-simulator)
 
 ## Transients
 

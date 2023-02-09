@@ -1,6 +1,8 @@
 
 # Fault Simulator
 
+Note: see an updated version of this app [here](fault-simulator).
+
 This app models faults at different points on a power system with
 different transformer connections. The line-to-ground voltages in per
 unit are shown in blue, and the currents in kA are in green.
