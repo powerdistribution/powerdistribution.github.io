@@ -76,7 +76,7 @@ sq= function(x) {
   return x * x;
 }
 
-const faultmap = {"A": [0], "B": [1], "C": [2], "AB": [0, 1], "BC": [1, 2], "CA": [2, 0], "ABg": [[0, 1]], "BCg": [[1, 2]], "CAg": [[2, 0]], "ABC": [0, 1, 2]}
+const faultmap = {"A": [0], "B": [1], "C": [2], "ABg": [0, 1], "BCg": [1, 2], "CAg": [2, 0], "AB": [[0, 1]], "BC": [[1, 2]], "CA": [[2, 0]], "ABC": [0, 1, 2]}
 const faulttypes = Object.keys(faultmap)
 
 function mdpad_init() {
@@ -120,29 +120,29 @@ function mdpad_update() {
     x.find("#DY2").css("display", "none")
     if (mdpad.tran1connection == "Delta Wye") {
         x.find("#DY1").css("display", "inline");
-        $("select[name*='tran1pn']").parent().parent().toggle(false);
-        $("select[name*='tran1sn']").parent().parent().toggle(true);
+        $("select[mdpad*='tran1pn']").parent().toggle(false);
+        $("select[mdpad*='tran1sn']").parent().toggle(true);
     } else if (mdpad.tran1connection == "Wye Wye") {
         x.find("#YY1").css("display", "inline");
-        $("select[name*='tran1pn']").parent().parent().toggle(true);
-        $("select[name*='tran1sn']").parent().parent().toggle(true);
+        $("select[mdpad*='tran1pn']").parent().toggle(true);
+        $("select[mdpad*='tran1sn']").parent().toggle(true);
     } else if (mdpad.tran1connection == "Wye Delta") {
         x.find("#YD1").css("display", "inline");
-        $("select[name*='tran1pn']").parent().parent().toggle(true);
-        $("select[name*='tran1sn']").parent().parent().toggle(false);
+        $("select[mdpad*='tran1pn']").parent().toggle(true);
+        $("select[mdpad*='tran1sn']").parent().toggle(false);
     }
     if (mdpad.tran2connection == "Delta Wye") {
         x.find("#DY2").css("display", "inline");
-        $("select[name*='tran2pn']").parent().parent().toggle(false);
-        $("select[name*='tran2sn']").parent().parent().toggle(true);
+        $("select[mdpad*='tran2pn']").parent().toggle(false);
+        $("select[mdpad*='tran2sn']").parent().toggle(true);
     } else if (mdpad.tran2connection == "Wye Wye") {
         x.find("#YY2").css("display", "inline");
-        $("select[name*='tran2pn']").parent().parent().toggle(true);
-        $("select[name*='tran2sn']").parent().parent().toggle(true);
+        $("select[mdpad*='tran2pn']").parent().toggle(true);
+        $("select[mdpad*='tran2sn']").parent().toggle(true);
     } else if (mdpad.tran2connection == "Wye Delta") {
         x.find("#YD2").css("display", "inline");
-        $("select[name*='tran2pn']").parent().parent().toggle(true);
-        $("select[name*='tran2sn']").parent().parent().toggle(false);
+        $("select[mdpad*='tran2pn']").parent().toggle(true);
+        $("select[mdpad*='tran2sn']").parent().toggle(false);
     }
     x.find("#F1,#F2,#F3,#F4").css("display", "none")
     x.find("#F"+mdpad.faultloc).css("display", "inline")
@@ -222,7 +222,7 @@ function mdpad_update() {
         }
     for (loc = 1; loc < 5; loc++) {
         name = "in" + loc
-        idev = M.multiply(N.currents(r, "TN" + loc)._data[0], loc % 2 == 0 ? 1 : -1)
+        idev = M.multiply(N.currents(r, "TN" + loc)._data[0], loc % 2 == 0 ? -1 : 1)
         re = idev.re / 1000
         im = idev.im / 1000
         mag = Math.sqrt(sq(re) + sq(im)).toPrecision(2)

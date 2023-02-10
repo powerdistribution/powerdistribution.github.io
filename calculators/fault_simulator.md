@@ -1,7 +1,7 @@
 
 # Fault Simulator
 
-Note: see an updated version of this app [here](fault-simulator).
+**Note: see an updated version of this app [here](fault-simulator).**
 
 This app models faults at different points on a power system with
 different transformer connections. The line-to-ground voltages in per
