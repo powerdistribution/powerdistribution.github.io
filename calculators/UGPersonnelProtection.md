@@ -1,6 +1,13 @@
 
 # Personnel protection on underground systems: Adjacent fault
 
+**Note: this app will be taken done soon.** See an updated version of
+this app at the EPRI Distribution Resource Center 
+[here](https://distribution.epri.com/safety/grounding/ug/adjacent-fault/) (members only). 
+This is a member-funded area that helps support updates. For more on
+that research, see [here](https://distribution.epri.com/safety/public/research/)
+(public page).
+
 This page models touch voltages induced on a cut cable during a fault on a parallel
 cable. This expands on material in Section 14.6.
 

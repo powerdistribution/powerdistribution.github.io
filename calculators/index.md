@@ -26,7 +26,6 @@ like most of the protection apps, are useful for real enginnering.
 
 ## Grounding, coupling, and faults
 
-- [Personnel protection on underground systems](mdpad_hot.html?UGPersonnelProtection.md)
 - [Neutral-to-earth voltages (stray voltage)](mdpad.html?StrayVoltage.md)
 - [Circulating currents on underground cables](mdpad.html?CableCirculatingCurrents.md)
 - [Coupling to telephone circuits](mdpad.html?phone_coupling.md)
