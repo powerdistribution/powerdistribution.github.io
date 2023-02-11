@@ -39,11 +39,9 @@ Here are some examples to try:
 
 This model is a steady-state model. The transformers are "ideal" and
 do not include any magnetizing or saturation effects. The impedances
-also do not reflect winding configurations. The line between points 2
-and 3 has Z<sub>1</sub> = 1 + j2 ohms and Z<sub>0</sub> = 2 + j4 ohms.
-The voltages on the system are hard coded (138, 12.47, and 0.48 kV).
-It would be possible to allow the user to enter more parameters, but
-the number of inputs will grow fast.
+also do not reflect winding configurations. The voltages and some of
+the transformer and line characteristics can be adjusted. Click the 
+"Toggle more..." links to see extra inputs.
 
 It is possible to input transformer connections that you really
 shouldn't use (see the discussion in section 5.4.5) with a floating
@@ -95,6 +93,34 @@ function mdpad_init() {
             mselect({ title:"Primary neutral", mdpad:"tran1pn", selected:"Solidly grounded", options:["Solidly grounded", "High impedance"] })),
           m(".col-md-3",
             mselect({ title:"Secondary neutral", mdpad:"tran1sn", selected:"Solidly grounded", options:["Solidly grounded", "1 ohm", "High impedance"] })),
+          m(".col-md-3",
+            m("a", {href: "#collapseOne", "data-toggle": "collapse", "role": "button", "aria-expanded": "false", "aria-controls": "collapseOne"}, "Toggle more...")),
+          ),
+        m(".collapse#collapseOne", 
+          m(".row", 
+            m(".col-md-2",
+              minput({ title:"kVA", mdpad:"tran1kVA", value:20000, min: 0.0, step:1000 })),
+            m(".col-md-2",
+              minput({ title:"Z, %", mdpad:"tran1Z", value:11, min: 0.0, step:1 })),
+            m(".col-md-2",
+              minput({ title:"X/R", mdpad:"tran1XR", value:10, min: 0.0, step:1 })),
+            m(".col-md-2",
+              minput({ title:"V₁, V", mdpad:"V1", value:138000, min: 0.0, step:10000 })),
+            m(".col-md-2",
+              minput({ title:"V₂, V", mdpad:"V2", value:12470, min: 0.0, step:1000 })),
+            ),
+          m(".row", 
+            m(".col-md-2",
+              minput({ title:"Line len", mdpad:"linelen", value:5, min: 0.0, step:1 })),
+            m(".col-md-2",
+              minput({ title:"R1, Ω/len", mdpad:"R1", value: 0.206976, min: 0.0, step:0.1 })),
+            m(".col-md-2",
+              minput({ title:"X1, Ω/len", mdpad:"X1", value: 0.634656, min: 0.0, step:0.1 })),
+            m(".col-md-2",
+              minput({ title:"R0, Ω/len", mdpad:"R0", value: 0.6204, min: 0.0, step:0.1 })),
+            m(".col-md-2",
+              minput({ title:"X0, Ω/len", mdpad:"X0", value: 1.90344, min: 0.0, step:0.1 })),
+            ),
           ),
         m(".row",
           m(".col-md-3",
@@ -103,6 +129,18 @@ function mdpad_init() {
             mselect({ title:"Primary neutral", mdpad:"tran2pn", selected:"Solidly grounded", options:["Solidly grounded", "1 ohm", "High impedance"] })),
           m(".col-md-3",
             mselect({ title:"Secondary neutral", mdpad:"tran2sn", selected:"Solidly grounded", options:["Solidly grounded", "High impedance"] })),
+          m(".col-md-3",
+            m("a", {href: "#collapseTwo", "data-toggle": "collapse", "role": "button", "aria-expanded": "false", "aria-controls": "collapseTwo"}, "Toggle more...")),
+          ),
+        m(".row.collapse#collapseTwo", 
+          m(".col-md-2",
+            minput({ title:"kVA", mdpad:"tran2kVA", value:1000, min: 0.0, step:500 })),
+          m(".col-md-2",
+            minput({ title:"Z, %", mdpad:"tran2Z", value:7, min: 0.0, step:1 })),
+          m(".col-md-2",
+            minput({ title:"X/R", mdpad:"tran2XR", value:10, min: 0.0, step:1 })),
+          m(".col-md-2",
+            minput({ title:"V₃, V", mdpad:"V3", value:480, min: 0.0, step:100 })),
           ),
       )
     m.render(document.querySelector("#mdpad"), layout);
@@ -112,6 +150,11 @@ function mdpad_update() {
     // Adjust the SVG based on user inputs
     //
     var x = $("svg")
+    x.find("#V1txt").text((mdpad.V1/1000).toFixed(1) + " / " + (mdpad.V1/1000/1.7320508075688772).toFixed(1) + " kV")
+    x.find("#V2txt").text((mdpad.V2/1000).toFixed(2) + " / " + (mdpad.V2/1000/1.7320508075688772).toFixed(2) + " kV")
+    x.find("#V3txt").text((mdpad.V3).toFixed()       + " / " + (mdpad.V3/1.7320508075688772).toFixed() + " V")
+    x.find("#T1txt").text((mdpad.tran1kVA/1000).toFixed(1) + " MVA, Z = " + mdpad.tran1Z + "%")
+    x.find("#T2txt").text((mdpad.tran2kVA)                 + " kVA, Z = " + mdpad.tran2Z + "%")
     x.find("#YD1").css("display", "none")
     x.find("#YY1").css("display", "none")
     x.find("#DY1").css("display", "none")
@@ -167,23 +210,22 @@ function mdpad_update() {
     // run the case
     //
     buses = ["t1","t1x","t2","t2x"]
-    busbaseV = [138000,12470,12470,480]
+    busbaseV = [mdpad.V1,mdpad.V2,mdpad.V2,mdpad.V3]
     phases = ["A","B","C"]
     transtype = {"Wye Wye": ["wye", "wye"], }
     neutraloptions = {"Solidly grounded": 1e-7, "1 ohm": 1.0, "2 ohms": 2.0, "High impedance": 1e3}
     devices = {
-        SRC:  N.Source("t1", {V: 138000, I3p: 8400, I1p: 8400, XR: 5, X0R0: 5}),
+        SRC:  N.Source("t1", {V: mdpad.V1, I3p: 8400, I1p: 8400, XR: 5, X0R0: 5}),
         FLT:  N.Fault(buses[Number(mdpad.faultloc) - 1], ...(faultmap[mdpad.faulttype])),
-        T1:   N.Transformer("t1", "t1x", {kVA: 20000, conns: mdpad.tran1connection.toLowerCase().split(" "), Vs: [138000, 12470], Z: 11, XR: 10, Zgs: [1e7, 1e7]}),
+        T1:   N.Transformer("t1", "t1x", {kVA: mdpad.tran1kVA, conns: mdpad.tran1connection.toLowerCase().split(" "), Vs: [mdpad.V1, mdpad.V2], Z: mdpad.tran1Z, XR: mdpad.tran1XR, Zgs: [1e7, 1e7]}),
         TN1:  N.Impedance("t1", {Z: c(0, neutraloptions[mdpad.tran1pn]), nodes: [3]}),
         TN2:  N.Impedance("t1x", {Z: c(0, neutraloptions[mdpad.tran1sn]), nodes: [3]}),
         LINE: N.Line("t1x", "t2", {z1: c(1, 2),  z0: c(2, 4)}),
-        T2:   N.Transformer("t2", "t2x", {kVA: 1000, conns: mdpad.tran2connection.toLowerCase().split(" "), Vs: [12470, 480], Z: 7, XR: 10, Zgs: [1e7, 1e7]}),
+        T2:   N.Transformer("t2", "t2x", {kVA: mdpad.tran2kVA, conns: mdpad.tran2connection.toLowerCase().split(" "), Vs: [mdpad.V2, mdpad.V3], Z: mdpad.tran2Z, XR: mdpad.tran2XR, Zgs: [1e7, 1e7]}),
         TN3:  N.Impedance("t2", {Z: c(0, neutraloptions[mdpad.tran2pn]), nodes: [3]}),
         TN4:  N.Impedance("t2x", {Z: c(0, neutraloptions[mdpad.tran2sn]), nodes: [3]}),
         XTRA: N.Impedance("t2x", {Z: 1e7}),
     }
-    
     r = N.solve(devices)
 
     //

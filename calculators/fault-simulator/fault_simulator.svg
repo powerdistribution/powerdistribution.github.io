@@ -1834,7 +1834,7 @@
          x="83.737206"
          id="tspan3361"
          sodipodi:role="line">Transformer 1</tspan><tspan
-         id="tspan3363"
+         id="T1txt"
          y="-137.43721"
          x="83.737206"
          sodipodi:role="line">20 MVA, Z = 11%</tspan></text>
@@ -1905,7 +1905,7 @@
          sodipodi:role="line"
          x="358.93805"
          y="-137.43721"
-         id="tspan3389">1 MVA, Z = 7%</tspan></text>
+         id="T2txt">1 MVA, Z = 7%</tspan></text>
 <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
@@ -1917,7 +1917,7 @@
          sodipodi:role="line"
          x="-26.662762"
          y="-137.83717"
-         id="tspan3395">138 / 7.97 kV</tspan></text>
+         id="V1txt">138 / 7.97 kV</tspan></text>
 <text
        transform="scale(1,-1)"
        sodipodi:linespacing="125%"
@@ -1926,7 +1926,7 @@
        x="226.13754"
        style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
        xml:space="preserve"><tspan
-         id="tspan3401"
+         id="V2txt"
          y="-137.83717"
          x="226.13754"
          sodipodi:role="line">12.47 / 7.2 kV</tspan></text>
@@ -1941,7 +1941,7 @@
          sodipodi:role="line"
          x="472.53848"
          y="-137.83717"
-         id="tspan3405">480 / 277 V</tspan></text>
+         id="V3txt">480 / 277 V</tspan></text>
 <g
        style="fill:#0000ff;stroke:#0000ff"
        id="g3998"><path
