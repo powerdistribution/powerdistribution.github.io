@@ -3,6 +3,7 @@ layout: default
 title:  Fault Simulator
 ---
 
+# Fault simulator
 
 This app models faults at different points on a power system with
 different transformer connections. The line-to-ground voltages in per
