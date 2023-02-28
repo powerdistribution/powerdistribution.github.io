@@ -3,6 +3,7 @@ layout: default
 title:  Fault Simulator
 ---
 
+# Fault Simulator
 
 This app models faults at different points on a power system with
 different transformer connections. The line-to-ground voltages in per
@@ -174,11 +175,15 @@ function mdpad_update() {
     devices = {
         SRC:  N.Source("t1", {V: 138000, I3p: 8400, I1p: 8400, XR: 5, X0R0: 5}),
         FLT:  N.Fault(buses[Number(mdpad.faultloc) - 1], ...(faultmap[mdpad.faulttype])),
-        T1:   N.Transformer("t1", "t1x", {kVA: 20000, conns: mdpad.tran1connection.toLowerCase().split(" "), Vs: [138000, 12470], Z: 11, XR: 10, Zgs: [1e7, 1e7]}),
+        T1:   N.Transformer("t1", "t1x", {kVA: 20000, conns: mdpad.tran1connection.toLowerCase().split(" "), 
+                                          Vs: [138000, 12470], Z: 11, XR: 10, Zgs: [1e7, 1e7]}),
         TN1:  N.Impedance("t1", {Z: c(0, neutraloptions[mdpad.tran1pn]), nodes: [3]}),
         TN2:  N.Impedance("t1x", {Z: c(0, neutraloptions[mdpad.tran1sn]), nodes: [3]}),
-        LINE: N.Line("t1x", "t2", {z1: c(1, 2),  z0: c(2, 4)}),
-        T2:   N.Transformer("t2", "t2x", {kVA: 1000, conns: mdpad.tran2connection.toLowerCase().split(" "), Vs: [12470, 480], Z: 7, XR: 10, Zgs: [1e7, 1e7]}),
+        LINE: N.Line("t1x", "t2", {z1: c(mdpad.r1 * mdpad.linelen, mdpad.x1 * mdpad.linelen),  
+                                   z0: c(mdpad.r0 * mdpad.linelen, mdpad.x0 * mdpad.linelen)}),
+        T2:   N.Transformer("t2", "t2x", {kVA: mdpad.tran2kVA, conns: mdpad.tran2connection.toLowerCase().split(" "),                               
+                                          Vs: [mdpad.V2, mdpad.V3], Z: mdpad.tran2Z, 
+                                          XR: mdpad.tran2XR, Zgs: [1e7, 1e7]}),
         TN3:  N.Impedance("t2", {Z: c(0, neutraloptions[mdpad.tran2pn]), nodes: [3]}),
         TN4:  N.Impedance("t2x", {Z: c(0, neutraloptions[mdpad.tran2sn]), nodes: [3]}),
         XTRA: N.Impedance("t2x", {Z: 1e7}),
