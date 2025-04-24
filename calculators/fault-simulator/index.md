@@ -218,8 +218,8 @@ function mdpad_update() {
     devices = {
         SRC:  N.Source("t1", {V: mdpad.V1, I3p: 8400, I1p: 8400, XR: 5, X0R0: 5}),
         FLT:  N.Fault(buses[Number(mdpad.faultloc) - 1], ...(faultmap[mdpad.faulttype])),
-        T1:   N.Transformer("t1", "t1x", {kVA: 20000, conns: mdpad.tran1connection.toLowerCase().split(" "), 
-                                          Vs: [138000, 12470], Z: 11, XR: 10, Zgs: [1e7, 1e7]}),
+        T1:   N.Transformer("t1", "t1x", {kVA: mdpad.tran1kVA, conns: mdpad.tran1connection.toLowerCase().split(" "), 
+                                          Vs: [mdpad.V1, mdpad.V2], Z: tran1Z, XR: mdpad.tran1XR, Zgs: [1e7, 1e7]}),
         TN1:  N.Impedance("t1", {Z: c(0, neutraloptions[mdpad.tran1pn]), nodes: [3]}),
         TN2:  N.Impedance("t1x", {Z: c(0, neutraloptions[mdpad.tran1sn]), nodes: [3]}),
         LINE: N.Line("t1x", "t2", {z1: c(mdpad.R1 * mdpad.linelen, mdpad.X1 * mdpad.linelen),  
